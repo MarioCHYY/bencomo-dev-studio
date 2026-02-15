@@ -2,40 +2,60 @@ import { motion } from "framer-motion";
 
 interface Skill {
   name: string;
-  level: number;
+  level: "Básico" | "Intermedio" | "Avanzado";
   category: string;
 }
 
 const skills: Skill[] = [
-  { name: "React", level: 75, category: "Frontend" },
-  { name: "TypeScript", level: 70, category: "Frontend" },
-  { name: "JavaScript", level: 80, category: "Frontend" },
-  { name: "HTML & CSS", level: 85, category: "Frontend" },
-  { name: "Responsive Design", level: 80, category: "Frontend" },
-  { name: "Java", level: 65, category: "Backend" },
-  { name: "Git & GitHub", level: 75, category: "Tools" },
-  { name: "DaVinci Resolve", level: 55, category: "Other" },
+  { name: "HTML & CSS", level: "Avanzado", category: "Frontend" },
+  { name: "JavaScript", level: "Avanzado", category: "Frontend" },
+  { name: "React", level: "Intermedio", category: "Frontend" },
+  { name: "TypeScript", level: "Intermedio", category: "Frontend" },
+  { name: "Responsive Design", level: "Avanzado", category: "Frontend" },
+  { name: "Java", level: "Intermedio", category: "Backend" },
+  { name: "Git & GitHub", level: "Intermedio", category: "Tools" },
+  { name: "DaVinci Resolve", level: "Intermedio", category: "Other" },
 ];
 
-const SkillBar = ({ skill, index }: { skill: Skill; index: number }) => (
+const levelColors: Record<string, string> = {
+  Básico: "border-muted-foreground/50 text-muted-foreground",
+  Intermedio: "border-primary/50 text-primary",
+  Avanzado: "border-primary text-primary glow",
+};
+
+const levelDots: Record<string, number> = {
+  Básico: 1,
+  Intermedio: 2,
+  Avanzado: 3,
+};
+
+const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => (
   <motion.div
-    initial={{ opacity: 0, x: -20 }}
-    whileInView={{ opacity: 1, x: 0 }}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.4, delay: index * 0.08 }}
+    transition={{ duration: 0.4, delay: index * 0.07 }}
+    className="flex items-center justify-between p-4 rounded-xl glass hover:border-primary/30 transition-all"
   >
-    <div className="flex justify-between mb-2">
-      <span className="text-sm font-medium text-foreground">{skill.name}</span>
-      <span className="text-xs font-mono text-muted-foreground">{skill.level}%</span>
-    </div>
-    <div className="h-2 rounded-full bg-secondary overflow-hidden">
-      <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: `${skill.level}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.3 + index * 0.08, ease: "easeOut" }}
-        className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
-      />
+    <span className="font-medium text-foreground">{skill.name}</span>
+    <div className="flex items-center gap-3">
+      <div className="flex gap-1.5">
+        {[1, 2, 3].map((dot) => (
+          <span
+            key={dot}
+            className={`w-2 h-2 rounded-full transition-all ${
+              dot <= levelDots[skill.level]
+                ? "bg-primary"
+                : "bg-secondary"
+            }`}
+          />
+        ))}
+      </div>
+      <span
+        className={`text-xs font-mono px-2.5 py-1 rounded-full border ${levelColors[skill.level]}`}
+      >
+        {skill.level}
+      </span>
     </div>
   </motion.div>
 );
@@ -55,9 +75,9 @@ const SkillsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mt-2">Skills</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
           {skills.map((skill, i) => (
-            <SkillBar key={skill.name} skill={skill} index={i} />
+            <SkillCard key={skill.name} skill={skill} index={i} />
           ))}
         </div>
       </div>
