@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const HeroSection = () => {
+  const { t } = useLang();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-40"
         style={{ backgroundImage: `url(${heroBg})` }}
@@ -19,7 +22,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <span className="inline-block px-4 py-1.5 rounded-full border border-primary/30 text-primary text-xs font-mono mb-6 tracking-wider">
-            OPEN TO WORK
+            {t(translations.hero.badge)}
           </span>
         </motion.div>
 
@@ -29,7 +32,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6"
         >
-          Hi, I'm{" "}
+          {t(translations.hero.greeting)}{" "}
           <span className="text-gradient">Mario Héctor</span>
         </motion.h1>
 
@@ -39,8 +42,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Web Developer — Frontend & Backend. Building functional, scalable and
-          visually clean digital solutions.
+          {t(translations.hero.subtitle)}
         </motion.p>
 
         <motion.div
@@ -53,7 +55,7 @@ const HeroSection = () => {
             href="#projects"
             className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity glow"
           >
-            View My Work
+            {t(translations.hero.cta)}
           </a>
           <a
             href="https://github.com/MarioCHYY"
@@ -67,7 +69,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

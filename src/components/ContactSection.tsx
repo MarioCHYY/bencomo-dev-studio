@@ -2,18 +2,22 @@ import { motion } from "framer-motion";
 import { Send, Github, Mail } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const { t } = useLang();
+  const c = translations.contact;
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      toast({ title: "Please fill in all fields", variant: "destructive" });
+      toast({ title: t(c.fillAll), variant: "destructive" });
       return;
     }
-    toast({ title: "Message sent!", description: "I'll get back to you soon." });
+    toast({ title: t(c.sent), description: t(c.sentDesc) });
     setForm({ name: "", email: "", message: "" });
   };
 
@@ -27,10 +31,10 @@ const ContactSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-mono text-sm">05 —</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">Get in Touch</h2>
+          <span className="text-primary font-mono text-sm">{t(c.label)}</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">{t(c.title)}</h2>
           <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-            Have a project in mind? Let's talk about how I can help you.
+            {t(c.subtitle)}
           </p>
         </motion.div>
 
@@ -45,7 +49,7 @@ const ContactSection = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             <input
               type="text"
-              placeholder="Your Name"
+              placeholder={t(c.name)}
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               maxLength={100}
@@ -53,7 +57,7 @@ const ContactSection = () => {
             />
             <input
               type="email"
-              placeholder="Your Email"
+              placeholder={t(c.email)}
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               maxLength={255}
@@ -61,7 +65,7 @@ const ContactSection = () => {
             />
           </div>
           <textarea
-            placeholder="Your Message"
+            placeholder={t(c.message)}
             rows={5}
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -90,7 +94,7 @@ const ContactSection = () => {
               className="px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity glow flex items-center gap-2"
             >
               <Send size={16} />
-              Send Message
+              {t(c.send)}
             </button>
           </div>
         </motion.form>
