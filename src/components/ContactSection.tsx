@@ -83,7 +83,7 @@ const ContactSection = () => {
                 <Github size={20} />
               </a>
               <a
-                href="mailto:contact@mariohector.dev"
+                href="mailto:mariobencomo057@gmail.com"
                 className="p-3 rounded-xl border border-border hover:border-primary/50 hover:text-primary transition-all"
               >
                 <Mail size={20} />

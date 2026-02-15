@@ -135,6 +135,7 @@ export const translations = {
     },
     keyResponsibilities: { en: "Key Responsibilities", es: "Responsabilidades Clave" },
     liveDemo: { en: "Live Demo", es: "Demo en Vivo" },
+    viewCode: { en: "View Code", es: "Ver Código" },
     viewCaseStudy: { en: "View Case Study", es: "Ver Caso de Estudio" },
     backToProjects: { en: "← Back to Projects", es: "← Volver a Proyectos" },
   },

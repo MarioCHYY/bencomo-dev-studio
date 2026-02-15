@@ -3,6 +3,7 @@ import { ExternalLink, Github, X, Lightbulb, Target, Rocket, BookOpen } from "lu
 import { useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
+import { Button } from "@/components/ui/button";
 
 const ProjectsSection = () => {
   const { t } = useLang();
@@ -43,7 +44,7 @@ const ProjectsSection = () => {
                 </div>
                 <div className="flex gap-3">
                   <a
-                    href="https://github.com/MarioCHYY"
+                    href="https://github.com/MarioCHYY/radiant-beauty-studio-main"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 rounded-lg border border-border hover:border-primary/50 hover:text-primary transition-all"
@@ -51,7 +52,9 @@ const ProjectsSection = () => {
                     <Github size={18} />
                   </a>
                   <a
-                    href="#"
+                    href="https://radiant-beauty-studio-main.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-2 rounded-lg border border-border hover:border-primary/50 hover:text-primary transition-all"
                   >
                     <ExternalLink size={18} />
@@ -60,7 +63,7 @@ const ProjectsSection = () => {
               </div>
 
               <div className="flex flex-wrap gap-2 mb-6">
-                {["React", "TypeScript", "JavaScript", "HTML", "CSS", "Java", "Git"].map(
+                {["React", "TypeScript", "JavaScript", "HTML", "CSS", "Git"].map(
                   (tech) => (
                     <span
                       key={tech}
@@ -108,7 +111,7 @@ const ProjectsSection = () => {
                 <h1 className="text-3xl md:text-4xl font-bold mt-4">{t(proj.name)}</h1>
                 <p className="text-muted-foreground mt-2">{t(proj.role)}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  {["React", "TypeScript", "JavaScript", "HTML", "CSS", "Java", "Git"].map(
+                  {["React", "TypeScript", "JavaScript", "HTML", "CSS", "Git"].map(
                     (tech) => (
                       <span
                         key={tech}
@@ -176,20 +179,24 @@ const ProjectsSection = () => {
               </div>
 
               <div className="flex gap-4 mt-12 pt-8 border-t border-border">
-                <a
-                  href="https://github.com/MarioCHYY"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-2.5 rounded-lg border border-border text-foreground text-sm font-medium hover:border-primary/50 hover:text-primary transition-all flex items-center gap-2"
-                >
-                  <Github size={16} /> GitHub
-                </a>
-                <a
-                  href="#"
-                  className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2"
-                >
-                  <ExternalLink size={16} /> {t(p.liveDemo)}
-                </a>
+                <Button asChild variant="outline">
+                  <a
+                    href="https://github.com/MarioCHYY/radiant-beauty-studio-main"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github size={16} /> {t(p.viewCode)}
+                  </a>
+                </Button>
+                <Button asChild>
+                  <a
+                    href="https://radiant-beauty-studio-main.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink size={16} /> {t(p.liveDemo)}
+                  </a>
+                </Button>
               </div>
             </div>
           </motion.div>

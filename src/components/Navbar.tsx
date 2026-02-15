@@ -14,7 +14,6 @@ const Navbar = () => {
     { label: t(translations.nav.projects), href: "#projects" },
     { label: t(translations.nav.skills), href: "#skills" },
     { label: t(translations.nav.services), href: "#services" },
-    { label: t(translations.nav.contact), href: "#contact" },
   ];
 
   useEffect(() => {
