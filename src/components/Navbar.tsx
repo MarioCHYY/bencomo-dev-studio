@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const Navbar = () => {
+  const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { label: t(translations.nav.about), href: "#about" },
+    { label: t(translations.nav.projects), href: "#projects" },
+    { label: t(translations.nav.skills), href: "#skills" },
+    { label: t(translations.nav.services), href: "#services" },
+    { label: t(translations.nav.contact), href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -45,11 +48,20 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+
+          {/* Language toggle */}
+          <button
+            onClick={() => setLang(lang === "en" ? "es" : "en")}
+            className="text-xs font-mono px-3 py-1.5 rounded-lg border border-border hover:border-primary/50 text-muted-foreground hover:text-primary transition-all"
+          >
+            {lang === "en" ? "ES" : "EN"}
+          </button>
+
           <a
             href="#contact"
             className="text-sm font-medium px-5 py-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
           >
-            Hire Me
+            {t(translations.nav.cta)}
           </a>
         </div>
 
@@ -82,12 +94,18 @@ const Navbar = () => {
                   {l.label}
                 </a>
               ))}
+              <button
+                onClick={() => { setLang(lang === "en" ? "es" : "en"); }}
+                className="text-xs font-mono px-3 py-1.5 rounded-lg border border-border text-muted-foreground hover:text-primary transition-all w-fit"
+              >
+                {lang === "en" ? "ES" : "EN"}
+              </button>
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
                 className="text-sm font-medium px-5 py-2 rounded-lg bg-primary text-primary-foreground text-center"
               >
-                Hire Me
+                {t(translations.nav.cta)}
               </a>
             </div>
           </motion.div>

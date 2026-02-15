@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
 import { GraduationCap, MapPin, Code2 } from "lucide-react";
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const AboutSection = () => {
+  const { t } = useLang();
+  const a = translations.about;
+
+  const items = [
+    { icon: GraduationCap, title: t(a.degree.title), sub: t(a.degree.sub) },
+    { icon: Code2, title: t(a.role.title), sub: t(a.role.sub) },
+    { icon: MapPin, title: t(a.location.title), sub: t(a.location.sub) },
+  ];
+
   return (
     <section id="about" className="section-padding">
       <div className="max-w-6xl mx-auto">
@@ -12,8 +23,8 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-mono text-sm">01 —</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">About Me</h2>
+          <span className="text-primary font-mono text-sm">{t(a.label)}</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">{t(a.title)}</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -24,15 +35,10 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Desarrollador web con enfoque en frontend y backend, especializado
-              en la creación de aplicaciones funcionales, escalables y
-              visualmente limpias. Experiencia desarrollando soluciones digitales
-              para negocios locales, priorizando arquitectura organizada,
-              experiencia de usuario y buenas prácticas de desarrollo.
+              {t(a.p1)}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              En constante aprendizaje y mejora técnica. Apasionado por crear
-              productos digitales que generen impacto real.
+              {t(a.p2)}
             </p>
           </motion.div>
 
@@ -43,23 +49,7 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-4"
           >
-            {[
-              {
-                icon: GraduationCap,
-                title: "Ing. en Sistemas Computacionales",
-                sub: "Tecnológico de Culiacán — Grad. Dic 2028",
-              },
-              {
-                icon: Code2,
-                title: "Web Developer",
-                sub: "Frontend & Backend",
-              },
-              {
-                icon: MapPin,
-                title: "Culiacán, Sinaloa",
-                sub: "México — Remote Available",
-              },
-            ].map((item, i) => (
+            {items.map((item, i) => (
               <div
                 key={i}
                 className="flex items-start gap-4 p-4 rounded-xl glass hover:border-primary/30 transition-colors"
