@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github } from "lucide-react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
@@ -33,7 +33,7 @@ const HeroSection = () => {
           className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6"
         >
           {t(translations.hero.greeting)}{" "}
-          <span className="text-gradient">Mario Héctor</span>
+          <span className="text-gradient">Mario Bencomo</span>
         </motion.h1>
 
         <motion.p
@@ -65,6 +65,15 @@ const HeroSection = () => {
           >
             <Github size={18} />
             GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/mario-bencomo-4998273aa/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 rounded-lg border border-border text-foreground font-semibold hover:border-primary/50 hover:text-primary transition-all flex items-center gap-2"
+          >
+            <Linkedin size={18} />
+            LinkedIn
           </a>
         </motion.div>
       </div>

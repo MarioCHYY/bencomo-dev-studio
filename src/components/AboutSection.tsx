@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { GraduationCap, MapPin, Code2 } from "lucide-react";
+import { MapPin, Code2 } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 
@@ -8,7 +8,6 @@ const AboutSection = () => {
   const a = translations.about;
 
   const items = [
-    { icon: GraduationCap, title: t(a.degree.title), sub: t(a.degree.sub) },
     { icon: Code2, title: t(a.role.title), sub: t(a.role.sub) },
     { icon: MapPin, title: t(a.location.title), sub: t(a.location.sub) },
   ];

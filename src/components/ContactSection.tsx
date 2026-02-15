@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, Github, Mail } from "lucide-react";
+import { Send, Github, Mail, Linkedin } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useLang } from "@/i18n/LanguageContext";
@@ -81,6 +81,14 @@ const ContactSection = () => {
                 className="p-3 rounded-xl border border-border hover:border-primary/50 hover:text-primary transition-all"
               >
                 <Github size={20} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/mario-bencomo-4998273aa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-xl border border-border hover:border-primary/50 hover:text-primary transition-all"
+              >
+                <Linkedin size={20} />
               </a>
               <a
                 href="mailto:mariobencomo057@gmail.com"

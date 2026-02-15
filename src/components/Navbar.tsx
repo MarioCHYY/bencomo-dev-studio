@@ -11,6 +11,8 @@ const Navbar = () => {
 
   const links = [
     { label: t(translations.nav.about), href: "#about" },
+    { label: t(translations.nav.education), href: "#education" },
+    { label: t(translations.nav.experience), href: "#experience" },
     { label: t(translations.nav.projects), href: "#projects" },
     { label: t(translations.nav.skills), href: "#skills" },
     { label: t(translations.nav.services), href: "#services" },
@@ -33,7 +35,7 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <a href="#" className="text-xl font-bold text-gradient font-mono">
-          {"<MH />"}
+          {"<MB />"}
         </a>
 
         {/* Desktop */}

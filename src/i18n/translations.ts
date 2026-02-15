@@ -3,6 +3,8 @@ export type Lang = "en" | "es";
 export const translations = {
   nav: {
     about: { en: "About", es: "Sobre mí" },
+    education: { en: "Education", es: "Educación" },
+    experience: { en: "Experience", es: "Experiencia" },
     projects: { en: "Projects", es: "Proyectos" },
     skills: { en: "Skills", es: "Habilidades" },
     services: { en: "Services", es: "Servicios" },
@@ -42,8 +44,44 @@ export const translations = {
       sub: { en: "México — Remote Available", es: "México — Disponible Remoto" },
     },
   },
-  projects: {
+  education: {
     label: { en: "02 —", es: "02 —" },
+    title: { en: "Education", es: "Educación" },
+    degree: {
+      title: { en: "Bachelor's Degree in Software Development", es: "Licenciatura en Desarrollo de Software" },
+      period: { en: "Currently in 4th Semester • 2026 – Present", es: "Actualmente en 4to Semestre • 2026 – Presente" },
+      graduation: { en: "Expected Graduation: 2029", es: "Graduación Esperada: 2029" },
+      focus: {
+        en: "Focused on software engineering fundamentals, web development, and modern frontend technologies.",
+        es: "Enfocado en fundamentos de ingeniería de software, desarrollo web y tecnologías frontend modernas.",
+      },
+    },
+  },
+  experience: {
+    label: { en: "03 —", es: "03 —" },
+    title: { en: "Experience", es: "Experiencia" },
+    role: { en: "Frontend Developer", es: "Desarrollador Frontend" },
+    type: { en: "Independent Projects", es: "Proyectos Independientes" },
+    period: { en: "2026 – Present", es: "2026 – Presente" },
+    responsibilities: {
+      en: [
+        "Developed responsive and modern web applications",
+        "Built real-world projects using React and TailwindCSS",
+        "Focused on clean code and performance optimization",
+        "Designed user-friendly and visually appealing interfaces",
+        "Continuously learning and improving technical skills",
+      ],
+      es: [
+        "Desarrollé aplicaciones web responsivas y modernas",
+        "Creé proyectos del mundo real usando React y TailwindCSS",
+        "Me enfoqué en código limpio y optimización de rendimiento",
+        "Diseñé interfaces amigables y visualmente atractivas",
+        "Continuamente aprendiendo y mejorando habilidades técnicas",
+      ],
+    },
+  },
+  projects: {
+    label: { en: "04 —", es: "04 —" },
     title: { en: "Projects", es: "Proyectos" },
     featured: { en: "FEATURED PROJECT", es: "PROYECTO DESTACADO" },
     project1: {
@@ -140,7 +178,7 @@ export const translations = {
     backToProjects: { en: "← Back to Projects", es: "← Volver a Proyectos" },
   },
   skills: {
-    label: { en: "03 —", es: "03 —" },
+    label: { en: "05 —", es: "05 —" },
     title: { en: "Skills", es: "Habilidades" },
     levels: {
       Básico: { en: "Basic", es: "Básico" },
@@ -149,7 +187,7 @@ export const translations = {
     },
   },
   services: {
-    label: { en: "04 —", es: "04 —" },
+    label: { en: "06 —", es: "06 —" },
     title: { en: "Services", es: "Servicios" },
     subtitle: {
       en: "Available for freelance projects. Let's build something great together.",
@@ -187,7 +225,7 @@ export const translations = {
     ],
   },
   contact: {
-    label: { en: "05 —", es: "05 —" },
+    label: { en: "07 —", es: "07 —" },
     title: { en: "Get in Touch", es: "Contáctame" },
     subtitle: {
       en: "Have a project in mind? Let's talk about how I can help you.",
