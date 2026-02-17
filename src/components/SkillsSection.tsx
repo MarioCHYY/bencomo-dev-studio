@@ -6,32 +6,25 @@ interface Skill {
   name: string;
   level: "Básico" | "Intermedio" | "Avanzado";
   category: string;
+  emoji: string;
 }
 
 const skills: Skill[] = [
-  { name: "HTML & CSS", level: "Avanzado", category: "Frontend" },
-  { name: "JavaScript", level: "Avanzado", category: "Frontend" },
-  { name: "React", level: "Intermedio", category: "Frontend" },
-  { name: "TypeScript", level: "Avanzado", category: "Frontend" },
-  { name: "Responsive Design", level: "Avanzado", category: "Frontend" },
-  { name: "Java", level: "Intermedio", category: "Backend" },
-  { name: "Git & GitHub", level: "Intermedio", category: "Tools" },
-  { name: "DaVinci Resolve", level: "Intermedio", category: "Other" },
+  { name: "HTML & CSS", level: "Avanzado", category: "Frontend", emoji: "🎨" },
+  { name: "JavaScript", level: "Avanzado", category: "Frontend", emoji: "⚡" },
+  { name: "React", level: "Intermedio", category: "Frontend", emoji: "⚛️" },
+  { name: "TypeScript", level: "Avanzado", category: "Frontend", emoji: "🔷" },
+  { name: "Responsive Design", level: "Avanzado", category: "Frontend", emoji: "📱" },
+  { name: "Java", level: "Intermedio", category: "Backend", emoji: "☕" },
+  { name: "Git & GitHub", level: "Intermedio", category: "Tools", emoji: "🔀" },
+  { name: "DaVinci Resolve", level: "Intermedio", category: "Other", emoji: "🎬" },
 ];
 
-const levelBars: Record<string, number> = {
-  Básico: 1,
-  Intermedio: 2,
-  Avanzado: 3,
+const levelConfig: Record<string, { bars: number; color: string; bg: string }> = {
+  Básico: { bars: 1, color: "bg-accent", bg: "bg-accent/10" },
+  Intermedio: { bars: 2, color: "bg-secondary", bg: "bg-secondary/10" },
+  Avanzado: { bars: 3, color: "bg-primary", bg: "bg-primary/10" },
 };
-
-const levelColors: Record<string, string> = {
-  Básico: "bg-muted-foreground",
-  Intermedio: "bg-primary/70",
-  Avanzado: "bg-primary",
-};
-
-const categories = ["Frontend", "Backend", "Tools", "Other"];
 
 const SkillsSection = () => {
   const { t } = useLang();
@@ -41,107 +34,65 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="section-padding relative">
-      <div className="absolute left-0 right-0 top-0 cyber-divider" />
-
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-primary text-xs font-mono">{t(s.label)}</span>
-            <div className="h-px flex-1 max-w-[60px] bg-primary/30" />
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
-            <span className="text-primary mr-3">{"//"}</span>
-            <span className="glow-text">{t(s.title)}</span>
+          <span className="text-3xl mb-3 block">📚</span>
+          <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight">
+            <span className="pop-gradient-text">{t(s.title)}</span>
           </h2>
+          <p className="font-handwriting text-lg text-secondary/80 mt-2 rotate-[-1deg]">
+            {t({ en: "My bookshelf of knowledge", es: "Mi estante de conocimiento" })}
+          </p>
         </motion.div>
 
-        {/* Macbook-style window */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-card/40 border border-border/30 overflow-hidden">
-            {/* macOS title bar */}
-            <div className="flex items-center gap-2 px-4 py-2.5 bg-card/60 border-b border-border/20">
-              <span className="w-3 h-3 rounded-full bg-destructive/70" />
-              <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
-              <span className="w-3 h-3 rounded-full bg-primary/70" />
-              <span className="ml-3 text-[10px] text-muted-foreground/50 font-mono flex-1 text-center">
-                skills.config.ts — ~/mario/portfolio
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="p-6 md:p-8">
-              {/* Line numbers + skills */}
-              <div className="space-y-0">
-                {/* File header comment */}
-                <div className="flex items-center gap-4 mb-4 pb-3 border-b border-border/10">
-                  <span className="text-primary/20 text-[10px] font-mono w-6 text-right">01</span>
-                  <span className="text-muted-foreground/40 text-xs font-mono">{"// "}{t(s.title)}</span>
-                </div>
-
-                {skills.map((skill, i) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -15 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: i * 0.06 }}
-                    className="group flex items-center gap-4 py-2.5 hover:bg-primary/[0.03] transition-colors px-1 -mx-1"
-                  >
-                    {/* Line number */}
-                    <span className="text-primary/20 text-[10px] font-mono w-6 text-right shrink-0">
-                      {String(i + 2).padStart(2, "0")}
-                    </span>
-
-                    {/* Skill name */}
-                    <span className="text-foreground text-sm font-medium group-hover:text-primary transition-colors min-w-[140px]">
+        {/* Skills as "books" on a shelf */}
+        <div className="grid sm:grid-cols-2 gap-3">
+          {skills.map((skill, i) => {
+            const config = levelConfig[skill.level];
+            return (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, x: -15 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                whileHover={{ scale: 1.02, x: 4 }}
+                className={`room-card p-4 flex items-center gap-4 ${config.bg} border border-border/40`}
+              >
+                <span className="text-2xl">{skill.emoji}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-sm font-display font-semibold text-foreground truncate">
                       {skill.name}
                     </span>
-
-                    {/* Category */}
-                    <span className="text-muted-foreground/30 text-[10px] font-mono hidden sm:inline min-w-[70px]">
-                      {skill.category}
-                    </span>
-
-                    {/* Level bars */}
-                    <div className="flex gap-1 ml-auto">
-                      {[1, 2, 3].map((bar) => (
-                        <motion.span
-                          key={bar}
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: 0.4 + i * 0.06 + bar * 0.1 }}
-                          className={`w-6 h-1.5 origin-left transition-all ${
-                            bar <= levelBars[skill.level]
-                              ? `${levelColors[skill.level]} shadow-[0_0_6px_hsl(120_100%_50%/0.4)]`
-                              : "bg-border/20"
-                          }`}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Level label */}
-                    <span className="text-[10px] text-muted-foreground font-mono w-20 text-right shrink-0">
+                    <span className="text-[10px] text-muted-foreground font-medium ml-2 shrink-0">
                       {getLevelLabel(skill.level)}
                     </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Bottom bar */}
-            <div className="flex items-center justify-between px-4 py-1.5 bg-card/40 border-t border-border/10 text-[9px] text-muted-foreground/30 font-mono">
-              <span>TypeScript</span>
-              <span>{skills.length} skills loaded</span>
-              <span>UTF-8</span>
-            </div>
-          </div>
+                  </div>
+                  <div className="flex gap-1">
+                    {[1, 2, 3].map((bar) => (
+                      <motion.div
+                        key={bar}
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.3 + i * 0.06 + bar * 0.1 }}
+                        className={`h-1.5 flex-1 rounded-full origin-left ${
+                          bar <= config.bars ? config.color : "bg-border/30"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Category tags */}
@@ -149,11 +100,11 @@ const SkillsSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="flex flex-wrap gap-3 mt-10 pt-6 border-t border-border/20 max-w-4xl mx-auto"
+          transition={{ delay: 0.5 }}
+          className="flex flex-wrap gap-2 mt-8"
         >
-          {categories.map((cat) => (
-            <span key={cat} className="px-3 py-1 text-[10px] text-muted-foreground border border-border/30 font-mono uppercase tracking-wider hover:border-primary/40 hover:text-primary/70 transition-colors cursor-default">
+          {["Frontend", "Backend", "Tools", "Other"].map((cat) => (
+            <span key={cat} className="sticker bg-card border border-border text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors cursor-default">
               {cat}
             </span>
           ))}

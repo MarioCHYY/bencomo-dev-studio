@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Code2, Zap, Terminal } from "lucide-react";
+import { MapPin, Code2, Zap } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 
@@ -8,101 +8,90 @@ const AboutSection = () => {
   const a = translations.about;
 
   const stats = [
-    { value: "2+", label: { en: "Years Learning", es: "Años Aprendiendo" } },
-    { value: "100%", label: { en: "Passion", es: "Pasión" } },
+    { value: "2+", label: { en: "Years Learning", es: "Años Aprendiendo" }, emoji: "📅" },
+    { value: "100%", label: { en: "Passion", es: "Pasión" }, emoji: "🔥" },
   ];
 
   return (
     <section id="about" className="section-padding relative">
-      {/* Decorative line */}
-      <div className="absolute left-0 right-0 top-0 cyber-divider" />
-      
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-primary text-xs font-mono">{t(a.label)}</span>
-            <div className="h-px flex-1 max-w-[60px] bg-primary/30" />
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
-            <span className="text-primary mr-3">{"//"}</span>
-            <span className="glow-text">{t(a.title)}</span>
+          <span className="text-3xl mb-3 block">🛏️</span>
+          <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight">
+            <span className="pop-gradient-text">{t(a.title)}</span>
           </h2>
+          <p className="font-handwriting text-lg text-primary/70 mt-2 rotate-[-1deg]">
+            {t({ en: "Get comfortable, let me tell you about me", es: "Ponte cómodo, déjame contarte sobre mí" })}
+          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1fr_340px] gap-12">
-          {/* Left: Bio */}
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="absolute -left-4 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
-              <div className="space-y-4 pl-4">
-                <p className="text-foreground leading-relaxed text-sm md:text-base">
-                  {t(a.p1)}
-                </p>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  {t(a.p2)}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Stats row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="grid grid-cols-2 gap-4 pt-4"
-            >
-              {stats.map((stat, i) => (
-                <div key={i} className="text-center py-4 border border-border/50 hover:border-primary/40 transition-colors neon-border">
-                  <div className="text-2xl md:text-3xl font-black text-primary glow-text mb-1">{stat.value}</div>
-                  <div className="text-[10px] text-muted-foreground uppercase tracking-wider">{t(stat.label)}</div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Right: Info cards */}
+        <div className="grid lg:grid-cols-[1fr_320px] gap-10">
+          {/* Bio */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="space-y-5"
+          >
+            <div className="room-card p-6 md:p-8">
+              <p className="text-foreground leading-relaxed text-sm md:text-base">
+                {t(a.p1)}
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-sm mt-4">
+                {t(a.p2)}
+              </p>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.03, rotate: -1 }}
+                  className="room-card p-5 text-center"
+                >
+                  <span className="text-2xl mb-2 block">{stat.emoji}</span>
+                  <div className="text-2xl md:text-3xl font-display font-bold pop-gradient-text">{stat.value}</div>
+                  <div className="text-[11px] text-muted-foreground mt-1">{t(stat.label)}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Info cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="space-y-3"
           >
             {[
-              { icon: Code2, title: t(a.role.title), sub: t(a.role.sub), cmd: "role" },
-              { icon: MapPin, title: t(a.location.title), sub: t(a.location.sub), cmd: "location" },
-              { icon: Zap, title: t(a.degree.title), sub: t(a.degree.sub), cmd: "education" },
+              { icon: Code2, title: t(a.role.title), sub: t(a.role.sub), emoji: "💻", color: "bg-pink/10 border-pink/20" },
+              { icon: MapPin, title: t(a.location.title), sub: t(a.location.sub), emoji: "📍", color: "bg-blue/10 border-blue/20" },
+              { icon: Zap, title: t(a.degree.title), sub: t(a.degree.sub), emoji: "🎓", color: "bg-accent/10 border-accent/30" },
             ].map((item, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="group p-4 bg-card/50 border border-border/40 hover:border-primary/50 transition-all duration-300 hover:bg-card/80"
+                whileHover={{ x: 4 }}
+                className={`p-4 rounded-xl border ${item.color} transition-all duration-300`}
               >
-                <div className="text-[10px] text-muted-foreground/50 mb-2 font-mono">
-                  <span className="text-primary/40">$</span> get --{item.cmd}
-                </div>
                 <div className="flex items-start gap-3">
-                  <div className="text-primary mt-0.5 group-hover:glow-text transition-all">
-                    <item.icon size={16} />
-                  </div>
+                  <span className="text-xl">{item.emoji}</span>
                   <div>
-                    <p className="font-semibold text-foreground text-sm">{item.title}</p>
+                    <p className="font-display font-semibold text-foreground text-sm">{item.title}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
