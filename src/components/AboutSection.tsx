@@ -8,90 +8,91 @@ const AboutSection = () => {
   const a = translations.about;
 
   const stats = [
-    { value: "2+", label: { en: "Years Learning", es: "Años Aprendiendo" }, emoji: "📅" },
-    { value: "100%", label: { en: "Passion", es: "Pasión" }, emoji: "🔥" },
+    { value: "2+", label: { en: "Years Learning", es: "Años Aprendiendo" } },
+    { value: "100%", label: { en: "Passion", es: "Pasión" } },
   ];
 
   return (
-    <section id="about" className="section-padding relative">
-      <div className="max-w-5xl mx-auto">
-        {/* Section header */}
+    <section id="about" className="section-padding relative grid-bg">
+      <div className="absolute left-0 right-0 top-0 cyber-divider" />
+
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
+          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <span className="text-3xl mb-3 block">🛏️</span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight">
-            <span className="pop-gradient-text">{t(a.title)}</span>
+          <div className="flex items-center gap-4 mb-3">
+            <span className="text-primary text-xs font-display tracking-[0.3em]">{t(a.label)}</span>
+            <div className="h-px flex-1 max-w-[60px] bg-primary/30" />
+          </div>
+          <h2 className="text-3xl md:text-5xl font-display font-black tracking-tight">
+            <span className="cyber-gradient-text neon-text">{t(a.title)}</span>
           </h2>
-          <p className="font-handwriting text-lg text-primary/70 mt-2 rotate-[-1deg]">
-            {t({ en: "Get comfortable, let me tell you about me", es: "Ponte cómodo, déjame contarte sobre mí" })}
-          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1fr_320px] gap-10">
-          {/* Bio */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="space-y-5"
-          >
-            <div className="room-card p-6 md:p-8">
-              <p className="text-foreground leading-relaxed text-sm md:text-base">
+        <div className="grid lg:grid-cols-[1fr_340px] gap-12">
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="glass rounded-sm p-6 md:p-8 corner-accents"
+            >
+              <p className="text-foreground leading-relaxed text-sm md:text-base font-body">
                 {t(a.p1)}
               </p>
-              <p className="text-muted-foreground leading-relaxed text-sm mt-4">
+              <p className="text-muted-foreground leading-relaxed text-sm mt-4 font-body">
                 {t(a.p2)}
               </p>
-            </div>
+            </motion.div>
 
-            {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
               {stats.map((stat, i) => (
                 <motion.div
                   key={i}
-                  whileHover={{ scale: 1.03, rotate: -1 }}
-                  className="room-card p-5 text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                  className="glass rounded-sm p-5 text-center neon-glow hover:neon-glow-strong transition-all duration-500"
                 >
-                  <span className="text-2xl mb-2 block">{stat.emoji}</span>
-                  <div className="text-2xl md:text-3xl font-display font-bold pop-gradient-text">{stat.value}</div>
-                  <div className="text-[11px] text-muted-foreground mt-1">{t(stat.label)}</div>
+                  <div className="text-3xl md:text-4xl font-display font-black text-primary neon-text mb-1">{stat.value}</div>
+                  <div className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-display">{t(stat.label)}</div>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Info cards */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="space-y-3"
           >
             {[
-              { icon: Code2, title: t(a.role.title), sub: t(a.role.sub), emoji: "💻", color: "bg-pink/10 border-pink/20" },
-              { icon: MapPin, title: t(a.location.title), sub: t(a.location.sub), emoji: "📍", color: "bg-blue/10 border-blue/20" },
-              { icon: Zap, title: t(a.degree.title), sub: t(a.degree.sub), emoji: "🎓", color: "bg-accent/10 border-accent/30" },
+              { icon: Code2, title: t(a.role.title), sub: t(a.role.sub), color: "border-primary/20 hover:border-primary/50" },
+              { icon: MapPin, title: t(a.location.title), sub: t(a.location.sub), color: "border-secondary/20 hover:border-secondary/50" },
+              { icon: Zap, title: t(a.degree.title), sub: t(a.degree.sub), color: "border-cyan/20 hover:border-cyan/50" },
             ].map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                whileHover={{ x: 4 }}
-                className={`p-4 rounded-xl border ${item.color} transition-all duration-300`}
+                className={`group glass rounded-sm p-4 border ${item.color} transition-all duration-300 holo-shimmer`}
               >
                 <div className="flex items-start gap-3">
-                  <span className="text-xl">{item.emoji}</span>
+                  <div className="text-primary mt-0.5 group-hover:neon-text transition-all">
+                    <item.icon size={16} />
+                  </div>
                   <div>
-                    <p className="font-display font-semibold text-foreground text-sm">{item.title}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
+                    <p className="font-display font-semibold text-foreground text-sm tracking-wide">{item.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 font-body">{item.sub}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>

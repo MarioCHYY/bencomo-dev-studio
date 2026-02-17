@@ -14,11 +14,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Quicksand', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Quicksand', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        handwriting: ['Caveat', 'cursive'],
-        mono: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        serif: ['Caveat', 'cursive']
+        sans: ['Space Grotesk', 'Rajdhani', 'system-ui', 'sans-serif'],
+        display: ['Orbitron', 'Space Grotesk', 'system-ui', 'sans-serif'],
+        body: ['Rajdhani', 'Space Grotesk', 'system-ui', 'sans-serif'],
+        mono: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        serif: ['Rajdhani', 'system-ui', 'sans-serif']
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -57,7 +57,7 @@ export default {
         surface: 'hsl(var(--surface))',
         glow: 'hsl(var(--glow))',
         purple: 'hsl(var(--purple))',
-        yellow: 'hsl(var(--yellow))',
+        cyan: 'hsl(var(--cyan))',
         blue: 'hsl(var(--blue))',
         pink: 'hsl(var(--pink))',
         sidebar: {
@@ -87,29 +87,18 @@ export default {
         },
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' }
+          '50%': { transform: 'translateY(-10px)' }
         },
-        'wiggle': {
-          '0%, 100%': { transform: 'rotate(-3deg)' },
-          '50%': { transform: 'rotate(3deg)' }
-        },
-        'bounce-soft': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-6px)' }
-        },
-        'pop-in': {
-          '0%': { transform: 'scale(0.8)', opacity: '0' },
-          '50%': { transform: 'scale(1.05)' },
-          '100%': { transform: 'scale(1)', opacity: '1' }
+        'pulse-glow': {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '1' }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'float': 'float 5s ease-in-out infinite',
-        'wiggle': 'wiggle 2s ease-in-out infinite',
-        'bounce-soft': 'bounce-soft 3s ease-in-out infinite',
-        'pop-in': 'pop-in 0.4s ease-out'
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 3s ease-in-out infinite'
       },
       boxShadow: {
         '2xs': 'var(--shadow-2xs)',
