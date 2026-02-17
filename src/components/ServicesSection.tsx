@@ -17,16 +17,19 @@ const ServicesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <span className="text-primary font-mono text-sm">{t(s.label)}</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">{t(s.title)}</h2>
-          <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
+          <span className="text-primary text-xs">{t(s.label)}</span>
+          <h2 className="text-2xl md:text-3xl font-bold mt-1 glow-text">
+            <span className="text-primary mr-2">#</span>{t(s.title)}
+          </h2>
+          <p className="text-muted-foreground mt-3 text-sm max-w-lg">
+            <span className="text-primary mr-2">{">"}</span>
             {t(s.subtitle)}
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {s.items.map((service, i) => {
             const Icon = icons[i];
             return (
@@ -36,15 +39,21 @@ const ServicesSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group p-6 rounded-2xl glass hover:border-primary/30 transition-all duration-300"
+                className="group terminal-window hover:border-primary/40 transition-all duration-300"
               >
-                <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit mb-5 group-hover:glow transition-all duration-300">
-                  <Icon size={24} />
+                <div className="terminal-header">
+                  <span className="terminal-dot bg-primary/60" />
+                  <span className="ml-2 text-[10px]">service_{i + 1}</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{t(service.title)}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {t(service.description)}
-                </p>
+                <div className="p-5">
+                  <div className="text-primary mb-4 group-hover:glow-text transition-all">
+                    <Icon size={20} />
+                  </div>
+                  <h3 className="text-sm font-semibold mb-2 text-foreground">{t(service.title)}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {t(service.description)}
+                  </p>
+                </div>
               </motion.div>
             );
           })}

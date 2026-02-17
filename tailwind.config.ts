@@ -14,39 +14,9 @@ export default {
   	},
   	extend: {
   		fontFamily: {
-  			sans: [
-  				'Space Grotesk',
-  				'ui-sans-serif',
-  				'system-ui',
-  				'-apple-system',
-  				'BlinkMacSystemFont',
-  				'Segoe UI',
-  				'Roboto',
-  				'Helvetica Neue',
-  				'Arial',
-  				'Noto Sans',
-  				'sans-serif'
-  			],
-  			mono: [
-  				'Space Mono',
-  				'ui-monospace',
-  				'SFMono-Regular',
-  				'Menlo',
-  				'Monaco',
-  				'Consolas',
-  				'Liberation Mono',
-  				'Courier New',
-  				'monospace'
-  			],
-  			serif: [
-  				'Lora',
-  				'ui-serif',
-  				'Georgia',
-  				'Cambria',
-  				'Times New Roman',
-  				'Times',
-  				'serif'
-  			]
+  			sans: ['JetBrains Mono', 'IBM Plex Mono', 'Space Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+  			mono: ['JetBrains Mono', 'IBM Plex Mono', 'Space Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+  			serif: ['JetBrains Mono', 'ui-monospace', 'monospace']
   		},
   		colors: {
   			border: 'hsl(var(--border))',
@@ -102,43 +72,32 @@ export default {
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
+  				from: { height: '0' },
+  				to: { height: 'var(--radix-accordion-content-height)' }
   			},
   			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
+  				from: { height: 'var(--radix-accordion-content-height)' },
+  				to: { height: '0' }
   			},
   			'float': {
-  				'0%, 100%': {
-  					transform: 'translateY(0)'
-  				},
-  				'50%': {
-  					transform: 'translateY(-10px)'
-  				}
+  				'0%, 100%': { transform: 'translateY(0)' },
+  				'50%': { transform: 'translateY(-10px)' }
   			},
   			'pulse-glow': {
-  				'0%, 100%': {
-  					opacity: '0.4'
-  				},
-  				'50%': {
-  					opacity: '1'
-  				}
+  				'0%, 100%': { opacity: '0.4' },
+  				'50%': { opacity: '1' }
+  			},
+  			'typing': {
+  				'from': { width: '0' },
+  				'to': { width: '100%' }
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'float': 'float 6s ease-in-out infinite',
-  			'pulse-glow': 'pulse-glow 3s ease-in-out infinite'
+  			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+  			'typing': 'typing 2s steps(30, end)'
   		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',

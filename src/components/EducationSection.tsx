@@ -15,10 +15,12 @@ const EducationSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <span className="text-primary font-mono text-sm">{t(e.label)}</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">{t(e.title)}</h2>
+          <span className="text-primary text-xs">{t(e.label)}</span>
+          <h2 className="text-2xl md:text-3xl font-bold mt-1 glow-text">
+            <span className="text-primary mr-2">#</span>{t(e.title)}
+          </h2>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
@@ -28,32 +30,36 @@ const EducationSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {/* Education Card */}
-            <div className="p-6 md:p-8 rounded-xl glass hover:border-primary/30 transition-all duration-300">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
-                    <GraduationCap size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-foreground">
-                      {t(e.degree.title)}
-                    </h3>
-                    <p className="text-primary font-mono text-sm mt-1">
-                      {t(e.degree.period)}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-2 text-sm text-muted-foreground bg-background/50 px-3 py-1.5 rounded-lg self-start">
-                  <Calendar size={14} className="text-primary" />
-                  <span>{t(e.degree.graduation)}</span>
-                </div>
+            <div className="terminal-window hover:border-primary/40 transition-all duration-300">
+              <div className="terminal-header">
+                <span className="terminal-dot bg-destructive/80" />
+                <span className="terminal-dot bg-yellow-500/80" />
+                <span className="terminal-dot bg-primary/80" />
+                <span className="ml-3">education.json</span>
               </div>
-
-              <p className="text-muted-foreground leading-relaxed">
-                {t(e.degree.focus)}
-              </p>
+              <div className="p-6">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                  <div className="flex items-start gap-3">
+                    <GraduationCap size={18} className="text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        {t(e.degree.title)}
+                      </h3>
+                      <p className="text-primary text-xs mt-1">
+                        {t(e.degree.period)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground border border-border px-3 py-1.5 self-start">
+                    <Calendar size={12} className="text-primary" />
+                    <span>{t(e.degree.graduation)}</span>
+                  </div>
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed pl-7">
+                  <span className="text-primary mr-2">{">"}</span>
+                  {t(e.degree.focus)}
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -63,4 +69,3 @@ const EducationSection = () => {
 };
 
 export default EducationSection;
-
