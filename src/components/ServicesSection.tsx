@@ -10,50 +10,57 @@ const ServicesSection = () => {
   const s = translations.services;
 
   return (
-    <section id="services" className="section-padding">
+    <section id="services" className="section-padding relative">
+      <div className="absolute left-0 right-0 top-0 cyber-divider" />
+
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-16"
         >
-          <span className="text-primary text-xs">{t(s.label)}</span>
-          <h2 className="text-2xl md:text-3xl font-bold mt-1 glow-text">
-            <span className="text-primary mr-2">#</span>{t(s.title)}
+          <div className="flex items-center gap-4 mb-2">
+            <span className="text-primary text-xs font-mono">{t(s.label)}</span>
+            <div className="h-px flex-1 max-w-[60px] bg-primary/30" />
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
+            <span className="text-primary mr-3">{"//"}</span>
+            <span className="glow-text">{t(s.title)}</span>
           </h2>
-          <p className="text-muted-foreground mt-3 text-sm max-w-lg">
-            <span className="text-primary mr-2">{">"}</span>
+          <p className="text-muted-foreground mt-4 text-sm max-w-lg">
             {t(s.subtitle)}
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 gap-px bg-border/20">
           {s.items.map((service, i) => {
             const Icon = icons[i];
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group terminal-window hover:border-primary/40 transition-all duration-300"
+                className="group bg-background p-8 md:p-10 hover:bg-card/50 transition-all duration-500 relative"
               >
-                <div className="terminal-header">
-                  <span className="terminal-dot bg-primary/60" />
-                  <span className="ml-2 text-[10px]">service_{i + 1}</span>
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-transparent group-hover:border-primary/30 transition-colors duration-500" />
+                
+                <div className="text-primary mb-5 group-hover:glow-text-intense transition-all duration-500">
+                  <Icon size={28} strokeWidth={1.5} />
                 </div>
-                <div className="p-5">
-                  <div className="text-primary mb-4 group-hover:glow-text transition-all">
-                    <Icon size={20} />
-                  </div>
-                  <h3 className="text-sm font-semibold mb-2 text-foreground">{t(service.title)}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {t(service.description)}
-                  </p>
+                <div className="text-[10px] text-primary/40 font-mono mb-2">
+                  service_{String(i + 1).padStart(2, "0")}
                 </div>
+                <h3 className="text-base font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                  {t(service.title)}
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {t(service.description)}
+                </p>
               </motion.div>
             );
           })}
