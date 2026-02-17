@@ -6,9 +6,10 @@ const Footer = () => {
   const { t } = useLang();
 
   return (
-    <footer className="py-8 px-6 border-t border-border">
+    <footer className="py-6 px-6 border-t border-border">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <span className="font-mono text-sm text-muted-foreground">
+        <span className="text-xs text-muted-foreground">
+          <span className="text-primary mr-1">$</span>
           © 2026 Mario Héctor Bencomo Moreno
         </span>
         <div className="flex items-center gap-4">
@@ -18,15 +19,15 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"
           >
-            <Github size={18} />
+            <Github size={14} />
           </a>
           <a
             href="#"
             className="text-muted-foreground hover:text-primary transition-colors"
           >
-            <Linkedin size={18} />
+            <Linkedin size={14} />
           </a>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-[10px] text-muted-foreground/50">
             {t(translations.footer.builtWith)}
           </span>
         </div>

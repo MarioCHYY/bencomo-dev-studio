@@ -20,25 +20,38 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <span className="text-primary font-mono text-sm">{t(a.label)}</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">{t(a.title)}</h2>
+          <span className="text-primary text-xs">{t(a.label)}</span>
+          <h2 className="text-2xl md:text-3xl font-bold mt-1 glow-text">
+            <span className="text-primary mr-2">#</span>{t(a.title)}
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="terminal-window"
           >
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              {t(a.p1)}
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              {t(a.p2)}
-            </p>
+            <div className="terminal-header">
+              <span className="terminal-dot bg-destructive/80" />
+              <span className="terminal-dot bg-yellow-500/80" />
+              <span className="terminal-dot bg-primary/80" />
+              <span className="ml-3">about.md</span>
+            </div>
+            <div className="p-5 space-y-4 text-sm">
+              <p className="text-muted-foreground leading-relaxed">
+                <span className="text-primary mr-2">{">"}</span>
+                {t(a.p1)}
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <span className="text-primary mr-2">{">"}</span>
+                {t(a.p2)}
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -51,14 +64,14 @@ const AboutSection = () => {
             {items.map((item, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 p-4 rounded-xl glass hover:border-primary/30 transition-colors"
+                className="flex items-start gap-4 p-4 terminal-window hover:border-primary/40 transition-colors"
               >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  <item.icon size={20} />
+                <div className="text-primary">
+                  <item.icon size={18} />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">{item.title}</p>
-                  <p className="text-sm text-muted-foreground">{item.sub}</p>
+                  <p className="font-medium text-foreground text-sm">{item.title}</p>
+                  <p className="text-xs text-muted-foreground">{item.sub}</p>
                 </div>
               </div>
             ))}

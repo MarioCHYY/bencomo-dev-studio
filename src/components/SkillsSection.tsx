@@ -19,16 +19,10 @@ const skills: Skill[] = [
   { name: "DaVinci Resolve", level: "Intermedio", category: "Other" },
 ];
 
-const levelDots: Record<string, number> = {
+const levelBars: Record<string, number> = {
   Básico: 1,
   Intermedio: 2,
   Avanzado: 3,
-};
-
-const levelColors: Record<string, string> = {
-  Básico: "border-muted-foreground/50 text-muted-foreground",
-  Intermedio: "border-primary/50 text-primary",
-  Avanzado: "border-primary text-primary glow",
 };
 
 const SkillsSection = () => {
@@ -38,49 +32,63 @@ const SkillsSection = () => {
   const getLevelLabel = (level: Skill["level"]) => t(s.levels[level]);
 
   return (
-    <section id="skills" className="section-padding bg-surface/50">
+    <section id="skills" className="section-padding">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <span className="text-primary font-mono text-sm">{t(s.label)}</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">{t(s.title)}</h2>
+          <span className="text-primary text-xs">{t(s.label)}</span>
+          <h2 className="text-2xl md:text-3xl font-bold mt-1 glow-text">
+            <span className="text-primary mr-2">#</span>{t(s.title)}
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-          {skills.map((skill, i) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="flex items-center justify-between p-4 rounded-xl glass hover:border-primary/30 transition-all"
-            >
-              <span className="font-medium text-foreground">{skill.name}</span>
-              <div className="flex items-center gap-3">
-                <div className="flex gap-1.5">
-                  {[1, 2, 3].map((dot) => (
-                    <span
-                      key={dot}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        dot <= levelDots[skill.level] ? "bg-primary" : "bg-secondary"
-                      }`}
-                    />
-                  ))}
+        <div className="terminal-window max-w-4xl mx-auto">
+          <div className="terminal-header">
+            <span className="terminal-dot bg-destructive/80" />
+            <span className="terminal-dot bg-yellow-500/80" />
+            <span className="terminal-dot bg-primary/80" />
+            <span className="ml-3">skills.log</span>
+          </div>
+          <div className="p-4 space-y-1">
+            {skills.map((skill, i) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                className="flex items-center justify-between py-2 px-3 hover:bg-primary/5 transition-colors group"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-primary/40 text-xs w-6 text-right">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-foreground text-sm">{skill.name}</span>
+                  <span className="text-muted-foreground/50 text-xs">// {skill.category}</span>
                 </div>
-                <span
-                  className={`text-xs font-mono px-2.5 py-1 rounded-full border ${levelColors[skill.level]}`}
-                >
-                  {getLevelLabel(skill.level)}
-                </span>
-              </div>
-            </motion.div>
-          ))}
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1">
+                    {[1, 2, 3].map((bar) => (
+                      <span
+                        key={bar}
+                        className={`w-5 h-1.5 transition-all ${
+                          bar <= levelBars[skill.level]
+                            ? "bg-primary shadow-[0_0_6px_hsl(120_100%_50%/0.5)]"
+                            : "bg-border/30"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-xs text-muted-foreground w-24 text-right">
+                    {getLevelLabel(skill.level)}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
