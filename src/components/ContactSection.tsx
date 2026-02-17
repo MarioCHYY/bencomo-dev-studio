@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, Github, Mail, Linkedin } from "lucide-react";
+import { Send, Github, Mail, Linkedin, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useLang } from "@/i18n/LanguageContext";
@@ -22,116 +22,123 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className="section-padding relative">
+      <div className="absolute left-0 right-0 top-0 cyber-divider" />
+
+      <div className="max-w-5xl mx-auto">
+        {/* Big CTA headline */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="text-center mb-16"
         >
-          <span className="text-primary text-xs">{t(c.label)}</span>
-          <h2 className="text-2xl md:text-3xl font-bold mt-1 glow-text">
-            <span className="text-primary mr-2">#</span>{t(c.title)}
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="text-primary text-xs font-mono">{t(c.label)}</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter glow-text-intense text-primary mb-4">
+            {t(c.title)}
           </h2>
-          <p className="text-muted-foreground mt-3 text-sm max-w-lg">
-            <span className="text-primary mr-2">{">"}</span>
+          <p className="text-muted-foreground text-sm max-w-md mx-auto">
             {t(c.subtitle)}
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="terminal-window"
-        >
-          <div className="terminal-header">
-            <span className="terminal-dot bg-destructive/80" />
-            <span className="terminal-dot bg-yellow-500/80" />
-            <span className="terminal-dot bg-primary/80" />
-            <span className="ml-3">contact.sh</span>
-          </div>
-
-          <form onSubmit={handleSubmit} className="p-6 space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-[1fr_280px] gap-12">
+          {/* Form */}
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-5"
+          >
+            <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="text-xs text-muted-foreground mb-1 block">
-                  <span className="text-primary">const</span> name =
+                <label className="text-[10px] text-muted-foreground mb-2 block font-mono uppercase tracking-wider">
+                  {t(c.name)}
                 </label>
                 <input
                   type="text"
-                  placeholder={`"${t(c.name)}"`}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   maxLength={100}
-                  className="w-full px-4 py-2.5 bg-background border border-border text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary focus:shadow-[0_0_10px_hsl(120_100%_50%/0.15)] transition-all font-mono"
+                  className="w-full px-4 py-3 bg-transparent border-b border-border text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-mono"
+                  placeholder="Mario Bencomo"
                 />
               </div>
               <div>
-                <label className="text-xs text-muted-foreground mb-1 block">
-                  <span className="text-primary">const</span> email =
+                <label className="text-[10px] text-muted-foreground mb-2 block font-mono uppercase tracking-wider">
+                  {t(c.email)}
                 </label>
                 <input
                   type="email"
-                  placeholder={`"${t(c.email)}"`}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   maxLength={255}
-                  className="w-full px-4 py-2.5 bg-background border border-border text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary focus:shadow-[0_0_10px_hsl(120_100%_50%/0.15)] transition-all font-mono"
+                  className="w-full px-4 py-3 bg-transparent border-b border-border text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-mono"
+                  placeholder="mario@email.com"
                 />
               </div>
             </div>
             <div>
-              <label className="text-xs text-muted-foreground mb-1 block">
-                <span className="text-primary">const</span> message =
+              <label className="text-[10px] text-muted-foreground mb-2 block font-mono uppercase tracking-wider">
+                {t(c.message)}
               </label>
               <textarea
-                placeholder={`"${t(c.message)}"`}
-                rows={4}
+                rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
-                className="w-full px-4 py-2.5 bg-background border border-border text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary focus:shadow-[0_0_10px_hsl(120_100%_50%/0.15)] transition-all font-mono resize-none"
+                className="w-full px-4 py-3 bg-transparent border-b border-border text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-mono resize-none"
+                placeholder="..."
               />
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-              <div className="flex gap-3">
-                <a
-                  href="https://github.com/MarioCHYY"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 border border-border hover:border-primary hover:text-primary transition-all text-muted-foreground"
-                >
-                  <Github size={16} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/mario-bencomo-4998273aa/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 border border-border hover:border-primary hover:text-primary transition-all text-muted-foreground"
-                >
-                  <Linkedin size={16} />
-                </a>
-                <a
-                  href="mailto:mariobencomo057@gmail.com"
-                  className="p-2.5 border border-border hover:border-primary hover:text-primary transition-all text-muted-foreground"
-                >
-                  <Mail size={16} />
-                </a>
-              </div>
-              <button
-                type="submit"
-                className="px-6 py-2.5 border border-primary text-primary text-sm font-mono hover:bg-primary hover:text-primary-foreground transition-all glow flex items-center gap-2"
+            <button
+              type="submit"
+              className="group px-8 py-3 bg-primary text-primary-foreground text-sm font-mono font-bold hover:shadow-[0_0_30px_hsl(120_100%_50%/0.4)] transition-all duration-300 flex items-center gap-2"
+            >
+              <Send size={14} />
+              {t(c.send)}
+              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          </motion.form>
+
+          {/* Social links */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="space-y-4"
+          >
+            <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider mb-6">
+              // find me on
+            </p>
+            {[
+              { icon: Github, label: "GitHub", href: "https://github.com/MarioCHYY", handle: "@MarioCHYY" },
+              { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mario-bencomo-4998273aa/", handle: "Mario Bencomo" },
+              { icon: Mail, label: "Email", href: "mailto:mariobencomo057@gmail.com", handle: "mariobencomo057" },
+            ].map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 p-3 border border-border/30 hover:border-primary/40 hover:bg-card/30 transition-all duration-300"
               >
-                <Send size={14} />
-                {t(c.send)}
-              </button>
-            </div>
-          </form>
-        </motion.div>
+                <link.icon size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                <div>
+                  <div className="text-xs text-foreground group-hover:text-primary transition-colors">{link.label}</div>
+                  <div className="text-[10px] text-muted-foreground/50">{link.handle}</div>
+                </div>
+                <ArrowUpRight size={12} className="ml-auto text-muted-foreground/30 group-hover:text-primary/50 transition-colors" />
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
