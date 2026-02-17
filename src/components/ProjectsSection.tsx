@@ -14,76 +14,69 @@ const ProjectsSection = () => {
 
   return (
     <>
-      <section id="projects" className="section-padding relative">
-        <div className="max-w-5xl mx-auto">
+      <section id="projects" className="section-padding relative grid-bg">
+        <div className="absolute left-0 right-0 top-0 cyber-divider" />
+
+        <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
+            transition={{ duration: 0.6 }}
+            className="mb-16"
           >
-            <span className="text-3xl mb-3 block">🖥️</span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight">
-              <span className="pop-gradient-text">{t(p.title)}</span>
+            <div className="flex items-center gap-4 mb-3">
+              <span className="text-primary text-xs font-display tracking-[0.3em]">{t(p.label)}</span>
+              <div className="h-px flex-1 max-w-[60px] bg-primary/30" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-display font-black tracking-tight">
+              <span className="cyber-gradient-text neon-text">{t(p.title)}</span>
             </h2>
-            <p className="font-handwriting text-lg text-secondary/80 mt-2 rotate-[-1deg]">
-              {t({ en: "What's on my desk right now", es: "Lo que hay en mi escritorio" })}
-            </p>
           </motion.div>
 
-          {/* Featured project card */}
+          {/* Project card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            whileHover={{ y: -4 }}
-            className="room-card overflow-hidden"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="group glass rounded-sm corner-accents overflow-hidden hover:neon-glow transition-all duration-500"
           >
-            {/* Gradient accent bar */}
-            <div className="h-1.5 pop-gradient" />
+            {/* Gradient top bar */}
+            <div className="h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
-            <div className="p-6 md:p-10">
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-5 mb-6">
+            <div className="p-8 md:p-12 holo-shimmer">
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
                 <div>
-                  <span className="sticker bg-primary/10 text-primary border border-primary/20 mb-3">
-                    ✨ {t(p.featured)}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-display font-bold text-foreground mt-3">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="status-online" />
+                    <span className="text-[10px] text-primary tracking-[0.3em] uppercase font-display neon-text">
+                      {t(p.featured)}
+                    </span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-display font-black text-foreground mb-2 group-hover:neon-text transition-all tracking-wide">
                     {t(proj.name)}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-2 max-w-lg leading-relaxed">
+                  <p className="text-sm text-muted-foreground max-w-lg leading-relaxed font-body">
                     {t(proj.oneliner)}
                   </p>
                 </div>
+
                 <div className="flex gap-2 shrink-0">
-                  <a
-                    href="https://github.com/MarioCHYY/radiant-beauty-studio-main"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl border border-border flex items-center justify-center hover:bg-muted/60 hover:border-primary/40 transition-all text-muted-foreground hover:text-primary"
-                  >
+                  <a href="https://github.com/MarioCHYY/radiant-beauty-studio-main" target="_blank" rel="noopener noreferrer"
+                    className="w-10 h-10 glass rounded-sm flex items-center justify-center hover:border-primary/40 hover:text-primary hover:neon-glow transition-all text-muted-foreground">
                     <Github size={16} />
                   </a>
-                  <a
-                    href="https://radiant-beauty-studio-main.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl border border-border flex items-center justify-center hover:bg-muted/60 hover:border-secondary/40 transition-all text-muted-foreground hover:text-secondary"
-                  >
+                  <a href="https://radiant-beauty-studio-main.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    className="w-10 h-10 glass rounded-sm flex items-center justify-center hover:border-primary/40 hover:text-primary hover:neon-glow transition-all text-muted-foreground">
                     <ExternalLink size={16} />
                   </a>
                 </div>
               </div>
 
-              {/* Tech tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="sticker bg-secondary/10 text-secondary border border-secondary/20"
-                  >
+                  <span key={tech} className="px-3 py-1 text-[10px] font-display tracking-wider glass rounded-sm text-primary/70 hover:text-primary hover:border-primary/30 transition-all">
                     {tech}
                   </span>
                 ))}
@@ -91,10 +84,10 @@ const ProjectsSection = () => {
 
               <button
                 onClick={() => setCaseStudyOpen(true)}
-                className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-display font-semibold rounded-full hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+                className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-primary/10 border border-primary/30 text-primary text-sm font-display font-semibold tracking-wider rounded-sm hover:bg-primary hover:text-primary-foreground hover:neon-glow-strong transition-all duration-300"
               >
                 {t(p.viewCaseStudy)}
-                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
               </button>
             </div>
           </motion.div>
@@ -108,77 +101,60 @@ const ProjectsSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/98 backdrop-blur-md overflow-y-auto dotted-bg"
+            className="fixed inset-0 z-50 bg-background/98 backdrop-blur-md overflow-y-auto grid-bg"
           >
-            <div className="max-w-3xl mx-auto px-6 py-16">
+            <div className="max-w-4xl mx-auto px-6 py-16">
               <motion.button
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 onClick={() => setCaseStudyOpen(false)}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-10 font-display group"
+                className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors mb-12 font-display tracking-wider group"
               >
-                <X size={16} className="group-hover:rotate-90 transition-transform duration-300" />
+                <X size={14} className="group-hover:rotate-90 transition-transform duration-300" />
                 {t(p.backToProjects)}
               </motion.button>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="mb-12"
-              >
-                <span className="sticker bg-primary/10 text-primary border border-primary/20 mb-3">
-                  ✨ {t(p.featured)}
-                </span>
-                <h1 className="text-3xl md:text-4xl font-display font-bold mt-3 pop-gradient-text leading-tight">{t(proj.name)}</h1>
-                <p className="text-muted-foreground text-sm mt-3">{t(proj.role)}</p>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-16">
+                <span className="text-[10px] text-primary tracking-[0.3em] uppercase font-display neon-text">{t(p.featured)}</span>
+                <h1 className="text-3xl md:text-5xl font-display font-black mt-3 cyber-gradient-text neon-text leading-tight">{t(proj.name)}</h1>
+                <p className="text-muted-foreground text-sm mt-3 font-body">{t(proj.role)}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {techStack.map((tech) => (
-                    <span key={tech} className="sticker bg-secondary/10 text-secondary border border-secondary/20">
-                      {tech}
-                    </span>
+                    <span key={tech} className="px-3 py-1 text-[10px] font-display tracking-wider glass rounded-sm text-primary/60">{tech}</span>
                   ))}
                 </div>
               </motion.div>
 
               <div className="space-y-8">
                 {[
-                  { icon: <Target size={18} />, title: t(proj.problemTitle), content: <p className="text-muted-foreground text-sm leading-relaxed">{t(proj.problem)}</p>, color: "border-primary/30 bg-primary/5" },
-                  { icon: <Lightbulb size={18} />, title: t(proj.solutionTitle), content: <ul className="space-y-2">{(t(proj.solutions) as string[]).map((s, i) => (<li key={i} className="flex items-start gap-2 text-muted-foreground text-sm"><span className="text-primary">•</span>{s}</li>))}</ul>, color: "border-accent/30 bg-accent/5" },
-                  { icon: <Rocket size={18} />, title: t(proj.impactTitle), content: <ul className="space-y-2">{(t(proj.impacts) as string[]).map((s, i) => (<li key={i} className="flex items-start gap-2 text-muted-foreground text-sm"><span className="text-secondary">•</span>{s}</li>))}</ul>, color: "border-secondary/30 bg-secondary/5" },
-                  { icon: <BookOpen size={18} />, title: t(proj.learnedTitle), content: <ul className="space-y-2">{(t(proj.learned) as string[]).map((s, i) => (<li key={i} className="flex items-start gap-2 text-muted-foreground text-sm"><span className="text-purple">•</span>{s}</li>))}</ul>, color: "border-purple/30 bg-purple/5" },
+                  { icon: <Target size={18} />, title: t(proj.problemTitle), content: <p className="text-muted-foreground text-sm leading-relaxed font-body">{t(proj.problem)}</p> },
+                  { icon: <Lightbulb size={18} />, title: t(proj.solutionTitle), content: <ul className="space-y-2">{(t(proj.solutions) as string[]).map((s, i) => (<li key={i} className="flex items-start gap-3 text-muted-foreground text-sm font-body"><span className="text-primary text-xs mt-1 shrink-0">▸</span>{s}</li>))}</ul> },
+                  { icon: <Rocket size={18} />, title: t(proj.impactTitle), content: <ul className="space-y-2">{(t(proj.impacts) as string[]).map((s, i) => (<li key={i} className="flex items-start gap-3 text-muted-foreground text-sm font-body"><span className="text-secondary text-xs mt-1 shrink-0">▸</span>{s}</li>))}</ul> },
+                  { icon: <BookOpen size={18} />, title: t(proj.learnedTitle), content: <ul className="space-y-2">{(t(proj.learned) as string[]).map((s, i) => (<li key={i} className="flex items-start gap-3 text-muted-foreground text-sm font-body"><span className="text-cyan text-xs mt-1 shrink-0">▸</span>{s}</li>))}</ul> },
                 ].map((block, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 + i * 0.1 }}
-                    className={`p-6 rounded-2xl border ${block.color}`}
+                    className="glass rounded-sm p-6 border border-border/30 hover:border-primary/20 transition-colors"
                   >
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-4">
                       <span className="text-primary">{block.icon}</span>
-                      <h3 className="text-base font-display font-bold text-foreground">{block.title}</h3>
+                      <h3 className="text-lg font-display font-bold text-foreground tracking-wide">{block.title}</h3>
                     </div>
                     {block.content}
                   </motion.div>
                 ))}
               </div>
 
-              <div className="flex gap-3 mt-12 pt-8 border-t border-border/30">
-                <a
-                  href="https://github.com/MarioCHYY/radiant-beauty-studio-main"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 border border-border rounded-full text-foreground text-sm font-display font-medium hover:border-primary/40 transition-all flex items-center gap-2"
-                >
+              <div className="flex gap-3 mt-14 pt-8 border-t border-border/30">
+                <a href="https://github.com/MarioCHYY/radiant-beauty-studio-main" target="_blank" rel="noopener noreferrer"
+                  className="px-6 py-3 glass rounded-sm text-foreground text-xs font-display tracking-wider hover:border-primary/40 hover:text-primary transition-all flex items-center gap-2">
                   <Github size={14} /> {t(p.viewCode)}
                 </a>
-                <a
-                  href="https://radiant-beauty-studio-main.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-display font-semibold hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center gap-2"
-                >
+                <a href="https://radiant-beauty-studio-main.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  className="px-6 py-3 bg-primary text-primary-foreground rounded-sm text-xs font-display tracking-wider font-bold hover:neon-glow-strong transition-all flex items-center gap-2">
                   <ExternalLink size={14} /> {t(p.liveDemo)}
                 </a>
               </div>
