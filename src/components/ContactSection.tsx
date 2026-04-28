@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, Github, Mail, Linkedin, ArrowUpRight } from "lucide-react";
+import { Send, Github, Mail, Linkedin, ArrowUpRight, Instagram } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useLang } from "@/i18n/LanguageContext";
@@ -121,6 +121,7 @@ const ContactSection = () => {
               { icon: Github, label: "GitHub", href: "https://github.com/MarioCHYY", handle: "@MarioCHYY" },
               { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mario-bencomo-4998273aa/", handle: "Mario Bencomo" },
               { icon: Mail, label: "Email", href: "mailto:mariobencomo057@gmail.com", handle: "mariobencomo057" },
+              { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mario_bencomo06/", handle: "@mario_bencomo06" },
             ].map((link, i) => (
               <a
                 key={i}
