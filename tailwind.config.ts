@@ -90,6 +90,10 @@ export default {
   			'typing': {
   				'from': { width: '0' },
   				'to': { width: '100%' }
+  			},
+  			'marquee': {
+  				'0%': { transform: 'translateX(0%)' },
+  				'100%': { transform: 'translateX(-50%)' }
   			}
   		},
   		animation: {
@@ -97,7 +101,8 @@ export default {
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'float': 'float 6s ease-in-out infinite',
   			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
-  			'typing': 'typing 2s steps(30, end)'
+  			'typing': 'typing 2s steps(30, end)',
+  			'marquee': 'marquee 25s linear infinite'
   		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',

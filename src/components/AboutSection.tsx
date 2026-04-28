@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Calendar, Briefcase } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
+import TechMarquee from "./TechMarquee";
 
 const AboutSection = () => {
   const { t } = useLang();
@@ -204,6 +205,9 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Tech Marquee below personal information */}
+      <TechMarquee />
     </section>
   );
 };
