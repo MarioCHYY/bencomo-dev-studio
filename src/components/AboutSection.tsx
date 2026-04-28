@@ -25,7 +25,7 @@ const AboutSection = () => {
     }, 4000);
     
     return () => clearInterval(timer);
-  }, []);
+  }, [profileImages.length]);
 
   const stats = [
     { value: "10+", label: { en: "Projects", es: "Proyectos" } },
