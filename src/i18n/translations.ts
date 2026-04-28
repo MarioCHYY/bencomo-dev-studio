@@ -24,12 +24,12 @@ export const translations = {
     label: { en: "01 —", es: "01 —" },
     title: { en: "About Me", es: "Sobre Mí" },
     p1: {
-      en: "Full-stack web developer focused on building scalable, high-performance applications with clean architecture and production-ready code. I deliver business-oriented digital solutions that prioritize user experience, responsive design, and maintainable codebases — turning real-world problems into effective, optimized products.",
-      es: "Desarrollador web full-stack enfocado en construir aplicaciones escalables y de alto rendimiento con arquitectura limpia y código listo para producción. Entrego soluciones digitales orientadas al negocio que priorizan la experiencia del usuario, diseño responsivo y bases de código mantenibles — transformando problemas reales en productos efectivos y optimizados.",
+      en: "I am Mario Bencomo, a full-stack web developer focused on building scalable and efficient applications. I turn ideas into optimized digital products with clean code and a great user experience.",
+      es: "Soy Mario Bencomo, desarrollador full stack enfocado en construir aplicaciones web escalables y eficientes. Transformo ideas en productos digitales optimizados, con código limpio y una gran experiencia de usuario.",
     },
     p2: {
-      en: "Driven by continuous learning and a results-first mentality. I approach every project with the mindset of delivering professional, production-grade software — regardless of scale.",
-      es: "Impulsado por el aprendizaje continuo y una mentalidad orientada a resultados. Abordo cada proyecto con la mentalidad de entregar software profesional y de nivel producción — sin importar la escala.",
+      en: "When I'm not building web solutions, I'm probably at the gym training discipline and consistency. The same energy I put into every rep, I apply to every line of code.",
+      es: "Cuando no estoy creando soluciones web, probablemente estoy en el gimnasio entrenando disciplina y constancia. La misma energía que pongo en cada repetición la aplico en cada línea de código.",
     },
     degree: {
       title: { en: "B.S. in Computer Systems Engineering", es: "Ing. en Sistemas Computacionales" },
@@ -48,7 +48,7 @@ export const translations = {
     label: { en: "02 —", es: "02 —" },
     title: { en: "Education", es: "Educación" },
     degree: {
-      title: { en: "Bachelor's Degree in Software Development", es: "Licenciatura en Desarrollo de Software" },
+      title: { en: "B.S. in Computer Systems Engineering", es: "Licenciatura en Ingeniería en Sistemas Computacionales" },
       period: { en: "Currently in 4th Semester • 2026 – Present", es: "Actualmente en 4to Semestre • 2026 – Presente" },
       graduation: { en: "Expected Graduation: 2029", es: "Graduación Esperada: 2029" },
       focus: {
