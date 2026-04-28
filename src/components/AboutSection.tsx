@@ -25,7 +25,7 @@ const AboutSection = () => {
     }, 4000);
     
     return () => clearInterval(timer);
-  }, [profileImages.length]);
+  }, []);
 
   const stats = [
     { value: "10+", label: { en: "Projects", es: "Proyectos" } },
@@ -191,7 +191,7 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="grid grid-cols-3 gap-4 pt-4"
+              className="grid grid-cols-2 gap-4 pt-4"
             >
               {stats.map((stat, i) => (
                 <div key={i} className="text-center py-4 border border-border/50 hover:border-primary/40 transition-colors neon-border">
