@@ -1,9 +1,17 @@
-import { Github, Linkedin, ArrowUp } from "lucide-react";
+import { Github, Linkedin, ArrowUp, Instagram, Mail, MessageCircle } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 
 const Footer = () => {
   const { t } = useLang();
+
+  const socialLinks = [
+    { icon: Github, href: "https://github.com/MarioCHYY" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/mario-bencomo-4998273aa/" },
+    { icon: Instagram, href: "https://www.instagram.com/mario_bencomo06/" },
+    { icon: MessageCircle, href: "https://wa.me/526674962484?text=Hola%20Mario,%20me%20gustaría%20hablar%20sobre%20un%20proyecto." },
+    { icon: Mail, href: "mailto:mariobencomo057@gmail.com" },
+  ];
 
   return (
     <footer className="py-8 px-6 md:px-12 border-t dark:border-[rgba(255,255,255,0.05)] border-[rgba(0,0,0,0.05)] dark:bg-[#030303]/80 bg-[#F8F8F8]/80 transition-colors duration-500">
@@ -12,23 +20,18 @@ const Footer = () => {
           © 2026 Mario Héctor Bencomo Moreno
         </span>
         <div className="flex items-center gap-5">
-          <a
-            href="https://github.com/MarioCHYY"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="dark:text-[rgba(255,255,255,0.2)] text-black/40 hover:text-primary transition-colors"
-          >
-            <Github size={14} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mario-bencomo-4998273aa/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="dark:text-[rgba(255,255,255,0.2)] text-black/40 hover:text-primary transition-colors"
-          >
-            <Linkedin size={14} />
-          </a>
-          <span className="text-[10px] dark:text-[rgba(255,255,255,0.2)] text-black/40 font-normal tracking-widest uppercase transition-colors duration-500">
+          {socialLinks.map((link, i) => (
+            <a
+              key={i}
+              href={link.href}
+              target={link.href.startsWith("mailto") ? undefined : "_blank"}
+              rel="noopener noreferrer"
+              className="dark:text-[rgba(255,255,255,0.2)] text-black/40 hover:text-primary transition-colors"
+            >
+              <link.icon size={14} />
+            </a>
+          ))}
+          <span className="text-[10px] dark:text-[rgba(255,255,255,0.2)] text-black/40 font-normal tracking-widest uppercase transition-colors duration-500 ml-2">
             {t(translations.footer.builtWith)}
           </span>
           <button
