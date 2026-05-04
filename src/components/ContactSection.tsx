@@ -156,7 +156,7 @@ const ContactSection = () => {
               },
               { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mario-bencomo-4998273aa/", handle: "Mario Bencomo" },
               { icon: Mail, label: "Email", href: "mailto:mariobencomo057@gmail.com", handle: "mariobencomo057" },
-              { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mario_bencomo06/", handle: "@mario_bencomo06" },
+              { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mario_bencomo06?igsh=MXhjYXR2YnQwc3FodA%3D%3D&utm_source=qr", handle: "@mario_bencomo06" },
             ].map((link, i) => (
               <a
                 key={i}

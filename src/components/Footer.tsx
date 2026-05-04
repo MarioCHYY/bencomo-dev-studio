@@ -8,7 +8,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: Github, href: "https://github.com/MarioCHYY" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/mario-bencomo-4998273aa/" },
-    { icon: Instagram, href: "https://www.instagram.com/mario_bencomo06/" },
+    { icon: Instagram, href: "https://www.instagram.com/mario_bencomo06?igsh=MXhjYXR2YnQwc3FodA%3D%3D&utm_source=qr" },
     { icon: MessageCircle, href: "https://wa.me/526674962484?text=Hola%20Mario,%20me%20gustaría%20hablar%20sobre%20un%20proyecto." },
     { icon: Mail, href: "mailto:mariobencomo057@gmail.com" },
   ];
