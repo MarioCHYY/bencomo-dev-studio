@@ -83,7 +83,7 @@ const SkillsSection = () => {
         >
           {categories.map((cat) => (
             <span key={cat} className="px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] dark:bg-[rgba(255,255,255,0.05)] bg-[rgba(0,0,0,0.05)] dark:text-[rgba(255,255,255,0.4)] text-[#505060] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-full cursor-default hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-colors duration-500">
-              {cat}
+              {t((s.categories as any)[cat])}
             </span>
           ))}
         </motion.div>

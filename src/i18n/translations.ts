@@ -54,11 +54,12 @@ export const translations = {
     title: { en: "Education", es: "Educación" },
     degree: {
       title: { en: "B.S. in Computer Systems Engineering", es: "Licenciatura en Ingeniería en Sistemas Computacionales" },
+      institution: { en: "Tecnológico de Culiacán", es: "Tecnológico de Culiacán" },
       period: { en: "Currently in 4th Semester • 2026 – Present", es: "Actualmente en 4to Semestre • 2026 – Presente" },
       graduation: { en: "Expected Graduation: 2029", es: "Graduación Esperada: 2029" },
       focus: {
         en: "Focused on software engineering fundamentals and modern web technologies. Recently developed a full-stack project implementing structured architecture and database management as part of the 4th-semester core curriculum.",
-        es: "Enfocado en fundamentos de ingeniería de software y tecnologías web modernas. Recientemente desarrollé un proyecto full-stack implementando arquitectura estructurada y gestión de bases de datos como parte del plan de estudios del 4to semestre.",
+        es: "Enfocado en ingeniería de software y tecnologías web modernas. Recientemente desarrollé un proyecto full-stack implementando arquitectura estructurada y gestión de bases de datos como parte del plan de estudios del 4to semestre.",
       },
     },
   },
@@ -88,6 +89,10 @@ export const translations = {
   projects: {
     label: { en: "", es: "" },
     title: { en: "Projects", es: "Proyectos" },
+    subtitle: {
+      en: "Explore a selection of digital solutions where technical precision meets cutting-edge design. Each project is a testament to futuristic craftsmanship.",
+      es: "Explora una selección de soluciones digitales donde la precisión técnica se encuentra con el diseño de vanguardia. Cada proyecto es un testimonio de artesanía futurista.",
+    },
     featured: { en: "FEATURED PROJECT", es: "PROYECTO DESTACADO" },
     project1: {
       name: {
@@ -350,6 +355,12 @@ export const translations = {
       Intermedio: { en: "Intermediate", es: "Intermedio" },
       Avanzado: { en: "Advanced", es: "Avanzado" },
     },
+    categories: {
+      Frontend: { en: "Frontend", es: "Frontend" },
+      Backend: { en: "Backend", es: "Backend" },
+      Tools: { en: "Tools", es: "Herramientas" },
+      Other: { en: "Other", es: "Otros" },
+    },
   },
   services: {
     label: { en: "", es: "" },
@@ -403,6 +414,7 @@ export const translations = {
     fillAll: { en: "Please fill in all fields", es: "Por favor llena todos los campos" },
     sent: { en: "Message sent!", es: "¡Mensaje enviado!" },
     sentDesc: { en: "I'll get back to you soon.", es: "Te responderé pronto." },
+    connect: { en: "Connect With Me", es: "Conecta Conmigo" },
   },
   footer: {
     builtWith: { en: "Built with React + TypeScript", es: "Construido con React + TypeScript" },

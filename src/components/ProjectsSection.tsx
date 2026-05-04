@@ -119,7 +119,7 @@ const ProjectsSection = () => {
                 {t(p.title)}<span className="text-primary">.</span>
               </h2>
               <p className="font-light text-base md:text-lg dark:text-[#A0A5B0] text-[#505060] max-w-2xl mt-4 transition-colors duration-500">
-                 {lang === "es" ? "Explora una selección de soluciones digitales donde la precisión técnica se encuentra con el diseño de vanguardia. Cada proyecto es un testimonio de artesanía futurista." : "Explore a selection of digital solutions where technical precision meets cutting-edge design. Each project is a testament to futuristic craftsmanship."}
+                 {t(p.subtitle)}
               </p>
             </div>
             

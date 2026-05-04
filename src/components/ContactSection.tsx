@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, Github, Mail, Linkedin, ArrowUpRight, Instagram } from "lucide-react";
+import { Send, Mail, Linkedin, ArrowUpRight, Instagram, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useLang } from "@/i18n/LanguageContext";
@@ -10,15 +10,44 @@ const ContactSection = () => {
   const { t } = useLang();
   const c = translations.contact;
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast({ title: t(c.fillAll), variant: "destructive" });
       return;
     }
-    toast({ title: t(c.sent), description: t(c.sentDesc) });
-    setForm({ name: "", email: "", message: "" });
+
+    setIsSubmitting(true);
+
+    try {
+      // Reemplaza 'TU_ID_DE_FORMSPREE' con tu ID real de Formspree (crea una cuenta en formspree.io)
+      const response = await fetch("https://formspree.io/f/mleypwqe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      if (response.ok) {
+        toast({ title: t(c.sent), description: t(c.sentDesc) });
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        throw new Error("Error al enviar");
+      }
+    } catch (error) {
+      toast({ 
+        title: "Error", 
+        description: "Hubo un problema al enviar el mensaje. Inténtalo de nuevo.",
+        variant: "destructive" 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -60,6 +89,7 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="text"
+                  required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   maxLength={100}
@@ -73,6 +103,7 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="email"
+                  required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   maxLength={255}
@@ -86,6 +117,7 @@ const ContactSection = () => {
                 {t(c.message)}
               </label>
               <textarea
+                required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
@@ -95,11 +127,12 @@ const ContactSection = () => {
             </div>
             <button
               type="submit"
-              className="group px-8 py-4 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 self-start shadow-[0_0_15px_rgba(51,141,255,0.3)]"
+              disabled={isSubmitting}
+              className="group px-8 py-4 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 self-start shadow-[0_0_15px_rgba(51,141,255,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send size={16} />
-              {t(c.send)}
-              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              {isSubmitting ? "Enviando..." : t(c.send)}
+              {!isSubmitting && <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />}
             </button>
           </motion.form>
 
@@ -112,10 +145,15 @@ const ContactSection = () => {
             className="space-y-4"
           >
             <p className="text-[10px] text-primary/80 font-medium tracking-[0.16em] uppercase mb-6">
-              Connect With Me
+              {t(c.connect)}
             </p>
             {[
-              { icon: Github, label: "GitHub", href: "https://github.com/MarioCHYY", handle: "@MarioCHYY" },
+              { 
+                icon: MessageCircle, 
+                label: "WhatsApp", 
+                href: "https://wa.me/526674962484?text=Hola%20Mario,%20me%20gustaría%20hablar%20sobre%20un%20proyecto.", 
+                handle: "667 496 2484" 
+              },
               { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mario-bencomo-4998273aa/", handle: "Mario Bencomo" },
               { icon: Mail, label: "Email", href: "mailto:mariobencomo057@gmail.com", handle: "mariobencomo057" },
               { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mario_bencomo06/", handle: "@mario_bencomo06" },

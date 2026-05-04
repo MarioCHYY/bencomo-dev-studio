@@ -137,7 +137,7 @@ const AboutSection = () => {
               
               <h4 className="text-lg font-bold dark:text-white text-[#0A0A0A] mb-1 transition-colors duration-500">{t(exp.role)}</h4>
               <div className="flex items-center flex-wrap gap-2 text-sm text-primary mb-4 font-medium [text-shadow:0_0_10px_rgba(51,141,255,0.3)]">
-                <span>Proyectos Independientes</span>
+                <span>{t(exp.type)}</span>
                 <span>•</span>
                 <span>{t(exp.period)}</span>
               </div>
@@ -172,7 +172,7 @@ const AboutSection = () => {
               {/* Use the correct nested key: edu.degree.title */}
               <h4 className="text-lg font-bold dark:text-white text-[#0A0A0A] mb-1 transition-colors duration-500">{t(edu.degree.title)}</h4>
               <div className="flex items-center flex-wrap gap-2 text-sm text-primary mb-4 font-medium [text-shadow:0_0_10px_rgba(51,141,255,0.3)]">
-                <span>Tecnológico de Culiacán</span>
+                <span>{t(edu.degree.institution)}</span>
                 <span>•</span>
                 <span>{t(edu.degree.period)}</span>
               </div>
