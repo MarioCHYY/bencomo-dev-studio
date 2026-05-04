@@ -15,13 +15,18 @@ export const translations = {
     badge: { en: "OPEN TO WORK", es: "DISPONIBLE" },
     greeting: { en: "Hi, I'm", es: "Hola, soy" },
     subtitle: {
-      en: "Web Developer — Frontend & Backend. Building functional, scalable and visually clean digital solutions.",
-      es: "Desarrollador Web — Frontend & Backend. Creando soluciones digitales funcionales, escalables y visualmente limpias.",
+      en: "Beyond algorithms and syntax, lies the possibility to create something that didn't exist. My vision as an engineer is to expand digital boundaries to build realities that inspire, function, and endure.",
+      es: "Más allá de los algoritmos y la sintaxis, existe la posibilidad de crear algo que no existía. Mi visión como ingeniero es expandir los límites de lo digital para construir realidades que inspiren, funcionen y perduren.",
+    },
+    title: {
+      line1: { en: "THE FUTURE", es: "EL FUTURO" },
+      line2: { en: "IS", es: "SE" },
+      line3: { en: "DESIGNED.", es: "DISEÑA." },
     },
     cta: { en: "View My Work", es: "Ver Mi Trabajo" },
   },
   about: {
-    label: { en: "01 —", es: "01 —" },
+    label: { en: "", es: "" },
     title: { en: "About Me", es: "Sobre Mí" },
     p1: {
       en: "I am Mario Bencomo, a full-stack web developer focused on building scalable and efficient applications. I turn ideas into optimized digital products with clean code and a great user experience.",
@@ -45,20 +50,20 @@ export const translations = {
     },
   },
   education: {
-    label: { en: "02 —", es: "02 —" },
+    label: { en: "", es: "" },
     title: { en: "Education", es: "Educación" },
     degree: {
       title: { en: "B.S. in Computer Systems Engineering", es: "Licenciatura en Ingeniería en Sistemas Computacionales" },
       period: { en: "Currently in 4th Semester • 2026 – Present", es: "Actualmente en 4to Semestre • 2026 – Presente" },
       graduation: { en: "Expected Graduation: 2029", es: "Graduación Esperada: 2029" },
       focus: {
-        en: "Focused on software engineering fundamentals, web development, and modern frontend technologies.",
-        es: "Enfocado en fundamentos de ingeniería de software, desarrollo web y tecnologías frontend modernas.",
+        en: "Focused on software engineering fundamentals and modern web technologies. Recently developed a full-stack project implementing structured architecture and database management as part of the 4th-semester core curriculum.",
+        es: "Enfocado en fundamentos de ingeniería de software y tecnologías web modernas. Recientemente desarrollé un proyecto full-stack implementando arquitectura estructurada y gestión de bases de datos como parte del plan de estudios del 4to semestre.",
       },
     },
   },
   experience: {
-    label: { en: "03 —", es: "03 —" },
+    label: { en: "", es: "" },
     title: { en: "Experience", es: "Experiencia" },
     role: { en: "Frontend Developer", es: "Desarrollador Frontend" },
     type: { en: "Independent Projects", es: "Proyectos Independientes" },
@@ -81,7 +86,7 @@ export const translations = {
     },
   },
   projects: {
-    label: { en: "04 —", es: "04 —" },
+    label: { en: "", es: "" },
     title: { en: "Projects", es: "Proyectos" },
     featured: { en: "FEATURED PROJECT", es: "PROYECTO DESTACADO" },
     project1: {
@@ -153,6 +158,166 @@ export const translations = {
         ],
       },
     },
+    project2: {
+      name: { en: "Atelier", es: "Atelier" },
+      oneliner: {
+        en: "Dark-themed creative studio landing page with cinematic animations and glassmorphism UI.",
+        es: "Landing page de estudio creativo con temática oscura, animaciones cinematográficas y UI glassmorphism.",
+      },
+      role: { en: "Full Stack Developer & Founder", es: "Full Stack Developer & Founder" },
+      problemTitle: { en: "Problem / Challenge", es: "Problema / Desafío" },
+      problem: {
+        en: "Many local businesses lack a professional digital presence or face agencies with opaque processes and hidden prices. The challenge was to create our own platform that functions as a transparent sales tool, capable of converting visitors into clients through the clear exhibition of services, delivery times, and real results.",
+        es: "Muchos negocios locales carecen de una presencia digital profesional o se enfrentan a agencias con procesos opacos y precios ocultos. El desafío era crear una plataforma propia que funcionara como una herramienta de ventas transparente, capaz de convertir visitantes en clientes mediante la exposición clara de servicios, tiempos de entrega y resultados reales.",
+      },
+      solutionTitle: { en: "Solution", es: "Solución" },
+      solutions: {
+        en: [
+          "Developed a high-performance landing page using Vite and TypeScript to ensure instant loading and a smooth user experience.",
+          "Designed a catalog of transparent services and prices that segments the offer into scalable packages (Essential, Studio, Pro) with delivery times starting from 1 business day.",
+          "Implemented a dynamic portfolio exhibition system to detail success stories like 'Smart Travel Genie' and 'Radiant Beauty Studio', highlighting technologies and results.",
+          "Integrated lead generation flows through strategic calls to action (CTA) to schedule 30-minute discovery sessions.",
+        ],
+        es: [
+          "Desarrollé una landing page de alto rendimiento utilizando Vite y TypeScript para garantizar una carga instantánea y una experiencia de usuario fluida.",
+          "Diseñé un catálogo de servicios y precios transparentes que segmenta la oferta en paquetes escalables (Essential, Studio, Pro) con tiempos de entrega desde 1 día hábil.",
+          "Implementé un sistema de exhibición de portafolio dinámico para detallar casos de éxito como 'Smart Travel Genie' y 'Radiant Beauty Studio', resaltando tecnologías y resultados.",
+          "Integré flujos de generación de leads mediante llamadas a la acción (CTA) estratégicas para agendar sesiones de descubrimiento de 30 minutos.",
+        ],
+      },
+      impactTitle: { en: "Impact / Results", es: "Impacto / Resultados" },
+      impacts: {
+        en: [
+          "Sales Optimization: Reduction of friction in the sales cycle by resolving pre-sale doubts through a FAQ section and a clearly defined 3-step work process.",
+          "Recurring Revenue: Establishment of a maintenance plan structure (Care Basic, Growth, Full) to ensure the sustainability of the studio post-launch.",
+          "Brand Positioning: Projection of a professional and 'boutique' image that generates immediate trust in potential clients.",
+        ],
+        es: [
+          "Optimización de Ventas: Reducción de la fricción en el ciclo de venta al resolver dudas preventa mediante una sección de FAQ y un proceso de trabajo de 3 pasos claramente definido.",
+          "Ingresos Recurrentes: Establecimiento de una estructura de planes de mantenimiento (Care Basic, Growth, Full) para asegurar la sostenibilidad del estudio post-lanzamiento.",
+          "Posicionamiento de Marca: Proyección de una imagen profesional y 'boutique' que genera confianza inmediata en clientes potenciales.",
+        ],
+      },
+      learnedTitle: { en: "What I Learned", es: "Lo que Aprendí" },
+      learned: {
+        en: [
+          "Design of conversion rate optimization (CRO) oriented interfaces and sales psychology principles applied to the web.",
+          "Advanced use of Shadcn UI and Tailwind CSS to create a modern, minimalist, and highly responsive aesthetic.",
+          "Structuring of technical commercial offers to make them understandable and attractive to local business owners.",
+        ],
+        es: [
+          "Diseño de interfaces orientadas a la conversión (CRO) y principios de psicología de ventas aplicados a la web.",
+          "Uso avanzado de Shadcn UI y Tailwind CSS para crear una estética moderna, minimalista y altamente responsive.",
+          "Estructuración de ofertas comerciales técnicas para que sean comprensibles y atractivas para dueños de negocios locales.",
+        ],
+      },
+    },
+    project3: {
+      name: { en: "Smart Travel Genie", es: "Smart Travel Genie" },
+      oneliner: {
+        en: "AI-powered travel planning assistant that generates custom itineraries based on your preferences.",
+        es: "Asistente de viajes con IA que genera itinerarios personalizados basados en tus preferencias.",
+      },
+      role: { en: "Full Stack Developer", es: "Desarrollador Full Stack" },
+      problemTitle: { en: "Problem / Challenge", es: "Problema / Desafío" },
+      problem: {
+        en: "Planning a trip is overwhelming due to data fragmentation. The challenge was to create a platform that not only searched for options but consolidated real data from Google Flights and Airbnb into a single interface, analyzing availability and current prices in real time.",
+        es: "Planificar un viaje es abrumador debido a la fragmentación de datos. El desafío era crear una plataforma que no solo buscara opciones, sino que consolidara datos reales de Google Flights y Airbnb en una interfaz única, analizando disponibilidad y precios actuales en tiempo real.",
+      },
+      solutionTitle: { en: "Solution", es: "Solución" },
+      solutions: {
+        en: [
+          "Implemented Playwright for real-time web scraping on Google Flights and Airbnb, avoiding the use of static databases.",
+          "Integrated Google Gemini Pro as the decision engine to filter and match the best flight and accommodation combos based on budget in MXN.",
+          "Developed a chat assistant (Pre-planner) and a dynamic itinerary generator based on intelligent geolocation.",
+        ],
+        es: [
+          "Implementé Playwright para realizar web scraping en tiempo real sobre Google Flights y Airbnb, evitando el uso de bases de datos estáticas.",
+          "Integré Google Gemini Pro como motor de decisión para filtrar y emparejar los mejores combos de vuelo y alojamiento según el presupuesto en MXN.",
+          "Desarrollé un asistente de chat (Pre-planner) y un generador de itinerarios dinámicos basados en geolocalización inteligente.",
+        ],
+      },
+      impactTitle: { en: "Impact / Results", es: "Impacto / Resultados" },
+      impacts: {
+        en: [
+          "Drastic reduction in search time by presenting an optimized 'Recommended Combo' (Flight + Airbnb) in seconds.",
+          "Total personalization via AI that adjusts activities and lodging to specific preferences (style, proximity, or budget).",
+          "Cost accuracy by processing real and updated data directly from providers.",
+        ],
+        es: [
+          "Reducción drástica del tiempo de búsqueda al presentar un 'Combo Recomendado' optimizado (Vuelo + Airbnb) en segundos.",
+          "Personalización total mediante IA que ajusta actividades y hospedaje a preferencias específicas (estilo, cercanía o presupuesto).",
+          "Precisión en costos al procesar datos reales y actualizados directamente de los proveedores.",
+        ],
+      },
+      learnedTitle: { en: "What I Learned", es: "Lo que Aprendí" },
+      learned: {
+        en: [
+          "Automation and complex navigation with Playwright for data extraction on dynamic sites.",
+          "Microservices orchestration with FastAPI to connect scraping with large language models (LLMs).",
+          "Financial processing logic for managing and converting budgets in real time.",
+        ],
+        es: [
+          "Automatización y navegación compleja con Playwright para la extracción de datos en sitios dinámicos.",
+          "Orquestación de microservicios con FastAPI para conectar el scraping con modelos de lenguaje (LLM).",
+          "Lógica de procesamiento financiero para el manejo y conversión de presupuestos en tiempo real.",
+        ],
+      },
+    },
+    project4: {
+      name: { en: "Amazon Tracker Bot", es: "Amazon Tracker Bot" },
+      oneliner: {
+        en: "Python bot for real-time web scraping, price monitoring, and automated alerts for Amazon products.",
+        es: "Bot en Python especializado en web scraping, monitoreo de precios y alertas automáticas para productos de Amazon.",
+      },
+      role: { en: "Backend Developer / Automation", es: "Desarrollador Backend / Automatización" },
+      problemTitle: { en: "Problem / Challenge", es: "Problema / Desafío" },
+      problem: {
+        en: "Deals on Amazon Mexico are volatile and significant discounts usually last a short time. The challenge was to create an autonomous system that eliminated the need to check manually, allowing specific products to be tracked and lightning deals to be discovered in categories of interest proactively.",
+        es: "Las ofertas en Amazon México son volátiles y las rebajas significativas suelen durar poco tiempo. El desafío era crear un sistema autónomo que eliminara la necesidad de revisar manualmente, permitiendo rastrear productos específicos y descubrir ofertas relámpago en categorías de interés de forma proactiva.",
+      },
+      solutionTitle: { en: "Solution", es: "Solución" },
+      solutions: {
+        en: [
+          "Developed a Telegram Bot with multithreaded architecture that separates the user interface, hourly watchlist monitoring, and a proactive deal 'Hunter'.",
+          "Implemented an advanced scraping system with BeautifulSoup to extract prices, images, and 'Lightning Deal' or struck-through 'MSRP' tags.",
+          "Integrated Matplotlib to generate visual trend graphs showing price history and highlighting the historical minimum directly in the chat.",
+          "Designed robust data persistence with SQLite to manage independent users, price histories, and anti-spam systems.",
+        ],
+        es: [
+          "Desarrollé un Bot de Telegram con arquitectura multihilo que separa la interfaz de usuario, el monitoreo por hora de la watchlist y un 'Hunter' proactivo de ofertas.",
+          "Implementé un sistema de scraping avanzado con BeautifulSoup para extraer precios, imágenes y etiquetas de 'Oferta Relámpago' o 'MSRP' tachados.",
+          "Integré Matplotlib para generar gráficas de tendencia visuales que muestran el historial de precios y resaltan el mínimo histórico directamente en el chat.",
+          "Diseñé una persistencia de datos robusta con SQLite para gestionar usuarios independientes, historiales de precios y sistemas de anti-spam.",
+        ],
+      },
+      impactTitle: { en: "Impact / Results", es: "Impacto / Resultados" },
+      impacts: {
+        en: [
+          "Intelligent Monitoring: Immediate notifications of 'Historical Minimum' or when a price drops 10% below average.",
+          "Segmented Hunting: Automatic filtering of deals by categories (Video Games, Computing, etc.) via the interactive /focus panel.",
+          "Data Visualization: Conversion of flat data into actionable information through trend graphs sent to the user.",
+        ],
+        es: [
+          "Monitoreo Inteligente: Notificaciones inmediatas de 'Mínimo Histórico' o cuando un precio cae un 10% por debajo del promedio.",
+          "Cacería Segmentada: Filtrado automático de ofertas por categorías (Videojuegos, Cómputo, etc.) mediante el panel interactivo /focus.",
+          "Visualización de Datos: Conversión de datos planos en información accionable a través de gráficas de tendencia enviadas al usuario.",
+        ],
+      },
+      learnedTitle: { en: "What I Learned", es: "Lo que Aprendí" },
+      learned: {
+        en: [
+          "Concurrent Architecture: Handling threads in Python to execute background tracking tasks without blocking bot interaction.",
+          "Visual Data Analysis: Use of graphic libraries to represent market fluctuations simply for the end user.",
+          "Scraping Management: Optimization of selectors and header management for efficient and constant data extraction on dynamic sites.",
+        ],
+        es: [
+          "Arquitectura Concurrente: Manejo de hilos en Python para ejecutar tareas de rastreo en segundo plano sin bloquear la interacción del bot.",
+          "Análisis de Datos Visual: Uso de librerías gráficas para representar fluctuaciones de mercado de forma sencilla para el usuario final.",
+          "Gestión de Scraping: Optimización de selectores y manejo de cabeceras para una extracción de datos eficiente y constante en sitios dinámicos.",
+        ],
+      },
+    },
     responsibilities: {
       en: [
         "Modern responsive UI design",
@@ -178,7 +343,7 @@ export const translations = {
     backToProjects: { en: "← Back to Projects", es: "← Volver a Proyectos" },
   },
   skills: {
-    label: { en: "05 —", es: "05 —" },
+    label: { en: "", es: "" },
     title: { en: "Skills", es: "Habilidades" },
     levels: {
       Básico: { en: "Basic", es: "Básico" },
@@ -187,7 +352,7 @@ export const translations = {
     },
   },
   services: {
-    label: { en: "06 —", es: "06 —" },
+    label: { en: "", es: "" },
     title: { en: "Services", es: "Servicios" },
     subtitle: {
       en: "Available for freelance projects. Let's build something great together.",
@@ -225,7 +390,7 @@ export const translations = {
     ],
   },
   contact: {
-    label: { en: "07 —", es: "07 —" },
+    label: { en: "", es: "" },
     title: { en: "Get in Touch", es: "Contáctame" },
     subtitle: {
       en: "Have a project in mind? Let's talk about how I can help you.",

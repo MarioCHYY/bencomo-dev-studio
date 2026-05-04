@@ -23,24 +23,22 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="section-padding relative">
-      <div className="absolute left-0 right-0 top-0 cyber-divider" />
-
       <div className="max-w-5xl mx-auto">
         {/* Big CTA headline */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="text-primary text-xs font-mono">{t(c.label)}</span>
+            <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(c.label)}</span>
           </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter glow-text-intense text-primary mb-4">
+          <h2 className="text-5xl md:text-6xl lg:text-8xl font-heading font-extrabold -tracking-[0.03em] dark:text-white text-[#0A0A0A] mb-6 transition-colors duration-500">
             {t(c.title)}
           </h2>
-          <p className="text-muted-foreground text-sm max-w-md mx-auto">
+          <p className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base max-w-md mx-auto font-light leading-relaxed transition-colors duration-500">
             {t(c.subtitle)}
           </p>
         </motion.div>
@@ -49,15 +47,15 @@ const ContactSection = () => {
           {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-5"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col h-full space-y-5"
           >
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-5 shrink-0">
               <div>
-                <label className="text-[10px] text-muted-foreground mb-2 block font-mono uppercase tracking-wider">
+                <label className="text-[10px] dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
                   {t(c.name)}
                 </label>
                 <input
@@ -65,12 +63,12 @@ const ContactSection = () => {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   maxLength={100}
-                  className="w-full px-4 py-3 bg-transparent border-b border-border text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-mono"
+                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
                   placeholder="Mario Bencomo"
                 />
               </div>
               <div>
-                <label className="text-[10px] text-muted-foreground mb-2 block font-mono uppercase tracking-wider">
+                <label className="text-[10px] dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
                   {t(c.email)}
                 </label>
                 <input
@@ -78,31 +76,30 @@ const ContactSection = () => {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   maxLength={255}
-                  className="w-full px-4 py-3 bg-transparent border-b border-border text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-mono"
+                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
                   placeholder="mario@email.com"
                 />
               </div>
             </div>
-            <div>
-              <label className="text-[10px] text-muted-foreground mb-2 block font-mono uppercase tracking-wider">
+            <div className="flex-1 flex flex-col">
+              <label className="text-[10px] dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
                 {t(c.message)}
               </label>
               <textarea
-                rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
-                className="w-full px-4 py-3 bg-transparent border-b border-border text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-mono resize-none"
+                className="w-full flex-1 px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light resize-none min-h-[120px]"
                 placeholder="..."
               />
             </div>
             <button
               type="submit"
-              className="group px-8 py-3 bg-primary text-primary-foreground text-sm font-mono font-bold hover:shadow-[0_0_30px_hsl(120_100%_50%/0.4)] transition-all duration-300 flex items-center gap-2"
+              className="group px-8 py-4 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 self-start shadow-[0_0_15px_rgba(51,141,255,0.3)]"
             >
-              <Send size={14} />
+              <Send size={16} />
               {t(c.send)}
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </motion.form>
 
@@ -111,11 +108,11 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-4"
           >
-            <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider mb-6">
-              // find me on
+            <p className="text-[10px] text-primary/80 font-medium tracking-[0.16em] uppercase mb-6">
+              Connect With Me
             </p>
             {[
               { icon: Github, label: "GitHub", href: "https://github.com/MarioCHYY", handle: "@MarioCHYY" },
@@ -128,14 +125,16 @@ const ContactSection = () => {
                 href={link.href}
                 target={link.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 p-3 border border-border/30 hover:border-primary/40 hover:bg-card/30 transition-all duration-300"
+                className="group flex items-center gap-4 p-4 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.06)] border-[rgba(0,0,0,0.06)] rounded-2xl hover:bg-primary/5 hover:border-primary/20 transition-all duration-300"
               >
-                <link.icon size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                <div>
-                  <div className="text-xs text-foreground group-hover:text-primary transition-colors">{link.label}</div>
-                  <div className="text-[10px] text-muted-foreground/50">{link.handle}</div>
+                <div className="dark:text-[rgba(255,255,255,0.5)] text-[#505060] group-hover:text-primary transition-colors">
+                  <link.icon size={20} strokeWidth={1.5} />
                 </div>
-                <ArrowUpRight size={12} className="ml-auto text-muted-foreground/30 group-hover:text-primary/50 transition-colors" />
+                <div>
+                  <div className="text-sm font-medium dark:text-[rgba(255,255,255,0.5)] text-[#505060] dark:group-hover:text-white group-hover:text-[#0A0A0A] transition-colors">{link.label}</div>
+                  <div className="text-[10px] dark:text-white/30 text-[#505060] font-light transition-colors duration-500">{link.handle}</div>
+                </div>
+                <ArrowUpRight size={16} className="ml-auto dark:text-[rgba(255,255,255,0.3)] text-[#505060] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
               </a>
             ))}
           </motion.div>

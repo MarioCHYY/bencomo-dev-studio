@@ -28,27 +28,23 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="section-padding relative">
-      <div className="absolute left-0 right-0 top-0 cyber-divider" />
-
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
           <div className="flex items-center gap-4 mb-2">
-            <span className="text-primary text-xs font-mono">{t(s.label)}</span>
-            <div className="h-px flex-1 max-w-[60px] bg-primary/30" />
+            <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(s.label)}</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
-            <span className="text-primary mr-3">{"//"}</span>
-            <span className="glow-text">{t(s.title)}</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-extrabold dark:text-white text-[#0A0A0A] -tracking-[0.03em] transition-colors duration-500">
+            {t(s.title)}
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-2">
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
           {skills.map((skill, i) => (
             <motion.div
               key={skill.name}
@@ -56,28 +52,22 @@ const SkillsSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="group py-3 border-b border-border/20"
+              className="group"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-primary/30 text-[10px] font-mono w-5">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="text-foreground text-sm font-semibold group-hover:text-primary transition-colors">{skill.name}</span>
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <span className="dark:text-[rgba(255,255,255,0.6)] text-[#505060] text-sm font-medium dark:group-hover:text-white group-hover:text-[#0A0A0A] transition-colors">{skill.name}</span>
                 </div>
-                <span className="text-xs text-muted-foreground font-mono">{skill.percent}%</span>
+                <span className="text-xs dark:text-white/30 text-[#505060] font-medium transition-colors duration-500">{skill.percent}%</span>
               </div>
-              <div className="h-1 bg-border/20 overflow-hidden">
+              <div className="h-1 dark:bg-[rgba(255,255,255,0.06)] bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden transition-colors duration-500">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.percent}%` }}
                   viewport={{ once: true }}
                   transition={{ duration: 1, delay: 0.3 + i * 0.05, ease: "easeOut" }}
-                  className="h-full bg-primary relative"
-                  style={{
-                    boxShadow: "0 0 10px hsl(120 100% 50% / 0.5), 0 0 20px hsl(120 100% 50% / 0.2)",
-                  }}
-                >
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-3 bg-primary shadow-[0_0_8px_hsl(120_100%_50%/0.8)]" />
-                </motion.div>
+                  className="h-full bg-primary relative rounded-full"
+                />
               </div>
             </motion.div>
           ))}
@@ -89,10 +79,10 @@ const SkillsSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="flex flex-wrap gap-3 mt-10 pt-6 border-t border-border/20"
+          className="flex flex-wrap gap-3 mt-12 pt-8 border-t dark:border-[rgba(255,255,255,0.05)] border-[rgba(0,0,0,0.05)] transition-colors duration-500"
         >
           {categories.map((cat) => (
-            <span key={cat} className="px-3 py-1 text-[10px] text-muted-foreground border border-border/30 font-mono uppercase tracking-wider hover:border-primary/40 hover:text-primary/70 transition-colors cursor-default">
+            <span key={cat} className="px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] dark:bg-[rgba(255,255,255,0.05)] bg-[rgba(0,0,0,0.05)] dark:text-[rgba(255,255,255,0.4)] text-[#505060] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-full cursor-default hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-colors duration-500">
               {cat}
             </span>
           ))}
