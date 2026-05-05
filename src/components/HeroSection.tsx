@@ -4,17 +4,17 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useTheme } from "@/components/ThemeContext";
 
-// Animamos el ancho del contenedor en lugar de usar clip-path para evitar bugs gráficos en PC
-const widthVariants: Variants = {
+// Usamos clip-path: polygon en lugar de width o inset para evitar bugs de renderizado (tiling/slicing) en GPU de PC.
+const lineVariants: Variants = {
   hidden: {
-    width: "0%",
+    clipPath: "polygon(0% -20%, 0% -20%, 0% 120%, 0% 120%)",
     opacity: 1,
   },
   visible: (delay: number) => ({
-    width: "100%",
+    clipPath: "polygon(0% -20%, 100% -20%, 100% 120%, 0% 120%)",
     opacity: 1,
     transition: {
-      width: {
+      clipPath: {
         duration: 0.75,
         delay,
         ease: [0.77, 0, 0.175, 1],
@@ -48,9 +48,9 @@ const glowVariants: Variants = {
 function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: { text: string; fillDelay: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties }) {
   return (
     <span className={`block relative ${textSize}`} style={{ lineHeight: 1.05 }}>
-      {/* Capa ghost: AHORA ES RELATIVE PARA DAR TAMAÑO AL CONTENEDOR PADRE */}
+      {/* Capa ghost: contorno visible antes del reveal */}
       <motion.span
-        className="block relative z-0"
+        className="block"
         variants={ghostVariants}
         custom={fillDelay}
         initial="hidden"
@@ -59,23 +59,27 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
           WebkitTextStroke: faint ? "1px rgba(255,255,255,0.12)" : "1px rgba(255,255,255,0.18)",
           color: "transparent",
           userSelect: "none",
+          position: "absolute",
+          inset: 0,
         }}
       >
         {text}
       </motion.span>
 
-      {/* Capa fill: SE REVELA ANIMANDO EL WIDTH (Evita bugs de GPU) */}
+      {/* Capa fill: se revela con clip-path polygon (seguro para GPU) */}
       <motion.span
-        className="block absolute top-0 left-0 bottom-0 overflow-hidden z-10"
-        variants={widthVariants}
+        className="block"
+        variants={lineVariants}
         custom={fillDelay}
         initial="hidden"
         animate="visible"
         style={{
           ...(faint ? { color: "rgba(255,255,255,0.2)" } : {}),
+          position: "relative",
+          zIndex: 1,
         }}
       >
-        <span className="block" style={{ width: "max-content" }}>{text}</span>
+        {text}
       </motion.span>
 
       {/* Capa glow: se ilumina fuertemente después del reveal */}

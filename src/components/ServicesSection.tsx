@@ -25,7 +25,7 @@ const ServicesSection = () => {
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold dark:text-white text-[#0A0A0A] -tracking-[0.03em] transition-colors duration-500">
             {t(s.title)}
           </h2>
-          <p className="dark:text-[#A0A5B0] text-[#505060] mt-4 text-sm md:text-base max-w-lg font-light leading-relaxed transition-colors duration-500">
+          <p className="dark:text-[#A0A5B0] text-[#505060] mt-4 text-sm md:text-base lg:text-lg max-w-lg font-light leading-relaxed transition-colors duration-500">
             {t(s.subtitle)}
           </p>
         </motion.div>
@@ -48,7 +48,7 @@ const ServicesSection = () => {
                 <h3 className="text-xl font-heading font-extrabold mb-3 dark:text-white text-[#0A0A0A] transition-colors duration-500">
                   {t(service.title)}
                 </h3>
-                <p className="text-sm dark:text-[#A0A5B0] text-[#505060] leading-[1.8] font-light transition-colors duration-500">
+                <p className="text-sm md:text-base lg:text-lg dark:text-[#A0A5B0] text-[#505060] leading-[1.8] font-light transition-colors duration-500">
                   {t(service.description)}
                 </p>
               </motion.div>

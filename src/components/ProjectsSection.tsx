@@ -181,7 +181,7 @@ const ProjectsSection = () => {
                   <h3 className="font-heading font-extrabold text-2xl md:text-3xl dark:text-white text-[#0A0A0A] transition-colors duration-300 leading-tight">
                     {t(proj.name)}
                   </h3>
-                  <p className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base font-light leading-relaxed transition-colors duration-500 line-clamp-3">
+                  <p className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base lg:text-lg font-light leading-relaxed transition-colors duration-500 line-clamp-3">
                     {t(proj.oneliner)}
                   </p>
                   <div className="flex flex-wrap gap-4 mt-2">
@@ -242,7 +242,7 @@ const ProjectsSection = () => {
                           )}
                         </div>
                       </div>
-                      <p className="text-sm dark:text-[#A0A5B0] text-[#505060] font-light leading-relaxed mb-6 transition-colors duration-500 line-clamp-3">
+                      <p className="text-sm md:text-base lg:text-lg dark:text-[#A0A5B0] text-[#505060] font-light leading-relaxed mb-6 transition-colors duration-500 line-clamp-3">
                         {lang === "es" ? sp.description.es : sp.description.en}
                       </p>
                       <div className="mt-auto flex flex-col gap-4">
@@ -281,7 +281,7 @@ const ProjectsSection = () => {
                       <h3 className="font-heading font-bold text-2xl dark:text-white text-[#0A0A0A] transition-colors duration-300 mb-2">
                         {lang === "es" ? sp.title.es : sp.title.en}
                       </h3>
-                      <p className="text-sm dark:text-[#A0A5B0] text-[#505060] font-light transition-colors duration-500 mb-6">
+                      <p className="text-sm md:text-base lg:text-lg dark:text-[#A0A5B0] text-[#505060] font-light transition-colors duration-500 mb-6">
                         {lang === "es" ? "Próximamente / En Desarrollo" : "Coming Soon / In Development"}
                       </p>
                       <div className="flex gap-2">

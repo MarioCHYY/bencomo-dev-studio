@@ -96,7 +96,7 @@ const AboutSection = () => {
                 />
 
                 {/* Bio Text */}
-                <div className="space-y-4 dark:text-[#A0A5B0] text-[#505060] font-light leading-[1.8] text-sm transition-colors duration-500">
+                <div className="space-y-4 dark:text-[#A0A5B0] text-[#505060] font-light leading-[1.8] text-sm md:text-base lg:text-lg transition-colors duration-500">
                   <p>{t(a.p1)}</p>
                   <p>{t(a.p2)}</p>
                 </div>
@@ -144,7 +144,7 @@ const AboutSection = () => {
               
               <ul className="space-y-3">
                 {responsibilities.map((resp, i) => (
-                  <li key={i} className="dark:text-[#A0A5B0] text-[#505060] text-sm leading-relaxed flex gap-3 transition-colors duration-500">
+                  <li key={i} className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base leading-relaxed flex gap-3 transition-colors duration-500">
                     <span className="text-primary/60 mt-1 shrink-0">•</span>
                     <span>{resp}</span>
                   </li>
@@ -176,7 +176,7 @@ const AboutSection = () => {
                 <span>•</span>
                 <span>{t(edu.degree.period)}</span>
               </div>
-              <p className="dark:text-[#A0A5B0] text-[#505060] text-sm leading-relaxed transition-colors duration-500">
+              <p className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base leading-relaxed transition-colors duration-500">
                 {t(edu.degree.focus)}
               </p>
             </div>
