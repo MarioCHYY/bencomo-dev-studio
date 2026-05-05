@@ -100,10 +100,10 @@ const HeroSection = () => {
   const wordsLine1 = line1Text.split(" ");
 
   const t1 = 0.50;
-  const t2 = t1 + 0.25;                  // 0.750 — arranca cuando "E" (50% de EL) termina de dibujarse
-  const t3 = t2 + 0.25;                  // 1.000 — arranca cuando llega a la "T" (50% de FUTURO)
-  const t4 = t3 + 0.25;                  // 1.250 — arranca cuando termina la "S" (50% de SE)
-  const glowDelay = t4 + 0.75 + 0.75;    // 2.750 — 0.75s después de la última palabra
+  const t2 = t1 + 0.38;   // cuando se rellena la E (50% de EL  ≈ 0.38s con la curva de ease)
+  const t3 = t2 + 0.28;   // cuando FUTURO llega a la T (50%) — ritmo diferente
+  const t4 = t3 + 0.22;   // cuando SE llega a la S (50%) — ritmo diferente
+  const glowDelay = t4 + 0.75 + 0.75; // 0.75s después de que DISEÑA. termina
 
   return (
     <section
