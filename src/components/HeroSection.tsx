@@ -9,12 +9,12 @@ const lineVariants: Variants = {
     clipPath: "inset(0 100% 0 0)",
     opacity: 1,
   },
-  visible: (delay: number) => ({
+  visible: ({ delay, duration }: { delay: number; duration: number }) => ({
     clipPath: "inset(0 -20% 0 0)",
     opacity: 1,
     transition: {
       clipPath: {
-        duration: 0.75,
+        duration,
         delay,
         ease: [0.77, 0, 0.175, 1],
       },
@@ -35,13 +35,13 @@ const glowVariants: Variants = {
   }),
 };
 
-function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle, glowDelay = 2.8 }: { text: string; fillDelay: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties; glowDelay?: number }) {
+function AnimatedLine({ text, fillDelay, duration = 0.75, faint = false, textSize, glowStyle, glowDelay = 2.8 }: { text: string; fillDelay: number; duration?: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties; glowDelay?: number }) {
   return (
     <span className={`block relative ${textSize}`} style={{ lineHeight: 1.05 }}>
       <motion.span
         className="block"
         variants={lineVariants}
-        custom={fillDelay}
+        custom={{ delay: fillDelay, duration }}
         initial="hidden"
         animate="visible"
         style={{
@@ -99,11 +99,15 @@ const HeroSection = () => {
 
   const wordsLine1 = line1Text.split(" ");
 
-  const t1 = 0.50;
-  const t2 = t1 + 0.38;   // cuando se rellena la E (50% de EL  ≈ 0.38s con la curva de ease)
-  const t3 = t2 + 0.28;   // cuando FUTURO llega a la T (50%) — ritmo diferente
-  const t4 = t3 + 0.22;   // cuando SE llega a la S (50%) — ritmo diferente
-  const glowDelay = t4 + 0.75 + 0.75; // 0.75s después de que DISEÑA. termina
+  const t1 = 0.50; // Todas empiezan al mismo tiempo
+  
+  // Velocidades (duraciones). Más largo = más lento.
+  const dur1 = 0.8;  // EL
+  const dur2 = 1.1;  // FUTURO (más rápida que DISEÑA)
+  const dur3 = 0.9;  // SE
+  const dur4 = 1.4;  // DISEÑA. (la más lenta)
+  
+  const glowDelay = t1 + dur4 + 0.75; // Prende 0.75s después de que termina la más lenta
 
   return (
     <section
@@ -190,6 +194,7 @@ const HeroSection = () => {
                 <AnimatedLine
                   text={wordsLine1[0] || ""}
                   fillDelay={t1}
+                  duration={dur1}
                   faint={false}
                   textSize={textSize}
                   glowStyle={glowStyle}
@@ -199,7 +204,8 @@ const HeroSection = () => {
                 {wordsLine1.length > 1 && (
                   <AnimatedLine
                     text={wordsLine1[1]}
-                    fillDelay={t2}
+                    fillDelay={t1}
+                    duration={dur2}
                     faint={false}
                     textSize={textSize}
                     glowStyle={glowStyle}
@@ -210,7 +216,8 @@ const HeroSection = () => {
 
               <AnimatedLine
                 text={line2Text}
-                fillDelay={t3}
+                fillDelay={t1}
+                duration={dur3}
                 faint={true}
                 textSize={textSize}
                 glowStyle={{}}
@@ -219,7 +226,8 @@ const HeroSection = () => {
 
               <AnimatedLine
                 text={line3Text}
-                fillDelay={t4}
+                fillDelay={t1}
+                duration={dur4}
                 faint={false}
                 textSize={textSize}
                 glowStyle={glowStyle}
