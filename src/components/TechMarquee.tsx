@@ -7,8 +7,6 @@ const skills = [
   { name: "Tailwind CSS", icon: "tailwindcss-original" },
   { name: "Git", icon: "git-original" },
   { name: "Docker", icon: "docker-original" },
-  { name: "AWS", icon: "amazonwebservices-original-wordmark" },
-  { name: "Azure", icon: "azure-original" },
   { name: "Java", icon: "java-original" },
   { name: "Figma", icon: "figma-original" },
 ];
