@@ -4,17 +4,19 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useTheme } from "@/components/ThemeContext";
 
+// Usamos -20% en los insets superior, inferior e izquierdo para evitar que la fuente se corte (overflow)
+// Animamos únicamente el lado derecho de 100% a -20%.
 const lineVariants: Variants = {
   hidden: {
-    clipPath: "inset(0 100% 0 0)",
+    clipPath: "inset(-20% 100% -20% -20%)",
     opacity: 1,
   },
-  visible: ({ delay, duration }: { delay: number; duration: number }) => ({
-    clipPath: "inset(0 -20% 0 0)",
+  visible: (delay: number) => ({
+    clipPath: "inset(-20% -20% -20% -20%)",
     opacity: 1,
     transition: {
       clipPath: {
-        duration,
+        duration: 0.75,
         delay,
         ease: [0.77, 0, 0.175, 1],
       },
@@ -22,30 +24,31 @@ const lineVariants: Variants = {
   }),
 };
 
-// glowDelay se pasa como custom desde el componente HeroSection
+// El resplandor (glow) aparece después de que TODAS las líneas se revelan por completo
 const glowVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: (delay: number) => ({
+  visible: () => ({
     opacity: 1,
     transition: {
       duration: 1.2,
-      delay,
+      delay: 2.65, // 1.90s (fin de la última palabra) + 0.75s de pausa solicitada
       ease: "easeInOut",
     },
   }),
 };
 
-function AnimatedLine({ text, fillDelay, duration = 0.75, faint = false, textSize, glowStyle, glowDelay = 2.8 }: { text: string; fillDelay: number; duration?: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties; glowDelay?: number }) {
+function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: { text: string; fillDelay: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties }) {
   return (
     <span className={`block relative ${textSize}`} style={{ lineHeight: 1.05 }}>
+      {/* Capa fill: se revela con clip-path */}
       <motion.span
         className="block"
         variants={lineVariants}
-        custom={{ delay: fillDelay, duration }}
+        custom={fillDelay}
         initial="hidden"
         animate="visible"
         style={{
-          color: faint ? "rgba(255,255,255,0.2)" : undefined,
+          ...(faint ? { color: "rgba(255,255,255,0.2)" } : {}),
           position: "relative",
           zIndex: 1,
         }}
@@ -53,11 +56,12 @@ function AnimatedLine({ text, fillDelay, duration = 0.75, faint = false, textSiz
         {text}
       </motion.span>
 
+      {/* Capa glow: se ilumina fuertemente después del reveal */}
       {!faint && glowStyle && Object.keys(glowStyle).length > 0 && (
         <motion.span
           className="block absolute inset-0"
           variants={glowVariants}
-          custom={glowDelay}
+          custom={fillDelay}
           initial="hidden"
           animate="visible"
           style={{
@@ -84,12 +88,15 @@ const HeroSection = () => {
   const bg = theme === "dark" ? "#050505" : "#F8F8F8";
   const bgTransition = "500ms ease";
 
+  // El "granulado" o "banding" en WebKit es común al apilar muchos text-shadows grandes.
+  // Para un resplandor perfectamente suave, usamos filter: blur() sobre el texto de fondo.
   const glowStyle: React.CSSProperties =
     theme === "dark"
       ? {
-        filter: "drop-shadow(0 0 30px rgba(255,255,255,0.5))",
-        textShadow:
-          "0 0 10px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.3)",
+        filter: "blur(14px)", // Nivel de desenfoque intermedio para un halo suave pero visible
+        color: "rgba(255, 255, 255, 0.95)", // Casi blanco puro, sin saturar
+        transform: "translateZ(0)", // Aceleración por hardware para evitar artifacts
+        willChange: "opacity",
       }
       : {};
 
@@ -99,25 +106,19 @@ const HeroSection = () => {
 
   const wordsLine1 = line1Text.split(" ");
 
-  const t1 = 0.50; // Todas empiezan al mismo tiempo
-  
-  // Velocidades (duraciones). Más largo = más lento.
-  const dur1 = 0.8;  // EL
-  const dur2 = 1.1;  // FUTURO (más rápida que DISEÑA)
-  const dur3 = 0.9;  // SE
-  const dur4 = 1.4;  // DISEÑA. (la más lenta)
-  
-  const glowDelay = t1 + dur4 + 0.75; // Prende 0.75s después de que termina la más lenta
-
   return (
     <section
       className="relative min-h-screen overflow-visible transition-colors duration-500"
       style={{ backgroundColor: bg }}
     >
+      {/* ─── PHOTO ─── */}
       <motion.div
-        initial={{ opacity: 1, filter: "brightness(0.35)" }}
+        initial={{ opacity: 0, filter: theme === "dark" ? "brightness(0.3)" : "brightness(0.6)" }}
         animate={{ opacity: 1, filter: "brightness(1)" }}
-        transition={{ filter: { delay: glowDelay, duration: 1.4, ease: "easeInOut" } }}
+        transition={{
+          opacity: { duration: 1.4, ease: "easeOut" },
+          filter: { delay: 2.65, duration: 1.2, ease: "easeInOut" }
+        }}
         className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[55%] pointer-events-none overflow-hidden"
       >
         <img
@@ -128,7 +129,7 @@ const HeroSection = () => {
           style={{ objectPosition: "center 30%" }}
         />
         <img
-          src="/profile_light_v7.png"
+          src="/profile_photo_upscaled.png"
           alt="Mario Bencomo Light"
           className={`absolute inset-0 w-full h-[110%] object-cover grayscale-[15%] transition-opacity duration-500 ${theme === "light" ? "opacity-100" : "opacity-0"
             }`}
@@ -169,9 +170,11 @@ const HeroSection = () => {
         />
       </motion.div>
 
+      {/* ─── CONTENT ─── */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-12">
         <div className="ml-auto w-full md:max-w-[60%] lg:max-w-[55%] xl:max-w-[52%]">
 
+          {/* Status badge */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -184,58 +187,46 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
+          {/* ─── HEADLINE con animación outline → fill ─── */}
           <div className="mb-8 overflow-visible">
             <h1
               translate="no"
               className={`font-heading font-extrabold leading-[1.05] -tracking-[0.03em] ${theme === "dark" ? "text-white" : "text-[#050505]"
                 }`}
             >
-              <div className="flex flex-wrap gap-[0.25em]">
+              {/* Línea 1 dividida en palabras para animarlas desfasadas a la mitad */}
+              {wordsLine1.map((word, idx) => (
                 <AnimatedLine
-                  text={wordsLine1[0] || ""}
-                  fillDelay={t1}
-                  duration={dur1}
+                  key={idx}
+                  text={word}
+                  fillDelay={0.55 + idx * 0.2}
                   faint={false}
                   textSize={textSize}
                   glowStyle={glowStyle}
-                  glowDelay={glowDelay}
                 />
+              ))}
 
-                {wordsLine1.length > 1 && (
-                  <AnimatedLine
-                    text={wordsLine1[1]}
-                    fillDelay={t1}
-                    duration={dur2}
-                    faint={false}
-                    textSize={textSize}
-                    glowStyle={glowStyle}
-                    glowDelay={glowDelay}
-                  />
-                )}
-              </div>
-
+              {/* Línea 2 ("SE") — tenue intencional */}
               <AnimatedLine
                 text={line2Text}
-                fillDelay={t1}
-                duration={dur3}
+                fillDelay={0.55 + wordsLine1.length * 0.2}
                 faint={true}
                 textSize={textSize}
-                glowStyle={{}}
-                glowDelay={glowDelay}
+                glowStyle={glowStyle}
               />
 
+              {/* Línea 3 ("DISEÑA.") */}
               <AnimatedLine
                 text={line3Text}
-                fillDelay={t1}
-                duration={dur4}
+                fillDelay={0.55 + (wordsLine1.length + 1) * 0.2}
                 faint={false}
                 textSize={textSize}
                 glowStyle={glowStyle}
-                glowDelay={glowDelay}
               />
             </h1>
           </div>
 
+          {/* Name & Role */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -254,6 +245,7 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -264,6 +256,7 @@ const HeroSection = () => {
             {t(translations.hero.subtitle)}
           </motion.p>
 
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
