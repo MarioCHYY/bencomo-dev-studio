@@ -10,7 +10,7 @@ const lineVariants: Variants = {
     opacity: 1,
   },
   visible: (delay: number) => ({
-    clipPath: "inset(0 0% 0 0)",
+    clipPath: "inset(0 -20% 0 0)",
     opacity: 1,
     transition: {
       clipPath: {
