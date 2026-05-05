@@ -22,14 +22,6 @@ const lineVariants: Variants = {
   }),
 };
 
-const ghostVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    transition: { duration: 0.01, delay: delay - 0.05 },
-  }),
-};
-
 // glowDelay se pasa como custom desde el componente HeroSection
 const glowVariants: Variants = {
   hidden: { opacity: 0 },
@@ -46,23 +38,6 @@ const glowVariants: Variants = {
 function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle, glowDelay = 2.8 }: { text: string; fillDelay: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties; glowDelay?: number }) {
   return (
     <span className={`block relative ${textSize}`} style={{ lineHeight: 1.05 }}>
-      <motion.span
-        className="block"
-        variants={ghostVariants}
-        custom={fillDelay}
-        initial="hidden"
-        animate="visible"
-        style={{
-          WebkitTextStroke: faint ? "1px rgba(255,255,255,0.12)" : "1px rgba(255,255,255,0.18)",
-          color: "transparent",
-          userSelect: "none",
-          position: "absolute",
-          inset: 0,
-        }}
-      >
-        {text}
-      </motion.span>
-
       <motion.span
         className="block"
         variants={lineVariants}
@@ -136,7 +111,7 @@ const HeroSection = () => {
       style={{ backgroundColor: bg }}
     >
       <motion.div
-        initial={{ opacity: 1, filter: "brightness(0.05)" }}
+        initial={{ opacity: 1, filter: "brightness(0.35)" }}
         animate={{ opacity: 1, filter: "brightness(1)" }}
         transition={{ filter: { delay: glowDelay, duration: 1.4, ease: "easeInOut" } }}
         className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[55%] pointer-events-none overflow-hidden"
