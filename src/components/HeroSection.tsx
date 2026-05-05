@@ -8,11 +8,11 @@ import { useTheme } from "@/components/ThemeContext";
 // Animamos únicamente el lado derecho de 100% a -20%.
 const lineVariants: Variants = {
   hidden: {
-    clipPath: "inset(0% 100% 0% 0%)",
+    clipPath: "inset(-20% 100% -20% -20%)",
     opacity: 1,
   },
   visible: (delay: number) => ({
-    clipPath: "inset(0% 0% 0% 0%)",
+    clipPath: "inset(-20% -20% -20% -20%)",
     opacity: 1,
     transition: {
       clipPath: {
@@ -48,7 +48,7 @@ const glowVariants: Variants = {
 
 function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: { text: string; fillDelay: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties }) {
   return (
-    <span className={`block relative ${textSize} py-1 -my-1 px-1 -mx-1`} style={{ lineHeight: 1.1 }}>
+    <span className={`block relative ${textSize}`} style={{ lineHeight: 1.05 }}>
       {/* Capa ghost: contorno visible antes del reveal */}
       <motion.span
         className="block"
@@ -78,8 +78,6 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
           ...(faint ? { color: "rgba(255,255,255,0.2)" } : {}),
           position: "relative",
           zIndex: 1,
-          backfaceVisibility: "hidden",
-          transform: "perspective(1000px) translateZ(0)",
         }}
       >
         {text}
@@ -122,16 +120,9 @@ const HeroSection = () => {
   const glowStyle: React.CSSProperties =
     theme === "dark"
       ? {
-          // Usamos una pila de text-shadows en lugar de filter: blur() para máxima compatibilidad y suavidad en Windows
-          // Esto evita los artefactos de líneas horizontales (banding) comunes en Chrome sobre PC.
-          textShadow: `
-            0 0 10px rgba(255, 255, 255, 0.8),
-            0 0 20px rgba(255, 255, 255, 0.4),
-            0 0 40px rgba(59, 130, 246, 0.2)
-          `,
-          color: "rgba(255, 255, 255, 0.95)",
-          transform: "perspective(1000px) translateZ(0)",
-          backfaceVisibility: "hidden",
+          filter: "blur(14px)", // Nivel de desenfoque intermedio para un halo suave pero visible
+          color: "rgba(255, 255, 255, 0.95)", // Casi blanco puro, sin saturar
+          transform: "translateZ(0)", // Aceleración por hardware para evitar artifacts
           willChange: "opacity",
         }
       : {};
