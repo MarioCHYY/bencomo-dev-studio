@@ -108,8 +108,8 @@ const HeroSection = () => {
   const { t, lang } = useLang();
   const { theme } = useTheme();
 
-  const sizeEs = "text-[2.8rem] sm:text-[4rem] md:text-[4.2rem] lg:text-[4.5rem] xl:text-[5.5rem]";
-  const sizeEn = "text-[2.2rem] sm:text-[3.2rem] md:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.8rem]";
+  const sizeEs = "text-[2.8rem] sm:text-[4rem] md:text-[4.2rem] lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[6.5rem]";
+  const sizeEn = "text-[2.2rem] sm:text-[3.2rem] md:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.8rem] 2xl:text-[5.8rem]";
   const textSize = lang === "en" ? sizeEn : sizeEs;
 
   const bg = theme === "dark" ? "#050505" : "#F8F8F8";
@@ -149,14 +149,14 @@ const HeroSection = () => {
         className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[55%] pointer-events-none overflow-hidden"
       >
         <img
-          src="/hero_photo.png"
+          src="/profile_photo_upscaled.png"
           alt="Mario Bencomo Dark"
           className={`absolute inset-0 w-full h-[110%] object-cover grayscale-[15%] -translate-y-[10%] transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"
             }`}
           style={{ objectPosition: "center 30%" }}
         />
         <img
-          src="/profile_light_v7.png"
+          src="/profile_photo_upscaled.png"
           alt="Mario Bencomo Light"
           className={`absolute inset-0 w-full h-[110%] object-cover grayscale-[15%] transition-opacity duration-500 ${theme === "light" ? "opacity-100" : "opacity-0"
             }`}

@@ -23,7 +23,7 @@ const AboutSection = () => {
     <section id="about" className="section-padding relative">
       <div className="w-full h-px dark:bg-white/[0.05] bg-black/[0.05] absolute top-0 left-0 right-0" />
       
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ const AboutSection = () => {
           <div className="flex items-center gap-4 mb-2">
             <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(a.label)}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-heading font-extrabold dark:text-white text-[#0A0A0A] -tracking-[0.03em] transition-colors duration-500">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold dark:text-white text-[#0A0A0A] -tracking-[0.03em] transition-colors duration-500">
             {t(a.title)}
           </h2>
         </motion.div>
