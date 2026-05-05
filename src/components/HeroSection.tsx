@@ -4,18 +4,17 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useTheme } from "@/components/ThemeContext";
 
-// Usamos -20% en los insets superior, inferior e izquierdo para evitar que la fuente se corte (overflow)
-// Animamos únicamente el lado derecho de 100% a -20%.
-const lineVariants: Variants = {
+// Animamos el ancho del contenedor en lugar de usar clip-path para evitar bugs gráficos en PC
+const widthVariants: Variants = {
   hidden: {
-    clipPath: "inset(-20% 100% -20% -20%)",
+    width: "0%",
     opacity: 1,
   },
   visible: (delay: number) => ({
-    clipPath: "inset(-20% -20% -20% -20%)",
+    width: "100%",
     opacity: 1,
     transition: {
-      clipPath: {
+      width: {
         duration: 0.75,
         delay,
         ease: [0.77, 0, 0.175, 1],
@@ -49,9 +48,9 @@ const glowVariants: Variants = {
 function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: { text: string; fillDelay: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties }) {
   return (
     <span className={`block relative ${textSize}`} style={{ lineHeight: 1.05 }}>
-      {/* Capa ghost: contorno visible antes del reveal */}
+      {/* Capa ghost: AHORA ES RELATIVE PARA DAR TAMAÑO AL CONTENEDOR PADRE */}
       <motion.span
-        className="block"
+        className="block relative z-0"
         variants={ghostVariants}
         custom={fillDelay}
         initial="hidden"
@@ -60,33 +59,29 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
           WebkitTextStroke: faint ? "1px rgba(255,255,255,0.12)" : "1px rgba(255,255,255,0.18)",
           color: "transparent",
           userSelect: "none",
-          position: "absolute",
-          inset: 0,
         }}
       >
         {text}
       </motion.span>
 
-      {/* Capa fill: se revela con clip-path */}
+      {/* Capa fill: SE REVELA ANIMANDO EL WIDTH (Evita bugs de GPU) */}
       <motion.span
-        className="block"
-        variants={lineVariants}
+        className="block absolute top-0 left-0 bottom-0 overflow-hidden z-10"
+        variants={widthVariants}
         custom={fillDelay}
         initial="hidden"
         animate="visible"
         style={{
           ...(faint ? { color: "rgba(255,255,255,0.2)" } : {}),
-          position: "relative",
-          zIndex: 1,
         }}
       >
-        {text}
+        <span className="block" style={{ width: "max-content" }}>{text}</span>
       </motion.span>
 
       {/* Capa glow: se ilumina fuertemente después del reveal */}
       {!faint && glowStyle && Object.keys(glowStyle).length > 0 && (
         <motion.span
-          className="block absolute inset-0"
+          className="block absolute inset-0 pointer-events-none"
           variants={glowVariants}
           custom={fillDelay}
           initial="hidden"
@@ -94,7 +89,6 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
           style={{
             ...glowStyle,
             zIndex: 0,
-            pointerEvents: "none",
           }}
         >
           {text}
