@@ -67,7 +67,7 @@ const ContactSection = () => {
           <h2 className="text-5xl md:text-6xl lg:text-8xl font-heading font-extrabold -tracking-[0.03em] dark:text-white text-[#0A0A0A] mb-6 transition-colors duration-500">
             {t(c.title)}
           </h2>
-          <p className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base max-w-md mx-auto font-light leading-relaxed transition-colors duration-500">
+          <p className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base lg:text-lg max-w-lg mx-auto font-light leading-relaxed transition-colors duration-500">
             {t(c.subtitle)}
           </p>
         </motion.div>
@@ -84,7 +84,7 @@ const ContactSection = () => {
           >
             <div className="grid sm:grid-cols-2 gap-5 shrink-0">
               <div>
-                <label className="text-[10px] dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
+                <label className="text-[10px] md:text-xs dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
                   {t(c.name)}
                 </label>
                 <input
@@ -93,12 +93,12 @@ const ContactSection = () => {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   maxLength={100}
-                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
+                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
                   placeholder="Mario Bencomo"
                 />
               </div>
               <div>
-                <label className="text-[10px] dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
+                <label className="text-[10px] md:text-xs dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
                   {t(c.email)}
                 </label>
                 <input
@@ -107,13 +107,13 @@ const ContactSection = () => {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   maxLength={255}
-                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
+                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
                   placeholder="mario@email.com"
                 />
               </div>
             </div>
             <div className="flex-1 flex flex-col">
-              <label className="text-[10px] dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
+              <label className="text-[10px] md:text-xs dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
                 {t(c.message)}
               </label>
               <textarea
@@ -121,14 +121,14 @@ const ContactSection = () => {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
-                className="w-full flex-1 px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light resize-none min-h-[120px]"
+                className="w-full flex-1 px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light resize-none min-h-[120px]"
                 placeholder="..."
               />
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="group px-8 py-4 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 self-start shadow-[0_0_15px_rgba(51,141,255,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group px-8 py-4 bg-primary text-primary-foreground text-sm md:text-base font-medium rounded-full hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 self-start shadow-[0_0_15px_rgba(51,141,255,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send size={16} />
               {isSubmitting ? "Enviando..." : t(c.send)}
@@ -169,8 +169,8 @@ const ContactSection = () => {
                   <link.icon size={20} strokeWidth={1.5} />
                 </div>
                 <div>
-                  <div className="text-sm font-medium dark:text-[rgba(255,255,255,0.5)] text-[#505060] dark:group-hover:text-white group-hover:text-[#0A0A0A] transition-colors">{link.label}</div>
-                  <div className="text-[10px] dark:text-white/30 text-[#505060] font-light transition-colors duration-500">{link.handle}</div>
+                  <div className="text-sm md:text-base font-medium dark:text-[rgba(255,255,255,0.5)] text-[#505060] dark:group-hover:text-white group-hover:text-[#0A0A0A] transition-colors">{link.label}</div>
+                  <div className="text-[10px] md:text-xs dark:text-white/30 text-[#505060] font-light transition-colors duration-500">{link.handle}</div>
                 </div>
                 <ArrowUpRight size={16} className="ml-auto dark:text-[rgba(255,255,255,0.3)] text-[#505060] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
               </a>

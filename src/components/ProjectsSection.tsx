@@ -116,7 +116,7 @@ const ProjectsSection = () => {
                 {t(p.label) || "Selected Portfolio"}
               </span>
               <h2 className="text-4xl md:text-5xl lg:text-[84px] font-heading font-extrabold dark:text-white text-[#0A0A0A] -tracking-[0.04em] leading-none transition-colors duration-500">
-                {t(p.title)}<span className="text-primary">.</span>
+                {t(p.title)}
               </h2>
               <p className="font-light text-base md:text-lg dark:text-[#A0A5B0] text-[#505060] max-w-2xl mt-4 transition-colors duration-500">
                  {t(p.subtitle)}
