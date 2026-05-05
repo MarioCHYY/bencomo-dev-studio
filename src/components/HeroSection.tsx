@@ -4,14 +4,15 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useTheme } from "@/components/ThemeContext";
 
-// Usamos clip-path: polygon en lugar de width o inset para evitar bugs de renderizado (tiling/slicing) en GPU de PC.
+// Usamos -20% en los insets superior, inferior e izquierdo para evitar que la fuente se corte (overflow)
+// Animamos únicamente el lado derecho de 100% a -20%.
 const lineVariants: Variants = {
   hidden: {
-    clipPath: "polygon(0% -20%, 0% -20%, 0% 120%, 0% 120%)",
+    clipPath: "inset(-20% 100% -20% -20%)",
     opacity: 1,
   },
   visible: (delay: number) => ({
-    clipPath: "polygon(0% -20%, 100% -20%, 100% 120%, 0% 120%)",
+    clipPath: "inset(-20% -20% -20% -20%)",
     opacity: 1,
     transition: {
       clipPath: {
@@ -66,7 +67,7 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
         {text}
       </motion.span>
 
-      {/* Capa fill: se revela con clip-path polygon (seguro para GPU) */}
+      {/* Capa fill: se revela con clip-path */}
       <motion.span
         className="block"
         variants={lineVariants}
@@ -85,7 +86,7 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
       {/* Capa glow: se ilumina fuertemente después del reveal */}
       {!faint && glowStyle && Object.keys(glowStyle).length > 0 && (
         <motion.span
-          className="block absolute inset-0 pointer-events-none"
+          className="block absolute inset-0"
           variants={glowVariants}
           custom={fillDelay}
           initial="hidden"
@@ -93,6 +94,7 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
           style={{
             ...glowStyle,
             zIndex: 0,
+            pointerEvents: "none",
           }}
         >
           {text}
