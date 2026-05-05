@@ -100,10 +100,10 @@ const HeroSection = () => {
   const wordsLine1 = line1Text.split(" ");
 
   const t1 = 0.55;
-  const t2 = t1 + (0.75 * 0.5);          // 0.925 — "E" de EL termina (1/2 de EL)
-  const t3 = t2 + (0.75 * 0.5);          // 1.300 — llega a "U" de FUTURO (3/6 = 50%)
-  const t4 = t3 + (0.75 * 0.5);          // 1.675 — llega a "S" de SE (1/2 de SE)
-  const glowDelay = t4 + 0.75 + 0.75;    // 3.175 — 0.75s después de que termina DISEÑA.
+  const t2 = t1 + 0.12;                  // 0.670 — arranca justo cuando E está revelándose
+  const t3 = t2 + 0.20;                  // 0.870 — arranca cuando FUTURO va por la U
+  const t4 = t3 + 0.12;                  // 0.990 — arranca cuando SE va por la S
+  const glowDelay = t4 + 0.75 + 0.75;    // 2.490 — 0.75s después de la última palabra
 
   return (
     <section
