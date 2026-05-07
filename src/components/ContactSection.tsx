@@ -22,27 +22,33 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Reemplaza 'TU_ID_DE_FORMSPREE' con tu ID real de Formspree (crea una cuenta en formspree.io)
-      const response = await fetch("https://formspree.io/f/mleypwqe", {
+      // Usando Web3Forms para el envío de correos
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: JSON.stringify({
+          access_key: "977d23ee-f351-477b-9546-231c99b20a08",
           name: form.name,
           email: form.email,
           message: form.message,
         }),
       });
 
-      if (response.ok) {
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok && result.success !== false) {
         toast({ title: t(c.sent), description: t(c.sentDesc) });
         setForm({ name: "", email: "", message: "" });
       } else {
-        throw new Error("Error al enviar");
+        throw new Error(result.message || "Error al enviar al servidor.");
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({ 
         title: "Error", 
-        description: "Hubo un problema al enviar el mensaje. Inténtalo de nuevo.",
+        description: error.message || "Hubo un problema al enviar el mensaje. Inténtalo de nuevo.",
         variant: "destructive" 
       });
     } finally {
