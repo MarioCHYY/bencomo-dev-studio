@@ -11,12 +11,12 @@ const lineVariants: Variants = {
     clipPath: "inset(-20% 100% -20% -20%)",
     opacity: 1,
   },
-  visible: (delay: number) => ({
+  visible: ({ delay, duration }: { delay: number; duration: number }) => ({
     clipPath: "inset(-20% -20% -20% -20%)",
     opacity: 1,
     transition: {
       clipPath: {
-        duration: 0.75,
+        duration: duration || 0.75,
         delay,
         ease: [0.77, 0, 0.175, 1],
       },
@@ -31,20 +31,20 @@ const glowVariants: Variants = {
     opacity: 1,
     transition: {
       duration: 1.2,
-      delay: 2.65, // 1.90s (fin de la última palabra) + 0.75s de pausa solicitada
+      delay: 2.9, // 2.12s (fin de la última palabra) + 0.78s de pausa
       ease: "easeInOut",
     },
   }),
 };
 
-function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: { text: string; fillDelay: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties }) {
+function AnimatedLine({ text, fillDelay, fillDuration = 0.75, faint = false, textSize, glowStyle }: { text: string; fillDelay: number; fillDuration?: number; faint?: boolean; textSize: string; glowStyle: React.CSSProperties }) {
   return (
     <span className={`block relative ${textSize}`} style={{ lineHeight: 1.05 }}>
       {/* Capa fill: se revela con clip-path */}
       <motion.span
         className="block"
         variants={lineVariants}
-        custom={fillDelay}
+        custom={{ delay: fillDelay, duration: fillDuration }}
         initial="hidden"
         animate="visible"
         style={{
@@ -61,7 +61,7 @@ function AnimatedLine({ text, fillDelay, faint = false, textSize, glowStyle }: {
         <motion.span
           className="block absolute inset-0"
           variants={glowVariants}
-          custom={fillDelay}
+          custom={{ delay: fillDelay, duration: fillDuration }}
           initial="hidden"
           animate="visible"
           style={{
@@ -106,6 +106,11 @@ const HeroSection = () => {
 
   const wordsLine1 = line1Text.split(" ");
 
+  // Delays y duraciones "disparejos" (caóticos) para romper el efecto escalonado.
+  // Todos inician muy cerca pero a diferentes velocidades.
+  const chaoticDelays = [0.55, 0.68, 0.60, 0.72, 0.58, 0.75];
+  const chaoticDurations = [0.80, 1.15, 1.05, 1.40, 0.75, 0.75];
+
   return (
     <section
       className="relative min-h-screen overflow-visible transition-colors duration-500"
@@ -117,7 +122,7 @@ const HeroSection = () => {
         animate={{ opacity: 1, filter: "brightness(1)" }}
         transition={{
           opacity: { duration: 1.4, ease: "easeOut" },
-          filter: { delay: 2.65, duration: 1.2, ease: "easeInOut" }
+          filter: { delay: 2.9, duration: 1.2, ease: "easeInOut" }
         }}
         className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[55%] pointer-events-none overflow-hidden"
       >
@@ -199,7 +204,8 @@ const HeroSection = () => {
                 <AnimatedLine
                   key={idx}
                   text={word}
-                  fillDelay={0.55 + idx * 0.2}
+                  fillDelay={chaoticDelays[idx]}
+                  fillDuration={chaoticDurations[idx]}
                   faint={false}
                   textSize={textSize}
                   glowStyle={glowStyle}
@@ -209,7 +215,8 @@ const HeroSection = () => {
               {/* Línea 2 ("SE") — tenue intencional */}
               <AnimatedLine
                 text={line2Text}
-                fillDelay={0.55 + wordsLine1.length * 0.2}
+                fillDelay={chaoticDelays[wordsLine1.length]}
+                fillDuration={chaoticDurations[wordsLine1.length]}
                 faint={true}
                 textSize={textSize}
                 glowStyle={glowStyle}
@@ -218,7 +225,8 @@ const HeroSection = () => {
               {/* Línea 3 ("DISEÑA.") */}
               <AnimatedLine
                 text={line3Text}
-                fillDelay={0.55 + (wordsLine1.length + 1) * 0.2}
+                fillDelay={chaoticDelays[wordsLine1.length + 1]}
+                fillDuration={chaoticDurations[wordsLine1.length + 1]}
                 faint={false}
                 textSize={textSize}
                 glowStyle={glowStyle}
