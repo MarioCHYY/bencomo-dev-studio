@@ -4,7 +4,7 @@ import { Lang } from "./translations";
 interface LanguageContextType {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  t: (obj: Record<string, any>) => any;
+  t: <T>(obj: Record<string, T>) => T;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -20,7 +20,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("lang", l);
   };
 
-  const t = (obj: Record<string, any>) => obj[lang];
+  const t = <T,>(obj: Record<string, T>): T => obj[lang];
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>

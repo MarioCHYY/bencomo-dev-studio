@@ -12,7 +12,7 @@ const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast({ title: t(c.fillAll), variant: "destructive" });
@@ -22,19 +22,13 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Usando Web3Forms para el envío de correos
+      // Usando Web3Forms para el envío de correos con FormData
+      const formData = new FormData(e.currentTarget);
+      formData.append("access_key", "977d23ee-f351-477b-9546-231c99b20a08");
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          access_key: "977d23ee-f351-477b-9546-231c99b20a08",
-          name: form.name,
-          email: form.email,
-          message: form.message,
-        }),
+        body: formData
       });
 
       const result = await response.json().catch(() => ({}));
@@ -45,10 +39,11 @@ const ContactSection = () => {
       } else {
         throw new Error(result.message || "Error al enviar al servidor.");
       }
-    } catch (error: any) {
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Hubo un problema al enviar el mensaje. Inténtalo de nuevo.";
       toast({ 
         title: "Error", 
-        description: error.message || "Hubo un problema al enviar el mensaje. Inténtalo de nuevo.",
+        description: errorMessage,
         variant: "destructive" 
       });
     } finally {
@@ -95,6 +90,7 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -109,6 +105,7 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -123,6 +120,7 @@ const ContactSection = () => {
                 {t(c.message)}
               </label>
               <textarea
+                name="message"
                 required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
