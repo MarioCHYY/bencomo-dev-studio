@@ -5,7 +5,7 @@ export const translations = {
     about: { en: "About", es: "Sobre mí" },
     education: { en: "Education", es: "Educación" },
     experience: { en: "Experience", es: "Experiencia" },
-    projects: { en: "Projects", es: "Proyectos" },
+    projects: { en: "My Work", es: "Mi Trabajo" },
     skills: { en: "Skills", es: "Habilidades" },
     services: { en: "Services", es: "Servicios" },
     contact: { en: "Contact", es: "Contacto" },
@@ -88,7 +88,7 @@ export const translations = {
   },
   projects: {
     label: { en: "", es: "" },
-    title: { en: "Projects", es: "Proyectos" },
+    title: { en: "My Work", es: "Mi Trabajo" },
     subtitle: {
       en: "Explore a selection of digital solutions where technical precision meets cutting-edge design. Each project is a testament to futuristic craftsmanship.",
       es: "Explora una selección de soluciones digitales donde la precisión técnica se encuentra con el diseño de vanguardia. Cada proyecto es un testimonio de artesanía futurista.",
@@ -345,7 +345,7 @@ export const translations = {
     liveDemo: { en: "Live Demo", es: "Demo en Vivo" },
     viewCode: { en: "View Code", es: "Ver Código" },
     viewCaseStudy: { en: "View Case Study", es: "Ver Caso de Estudio" },
-    backToProjects: { en: "← Back to Projects", es: "← Volver a Proyectos" },
+    backToProjects: { en: "← Back to My Work", es: "← Volver a Mi Trabajo" },
   },
   skills: {
     label: { en: "", es: "" },
