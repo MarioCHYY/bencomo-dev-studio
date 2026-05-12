@@ -32,7 +32,7 @@ const Navbar = () => {
         scrolled ? "glass-nav" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-12 py-4">
         <a href="#" className="font-heading font-extrabold text-xl dark:text-white text-[#0A0A0A] -tracking-[0.02em] transition-colors duration-500">
           mario bencomo
         </a>
@@ -77,7 +77,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)} className="md:hidden dark:text-white text-[#0A0A0A] p-1">
+        <button onClick={() => setOpen(!open)} className="md:hidden dark:text-white text-[#0A0A0A] p-2 -mr-1" aria-label="Toggle menu">
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>

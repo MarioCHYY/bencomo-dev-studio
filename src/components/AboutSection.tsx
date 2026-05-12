@@ -53,7 +53,7 @@ const AboutSection = () => {
             <div className="flex flex-col md:flex-row">
 
               {/* Image Column */}
-              <div className="relative w-full md:w-[45%] min-h-[360px] md:min-h-[520px] overflow-hidden shrink-0">
+              <div className="relative w-full md:w-[45%] min-h-[280px] sm:min-h-[360px] md:min-h-[520px] overflow-hidden shrink-0">
                 <img
                   src="/about_me.png"
                   alt="Mario Bencomo"
@@ -102,10 +102,10 @@ const AboutSection = () => {
                 </div>
 
                 {/* Stats Row */}
-                <div className="grid grid-cols-3 gap-8">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8">
                   {stats.map((stat, i) => (
                     <div key={i} className="flex flex-col justify-center items-start text-left group/stat">
-                      <div className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-1 [text-shadow:0_0_20px_rgba(51,141,255,0.4)] group-hover/stat:scale-105 transition-transform duration-300">
+                      <div className="text-2xl sm:text-3xl md:text-5xl font-heading font-extrabold text-primary mb-1 [text-shadow:0_0_20px_rgba(51,141,255,0.4)] group-hover/stat:scale-105 transition-transform duration-300">
                         {stat.value}
                       </div>
                       <div className="text-[10px] dark:text-white/60 text-black/60 uppercase tracking-[0.2em] font-medium">

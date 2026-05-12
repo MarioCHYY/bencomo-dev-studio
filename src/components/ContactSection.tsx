@@ -65,7 +65,7 @@ const ContactSection = () => {
           <div className="flex items-center justify-center gap-4 mb-4">
             <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(c.label)}</span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-8xl font-heading font-extrabold -tracking-[0.03em] dark:text-white text-[#0A0A0A] mb-6 transition-colors duration-500">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-heading font-extrabold -tracking-[0.03em] dark:text-white text-[#0A0A0A] mb-6 transition-colors duration-500">
             {t(c.title)}
           </h2>
           <p className="dark:text-[#A0A5B0] text-[#505060] text-sm md:text-base lg:text-lg max-w-lg mx-auto font-light leading-relaxed transition-colors duration-500">

@@ -81,8 +81,8 @@ const HeroSection = () => {
   const { t, lang } = useLang();
   const { theme } = useTheme();
 
-  const sizeEs = "text-[2.8rem] sm:text-[4rem] md:text-[4.2rem] lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[6.5rem]";
-  const sizeEn = "text-[2.2rem] sm:text-[3.2rem] md:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.8rem] 2xl:text-[5.8rem]";
+  const sizeEs = "text-[2.2rem] sm:text-[2.8rem] md:text-[4.2rem] lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[6.5rem]";
+  const sizeEn = "text-[1.8rem] sm:text-[2.4rem] md:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.8rem] 2xl:text-[5.8rem]";
   const textSize = lang === "en" ? sizeEn : sizeEs;
 
   const bg = theme === "dark" ? "#050505" : "#F8F8F8";

@@ -115,7 +115,7 @@ const ProjectsSection = () => {
               <span className="text-[11px] text-primary font-bold tracking-[0.3em] uppercase">
                 {t(p.label) || "Selected Portfolio"}
               </span>
-              <h2 className="text-4xl md:text-5xl lg:text-[84px] font-heading font-extrabold dark:text-white text-[#0A0A0A] -tracking-[0.04em] leading-none transition-colors duration-500">
+              <h2 className="text-4xl sm:text-5xl lg:text-[84px] font-heading font-extrabold dark:text-white text-[#0A0A0A] -tracking-[0.04em] leading-none transition-colors duration-500">
                 {t(p.title)}
               </h2>
               <p className="font-light text-base md:text-lg dark:text-[#A0A5B0] text-[#505060] max-w-2xl mt-4 transition-colors duration-500">
@@ -155,7 +155,7 @@ const ProjectsSection = () => {
           </motion.div>
 
           {/* Grid Layout (3 columns) — Featured FIRST */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 
             {/* Featured Project (2 Cols) — PRIMERO */}
             <motion.div
@@ -317,7 +317,7 @@ const ProjectsSection = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 dark:bg-[#050505]/95 bg-[#F8F8F8]/95 backdrop-blur-xl overflow-y-auto"
           >
-            <div className="max-w-4xl mx-auto px-6 py-16">
+            <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16">
               <motion.button
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -338,7 +338,7 @@ const ProjectsSection = () => {
                 <span className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold tracking-widest uppercase rounded-full border border-primary/20">
                   {t(p.featured)}
                 </span>
-                <h1 className="text-4xl md:text-5xl font-heading font-extrabold dark:text-white text-[#0A0A0A] mt-6 -tracking-[0.03em] leading-tight transition-colors duration-500">{t(activeProj.name)}</h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold dark:text-white text-[#0A0A0A] mt-6 -tracking-[0.03em] leading-tight transition-colors duration-500">{t(activeProj.name)}</h1>
                 <p className="dark:text-[#A0A5B0] text-[#505060] text-base mt-3 font-light transition-colors duration-500">{t(activeProj.role)}</p>
                 <div className="flex flex-wrap gap-2 mt-6">
                   {techStackFeatured.map((tech) => (
