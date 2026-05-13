@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <style>
+    .bg  { fill: #0a0a0a; }
+    .logo { stroke: #f0f0f0; fill: none; stroke-width: 22; stroke-linejoin: miter; stroke-linecap: square; }
+
+    @media (prefers-color-scheme: light) {
+      .bg  { fill: #f5f5f5; }
+      .logo { stroke: #0a0a0a; }
+    }
+  </style>
+
+  <!-- Background -->
+  <rect class="bg" width="512" height="512"/>
+
+  <!--
+    MB Monogram
+    M: left bar + V diagonals (right leg shared with B spine)
+    B: shared spine + two rounded arcs
+    Logo bounds: x 72–442, y 140–372
+  -->
+
+  <!-- M — left vertical bar -->
+  <polyline class="logo" points="72,140 72,372 112,372 112,140"/>
+
+  <!-- M — left diagonal (top-left to center-bottom) -->
+  <line class="logo" x1="112" y1="140" x2="212" y2="310"/>
+
+  <!-- M — right diagonal (center-bottom to top-right / B-spine top) -->
+  <line class="logo" x1="212" y1="310" x2="278" y2="140"/>
+
+  <!-- M right bar / B spine -->
+  <line class="logo" x1="278" y1="140" x2="278" y2="372"/>
+
+  <!-- B — top bump -->
+  <path class="logo" d="M 278,140 C 370,140 390,180 390,218 C 390,256 370,256 278,256"/>
+
+  <!-- B — bottom bump (slightly larger) -->
+  <path class="logo" d="M 278,256 C 380,256 408,296 408,314 C 408,344 380,372 278,372"/>
+</svg>
