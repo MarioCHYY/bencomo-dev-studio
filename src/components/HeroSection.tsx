@@ -127,21 +127,17 @@ const HeroSection = () => {
         className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[55%] pointer-events-none overflow-hidden"
       >
         <img
-          src="/profile_photo_upscaled.png"
+          src="/profile_photo_upscaled.webp"
           alt="Mario Bencomo Dark"
           loading="eager"
-          fetchPriority="high"
-          decoding="sync"
           className={`absolute inset-0 w-full h-[110%] object-cover grayscale-[15%] -translate-y-[10%] transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"
             }`}
           style={{ objectPosition: "center 30%" }}
         />
         <img
-          src="/profile_photo_upscaled.png"
+          src="/profile_photo_upscaled.webp"
           alt="Mario Bencomo Light"
           loading="eager"
-          fetchPriority="high"
-          decoding="sync"
           className={`absolute inset-0 w-full h-[110%] object-cover grayscale-[15%] transition-opacity duration-500 ${theme === "light" ? "opacity-100" : "opacity-0"
             }`}
           style={{

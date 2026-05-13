@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { GraduationCap, Briefcase } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
@@ -55,12 +55,12 @@ const AboutSection = () => {
               {/* Image Column */}
               <div className="relative w-full md:w-[45%] min-h-[280px] sm:min-h-[360px] md:min-h-[520px] overflow-hidden shrink-0">
                 <img
-                  src="/about_me.png"
+                  src="/about_me.webp"
                   alt="Mario Bencomo"
                   className={`absolute inset-0 w-full h-full object-cover object-[center_45%] grayscale-[10%] group-hover:scale-105 transition-all duration-[800ms] ease-out ${theme === "dark" ? "opacity-80" : "opacity-0"}`}
                 />
                 <img
-                  src="/profile_light_v7.png"
+                  src="/about_me.webp"
                   alt="Mario Bencomo Light"
                   className={`absolute inset-0 w-full h-full object-cover object-[center_45%] grayscale-[10%] group-hover:scale-105 transition-all duration-[800ms] ease-out ${theme === "light" ? "opacity-100" : "opacity-0"}`}
                   style={{ mixBlendMode: "multiply" }}

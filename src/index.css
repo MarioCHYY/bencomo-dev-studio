@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    /* Deep Black / Charcoal */
-    --background: 0 0% 2%; /* #050505 */
-    --foreground: 0 0% 100%;
+    /* Light mode defaults */
+    --background: 0 0% 97%; /* #F8F8F8 */
+    --foreground: 0 0% 4%; /* #0A0A0A */
 
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 97%;
+    --card-foreground: 0 0% 4%;
 
-    --popover: 0 0% 2%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 97%;
+    --popover-foreground: 0 0% 4%;
 
     /* Cinematic Blue */
     --primary: 215 100% 60%; /* #3B82F6 ish */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 4%;
 
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 100%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
 
     --accent: 215 100% 60%;
     --accent-foreground: 0 0% 100%;
@@ -30,12 +30,12 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 100%;
-    --input: 0 0% 100%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
     --ring: 215 100% 60%;
 
     --radius: 1rem;
-    --surface: 0 0% 2%;
+    --surface: 0 0% 97%;
   }
 
   .dark {
@@ -75,8 +75,8 @@
     @apply bg-background text-white/45 antialiased font-sans;
   }
 
-  /* Reset headings — always white (dark mode only) */
-  h1, h2, h3, h4, h5, h6 {
+  /* Reset headings — contextual per theme */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
     @apply text-white;
   }
 }

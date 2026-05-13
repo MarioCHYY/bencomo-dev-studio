@@ -1,26 +1,62 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import ServicesSection from "@/components/ServicesSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
 import SectionSeparator from "@/components/SectionSeparator";
+
+// Lazy load de todo lo que está below the fold
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
+const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+// Skeleton minimalista mientras carga cada sección
+const SectionSkeleton = () => (
+  <div className="w-full py-24 px-6 animate-pulse">
+    <div className="max-w-7xl mx-auto space-y-6">
+      <div className="h-4 bg-white/5 rounded w-1/4" />
+      <div className="h-8 bg-white/5 rounded w-1/2" />
+      <div className="h-4 bg-white/5 rounded w-3/4" />
+      <div className="h-4 bg-white/5 rounded w-2/3" />
+    </div>
+  </div>
+);
 
 const Index = () => {
   return (
     <main className="min-h-screen">
       <Navbar />
+
+      {/* Hero carga inmediato — es lo primero que ve el usuario */}
       <HeroSection />
+
       <SectionSeparator />
-      <AboutSection />
+
+      <Suspense fallback={<SectionSkeleton />}>
+        <AboutSection />
+      </Suspense>
+
       <SectionSeparator />
-      <ProjectsSection />
+
+      <Suspense fallback={<SectionSkeleton />}>
+        <ProjectsSection />
+      </Suspense>
+
       <SectionSeparator />
-      <ServicesSection />
+
+      <Suspense fallback={<SectionSkeleton />}>
+        <ServicesSection />
+      </Suspense>
+
       <SectionSeparator />
-      <ContactSection />
-      <Footer />
+
+      <Suspense fallback={<SectionSkeleton />}>
+        <ContactSection />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </main>
   );
 };

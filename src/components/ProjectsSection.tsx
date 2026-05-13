@@ -16,7 +16,7 @@ const secondaryProjects = [
       es: "Sitio web de negocio para una cosmetóloga profesional enfocado en confianza, claridad y rendimiento mobile-first.",
     },
     tags: ["React", "TypeScript", "TailwindCSS", "Node.js"],
-    image: "/beauty_studio_preview.png",
+    image: "/beauty_studio_preview.webp",
     github: null,
     live: "https://radiant-beauty-studio-main.vercel.app/",
     status: "live",
@@ -29,7 +29,7 @@ const secondaryProjects = [
       es: "Asistente de viajes con IA que genera itinerarios personalizados basados en tus preferencias.",
     },
     tags: ["React", "FastAPI", "Playwright", "Gemini Pro"],
-    image: "/travel_genie_preview.png",
+    image: "/travel_genie_preview.webp",
     github: "https://github.com/MarioCHYY/smart-travel-genie",
     live: "https://smart-travel-genie-yssl.vercel.app",
     status: "live",
@@ -168,7 +168,7 @@ const ProjectsSection = () => {
               <article className="glass-panel rounded-xl overflow-hidden h-full flex flex-col md:flex-row hover:border-primary/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500">
                 <div className="w-full md:w-1/2 relative min-h-[250px] md:min-h-[400px] overflow-hidden">
                   <img
-                    src="/atelier_preview.png"
+                    src="/atelier_preview.webp"
                     alt={t(proj.name) as string}
                     className="w-full h-full absolute inset-0 object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
                   />
