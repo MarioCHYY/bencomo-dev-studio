@@ -33,8 +33,12 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-12 py-4">
-        <a href="#" className="font-heading font-extrabold text-xl dark:text-white text-[#0A0A0A] -tracking-[0.02em] transition-colors duration-500">
-          mario bencomo
+        <a href="#" className="flex items-center transition-opacity duration-300 hover:opacity-80">
+          <img 
+            src="/logo-mb.png" 
+            alt="Mario Bencomo" 
+            className="h-10 md:h-12 w-auto object-contain dark:invert transition-all duration-500" 
+          />
         </a>
 
         {/* Desktop */}
