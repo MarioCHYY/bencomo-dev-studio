@@ -4,15 +4,15 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useTheme } from "@/components/ThemeContext";
 
-// Usamos -20% en los insets superior, inferior e izquierdo para evitar que la fuente se corte (overflow)
-// Animamos únicamente el lado derecho de 100% a -20%.
+// Usamos -50% en los insets superior, inferior e izquierdo para evitar que la fuente se corte (overflow)
+// Animamos únicamente el lado derecho de 100% a -50%.
 const lineVariants: Variants = {
   hidden: {
-    clipPath: "inset(-20% 100% -20% -20%)",
+    clipPath: "inset(-50% 100% -50% -50%)",
     opacity: 1,
   },
   visible: ({ delay, duration }: { delay: number; duration: number }) => ({
-    clipPath: "inset(-20% -20% -20% -20%)",
+    clipPath: "inset(-50% -50% -50% -50%)",
     opacity: 1,
     transition: {
       clipPath: {
@@ -129,6 +129,9 @@ const HeroSection = () => {
         <img
           src="/profile_photo_upscaled.png"
           alt="Mario Bencomo Dark"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
           className={`absolute inset-0 w-full h-[110%] object-cover grayscale-[15%] -translate-y-[10%] transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"
             }`}
           style={{ objectPosition: "center 30%" }}
@@ -136,6 +139,9 @@ const HeroSection = () => {
         <img
           src="/profile_photo_upscaled.png"
           alt="Mario Bencomo Light"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
           className={`absolute inset-0 w-full h-[110%] object-cover grayscale-[15%] transition-opacity duration-500 ${theme === "light" ? "opacity-100" : "opacity-0"
             }`}
           style={{
