@@ -14,9 +14,9 @@ const AboutSection = () => {
   const responsibilities = t(exp.responsibilities) as unknown as string[];
 
   const stats = [
-    { value: "10+", label: { en: "Developed Projects", es: "Proyectos Desarrollados" } },
-    { value: "2+", label: { en: "Years of Experience", es: "Años de Experiencia" } },
-    { value: "100%", label: { en: "Commitment", es: "Compromiso" } },
+    { value: "10+", label: { en: "Developed Projects", es: "Proyectos creados" } },
+    { value: "2+", label: { en: "Years of Experience", es: "Años aprendiendo y construyendo" } },
+    { value: "100%", label: { en: "Commitment", es: "Intención en cada detalle" } },
   ];
 
   return (

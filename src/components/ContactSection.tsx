@@ -7,7 +7,7 @@ import { translations } from "@/i18n/translations";
 
 const ContactSection = () => {
   const { toast } = useToast();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const c = translations.contact;
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,7 +96,7 @@ const ContactSection = () => {
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   maxLength={100}
                   className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
-                  placeholder="Mario Bencomo"
+                  placeholder={lang === "es" ? "Mario Bencomo" : "Mario Bencomo"}
                 />
               </div>
               <div>
@@ -111,7 +111,7 @@ const ContactSection = () => {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   maxLength={255}
                   className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
-                  placeholder="mario@email.com"
+                  placeholder={lang === "es" ? "correo@email.com" : "email@email.com"}
                 />
               </div>
             </div>
@@ -126,7 +126,7 @@ const ContactSection = () => {
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
                 className="w-full flex-1 px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light resize-none min-h-[120px]"
-                placeholder="..."
+                placeholder={lang === "es" ? "Cuéntame qué quieres construir..." : "Tell me what you want to build..."}
               />
             </div>
             <button

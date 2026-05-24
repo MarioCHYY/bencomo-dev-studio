@@ -15,29 +15,29 @@ export const translations = {
     badge: { en: "OPEN TO WORK", es: "DISPONIBLE" },
     greeting: { en: "Hi, I'm", es: "Hola, soy" },
     subtitle: {
-      en: "Beyond algorithms and syntax, lies the possibility to create something that didn't exist. My vision as an engineer is to expand digital boundaries to build realities that inspire, function, and endure.",
-      es: "Más allá de los algoritmos y la sintaxis, existe la posibilidad de crear algo que no existía. Mi visión como ingeniero es expandir los límites de lo digital para construir realidades que inspiren, funcionen y perduren.",
+      en: "It's not just about writing code, but looking beyond the obvious. I design and build digital experiences that are born from a vision, take shape with intention, and become real through code.",
+      es: "No se trata solo de escribir código, sino de mirar más allá de lo evidente. Diseño y construyo experiencias digitales que nacen de una visión, toman forma con intención y se vuelven reales a través del código.",
     },
     title: {
       line1: { en: "THE FUTURE", es: "EL FUTURO" },
       line2: { en: "IS", es: "SE" },
       line3: { en: "DESIGNED.", es: "DISEÑA." },
     },
-    cta: { en: "View My Work", es: "Ver Mi Trabajo" },
+    cta: { en: "View my work", es: "Ver mi trabajo" },
   },
   about: {
     label: { en: "", es: "" },
-    title: { en: "About Me", es: "Sobre Mí" },
+    title: { en: "About Me", es: "Sobre mí" },
     p1: {
-      en: "I am Mario Bencomo, a full-stack web developer focused on building scalable and efficient applications. I turn ideas into optimized digital products with clean code and a great user experience.",
-      es: "Soy Mario Bencomo, desarrollador full stack enfocado en construir aplicaciones web escalables y eficientes. Transformo ideas en productos digitales optimizados, con código limpio y una gran experiencia de usuario.",
+      en: "I am Mario Bencomo, a full-stack developer with a strong focus on design, aesthetics, and user experience. I love building digital products that not only work but have presence, intention, and a clear visual identity.",
+      es: "Soy Mario Bencomo, desarrollador full stack con una visión muy marcada por el diseño, la estética y la experiencia de usuario. Me gusta construir productos digitales que no solo funcionen, sino que tengan presencia, intención y una identidad visual clara.",
     },
     p2: {
-      en: "When I'm not building web solutions, I'm probably at the gym training discipline and consistency. The same energy I put into every rep, I apply to every line of code.",
-      es: "Cuando no estoy creando soluciones web, probablemente estoy en el gimnasio entrenando disciplina y constancia. La misma energía que pongo en cada repetición la aplico en cada línea de código.",
+      en: "My work combines code, design, and visual criteria: from landing pages and portfolios to web applications, functional prototypes, and more structured digital solutions. To me, a good page shouldn't just look good; it must communicate, guide, and feel built with purpose.",
+      es: "Mi trabajo combina código, diseño y criterio visual: desde landing pages y portafolios hasta aplicaciones web, prototipos funcionales y soluciones digitales más estructuradas. Para mí, una buena página no solo debe verse bien; debe comunicar, guiar y sentirse construida con propósito.",
     },
     degree: {
-      title: { en: "B.S. in Computer Systems Engineering", es: "Ing. en Sistemas Computacionales" },
+      title: { en: "B.S. in Computer Systems Engineering", es: "Licenciatura en Ingeniería en Sistemas Computacionales" },
       sub: { en: "Tecnológico de Culiacán — Grad. Dec 2028", es: "Tecnológico de Culiacán — Grad. Dic 2028" },
     },
     role: {
@@ -55,43 +55,43 @@ export const translations = {
     degree: {
       title: { en: "B.S. in Computer Systems Engineering", es: "Licenciatura en Ingeniería en Sistemas Computacionales" },
       institution: { en: "Tecnológico de Culiacán", es: "Tecnológico de Culiacán" },
-      period: { en: "Currently in 4th Semester • 2026 – Present", es: "Actualmente en 4to Semestre • 2026 – Presente" },
+      period: { en: "Currently in 4th Semester • 2026 – Present", es: "Actualmente en 4to semestre · 2026 – Presente" },
       graduation: { en: "Expected Graduation: 2029", es: "Graduación Esperada: 2029" },
       focus: {
-        en: "Focused on software engineering fundamentals and modern web technologies. Recently developed a full-stack project implementing structured architecture and database management as part of the 4th-semester core curriculum.",
-        es: "Enfocado en ingeniería de software y tecnologías web modernas. Recientemente desarrollé un proyecto full-stack implementando arquitectura estructurada y gestión de bases de datos como parte del plan de estudios del 4to semestre.",
+        en: "Training focused on software engineering, programming, databases, and systems development. Through academic and personal projects, I have strengthened my ability to build digital solutions with structure, logic, and a carefully crafted user experience.",
+        es: "Formación enfocada en ingeniería de software, programación, bases de datos y desarrollo de sistemas. A través de proyectos académicos y personales, he fortalecido mi capacidad para construir soluciones digitales con estructura, lógica y una experiencia de usuario cuidada.",
       },
     },
   },
   experience: {
     label: { en: "", es: "" },
     title: { en: "Experience", es: "Experiencia" },
-    role: { en: "Frontend Developer", es: "Desarrollador Frontend" },
-    type: { en: "Independent Projects", es: "Proyectos Independientes" },
+    role: { en: "Web Developer", es: "Desarrollador Web" },
+    type: { en: "Independent Projects", es: "Proyectos independientes" },
     period: { en: "2026 – Present", es: "2026 – Presente" },
     responsibilities: {
       en: [
-        "Developed responsive and modern web applications",
-        "Built real-world projects using React and TailwindCSS",
-        "Focused on clean code and performance optimization",
-        "Designed user-friendly and visually appealing interfaces",
-        "Continuously learning and improving technical skills",
+        "Develop modern, responsive, and visually crafted interfaces.",
+        "Build real projects using React, Tailwind CSS, and current web technologies.",
+        "Work with a focus on visual clarity, performance, and user experience.",
+        "I enjoy transforming initial ideas into functional digital products.",
+        "Continuously learning, iterating, and improving my technical and visual criteria in each project.",
       ],
       es: [
-        "Desarrollé aplicaciones web responsivas y modernas",
-        "Creé proyectos del mundo real usando React y TailwindCSS",
-        "Me enfoqué en código limpio y optimización de rendimiento",
-        "Diseñé interfaces amigables y visualmente atractivas",
-        "Continuamente aprendiendo y mejorando habilidades técnicas",
+        "Desarrollo interfaces modernas, responsivas y visualmente cuidadas.",
+        "Construyo proyectos reales usando React, Tailwind CSS y tecnologías web actuales.",
+        "Trabajo con enfoque en claridad visual, rendimiento y experiencia de usuario.",
+        "Me gusta transformar ideas iniciales en productos digitales funcionales.",
+        "Sigo aprendiendo, iterando y mejorando mi criterio técnico y visual en cada proyecto.",
       ],
     },
   },
   projects: {
-    label: { en: "", es: "" },
+    label: { en: "Selected Portfolio", es: "Selected Portfolio" },
     title: { en: "My Work", es: "Mi Trabajo" },
     subtitle: {
-      en: "Explore a selection of digital solutions where technical precision meets cutting-edge design. Each project is a testament to futuristic craftsmanship.",
-      es: "Explora una selección de soluciones digitales donde la precisión técnica se encuentra con el diseño de vanguardia. Cada proyecto es un testimonio de artesanía futurista.",
+      en: "A selection of projects where I combine visual design, web development, and functionality to create clear, modern, and memorable digital experiences.",
+      es: "Una selección de proyectos donde combino diseño visual, desarrollo web y funcionalidad para crear experiencias digitales claras, modernas y memorables.",
     },
     featured: { en: "FEATURED PROJECT", es: "PROYECTO DESTACADO" },
     project1: {
@@ -166,8 +166,8 @@ export const translations = {
     project2: {
       name: { en: "Atelier", es: "Atelier" },
       oneliner: {
-        en: "Dark-themed creative studio landing page with cinematic animations and glassmorphism UI.",
-        es: "Landing page de estudio creativo con temática oscura, animaciones cinematográficas y UI glassmorphism.",
+        en: "Digital studio landing page with an editorial aesthetic, crafted animations, and a structure designed to present services elegantly and professionally.",
+        es: "Landing page de estudio digital con una estética editorial, animaciones cuidadas y una estructura pensada para presentar servicios de forma elegante y profesional.",
       },
       role: { en: "Full Stack Developer & Founder", es: "Full Stack Developer & Founder" },
       problemTitle: { en: "Problem / Challenge", es: "Problema / Desafío" },
@@ -344,12 +344,16 @@ export const translations = {
     keyResponsibilities: { en: "Key Responsibilities", es: "Responsabilidades Clave" },
     liveDemo: { en: "Live Demo", es: "Demo en Vivo" },
     viewCode: { en: "View Code", es: "Ver Código" },
-    viewCaseStudy: { en: "View Case Study", es: "Ver Caso de Estudio" },
+    viewCaseStudy: { en: "View Case Study", es: "Ver caso de estudio" },
     backToProjects: { en: "← Back to My Work", es: "← Volver a Mi Trabajo" },
   },
   skills: {
     label: { en: "", es: "" },
-    title: { en: "Skills", es: "Habilidades" },
+    title: { en: "Technologies", es: "Tecnologías" },
+    subtitle: {
+      en: "Tools I use to design, develop, and shape modern, functional, and visually crafted digital experiences.",
+      es: "Herramientas que uso para diseñar, desarrollar y dar forma a experiencias digitales modernas, funcionales y visualmente cuidadas."
+    },
     levels: {
       Básico: { en: "Basic", es: "Básico" },
       Intermedio: { en: "Intermediate", es: "Intermedio" },
@@ -361,41 +365,75 @@ export const translations = {
       Tools: { en: "Tools", es: "Herramientas" },
       Other: { en: "Other", es: "Otros" },
     },
+    optionalCategories: {
+      Frontend: "React, JavaScript, TypeScript, HTML, CSS, Tailwind CSS.",
+      Backend: "Node.js, APIs, bases de datos y lógica de servidor.",
+      Design: "Figma, UI Design, UX, composición visual y diseño responsivo.",
+      Tools: "Git, GitHub, Vercel, VS Code y flujos modernos de desarrollo."
+    }
+  },
+  clearbuild: {
+    title: { en: "Clearbuild Studio", es: "Clearbuild Studio" },
+    subtitle: { en: "The commercial side of my work.", es: "La parte comercial de mi trabajo." },
+    text: {
+      en: "Clearbuild Studio is a brand focused on helping businesses define, document, and build digital projects clearly from the start. From websites to business systems, every project begins by reviewing what is needed, what can be built, and how to do it correctly.",
+      es: "Clearbuild Studio es una marca enfocada en ayudar a negocios a definir, documentar y construir proyectos digitales con claridad desde el inicio. Desde páginas web hasta sistemas para negocio, cada proyecto empieza revisando qué se necesita, qué se puede construir y cómo hacerlo correctamente."
+    },
+    quote: {
+      en: "We don't start by selling software. We start by understanding what the project needs.",
+      es: "No empezamos vendiendo software. Empezamos entendiendo qué necesita el proyecto."
+    },
+    btn1: { en: "Visit Clearbuild Studio", es: "Visitar Clearbuild Studio" },
+    btn2: { en: "View Process", es: "Ver proceso" }
   },
   services: {
     label: { en: "", es: "" },
     title: { en: "Services", es: "Servicios" },
     subtitle: {
-      en: "Available for freelance projects. Let's build something great together.",
-      es: "Disponible para proyectos freelance. Construyamos algo increíble juntos.",
+      en: "I can help you turn an idea, brand, or business into a clear, visually strong, and functional digital experience.",
+      es: "Puedo ayudarte a convertir una idea, marca o negocio en una experiencia digital clara, visualmente fuerte y funcional.",
     },
     items: [
       {
-        title: { en: "Web Development", es: "Desarrollo Web" },
+        title: { en: "Websites with Identity", es: "Sitios web con identidad" },
         description: {
-          en: "Custom websites built with modern technologies. Clean code, fast performance, and great user experience.",
-          es: "Sitios web personalizados con tecnologías modernas. Código limpio, rendimiento rápido y gran experiencia de usuario.",
+          en: "Modern, fast, and responsive pages with a clear visual direction that communicates who you are.",
+          es: "Páginas modernas, rápidas y con una dirección visual clara que comunica quién eres y qué ofreces.",
         },
       },
       {
-        title: { en: "UI/UX Design", es: "Diseño UI/UX" },
+        title: { en: "UI/UX & Interfaces", es: "UI/UX e interfaces" },
         description: {
-          en: "Modern, intuitive interfaces designed to engage users and reflect your brand identity.",
-          es: "Interfaces modernas e intuitivas diseñadas para captar usuarios y reflejar la identidad de tu marca.",
+          en: "Clean and easy-to-use interfaces, taking care of visual hierarchy and user experience.",
+          es: "Interfaces modernas y fáciles de usar, cuidando la estructura, jerarquía visual y experiencia.",
         },
       },
       {
-        title: { en: "Backend Development", es: "Desarrollo Backend" },
+        title: { en: "Web Applications", es: "Aplicaciones web" },
         description: {
-          en: "Scalable server-side solutions with structured architecture and database management.",
-          es: "Soluciones escalables del lado del servidor con arquitectura estructurada y gestión de bases de datos.",
+          en: "Interactive platforms with frontend, backend, and databases tailored to your complex ideas.",
+          es: "Plataformas interactivas con frontend, backend y funcionalidades adaptadas a tu medida.",
         },
       },
       {
-        title: { en: "Responsive Design", es: "Diseño Responsivo" },
+        title: { en: "Business Systems", es: "Sistemas para negocios" },
         description: {
-          en: "Pixel-perfect layouts that look stunning on every device, from mobile to desktop.",
-          es: "Layouts pixel-perfect que se ven increíbles en cada dispositivo, de móvil a escritorio.",
+          en: "Custom digital tools designed to organize and optimize real processes in your business.",
+          es: "Herramientas digitales diseñadas para ordenar y optimizar procesos reales en tu empresa.",
+        },
+      },
+      {
+        title: { en: "Web Redesign", es: "Rediseño web" },
+        description: {
+          en: "Structure, design, and performance improvements of existing sites for a professional look.",
+          es: "Mejora de estructura, diseño y rendimiento de sitios existentes para un acabado profesional.",
+        },
+      },
+      {
+        title: { en: "Functional Prototypes", es: "Prototipos funcionales" },
+        description: {
+          en: "Navigable interactive demos to validate ideas or present concepts effectively.",
+          es: "Demos navegables interactivas para validar ideas o presentar conceptos de forma efectiva.",
         },
       },
     ],
@@ -404,19 +442,31 @@ export const translations = {
     label: { en: "", es: "" },
     title: { en: "Get in Touch", es: "Contáctame" },
     subtitle: {
-      en: "Have a project in mind? Let's talk about how I can help you.",
-      es: "¿Tienes un proyecto en mente? Hablemos de cómo puedo ayudarte.",
+      en: "Have an idea, page, or project in mind? Tell me what you want to build and let's see how to make it real.",
+      es: "¿Tienes una idea, página o proyecto en mente? Cuéntame qué quieres construir y vemos cómo convertirlo en algo real.",
     },
-    name: { en: "Your Name", es: "Tu Nombre" },
-    email: { en: "Your Email", es: "Tu Email" },
-    message: { en: "Your Message", es: "Tu Mensaje" },
-    send: { en: "Start a Project", es: "Iniciar un Proyecto" },
+    name: { en: "YOUR NAME", es: "TU NOMBRE" },
+    email: { en: "YOUR EMAIL", es: "TU EMAIL" },
+    message: { en: "YOUR MESSAGE", es: "TU MENSAJE" },
+    send: { en: "Start a Project →", es: "Iniciar un proyecto →" },
     fillAll: { en: "Please fill in all fields", es: "Por favor llena todos los campos" },
     sent: { en: "Message sent!", es: "¡Mensaje enviado!" },
     sentDesc: { en: "I'll get back to you soon.", es: "Te responderé pronto." },
     connect: { en: "Connect With Me", es: "Conecta Conmigo" },
   },
   footer: {
+    shortText: {
+      en: "Design with intention. Develop with structure. Build with vision.",
+      es: "Diseño con intención. Desarrollo con estructura. Construyo con visión.",
+    },
+    simpleAlternative: {
+      en: "Mario Bencomo — Full Stack Developer",
+      es: "Mario Bencomo — Full Stack Developer",
+    },
+    copyright: {
+      en: "© 2026 Mario Bencomo. All rights reserved.",
+      es: "© 2026 Mario Bencomo. Todos los derechos reservados.",
+    },
     builtWith: { en: "Built with React + TypeScript", es: "Construido con React + TypeScript" },
   },
 } as const;

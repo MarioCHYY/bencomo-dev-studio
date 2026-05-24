@@ -17,7 +17,7 @@ const Footer = () => {
     <footer className="py-8 px-4 sm:px-6 md:px-12 border-t dark:border-[rgba(255,255,255,0.05)] border-[rgba(0,0,0,0.05)] dark:bg-[#030303]/80 bg-[#F8F8F8]/80 transition-colors duration-500">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <span className="text-[10px] dark:text-[rgba(255,255,255,0.2)] text-black/40 font-normal tracking-widest uppercase transition-colors duration-500">
-          © 2026 Mario Bencomo
+          {t(translations.footer.copyright)}
         </span>
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
           {socialLinks.map((link, i) => (

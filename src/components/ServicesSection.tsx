@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Globe, Server, Paintbrush, Smartphone } from "lucide-react";
+import { Globe, Server, Paintbrush, Smartphone, Briefcase, RefreshCw, Layout } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 
-const icons = [Globe, Paintbrush, Server, Smartphone];
+const icons = [Globe, Paintbrush, Server, Briefcase, RefreshCw, Layout];
 
 const ServicesSection = () => {
   const { t } = useLang();
@@ -30,7 +30,7 @@ const ServicesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {s.items.map((service, i) => {
             const Icon = icons[i];
             return (
@@ -40,12 +40,12 @@ const ServicesSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.06)] border-[rgba(0,0,0,0.06)] rounded-2xl p-8 md:p-10 hover:bg-primary/5 hover:border-primary/20 transition-all duration-500"
+                className="group dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.06)] border-[rgba(0,0,0,0.06)] rounded-2xl p-10 md:p-12 hover:bg-primary/5 hover:border-primary/20 transition-all duration-500"
               >
                 <div className="text-primary/60 mb-6 transition-all group-hover:scale-110 group-hover:text-primary duration-500">
                   <Icon size={32} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-heading font-extrabold mb-3 dark:text-white text-[#0A0A0A] transition-colors duration-500">
+                <h3 className="text-xl font-heading font-extrabold mb-3 dark:text-white text-[#0A0A0A] transition-colors duration-500 line-clamp-2">
                   {t(service.title)}
                 </h3>
                 <p className="text-sm md:text-base lg:text-lg dark:text-[#A0A5B0] text-[#505060] leading-[1.8] font-light transition-colors duration-500">
