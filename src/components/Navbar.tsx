@@ -4,6 +4,8 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useTheme } from "@/components/ThemeContext";
+import { FlipLink } from "@/components/ui/flip-links";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { lang, setLang, t } = useLang();
@@ -12,9 +14,11 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { label: t(translations.nav.about), href: "#about" },
-    { label: t(translations.nav.projects), href: "#projects" },
-    { label: t(translations.nav.services), href: "#services" },
+    { label: t(translations.nav.home), href: "/" },
+    { label: t(translations.nav.about), href: "/sobre-mi" },
+    { label: t(translations.nav.projects), href: "/portafolio" },
+    { label: t(translations.nav.services), href: "/servicios" },
+    { label: t(translations.nav.contact), href: "/contacto" },
   ];
 
   useEffect(() => {
@@ -29,28 +33,24 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-nav" : "bg-transparent"
+        scrolled ? "glass-nav" : "bg-gradient-to-b from-background/90 via-background/40 to-transparent pb-4"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-12 py-4">
-        <a href="#" className="flex items-center transition-opacity duration-300 hover:opacity-80">
-          <img 
-            src="/logo-mb.webp" 
-            alt="Mario Bencomo" 
-            className="h-10 md:h-12 w-auto object-contain dark:invert transition-all duration-500" 
-          />
-        </a>
+        <Link to="/" className="flex items-center font-heading font-extrabold text-xl md:text-2xl tracking-tight dark:text-white text-[#0A0A0A] transition-opacity duration-300 hover:opacity-80">
+          MARIO<span className="text-primary ml-1">BENCOMO</span>
+        </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-1">
           {links.map((l) => (
-            <a
+            <FlipLink
               key={l.href}
               href={l.href}
-              className="text-sm font-normal dark:text-white/[0.35] text-[#505060] hover:text-[#0A0A0A] dark:hover:text-white/80 px-3 py-2 transition-colors duration-300"
+              className="text-sm font-normal dark:text-white/[0.35] text-[#505060] dark:hover:text-white/80 hover:text-[#0A0A0A] px-3 py-2"
             >
-              {l.label}
-            </a>
+              {l.label as string}
+            </FlipLink>
           ))}
 
           <div className="w-px h-4 dark:bg-white/10 bg-black/10 mx-2" />
@@ -72,12 +72,12 @@ const Navbar = () => {
           </button>
           */}
 
-          <a
-            href="#contact"
+          <Link
+            to="/contacto"
             className="text-sm font-medium px-8 py-3 bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground rounded-full transition-all duration-300 ml-4"
           >
             {t(translations.nav.cta)}
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -97,14 +97,14 @@ const Navbar = () => {
           >
             <div className="flex flex-col gap-1 px-6 py-4">
               {links.map((l) => (
-                <a
+                <FlipLink
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm dark:text-white/[0.35] text-[#505060] hover:text-[#0A0A0A] dark:hover:text-white/80 transition-colors py-2"
+                  className="text-2xl font-bold dark:text-white/60 text-[#505060] dark:hover:text-white hover:text-[#0A0A0A] py-1"
                 >
-                  {l.label}
-                </a>
+                  {l.label as string}
+                </FlipLink>
               ))}
               <div className="flex items-center justify-between pt-4 border-t dark:border-white/10 border-black/10 mt-2">
                 <div className="flex gap-4">
@@ -123,13 +123,13 @@ const Navbar = () => {
                   </button>
                   */}
                 </div>
-                <a
-                  href="#contact"
+                <Link
+                  to="/contacto"
                   onClick={() => setOpen(false)}
                   className="text-sm font-medium px-7 py-2.5 bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground rounded-full transition-all duration-300"
                 >
                   {t(translations.nav.cta)}
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

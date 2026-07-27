@@ -2,6 +2,7 @@ export type Lang = "en" | "es";
 
 export const translations = {
   nav: {
+    home: { en: "Home", es: "Inicio" },
     about: { en: "About", es: "Sobre mí" },
     education: { en: "Education", es: "Educación" },
     experience: { en: "Experience", es: "Experiencia" },
@@ -10,6 +11,77 @@ export const translations = {
     services: { en: "Services", es: "Servicios" },
     contact: { en: "Contact", es: "Contacto" },
     cta: { en: "Let's Work Together", es: "Trabajemos Juntos" },
+  },
+  aboutPage: {
+    heroBadge: { en: "EST. 2024 / PORTFOLIO DOCUMENTARY", es: "EST. 2024 / PORTAFOLIO DOCUMENTAL" },
+    heroTitle: { en: "BEYOND THE CODE", es: "MÁS\u00A0ALLÁ DEL CÓDIGO" },
+    heroQuote: { en: "\"Technology is the canvas, but curiosity is the brush.\"", es: "\"La tecnología es el lienzo, pero la curiosidad es el pincel.\"" },
+    heroP1: { 
+      en: "When I started programming, I saw code as a series of logical problems to solve. It was cold, precise, and mathematical. But something was missing: the ability to evoke an emotion or an atmosphere.", 
+      es: "Cuando empecé a programar, veía el código como una serie de problemas lógicos que resolver. Era frío, preciso y matemático. Pero algo faltaba: la capacidad de evocar una emoción o una atmósfera." 
+    },
+    heroP2: { 
+      en: "Then I discovered that design wasn't just about \"making things look good\", but structuring intention. Just like in photography, negative space and contrast dictate where the user should look.", 
+      es: "Después descubrí que el diseño no era solo \"hacer que las cosas se vean bien\", sino estructurar la intención. Al igual que en una fotografía, el espacio negativo y el contraste dictan hacia dónde debe mirar el usuario." 
+    },
+    heroP3: { 
+      en: "Today I try to combine both disciplines. I don't understand development without a clear aesthetic vision, nor design without a solid technical foundation that makes it real.", 
+      es: "Hoy intento combinar ambas disciplinas. No entiendo el desarrollo sin una visión estética clara, ni el diseño sin una base técnica sólida que lo haga real." 
+    },
+    
+    storyLabel: { en: "My Story", es: "Mi historia" },
+    storyP1: { 
+      en: "I'm Mario Bencomo, a full stack developer with a strong vision for design, aesthetics, and user experience. I like to build digital products that not only work but also have presence, intention, and a clear visual identity.", 
+      es: "Soy Mario Bencomo, desarrollador full stack con una visión muy marcada por el diseño, la estética y la experiencia de usuario. Me gusta construir productos digitales que no solo funcionen, sino que tengan presencia, intención y una identidad visual clara." 
+    },
+    storyP2: { 
+      en: "My work combines code, design, and visual judgment: from landing pages and portfolios to web applications, functional prototypes, and more structured digital solutions. For me, a good page shouldn't just look good; it should communicate, guide, and feel built with a purpose.", 
+      es: "Mi trabajo combina código, diseño y criterio visual: desde landing pages y portafolios hasta aplicaciones web, prototipos funcionales y soluciones digitales más estructuradas. Para mí, una buena página no solo debe verse bien; debe comunicar, guiar y sentirse construida con propósito." 
+    },
+    storyP3: { 
+      en: "Today, I try to combine both disciplines. I don't just build websites; I craft digital experiences that feel as good as they look.", 
+      es: "Hoy intento combinar ambas disciplinas. No solo construyo sitios web; creo experiencias digitales que se sienten tan bien como se ven." 
+    },
+    
+    philosophyLabel: { en: "My Philosophy", es: "Mi filosofía" },
+    philosophyText: { en: "I believe that less is more. A clean interface is not just about aesthetics, it's about respecting the user's time.", es: "Creo que menos es más. Una interfaz limpia no se trata solo de estética, se trata de respetar el tiempo del usuario." },
+    
+    workLabel: { en: "How I Work", es: "Así trabajo" },
+    workP1: { en: "I don't like starting a project by writing code. First, I try to understand the problem, make sketches, and think about the experience I want to create.", es: "No me gusta empezar un proyecto escribiendo código. Primero intento entender el problema, hacer bocetos y pensar en la experiencia que quiero crear." },
+    
+    experienceLabel: { en: "Experience", es: "Experiencia" },
+    exp1: { en: "2+ years learning and building.", es: "2+ años aprendiendo y construyendo." },
+    exp2: { en: "10+ developed projects.", es: "10+ proyectos desarrollados." },
+    exp3: { en: "Frontend and backend development.", es: "Desarrollo frontend y backend." },
+    exp4: { en: "Focus on UI/UX.", es: "Enfoque en UI/UX." },
+    expButton: { en: "View projects", es: "Ver proyectos" },
+    
+    educationLabel: { en: "Education", es: "Educación" },
+    eduDegree: { en: "Computer Systems Engineering", es: "Ingeniería en Sistemas Computacionales" },
+    eduSchool: { en: "Tecnológico de Culiacán", es: "Tecnológico de Culiacán" },
+    eduStatus: { en: "Currently studying...", es: "Actualmente cursando..." },
+    
+    offKeyboardLabel: { en: "Off the Keyboard 🎧", es: "Fuera del teclado 🎧" },
+    offKeyboardText: { en: "Music, cinema, and photography inspire my daily work. Everything is connected.", es: "La música, el cine y la fotografía inspiran mi trabajo diario. Todo está conectado." },
+    
+    galleryLabel: { en: "Gallery 📷", es: "Galería 📷" },
+    gallery1: { en: "I usually start by designing in Figma.", es: "Normalmente empiezo diseñando en Figma." },
+    gallery2: { en: "Photography changed the way I see interfaces.", es: "La fotografía cambió la forma en la que veo las interfaces." },
+    gallery3: { en: "A clean desk helps me think better.", es: "Un escritorio limpio me ayuda a pensar mejor." },
+    
+    setupLabel: { en: "Setup 💻", es: "Setup 💻" },
+    setupText: { en: "My workspace is designed for focus and creativity.", es: "Mi espacio de trabajo está diseñado para el enfoque y la creatividad." },
+    
+    curiousLabel: { en: "Fun Facts", es: "Datos curiosos" },
+    curious1: { en: "📷 I always carry a camera when I can.", es: "📷 Siempre llevo una cámara cuando puedo." },
+    curious2: { en: "🎧 I code with music.", es: "🎧 Programo con música." },
+    curious3: { en: "🌙 I like working at night.", es: "🌙 Me gusta trabajar de noche." },
+    curious4: { en: "🎨 I pay a lot of attention to visual details.", es: "🎨 Me fijo muchísimo en los detalles visuales." },
+  },
+  ctaSection: {
+    title: { en: "Ready to build something incredible?", es: "¿Listo para construir algo increíble?" },
+    subtitle: { en: "Tell me about your project and I'll respond with a clear proposal and work plan.", es: "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo." },
+    button: { en: "Start conversation", es: "Iniciar conversación" },
   },
   hero: {
     badge: { en: "OPEN TO WORK", es: "DISPONIBLE" },
@@ -55,13 +127,33 @@ export const translations = {
     degree: {
       title: { en: "B.S. in Computer Systems Engineering", es: "Licenciatura en Ingeniería en Sistemas Computacionales" },
       institution: { en: "Tecnológico de Culiacán", es: "Tecnológico de Culiacán" },
-      period: { en: "Currently in 4th Semester • 2026 – Present", es: "Actualmente en 4to semestre · 2026 – Presente" },
+      period: { en: "Currently in 5th Semester • 2026 – Present", es: "Actualmente en 5to semestre · 2026 – Presente" },
       graduation: { en: "Expected Graduation: 2029", es: "Graduación Esperada: 2029" },
       focus: {
         en: "Training focused on software engineering, programming, databases, and systems development. Through academic and personal projects, I have strengthened my ability to build digital solutions with structure, logic, and a carefully crafted user experience.",
         es: "Formación enfocada en ingeniería de software, programación, bases de datos y desarrollo de sistemas. A través de proyectos académicos y personales, he fortalecido mi capacidad para construir soluciones digitales con estructura, lógica y una experiencia de usuario cuidada.",
       },
     },
+    certifications: [
+      {
+        title: { en: "English Language Program", es: "Programa de Inglés Sabatino" },
+        institution: { en: "Universidad Autónoma de Sinaloa (UAS)", es: "Universidad Autónoma de Sinaloa (UAS)" },
+        period: { en: "April 2026", es: "Abril 2026" },
+        focus: { 
+          en: "Completed a 500-hour English language program at the Center for Language Studies.",
+          es: "Conclusión satisfactoria de 500 horas de estudio en el Centro de Estudio de Idiomas."
+        }
+      },
+      {
+        title: { en: "B1 Preliminary (PET)", es: "B1 Preliminary (PET)" },
+        institution: { en: "Cambridge English", es: "Cambridge English" },
+        period: { en: "June 2026", es: "Junio 2026" },
+        focus: {
+          en: "Achieved B1 certification from Cambridge Assessment English, demonstrating practical English skills for everyday use.",
+          es: "Certificación de nivel B1 expedida por Cambridge Assessment English, demostrando habilidades prácticas del idioma para uso cotidiano."
+        }
+      }
+    ]
   },
   experience: {
     label: { en: "", es: "" },
@@ -94,6 +186,8 @@ export const translations = {
       es: "Una selección de proyectos donde combino diseño visual, desarrollo web y funcionalidad para crear experiencias digitales claras, modernas y memorables.",
     },
     featured: { en: "FEATURED PROJECT", es: "PROYECTO DESTACADO" },
+    viewCaseStudy: { en: "View Case Study", es: "Ver Caso de Estudio" },
+    liveDemo: { en: "Live Demo", es: "Ver en vivo" },
     project1: {
       name: {
         en: "Professional Website for Aesthetic Services Business",
@@ -164,56 +258,56 @@ export const translations = {
       },
     },
     project2: {
-      name: { en: "Atelier", es: "Atelier" },
+      name: { en: "Clearbuild Studio", es: "Clearbuild Studio" },
       oneliner: {
-        en: "Digital studio landing page with an editorial aesthetic, crafted animations, and a structure designed to present services elegantly and professionally.",
-        es: "Landing page de estudio digital con una estética editorial, animaciones cuidadas y una estructura pensada para presentar servicios de forma elegante y profesional.",
+        en: "Digital studio landing page focused on clarity, featuring an editorial aesthetic and transparent service presentation.",
+        es: "Landing page de un estudio digital enfocado en la claridad, con una estética editorial y presentación transparente de servicios.",
       },
-      role: { en: "Full Stack Developer & Founder", es: "Full Stack Developer & Founder" },
+      role: { en: "Full Stack Developer", es: "Desarrollador Full Stack" },
       problemTitle: { en: "Problem / Challenge", es: "Problema / Desafío" },
       problem: {
-        en: "Many local businesses lack a professional digital presence or face agencies with opaque processes and hidden prices. The challenge was to create our own platform that functions as a transparent sales tool, capable of converting visitors into clients through the clear exhibition of services, delivery times, and real results.",
-        es: "Muchos negocios locales carecen de una presencia digital profesional o se enfrentan a agencias con procesos opacos y precios ocultos. El desafío era crear una plataforma propia que funcionara como una herramienta de ventas transparente, capaz de convertir visitantes en clientes mediante la exposición clara de servicios, tiempos de entrega y resultados reales.",
+        en: "Many digital projects fail due to vague promises, hidden scopes, and unclear timelines. The challenge was to create a platform that functions as a transparent sales tool, setting clear expectations before development begins.",
+        es: "Muchos proyectos digitales fracasan debido a promesas vagas, alcances ocultos y tiempos poco claros. El desafío era crear una plataforma que funcionara como una herramienta de ventas transparente, estableciendo expectativas claras antes de programar.",
       },
       solutionTitle: { en: "Solution", es: "Solución" },
       solutions: {
         en: [
-          "Developed a high-performance landing page using Vite and TypeScript to ensure instant loading and a smooth user experience.",
-          "Designed a catalog of transparent services and prices that segments the offer into scalable packages (Essential, Studio, Pro) with delivery times starting from 1 business day.",
-          "Implemented a dynamic portfolio exhibition system to detail success stories like 'Smart Travel Genie' and 'Radiant Beauty Studio', highlighting technologies and results.",
-          "Integrated lead generation flows through strategic calls to action (CTA) to schedule 30-minute discovery sessions.",
+          "Designed a clean, typography-driven landing page that highlights the studio's transparent methodology.",
+          "Implemented a dynamic 'Project Scope' interface to visually communicate how projects are documented and tracked.",
+          "Developed a high-performance frontend using Vite, React, and Tailwind CSS to ensure instant loading.",
+          "Integrated clear call-to-actions to connect potential clients directly via WhatsApp or service pages."
         ],
         es: [
-          "Desarrollé una landing page de alto rendimiento utilizando Vite y TypeScript para garantizar una carga instantánea y una experiencia de usuario fluida.",
-          "Diseñé un catálogo de servicios y precios transparentes que segmenta la oferta en paquetes escalables (Essential, Studio, Pro) con tiempos de entrega desde 1 día hábil.",
-          "Implementé un sistema de exhibición de portafolio dinámico para detallar casos de éxito como 'Smart Travel Genie' y 'Radiant Beauty Studio', resaltando tecnologías y resultados.",
-          "Integré flujos de generación de leads mediante llamadas a la acción (CTA) estratégicas para agendar sesiones de descubrimiento de 30 minutos.",
+          "Diseñé una landing page limpia y enfocada en tipografía que destaca la metodología transparente del estudio.",
+          "Implementé una interfaz dinámica de 'Alcance del Proyecto' para comunicar visualmente cómo se documentan los proyectos.",
+          "Desarrollé un frontend de alto rendimiento utilizando Vite, React y Tailwind CSS para garantizar carga instantánea.",
+          "Integré llamadas a la acción claras para conectar a los clientes potenciales directamente vía WhatsApp."
         ],
       },
       impactTitle: { en: "Impact / Results", es: "Impacto / Resultados" },
       impacts: {
         en: [
-          "Sales Optimization: Reduction of friction in the sales cycle by resolving pre-sale doubts through a FAQ section and a clearly defined 3-step work process.",
-          "Recurring Revenue: Establishment of a maintenance plan structure (Care Basic, Growth, Full) to ensure the sustainability of the studio post-launch.",
-          "Brand Positioning: Projection of a professional and 'boutique' image that generates immediate trust in potential clients.",
+          "Clear Expectations: Eliminates friction by defining scope, timeline, and process upfront.",
+          "Trust Building: The transparent, no-nonsense approach immediately builds trust with potential clients.",
+          "Professional Positioning: Projects an elegant 'boutique' image through its editorial design."
         ],
         es: [
-          "Optimización de Ventas: Reducción de la fricción en el ciclo de venta al resolver dudas preventa mediante una sección de FAQ y un proceso de trabajo de 3 pasos claramente definido.",
-          "Ingresos Recurrentes: Establecimiento de una estructura de planes de mantenimiento (Care Basic, Growth, Full) para asegurar la sostenibilidad del estudio post-lanzamiento.",
-          "Posicionamiento de Marca: Proyección de una imagen profesional y 'boutique' que genera confianza inmediata en clientes potenciales.",
+          "Expectativas Claras: Elimina la fricción al definir el alcance, tiempos y proceso desde el principio.",
+          "Generación de Confianza: El enfoque transparente y directo construye confianza inmediata con los clientes.",
+          "Posicionamiento Profesional: Proyecta una imagen elegante y 'boutique' a través de su diseño editorial."
         ],
       },
       learnedTitle: { en: "What I Learned", es: "Lo que Aprendí" },
       learned: {
         en: [
-          "Design of conversion rate optimization (CRO) oriented interfaces and sales psychology principles applied to the web.",
-          "Advanced use of Shadcn UI and Tailwind CSS to create a modern, minimalist, and highly responsive aesthetic.",
-          "Structuring of technical commercial offers to make them understandable and attractive to local business owners.",
+          "The importance of typography in building a trustworthy and professional brand",
+          "Communicating complex processes simply through design",
+          "Balancing aesthetic elegance with performance"
         ],
         es: [
-          "Diseño de interfaces orientadas a la conversión (CRO) y principios de psicología de ventas aplicados a la web.",
-          "Uso avanzado de Shadcn UI y Tailwind CSS para crear una estética moderna, minimalista y altamente responsive.",
-          "Estructuración de ofertas comerciales técnicas para que sean comprensibles y atractivas para dueños de negocios locales.",
+          "La importancia de la tipografía para construir una marca confiable y profesional",
+          "Comunicar procesos complejos de manera sencilla a través del diseño",
+          "Equilibrar la elegancia estética con el rendimiento web"
         ],
       },
     },
@@ -341,11 +435,7 @@ export const translations = {
         "Control de versiones con Git",
       ],
     },
-    keyResponsibilities: { en: "Key Responsibilities", es: "Responsabilidades Clave" },
-    liveDemo: { en: "Live Demo", es: "Demo en Vivo" },
-    viewCode: { en: "View Code", es: "Ver Código" },
-    viewCaseStudy: { en: "View Case Study", es: "Ver caso de estudio" },
-    backToProjects: { en: "← Back to My Work", es: "← Volver a Mi Trabajo" },
+
   },
   skills: {
     label: { en: "", es: "" },
@@ -395,46 +485,188 @@ export const translations = {
     },
     items: [
       {
-        title: { en: "Websites with Identity", es: "Sitios web con identidad" },
+        id: "sitios-web",
+        title: { en: "Websites with Identity", es: "Sitios Web con Identidad" },
+        subtitle: { en: "Your digital presence, tailored for you.", es: "Tu presencia digital, hecha a tu medida." },
         description: {
-          en: "Modern, fast, and responsive pages with a clear visual direction that communicates who you are.",
-          es: "Páginas modernas, rápidas y con una dirección visual clara que comunica quién eres y qué ofreces.",
+          en: "I design and develop your site from scratch, with a visual identity that reflects who you are and what you offer. Fast, modern, and built to turn visitors into clients.",
+          es: "Diseño y desarrollo tu sitio desde cero, con una identidad visual que refleja quién eres y qué ofreces. Rápido, moderno y pensado para convertir visitantes en clientes.",
         },
+        deliverables: {
+          en: [
+            "Visual design with your brand and colors",
+            "Site optimized for fast loading",
+            "Adapted for mobile and tablets",
+            "Clear structure that guides the client"
+          ],
+          es: [
+            "Diseño visual con tu marca y colores",
+            "Sitio optimizado para carga rápida",
+            "Adaptado a celulares y tablets",
+            "Estructura clara que guía al cliente"
+          ]
+        }
       },
       {
-        title: { en: "UI/UX & Interfaces", es: "UI/UX e interfaces" },
+        id: "ui-ux",
+        title: { en: "UI/UX & Interfaces", es: "UI/UX e Interfaces" },
+        subtitle: { en: "Making your product easy and enjoyable to use.", es: "Que usar tu producto sea fácil y agradable." },
         description: {
-          en: "Clean and easy-to-use interfaces, taking care of visual hierarchy and user experience.",
-          es: "Interfaces modernas y fáciles de usar, cuidando la estructura, jerarquía visual y experiencia.",
+          en: "I design interfaces thinking about how your user thinks and navigates. I take care of every detail of visual hierarchy and experience so no one gets lost or frustrated.",
+          es: "Diseño interfaces pensando en cómo piensa y navega tu usuario. Cuido cada detalle de jerarquía visual y experiencia para que nadie se pierda ni se frustre.",
         },
+        deliverables: {
+          en: [
+            "Navigable wireframes and mockups",
+            "Design system (colors, typography, components)",
+            "Usability testing before coding",
+            "Consistent interfaces across the platform"
+          ],
+          es: [
+            "Wireframes y mockups navegables",
+            "Sistema de diseño (colores, tipografía, componentes)",
+            "Pruebas de usabilidad antes de programar",
+            "Interfaces consistentes en toda la plataforma"
+          ]
+        }
       },
       {
-        title: { en: "Web Applications", es: "Aplicaciones web" },
+        id: "aplicaciones-web",
+        title: { en: "Web Applications", es: "Aplicaciones Web" },
+        subtitle: { en: "Complete platforms, tailored to your business.", es: "Plataformas completas, hechas a la medida de tu negocio." },
         description: {
-          en: "Interactive platforms with frontend, backend, and databases tailored to your complex ideas.",
-          es: "Plataformas interactivas con frontend, backend y funcionalidades adaptadas a tu medida.",
+          en: "I develop applications with frontend, backend, and database working together. From internal dashboards to platforms your clients interact with directly.",
+          es: "Desarrollo aplicaciones con frontend, backend y base de datos funcionando en conjunto. Desde dashboards internos hasta plataformas con las que tus clientes interactúan directamente.",
         },
+        deliverables: {
+          en: [
+            "Frontend and backend working together",
+            "Organized and secure database",
+            "Features tailored to your operations",
+            "Hosting and deployment ready for production"
+          ],
+          es: [
+            "Frontend y backend funcionando juntos",
+            "Base de datos organizada y segura",
+            "Funcionalidades a la medida de tu operación",
+            "Hosting y despliegue listo para producción"
+          ]
+        }
       },
       {
-        title: { en: "Business Systems", es: "Sistemas para negocios" },
+        id: "sistemas-negocios",
+        title: { en: "Business Systems", es: "Sistemas para Negocios" },
+        subtitle: { en: "Tools that organize and streamline your operations.", es: "Herramientas que ordenan y agilizan tu operación." },
         description: {
-          en: "Custom digital tools designed to organize and optimize real processes in your business.",
-          es: "Herramientas digitales diseñadas para ordenar y optimizar procesos reales en tu empresa.",
+          en: "I build systems that solve real processes in your company: quotes, inventory, billing, or client tracking. Less manual work, fewer errors.",
+          es: "Construyo sistemas que resuelven procesos reales de tu empresa: cotizaciones, inventario, cobros o seguimiento de clientes. Menos trabajo manual, menos errores.",
         },
+        deliverables: {
+          en: [
+            "Automation of repetitive processes",
+            "Instantly generated quotes or reports",
+            "Integrated online payments (PayPal, etc.)",
+            "Easy-to-use control panel"
+          ],
+          es: [
+            "Automatización de procesos repetitivos",
+            "Cotizaciones o reportes generados al instante",
+            "Cobros en línea integrados (PayPal, etc.)",
+            "Panel de control fácil de usar"
+          ]
+        }
       },
       {
-        title: { en: "Web Redesign", es: "Rediseño web" },
+        id: "rediseno-web",
+        title: { en: "Web Redesign", es: "Rediseño Web" },
+        subtitle: { en: "Give your site the finish it deserves.", es: "Dale a tu sitio el acabado que merece." },
         description: {
-          en: "Structure, design, and performance improvements of existing sites for a professional look.",
-          es: "Mejora de estructura, diseño y rendimiento de sitios existentes para un acabado profesional.",
+          en: "I take your current site and transform it: better structure, better design, better performance. Ideal if your page looks outdated or loads slowly.",
+          es: "Tomo tu sitio actual y lo transformo: mejor estructura, mejor diseño, mejor rendimiento. Ideal si tu página se ve anticuada o carga lento.",
         },
+        deliverables: {
+          en: [
+            "Complete diagnosis of current site",
+            "New structure and modern design",
+            "Loading speed improvements",
+            "Search engine optimization (Basic SEO)"
+          ],
+          es: [
+            "Diagnóstico completo del sitio actual",
+            "Nueva estructura y diseño moderno",
+            "Mejora de velocidad de carga",
+            "Optimización para buscadores (SEO básico)"
+          ]
+        }
       },
       {
-        title: { en: "Functional Prototypes", es: "Prototipos funcionales" },
+        id: "prototipos-funcionales",
+        title: { en: "Functional Prototypes", es: "Prototipos Funcionales" },
+        subtitle: { en: "Validate your idea before investing in full development.", es: "Valida tu idea antes de invertir en desarrollo completo." },
         description: {
-          en: "Navigable interactive demos to validate ideas or present concepts effectively.",
-          es: "Demos navegables interactivas para validar ideas o presentar conceptos de forma efectiva.",
+          en: "I create navigable and interactive demos so you can test your idea with real clients or investors before building the final product.",
+          es: "Creo demos navegables e interactivas para que puedas probar tu idea con clientes reales o inversionistas antes de construir el producto final.",
         },
+        deliverables: {
+          en: [
+            "Clickable demo of the idea or product",
+            "Simulation of real user flow",
+            "Quick adjustments based on feedback",
+            "Base ready to move to full development"
+          ],
+          es: [
+            "Demo clicable de la idea o producto",
+            "Simulación de flujo real de usuario",
+            "Ajustes rápidos según retroalimentación",
+            "Base lista para pasar a desarrollo completo"
+          ]
+        }
+      },
+      {
+        id: "automatizacion",
+        title: { en: "Task Automation", es: "Automatización de Tareas" },
+        subtitle: { en: "Technology does the boring work for you.", es: "La tecnología hace el trabajo aburrido por ti." },
+        description: {
+          en: "I configure systems that perform repetitive tasks automatically. From organizing information to connecting programs you already use, saving you time and avoiding manual errors.",
+          es: "Configuro sistemas que realizan tareas repetitivas de forma automática. Desde organizar información hasta conectar los programas que ya usas, para que ahorres tiempo y evites errores manuales.",
+        },
+        deliverables: {
+          en: [
+            "Quick information extraction",
+            "Automated report creation",
+            "Connection between different applications",
+            "Processes that work 24/7 without failing"
+          ],
+          es: [
+            "Extracción rápida de información",
+            "Creación de reportes automáticos",
+            "Conexión entre diferentes aplicaciones",
+            "Procesos que trabajan 24/7 sin fallar"
+          ]
+        }
+      },
+      {
+        id: "inteligencia-artificial",
+        title: { en: "Artificial Intelligence (AI)", es: "Inteligencia Artificial (IA)" },
+        subtitle: { en: "Smart assistants to streamline your work.", es: "Asistentes inteligentes para agilizar tu trabajo." },
+        description: {
+          en: "I integrate artificial intelligence tools into your business. I help you automate client responses, analyze long texts, or create assistants that advise you instantly.",
+          es: "Integro herramientas de inteligencia artificial en tu negocio. Te ayudo a automatizar respuestas a clientes, analizar textos largos o crear asistentes que te asesoren de manera instantánea.",
+        },
+        deliverables: {
+          en: [
+            "Virtual assistants for clients",
+            "Precise instructions for the AI",
+            "Automatic content generation",
+            "Smart data organization"
+          ],
+          es: [
+            "Asistentes virtuales para clientes",
+            "Instrucciones precisas para la IA",
+            "Generación automática de contenido",
+            "Organización inteligente de datos"
+          ]
+        }
       },
     ],
   },

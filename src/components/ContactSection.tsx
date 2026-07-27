@@ -4,10 +4,16 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
+import { FlipLink } from "@/components/ui/flip-links";
+import { GradientDots } from "@/components/ui/gradient-dots";
+import { useTheme } from "@/components/ThemeContext";
 
 const ContactSection = () => {
   const { toast } = useToast();
   const { t, lang } = useLang();
+  const { theme } = useTheme();
+  const bg = theme === "dark" ? "#050505" : "#F8F8F8";
+  
   const c = translations.contact;
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -52,8 +58,19 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding relative">
-      <div className="max-w-5xl mx-auto">
+    <section id="contact" className="section-padding relative overflow-hidden bg-black/40">
+      {/* Hero-like Gradient Dots Background Effect */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 0.3 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5, delay: 0.2 }}
+        className="absolute inset-0 z-0 pointer-events-none opacity-30"
+      >
+        <GradientDots duration={20} backgroundColor={bg} />
+      </motion.div>
+
+      <div className="max-w-5xl mx-auto relative z-10">
         {/* Big CTA headline */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -63,7 +80,7 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(c.label)}</span>
+            <span className="text-[11px] dark:text-white text-black font-medium tracking-[0.16em] uppercase">{t(c.label)}</span>
           </div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-heading font-extrabold -tracking-[0.03em] dark:text-white text-[#0A0A0A] mb-6 transition-colors duration-500">
             {t(c.title)}
@@ -73,7 +90,7 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-[1fr_280px] gap-12">
+        <div className="grid md:grid-cols-[1fr_320px] gap-12 items-center">
           {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
@@ -85,7 +102,7 @@ const ContactSection = () => {
           >
             <div className="grid sm:grid-cols-2 gap-5 shrink-0">
               <div>
-                <label className="text-[10px] md:text-xs dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
+                <label className="text-[10px] md:text-xs dark:text-white/70 text-[#505060] mb-2 block font-medium tracking-[0.16em] uppercase transition-colors duration-500">
                   {t(c.name)}
                 </label>
                 <input
@@ -95,12 +112,12 @@ const ContactSection = () => {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   maxLength={100}
-                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
+                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.06)] bg-[rgba(0,0,0,0.04)] backdrop-blur-sm border dark:border-[rgba(255,255,255,0.2)] border-[rgba(0,0,0,0.2)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/40 placeholder:text-black/50 focus:outline-none dark:focus:border-white/60 focus:border-black/60 transition-all font-light"
                   placeholder={lang === "es" ? "Mario Bencomo" : "Mario Bencomo"}
                 />
               </div>
               <div>
-                <label className="text-[10px] md:text-xs dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
+                <label className="text-[10px] md:text-xs dark:text-white/70 text-[#505060] mb-2 block font-medium tracking-[0.16em] uppercase transition-colors duration-500">
                   {t(c.email)}
                 </label>
                 <input
@@ -110,13 +127,13 @@ const ContactSection = () => {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   maxLength={255}
-                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light"
+                  className="w-full px-4 py-3.5 dark:bg-[rgba(255,255,255,0.06)] bg-[rgba(0,0,0,0.04)] backdrop-blur-sm border dark:border-[rgba(255,255,255,0.2)] border-[rgba(0,0,0,0.2)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/40 placeholder:text-black/50 focus:outline-none dark:focus:border-white/60 focus:border-black/60 transition-all font-light"
                   placeholder={lang === "es" ? "correo@email.com" : "email@email.com"}
                 />
               </div>
             </div>
             <div className="flex-1 flex flex-col">
-              <label className="text-[10px] md:text-xs dark:text-white/45 text-[#505060] mb-2 block font-normal tracking-[0.16em] uppercase transition-colors duration-500">
+              <label className="text-[10px] md:text-xs dark:text-white/70 text-[#505060] mb-2 block font-medium tracking-[0.16em] uppercase transition-colors duration-500">
                 {t(c.message)}
               </label>
               <textarea
@@ -125,14 +142,14 @@ const ContactSection = () => {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
-                className="w-full flex-1 px-4 py-3.5 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.08)] border-[rgba(0,0,0,0.08)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/20 placeholder:text-black/30 focus:outline-none focus:border-primary/50 transition-all font-light resize-none min-h-[120px]"
+                className="w-full flex-1 px-4 py-3.5 dark:bg-[rgba(255,255,255,0.06)] bg-[rgba(0,0,0,0.04)] backdrop-blur-sm border dark:border-[rgba(255,255,255,0.2)] border-[rgba(0,0,0,0.2)] rounded-xl dark:text-white text-[#0A0A0A] text-sm md:text-base dark:placeholder:text-white/40 placeholder:text-black/50 focus:outline-none dark:focus:border-white/60 focus:border-black/60 transition-all font-light resize-none min-h-[120px]"
                 placeholder={lang === "es" ? "Cuéntame qué quieres construir..." : "Tell me what you want to build..."}
               />
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="group px-8 py-4 bg-primary text-primary-foreground text-sm md:text-base font-medium rounded-full hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 self-start shadow-[0_0_15px_rgba(51,141,255,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group px-8 py-4 dark:bg-white dark:text-black bg-black text-white text-sm md:text-base font-medium rounded-full dark:hover:bg-white/90 hover:bg-black/90 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 self-start shadow-[0_0_15px_rgba(0,0,0,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.15)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send size={16} />
               {isSubmitting ? "Enviando..." : t(c.send)}
@@ -140,15 +157,15 @@ const ContactSection = () => {
             </button>
           </motion.form>
 
-          {/* Social links */}
+          {/* Social links con animación FlipLink en pequeño */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-4"
+            className="flex flex-col space-y-6 pl-0 md:pl-4"
           >
-            <p className="text-[10px] text-primary/80 font-medium tracking-[0.16em] uppercase mb-6">
+            <p className="text-[10px] dark:text-white/80 text-black/80 font-medium tracking-[0.16em] uppercase mb-1">
               {t(c.connect)}
             </p>
             {[
@@ -162,22 +179,21 @@ const ContactSection = () => {
               { icon: Mail, label: "Email", href: "mailto:mariobencomo057@gmail.com", handle: "mariobencomo057" },
               { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mario_bencomo06?igsh=MXhjYXR2YnQwc3FodA%3D%3D&utm_source=qr", handle: "@mario_bencomo06" },
             ].map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-4 dark:bg-[rgba(255,255,255,0.02)] bg-[rgba(0,0,0,0.02)] border dark:border-[rgba(255,255,255,0.06)] border-[rgba(0,0,0,0.06)] rounded-2xl hover:bg-primary/5 hover:border-primary/20 transition-all duration-300"
-              >
-                <div className="dark:text-[rgba(255,255,255,0.5)] text-[#505060] group-hover:text-primary transition-colors">
-                  <link.icon size={20} strokeWidth={1.5} />
+              <div key={i} className="group flex items-center justify-between border-b dark:border-white/20 border-black/20 pb-3">
+                <div className="flex items-center gap-3">
+                  <link.icon size={18} className="dark:text-white/60 text-[#505060] dark:group-hover:text-white group-hover:text-black transition-colors shrink-0" />
+                  <div className="flex flex-col">
+                    <FlipLink
+                      href={link.href}
+                      className="text-lg md:text-xl font-bold uppercase tracking-tight dark:text-white text-black"
+                    >
+                      {link.label}
+                    </FlipLink>
+                    <span className="text-[11px] dark:text-white/50 text-[#505060] font-light mt-0.5">{link.handle}</span>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-sm md:text-base font-medium dark:text-[rgba(255,255,255,0.5)] text-[#505060] dark:group-hover:text-white group-hover:text-[#0A0A0A] transition-colors">{link.label}</div>
-                  <div className="text-[10px] md:text-xs dark:text-white/30 text-[#505060] font-light transition-colors duration-500">{link.handle}</div>
-                </div>
-                <ArrowUpRight size={16} className="ml-auto dark:text-[rgba(255,255,255,0.3)] text-[#505060] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
-              </a>
+                <ArrowUpRight size={16} className="dark:text-white/50 text-[#505060] dark:group-hover:text-white group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-2" />
+              </div>
             ))}
           </motion.div>
         </div>
