@@ -123,6 +123,7 @@ const ProjectsSection = () => {
                                  target="_blank"
                                  rel="noopener noreferrer"
                                  className="border border-white/20 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition-all backdrop-blur-md"
+                                 aria-label="Ver proyecto en vivo"
                                >
                                  <ExternalLink size={18} />
                                </a>

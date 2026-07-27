@@ -219,12 +219,14 @@ export const SliderBtn: FC<SliderBtnProps> = ({
         className
       )}
       onClick={() => handleButtonClick(value)}
+      aria-label={`Slide ${value}`}
     >
       {children}
       <div
         className='absolute inset-0 overflow-hidden -z-10 max-h-full max-w-full'
         role='progressbar'
         aria-valuenow={active === value ? progress : 0}
+        aria-label={`Progress for slide ${value}`}
       >
         <span
           className={cn('absolute top-0 left-0 block', progressBarClass)}

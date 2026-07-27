@@ -27,6 +27,7 @@ const Footer = () => {
               target={link.href.startsWith("mailto") ? undefined : "_blank"}
               rel="noopener noreferrer"
               className="dark:text-[rgba(255,255,255,0.2)] text-black/40 hover:text-primary transition-colors p-1"
+              aria-label={link.href}
             >
               <link.icon size={14} />
             </a>
@@ -37,6 +38,7 @@ const Footer = () => {
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="dark:text-[rgba(255,255,255,0.2)] text-black/40 hover:text-primary transition-colors dark:bg-white/5 bg-black/5 dark:hover:bg-white/10 hover:bg-black/10 p-2 rounded-full"
+            aria-label="Scroll to top"
           >
             <ArrowUp size={14} />
           </button>
