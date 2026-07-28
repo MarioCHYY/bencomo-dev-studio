@@ -156,20 +156,17 @@ export default function IntegratedHero() {
                             src="/gallery/hero ahora so.webp"
                             alt="Mario Bencomo Dark"
                             loading="eager"
-                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] scale-[1.15] origin-bottom translate-y-[10%] transition-opacity duration-500 mix-blend-lighten ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
-                            style={{ objectPosition: "25% bottom" }}
+                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] scale-[1.25] origin-bottom -translate-x-[5%] translate-y-[20%] transition-opacity duration-500 mix-blend-lighten ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
+                            style={{ objectPosition: "10% bottom" }}
                         />
                         <img
                             src="/gallery/hero ahora so.webp"
                             alt="Mario Bencomo Light"
                             loading="eager"
-                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] scale-[1.15] origin-bottom translate-y-[10%] transition-opacity duration-500 mix-blend-darken ${theme === "light" ? "opacity-100" : "opacity-0"}`}
-                            style={{ objectPosition: "25% bottom" }}
+                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] scale-[1.25] origin-bottom -translate-x-[5%] translate-y-[20%] transition-opacity duration-500 mix-blend-darken ${theme === "light" ? "opacity-100" : "opacity-0"}`}
+                            style={{ objectPosition: "10% bottom" }}
                         />
                         <div className="absolute inset-0 transition-opacity duration-500" style={{ background: "radial-gradient(ellipse at 65% 38%, rgba(200,220,255,0.25) 0%, transparent 50%)", opacity: theme === "dark" ? 0.4 : 0 }} />
-                        
-                        {/* Bottom edge fade to blend with next section (reduced height to remove dark shadow effect) */}
-                        <div className="absolute bottom-0 left-0 right-0 h-[20%]" style={{ background: `linear-gradient(to top, ${bg} 0%, transparent 100%)`, transition: `background ${bgTransition}` }} />
                     </motion.div>
                 </div>
 
@@ -185,10 +182,10 @@ export default function IntegratedHero() {
                         maskImage: "linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.3) 15%, black 30%)"
                     }}
                 >
-                    {/* Wrapper to dim the dots specifically at the bottom-left so they don't highlight the shirt cut */}
+                    {/* Wrapper to aggressively dim the dots at the bottom-left so they don't highlight the shirt cut */}
                     <div className="absolute inset-0" style={{ 
-                        WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 25% 100%, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 30%, black 70%)", 
-                        maskImage: "radial-gradient(ellipse 60% 60% at 25% 100%, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 30%, black 70%)" 
+                        WebkitMaskImage: "radial-gradient(ellipse 50% 50% at 20% 100%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0.1) 40%, black 70%)", 
+                        maskImage: "radial-gradient(ellipse 50% 50% at 20% 100%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0.1) 40%, black 70%)" 
                     }}>
                         <div className="absolute inset-0" style={{ WebkitMaskImage: "linear-gradient(to top, transparent 0%, black 5%)", maskImage: "linear-gradient(to top, transparent 0%, black 5%)" }}>
                             <GradientDots duration={20} backgroundColor={bg} />
