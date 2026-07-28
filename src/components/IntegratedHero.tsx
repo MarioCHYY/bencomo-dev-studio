@@ -182,17 +182,17 @@ export default function IntegratedHero() {
                     transition={{ duration: 1.2, delay: 2.3, ease: "easeInOut" }}
                     className="absolute inset-0 z-10 pointer-events-none"
                     style={{
-                        /* Outer mask: Fades out the left edge and corners to prevent the "framed/bubble" look */
-                        WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 15%, black 35%)",
-                        maskImage: "linear-gradient(to right, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 15%, black 35%)"
+                        /* Outer mask: Keeps dots visible on the left edge, fading only slightly */
+                        WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, black 15%)",
+                        maskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, black 15%)"
                     }}
                 >
                     <div 
                         className="absolute inset-0"
                         style={{
-                            /* Inner mask: Contours his body and adds faint dots at the bottom */
-                            WebkitMaskImage: "radial-gradient(ellipse 45% 95% at 32% 65%, transparent 60%, black 100%), linear-gradient(to top, rgba(0,0,0,0.25) 0%, transparent 15%)",
-                            maskImage: "radial-gradient(ellipse 45% 95% at 32% 65%, transparent 60%, black 100%), linear-gradient(to top, rgba(0,0,0,0.25) 0%, transparent 15%)"
+                            /* Inner mask: Tighter contour around his body to avoid a huge black space */
+                            WebkitMaskImage: "radial-gradient(ellipse 30% 75% at 27% 65%, transparent 35%, black 75%), linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 15%)",
+                            maskImage: "radial-gradient(ellipse 30% 75% at 27% 65%, transparent 35%, black 75%), linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 15%)"
                         }}
                     >
                         {/* Wrapper to cleanly fade out the very bottom edge and prevent sharp cuts */}
