@@ -74,46 +74,11 @@ export default function IntegratedHero() {
         return () => window.removeEventListener("resize", updateSize);
     }, []);
 
-    // Scroll tracking
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start start", "end end"],
-    });
-
-    const smoothProgress = useSpring(scrollYProgress, { stiffness: 40, damping: 20 });
-
-    // Mouse Parallax
-    const mouseX = useMotionValue(0);
-    const smoothMouseX = useSpring(mouseX, { stiffness: 30, damping: 20 });
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            const normalizedX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseX.set(normalizedX * 100);
-        };
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [mouseX]);
-
-    // Removed Intro Timeline and scatterPositions
-    const [morphValue, setMorphValue] = useState(0);
-    const [parallaxValue, setParallaxValue] = useState(0);
-    const [rawProgress, setRawProgress] = useState(0);
-
     // Mappings
     const textDragY = 0;
     const textDragX = 0;
     const textScale = 1;
     const textOpacity = 1;
-
-    const [rotateValue, setRotateValue] = useState(0);
-
-    useEffect(() => {
-        const unsubscribeParallax = smoothMouseX.on("change", setParallaxValue);
-        const unsubscribeProgress = scrollYProgress.on("change", setRawProgress);
-        return () => { unsubscribeParallax(); unsubscribeProgress(); };
-    }, [smoothMouseX, scrollYProgress]);
-
-    // Removed flipbook opacities
 
     // Trigger Hero Text animations immediately
     const heroInView = true;
