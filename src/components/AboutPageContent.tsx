@@ -127,13 +127,16 @@ const AboutPageContent = () => {
             <motion.h1 
               initial={{ 
                 color: theme === 'dark' ? "rgba(255,255,255,0.2)" : "#0A0A0A", 
-                textShadow: "0px 0px 0px rgba(255,255,255,0)" 
+                textShadow: "0 0 20px rgba(255,255,255,0), 0 0 40px rgba(255,255,255,0)" 
               }}
               animate={{ 
                 color: theme === 'dark' ? "#ffffff" : "#0A0A0A", 
-                textShadow: theme === 'dark' ? "0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.4)" : "none" 
+                textShadow: theme === 'dark' ? "0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.4)" : "0 0 20px rgba(0,0,0,0), 0 0 40px rgba(0,0,0,0)" 
               }}
-              transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
+              transition={{ 
+                color: { duration: 1.0, delay: 0.4 },
+                textShadow: { duration: 1.5, delay: 1.2, ease: "easeOut" } 
+              }}
               className="text-4xl sm:text-5xl md:text-7xl font-heading font-extrabold -tracking-[0.03em] mb-8 leading-tight"
             >
               {t(a.heroTitle)}

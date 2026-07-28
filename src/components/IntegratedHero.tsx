@@ -114,14 +114,14 @@ export default function IntegratedHero() {
     }, [smoothMouseX, scrollYProgress]);
 
     // Removed flipbook opacities
-    
+
     // Trigger Hero Text animations immediately
     const heroInView = true;
 
     // --- HeroSection Styles & Data ---
     const bg = theme === "dark" ? "#050505" : "#F8F8F8";
     const bgTransition = "500ms ease";
-    
+
     const sizeEs = "text-[2.2rem] sm:text-[2.8rem] md:text-[4.2rem] lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[6.5rem]";
     const sizeEn = "text-[1.8rem] sm:text-[2.4rem] md:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.8rem] 2xl:text-[5.8rem]";
     const textSize = lang === "en" ? sizeEn : sizeEs;
@@ -134,19 +134,19 @@ export default function IntegratedHero() {
     const line2Text = t(translations.hero.title.line2) as string;
     const line3Text = t(translations.hero.title.line3) as string;
     const wordsLine1 = line1Text.split(" ");
-    
+
     const chaoticDelays = [0.1, 0.25, 0.15, 0.3, 0.1, 0.35];
     const chaoticDurations = [0.80, 1.15, 1.05, 1.40, 0.75, 0.75];
 
     return (
         <section ref={sectionRef} className="relative min-h-screen w-full transition-colors duration-500 overflow-hidden" style={{ backgroundColor: bg }}>
             <div className="absolute inset-0 w-full h-full flex items-center justify-center perspective-1000">
-                
+
                 {/* Intro Text Removed */}
 
                 {/* 1. Photo Background Layer (ON TOP OF DOTS) */}
                 <div className="absolute inset-0 w-full h-full max-w-7xl mx-auto z-10 pointer-events-none">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 1, filter: theme === "dark" ? "brightness(0.3)" : "brightness(0.6)" }}
                         animate={{ opacity: 1, filter: "brightness(1)" }}
                         transition={{ duration: 1.2, delay: 2.3, ease: "easeInOut" }}
@@ -176,7 +176,7 @@ export default function IntegratedHero() {
                 </div>
 
                 {/* 2. Gradient Dots Background Layer (UNDERNEATH PHOTO) */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 0.8 }}
                     transition={{ duration: 1.2, delay: 2.3, ease: "easeInOut" }}
@@ -188,9 +188,9 @@ export default function IntegratedHero() {
                     }}
                 >
                     {/* Wrapper to aggressively dim the dots at the bottom-left so they don't highlight the shirt cut */}
-                    <div className="absolute inset-0" style={{ 
-                        WebkitMaskImage: "radial-gradient(ellipse 50% 50% at 20% 100%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0.1) 40%, black 70%)", 
-                        maskImage: "radial-gradient(ellipse 50% 50% at 20% 100%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0.1) 40%, black 70%)" 
+                    <div className="absolute inset-0" style={{
+                        WebkitMaskImage: "radial-gradient(ellipse 50% 50% at 20% 100%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0.1) 40%, black 70%)",
+                        maskImage: "radial-gradient(ellipse 50% 50% at 20% 100%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0.1) 40%, black 70%)"
                     }}>
                         <div className="absolute inset-0" style={{ WebkitMaskImage: "linear-gradient(to top, transparent 0%, black 5%)", maskImage: "linear-gradient(to top, transparent 0%, black 5%)" }}>
                             <GradientDots duration={20} backgroundColor={bg} />
