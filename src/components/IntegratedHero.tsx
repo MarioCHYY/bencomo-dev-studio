@@ -150,26 +150,24 @@ export default function IntegratedHero() {
                         initial={{ opacity: 1, filter: theme === "dark" ? "brightness(0.3)" : "brightness(0.6)" }}
                         animate={{ opacity: 1, filter: "brightness(1)" }}
                         transition={{ duration: 1.2, delay: 2.3, ease: "easeInOut" }}
-                        className="absolute bottom-0 left-0 w-full h-[65%] md:inset-y-0 md:w-[60%] md:h-full lg:w-[55%] pointer-events-none overflow-hidden"
+                        className="absolute bottom-0 left-0 w-full h-[60%] md:inset-y-0 md:w-[60%] md:h-full lg:w-[55%] pointer-events-none overflow-hidden lg:overflow-visible"
                     >
-                        {/* Mobile: fade top of photo so text above is always readable */}
+                        {/* Mobile/tablet: fade top so text stays readable */}
                         <div
-                            className="absolute top-0 left-0 w-full h-[50%] z-10 pointer-events-none lg:hidden"
-                            style={{ background: `linear-gradient(to bottom, ${bg} 0%, transparent 100%)` }}
+                            className="absolute top-0 left-0 w-full h-[45%] z-10 pointer-events-none lg:hidden"
+                            style={{ background: `linear-gradient(to bottom, ${bg} 10%, transparent 100%)` }}
                         />
                         <img
                             src="/gallery/hero ahora so.webp"
                             alt="Mario Bencomo Dark"
                             loading="eager"
-                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] scale-[1.25] origin-bottom -translate-x-[5%] translate-y-[20%] transition-opacity duration-500 mix-blend-lighten ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
-                            style={{ objectPosition: "10% bottom" }}
+                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] object-[center_15%] lg:scale-[1.25] lg:origin-bottom lg:-translate-x-[5%] lg:translate-y-[20%] lg:object-[10%_bottom] 2xl:scale-[1.4] 2xl:-translate-x-[20%] 2xl:translate-y-[25%] transition-opacity duration-500 mix-blend-lighten ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
                         />
                         <img
                             src="/gallery/hero ahora so.webp"
                             alt="Mario Bencomo Light"
                             loading="eager"
-                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] scale-[1.25] origin-bottom -translate-x-[5%] translate-y-[20%] transition-opacity duration-500 mix-blend-darken ${theme === "light" ? "opacity-100" : "opacity-0"}`}
-                            style={{ objectPosition: "10% bottom" }}
+                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] object-[center_15%] lg:scale-[1.25] lg:origin-bottom lg:-translate-x-[5%] lg:translate-y-[20%] lg:object-[10%_bottom] 2xl:scale-[1.4] 2xl:-translate-x-[20%] 2xl:translate-y-[25%] transition-opacity duration-500 mix-blend-darken ${theme === "light" ? "opacity-100" : "opacity-0"}`}
                         />
                         <div className="absolute inset-0 transition-opacity duration-500" style={{ background: "radial-gradient(ellipse at 65% 38%, rgba(200,220,255,0.25) 0%, transparent 50%)", opacity: theme === "dark" ? 0.4 : 0 }} />
                     </motion.div>
