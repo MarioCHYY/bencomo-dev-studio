@@ -150,8 +150,13 @@ export default function IntegratedHero() {
                         initial={{ opacity: 1, filter: theme === "dark" ? "brightness(0.3)" : "brightness(0.6)" }}
                         animate={{ opacity: 1, filter: "brightness(1)" }}
                         transition={{ duration: 1.2, delay: 2.3, ease: "easeInOut" }}
-                        className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[55%] pointer-events-none overflow-hidden"
+                        className="absolute bottom-0 left-0 w-full h-[65%] md:inset-y-0 md:w-[60%] md:h-full lg:w-[55%] pointer-events-none overflow-hidden"
                     >
+                        {/* Mobile: fade top of photo so text above is always readable */}
+                        <div
+                            className="absolute top-0 left-0 w-full h-[50%] z-10 pointer-events-none lg:hidden"
+                            style={{ background: `linear-gradient(to bottom, ${bg} 0%, transparent 100%)` }}
+                        />
                         <img
                             src="/gallery/hero ahora so.webp"
                             alt="Mario Bencomo Dark"
@@ -194,10 +199,10 @@ export default function IntegratedHero() {
                 </motion.div>
 
                 {/* 3. Hero Content Layer (TEXT) */}
-                <motion.div ref={heroRef} style={{ y: textDragY, x: textDragX, scale: textScale, opacity: textOpacity, transformOrigin: "center center" }} className="absolute inset-0 w-full h-full flex flex-col justify-center max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-12 z-20 pointer-events-auto">
+                <motion.div ref={heroRef} style={{ y: textDragY, x: textDragX, scale: textScale, opacity: textOpacity, transformOrigin: "center center" }} className="absolute inset-0 w-full h-full flex flex-col justify-start lg:justify-center max-w-7xl mx-auto px-6 md:px-12 pt-28 sm:pt-32 lg:pt-16 pb-12 z-20 pointer-events-auto">
 
                     {/* Text Overlay Layer */}
-                    <div className="ml-auto w-full md:max-w-[60%] lg:max-w-[55%] xl:max-w-[52%] relative">
+                    <div className="w-full lg:ml-auto lg:max-w-[55%] xl:max-w-[52%] relative">
                         <motion.div
                             initial={{ opacity: 0, y: 14 }}
                             animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
