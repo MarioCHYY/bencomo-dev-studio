@@ -151,6 +151,11 @@ export default function IntegratedHero() {
                         animate={{ opacity: 1, filter: "brightness(1)" }}
                         transition={{ duration: 1.2, delay: 2.3, ease: "easeInOut" }}
                         className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[55%] pointer-events-none overflow-hidden"
+                        style={{
+                            /* Fades out the very bottom edge to avoid a sharp horizontal cut when scrolling down */
+                            WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
+                            maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)"
+                        }}
                     >
                         <img
                             src="/gallery/hero ahora so.webp"
