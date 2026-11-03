@@ -7,6 +7,7 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useTheme } from "@/components/ThemeContext";
 import { GradientDots } from "@/components/ui/gradient-dots";
+import HeroFace3D from "@/components/hero3d/HeroFace3D";
 
 // --- Types & Constants ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "arc";// --- Text Animation Helpers (from HeroSection) ---
@@ -65,6 +66,9 @@ export default function IntegratedHero() {
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const sectionRef = useRef<HTMLElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
+    const photoRef = useRef<HTMLDivElement>(null);
+    // The 3D face replaces the photo; the photo only comes back if WebGL fails
+    const [photoFallback, setPhotoFallback] = useState(false);
 
     // Initial Layout sizing
     useEffect(() => {
@@ -112,31 +116,45 @@ export default function IntegratedHero() {
                 {/* 1. Photo Background Layer (ON TOP OF DOTS) */}
                 <div className="absolute inset-0 w-full h-full max-w-7xl mx-auto z-10 pointer-events-none">
                     <motion.div
+                        ref={photoRef}
                         initial={{ opacity: 1, filter: theme === "dark" ? "brightness(0.3)" : "brightness(0.6)" }}
                         animate={{ opacity: 1, filter: "brightness(1)" }}
                         transition={{ duration: 1.2, delay: 2.3, ease: "easeInOut" }}
                         className="absolute bottom-0 left-0 w-full h-[60%] md:inset-y-0 md:w-[60%] md:h-full lg:w-[55%] pointer-events-none overflow-hidden lg:overflow-visible"
                     >
-                        {/* Mobile/tablet: fade top so text stays readable */}
-                        <div
-                            className="absolute top-0 left-0 w-full h-[45%] z-10 pointer-events-none lg:hidden"
-                            style={{ background: `linear-gradient(to bottom, ${bg} 10%, transparent 100%)` }}
-                        />
-                        <img
-                            src="/gallery/hero ahora so.webp"
-                            alt="Mario Bencomo Dark"
-                            loading="eager"
-                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] object-[center_15%] lg:scale-[1.25] lg:origin-bottom lg:-translate-x-[5%] lg:translate-y-[20%] lg:object-[10%_bottom] 2xl:scale-[1.4] 2xl:-translate-x-[20%] 2xl:translate-y-[25%] transition-opacity duration-500 mix-blend-lighten ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
-                        />
-                        <img
-                            src="/gallery/hero ahora so.webp"
-                            alt="Mario Bencomo Light"
-                            loading="eager"
-                            className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] object-[center_15%] lg:scale-[1.25] lg:origin-bottom lg:-translate-x-[5%] lg:translate-y-[20%] lg:object-[10%_bottom] 2xl:scale-[1.4] 2xl:-translate-x-[20%] 2xl:translate-y-[25%] transition-opacity duration-500 mix-blend-darken ${theme === "light" ? "opacity-100" : "opacity-0"}`}
-                        />
-                        <div className="absolute inset-0 transition-opacity duration-500" style={{ background: "radial-gradient(ellipse at 65% 38%, rgba(200,220,255,0.25) 0%, transparent 50%)", opacity: theme === "dark" ? 0.4 : 0 }} />
+                        {photoFallback && (
+                        <>
+                            {/* Mobile/tablet: fade top so text stays readable */}
+                            <div
+                                className="absolute top-0 left-0 w-full h-[45%] z-10 pointer-events-none lg:hidden"
+                                style={{ background: `linear-gradient(to bottom, ${bg} 10%, transparent 100%)` }}
+                            />
+                            <img
+                                src="/gallery/hero ahora so.webp"
+                                alt="Mario Bencomo Dark"
+                                loading="eager"
+                                className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] object-[center_15%] lg:scale-[1.25] lg:origin-bottom lg:-translate-x-[5%] lg:translate-y-[20%] lg:object-[10%_bottom] 2xl:scale-[1.4] 2xl:-translate-x-[20%] 2xl:translate-y-[25%] transition-opacity duration-500 mix-blend-lighten ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
+                            />
+                            <img
+                                src="/gallery/hero ahora so.webp"
+                                alt="Mario Bencomo Light"
+                                loading="eager"
+                                className={`absolute inset-0 w-full h-full object-cover grayscale-[15%] object-[center_15%] lg:scale-[1.25] lg:origin-bottom lg:-translate-x-[5%] lg:translate-y-[20%] lg:object-[10%_bottom] 2xl:scale-[1.4] 2xl:-translate-x-[20%] 2xl:translate-y-[25%] transition-opacity duration-500 mix-blend-darken ${theme === "light" ? "opacity-100" : "opacity-0"}`}
+                            />
+                            <div className="absolute inset-0 transition-opacity duration-500" style={{ background: "radial-gradient(ellipse at 65% 38%, rgba(200,220,255,0.25) 0%, transparent 50%)", opacity: theme === "dark" ? 0.4 : 0 }} />
+                        </>
+                        )}
                     </motion.div>
                 </div>
+
+                {/* 1b. 3D face: particles → scan → photo mesh. Canvas covers the whole hero so particles can fly in from anywhere */}
+                {!photoFallback && (
+                    <>
+                        <HeroFace3D sectionRef={sectionRef} anchorRef={photoRef} onFail={() => setPhotoFallback(true)} />
+                        {/* Mobile/tablet: keep the copy readable over the face */}
+                        <div className="absolute inset-x-0 top-0 h-[46%] z-[15] pointer-events-none lg:hidden" style={{ background: `linear-gradient(to bottom, ${bg} 35%, transparent 100%)` }} />
+                    </>
+                )}
 
                 {/* 2. Gradient Dots Background Layer (UNDERNEATH PHOTO) */}
                 <motion.div
