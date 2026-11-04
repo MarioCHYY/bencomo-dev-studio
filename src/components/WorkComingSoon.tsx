@@ -28,11 +28,11 @@ const ReelHero = ({ es }: { es: boolean }) => {
       v.pause();
       return;
     }
-    // the reel opens on a quiet starfield; jump to just before the mark lands so it shows right away
+    // the reel opens on a dark frame; jump to just before the cut opens so something shows right away
     // (retried until the file is seekable that far; only once, later loops play in full)
     const start = () => {
-      if (v.currentTime < 1 && v.seekable.length && v.seekable.end(0) > 4.6) {
-        v.currentTime = 4.4;
+      if (v.currentTime < 1 && v.seekable.length && v.seekable.end(0) > 2.6) {
+        v.currentTime = 2.2;
         ["loadedmetadata", "progress", "timeupdate"].forEach((ev) => v.removeEventListener(ev, start));
       }
     };
@@ -58,8 +58,8 @@ const ReelHero = ({ es }: { es: boolean }) => {
       <video
         ref={ref}
         className="absolute inset-0 h-full w-full object-cover object-[66%_50%]"
-        src="/video/bencomo-reel.mp4#t=4.4"
-        poster="/video/bencomo-reel.jpg"
+        src="/video/bencomo-reel.mp4?v=2#t=2.2"
+        poster="/video/bencomo-reel.jpg?v=2"
         muted
         loop
         playsInline
