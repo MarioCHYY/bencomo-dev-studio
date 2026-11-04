@@ -6,7 +6,7 @@ import type { ServicesSceneHandle } from "@/components/services3d/ServicesScene"
  * Mounts the services 3D scene into `viewRef` and keeps it on the `active` model.
  * Rebuilt when the theme changes so the colours fit the page. Returns true when WebGL is unavailable.
  */
-export function useServicesScene(viewRef: RefObject<HTMLElement>, active: number) {
+export function useServicesScene(viewRef: RefObject<HTMLElement>, active: number, variant: "story" | "classic" = "story") {
   const { theme } = useTheme();
   const sceneRef = useRef<ServicesSceneHandle | null>(null);
   const activeRef = useRef(active);
@@ -33,7 +33,9 @@ export function useServicesScene(viewRef: RefObject<HTMLElement>, active: number
       return;
     }
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    import("@/components/services3d/ServicesScene")
+    // story: full looping films (/servicios); classic: gentle ambient loops (home)
+    const load = variant === "classic" ? import("@/components/services3d/ServicesSceneClassic") : import("@/components/services3d/ServicesScene");
+    load
       .then(({ createServicesScene }) => createServicesScene(el, { reducedMotion, light: theme === "light" }))
       .then((h) => {
         if (cancelled) return h.dispose();
@@ -46,7 +48,7 @@ export function useServicesScene(viewRef: RefObject<HTMLElement>, active: number
       sceneRef.current?.dispose();
       sceneRef.current = null;
     };
-  }, [theme, viewRef]);
+  }, [theme, viewRef, variant]);
 
   return noGL;
 }

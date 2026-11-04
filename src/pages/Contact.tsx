@@ -1,27 +1,20 @@
-import { Suspense, lazy } from 'react';
-import Navbar from '@/components/Navbar';
-import SectionSeparator from '@/components/SectionSeparator';
+import { Suspense, lazy } from "react";
+import Navbar from "@/components/Navbar";
+import { Starfield } from "@/components/ui/starfield";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
-const CTASection = lazy(() => import('@/components/CTASection'));
-const ContactSection = lazy(() => import('@/components/ContactSection'));
-const Footer = lazy(() => import('@/components/Footer'));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
 
-const SectionSkeleton = () => (
-  <div className="min-h-screen w-full flex items-center justify-center">
-    <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-  </div>
-);
-
+// No closing CTA band here: this page already is the conversation.
 const Contact = () => {
+  useSmoothScroll();
   return (
     <main className="min-h-screen">
+      <Starfield />
       <Navbar />
-      <div className="w-full [&>section]:min-h-screen [&>section]:flex [&>section]:flex-col [&>section]:justify-center [&>section]:pt-24">
-        <Suspense fallback={<SectionSkeleton />}>
-          <ContactSection />
-        </Suspense>
-      </div>
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <ContactSection />
         <Footer />
       </Suspense>
     </main>

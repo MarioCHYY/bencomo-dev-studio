@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
@@ -23,7 +23,7 @@ const ServicesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const viewRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-  const noGL = useServicesScene(viewRef, active);
+  const noGL = useServicesScene(viewRef, active, "classic");
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const bar = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -44,7 +44,6 @@ const ServicesSection = () => {
   };
 
   const item = items[active];
-  const deliverables = t(item.deliverables as unknown as Record<string, string[]>) || [];
   const num = (i: number) => String(i + 1).padStart(2, "0");
 
   return (
@@ -85,33 +84,25 @@ const ServicesSection = () => {
             </ul>
 
             {/* active detail */}
-            <div className="relative min-h-[210px]">
+            <div className="relative min-h-[96px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+                  initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
+                  exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col gap-4"
                 >
                   <h3 className="lg:hidden font-heading font-semibold text-2xl text-white -tracking-[0.03em]">{t(item.title)}</h3>
-                  <p className="text-white/90 text-lg md:text-xl font-light leading-snug max-w-xl">{t(item.subtitle)}</p>
-                  <p className="text-white/55 text-sm md:text-[15px] font-light leading-relaxed max-w-xl hidden sm:block">{t(item.description)}</p>
-                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 max-w-xl">
-                    {deliverables.slice(0, 4).map((d) => (
-                      <li key={d} className="flex items-start gap-2 text-[13px] text-white/70">
-                        <Check size={14} className="mt-0.5 shrink-0 text-white/70" />
-                        <span>{d}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* the home only teases; the full detail lives on /servicios */}
+                  <p className="text-white/80 text-lg md:text-xl font-light leading-snug max-w-md">{t(item.subtitle)}</p>
                   <Link
                     to={`/servicios#${item.id}`}
-                    className="group/l inline-flex items-center gap-2 w-fit text-sm font-bold uppercase tracking-wider text-primary"
+                    className="group/l inline-flex items-center gap-2 w-fit text-sm font-semibold text-white border-b border-white/25 hover:border-white pb-1 transition-colors"
                   >
-                    {t({ en: "See the details", es: "Ver detalles" })}
-                    <ArrowUpRight size={16} className="transition-transform group-hover/l:translate-x-1 group-hover/l:-translate-y-1" />
+                    {t({ en: "See the full service", es: "Ver el servicio completo" })}
+                    <ArrowUpRight size={15} className="transition-transform group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" />
                   </Link>
                 </motion.div>
               </AnimatePresence>
