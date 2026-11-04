@@ -47,14 +47,14 @@ const CTASection = () => {
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-8">
-        <SectionHeading index="04" label={es ? "Contacto" : "Contact"} />
+        <SectionHeading index="06" label={es ? "Contacto" : "Contact"} />
 
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 font-heading font-extrabold text-white text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.98] -tracking-[0.035em] max-w-5xl"
+          className="mt-10 font-heading font-semibold text-white text-5xl md:text-7xl lg:text-[5.5rem] leading-[1] -tracking-[0.05em] max-w-5xl"
           style={{ textWrap: "balance" } as Record<string, string>}
         >
           {t(c.title)}
@@ -103,7 +103,7 @@ const CTASection = () => {
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between gap-4 py-4 border-b border-white/10"
                 >
-                  <span className="font-heading font-bold text-white text-xl md:text-2xl transition-transform duration-300 group-hover:translate-x-2">{ch.name}</span>
+                  <span className="font-heading font-medium text-white text-xl md:text-2xl -tracking-[0.02em] transition-transform duration-300 group-hover:translate-x-2">{ch.name}</span>
                   <span className="flex items-center gap-3 text-white/45 group-hover:text-white transition-colors">
                     <span className="text-sm hidden sm:inline">{ch.handle}</span>
                     <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

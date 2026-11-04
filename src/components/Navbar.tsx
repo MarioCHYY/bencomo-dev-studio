@@ -1,15 +1,29 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import { useTheme } from "@/components/ThemeContext";
-import { FlipLink } from "@/components/ui/flip-links";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+/** Temporary wordmark until the new logo is ready. */
+const Wordmark = () => (
+  <span className="flex items-center gap-2.5">
+    <span aria-hidden="true" className="grid grid-cols-3 gap-[2px]">
+      {Array.from({ length: 9 }).map((_, i) => (
+        <span key={i} className={`w-[3px] h-[3px] rounded-full ${[0, 4, 8, 5, 7].includes(i) ? "bg-white" : "bg-white/25"}`} />
+      ))}
+    </span>
+    <span className="leading-[0.95] text-[15px] font-semibold tracking-[-0.01em] text-white">
+      mario
+      <br />
+      bencomo
+    </span>
+  </span>
+);
 
 const Navbar = () => {
   const { lang, setLang, t } = useLang();
-  const { theme, toggleTheme } = useTheme();
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,111 +36,99 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const LangPill = ({ className = "" }: { className?: string }) => (
+    <div className={`flex items-center rounded-full border border-white/15 p-0.5 text-[11px] font-semibold ${className}`}>
+      {(["es", "en"] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          className={`px-2.5 py-1 rounded-full transition-colors ${lang === l ? "bg-white text-black" : "text-white/50 hover:text-white"}`}
+          aria-pressed={lang === l}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-nav" : "bg-gradient-to-b from-background/90 via-background/40 to-transparent pb-4"
+      initial={{ y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 border-b ${
+        scrolled ? "bg-[#0a0a0a]/75 backdrop-blur-xl border-white/[0.06]" : "bg-transparent border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-12 py-4">
-        <Link to="/" className="flex items-center font-heading font-extrabold text-xl md:text-2xl tracking-tight dark:text-white text-[#0A0A0A] transition-opacity duration-300 hover:opacity-80">
-          MARIO<span className="text-primary ml-1">BENCOMO</span>
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 h-[72px] grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center">
+        <Link to="/" aria-label="Mario Bencomo, inicio" className="w-fit">
+          <Wordmark />
         </Link>
 
-        {/* Desktop */}
+        {/* Desktop links, centred */}
         <div className="hidden md:flex items-center gap-1">
-          {links.map((l) => (
-            <FlipLink
-              key={l.href}
-              href={l.href}
-              className="text-sm font-normal dark:text-white/[0.35] text-[#505060] dark:hover:text-white/80 hover:text-[#0A0A0A] px-3 py-2"
-            >
-              {l.label as string}
-            </FlipLink>
-          ))}
+          {links.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <Link
+                key={l.href}
+                to={l.href}
+                className={`relative px-3.5 py-2 text-[14px] transition-colors ${active ? "text-white" : "text-white/55 hover:text-white"}`}
+              >
+                {l.label as string}
+                {active && <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-px bg-white/70" />}
+              </Link>
+            );
+          })}
+        </div>
 
-          <div className="w-px h-4 dark:bg-white/10 bg-black/10 mx-2" />
-
-          <button
-            onClick={() => setLang(lang === "en" ? "es" : "en")}
-            className="text-[10px] font-bold px-2 py-1 dark:text-white/[0.35] text-[#505060] hover:text-[#0A0A0A] dark:hover:text-white/80 transition-all tracking-widest"
-          >
-            {lang === "en" ? "ES" : "EN"}
-          </button>
-          
-          {/* Theme toggle temporarily disabled
-          <button
-            onClick={toggleTheme}
-            className="p-2 ml-1 rounded-full dark:text-white/[0.35] text-[#505060] hover:text-[#0A0A0A] dark:hover:text-white/80 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-          */}
-
+        <div className="hidden md:flex items-center justify-end gap-3">
+          <LangPill />
           <Link
             to="/contacto"
-            className="text-sm font-medium px-8 py-3 bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground rounded-full transition-all duration-300 ml-4"
+            className="text-[13px] font-semibold px-4 py-2 rounded-full bg-white text-black hover:bg-white/85 transition-colors"
           >
             {t(translations.nav.cta)}
           </Link>
         </div>
 
         {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)} className="md:hidden dark:text-white text-[#0A0A0A] p-2 -mr-1" aria-label="Toggle menu">
+        <button onClick={() => setOpen(!open)} className="md:hidden justify-self-end text-white p-2 -mr-2" aria-label="Abrir menú" aria-expanded={open}>
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-[#F8F8F8] dark:bg-[#050505]/95 backdrop-blur-xl border-b border-black/5 dark:border-white/5"
+            className="md:hidden overflow-hidden bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5"
           >
-            <div className="flex flex-col gap-1 px-6 py-4">
+            <div className="flex flex-col gap-1 px-6 py-5">
               {links.map((l) => (
-                <FlipLink
+                <Link
                   key={l.href}
-                  href={l.href}
+                  to={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-2xl font-bold dark:text-white/60 text-[#505060] dark:hover:text-white hover:text-[#0A0A0A] py-1"
+                  className={`text-2xl font-medium py-1.5 ${pathname === l.href ? "text-white" : "text-white/55"}`}
                 >
                   {l.label as string}
-                </FlipLink>
+                </Link>
               ))}
-              <div className="flex items-center justify-between pt-4 border-t dark:border-white/10 border-black/10 mt-2">
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => setLang(lang === "en" ? "es" : "en")}
-                    className="text-xs font-bold dark:text-white/[0.35] text-[#505060] hover:text-[#0A0A0A] dark:hover:text-white/80 transition-all"
-                  >
-                    {lang === "en" ? "ES" : "EN"}
-                  </button>
-                  {/* Theme toggle temporarily disabled
-                  <button
-                    onClick={toggleTheme}
-                    className="text-xs font-bold dark:text-white/[0.35] text-[#505060] hover:text-[#0A0A0A] dark:hover:text-white/80 transition-all"
-                  >
-                    {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
-                  </button>
-                  */}
-                </div>
+              <div className="flex items-center justify-between pt-5 mt-3 border-t border-white/10">
+                <LangPill />
                 <Link
                   to="/contacto"
                   onClick={() => setOpen(false)}
-                  className="text-sm font-medium px-7 py-2.5 bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground rounded-full transition-all duration-300"
+                  className="text-sm font-semibold px-5 py-2.5 rounded-full bg-white text-black"
                 >
                   {t(translations.nav.cta)}
                 </Link>

@@ -89,10 +89,11 @@ const ServicesSection = () => {
           {/* ---------- copy */}
           <div className="min-w-0 order-2 lg:order-1 flex flex-col gap-6">
             <SectionHeading
-              index="03"
+              index="04"
               size="md"
               label={t(s.title)}
-              title={t({ en: "What I can build for you", es: "Lo que puedo construir para ti" })}
+              title={t({ en: "What I can build", es: "Lo que puedo construir" })}
+              muted={t({ en: "for you.", es: "para ti." })}
               aside={
                 <span className="font-mono text-xs tracking-[0.2em] text-white/40 tabular-nums pb-1">
                   <span className="text-white">{num(active)}</span> / {num(n - 1)}
@@ -110,7 +111,7 @@ const ServicesSection = () => {
                     className={`group w-full flex items-center gap-4 py-2.5 border-b border-white/[0.07] text-left transition-colors duration-300 ${i === active ? "text-white" : "text-white/30 hover:text-white/70"}`}
                   >
                     <span className="font-mono text-[10px] tracking-[0.2em] w-6 tabular-nums">{num(i)}</span>
-                    <span className="font-heading font-bold text-lg xl:text-xl flex-1">{t(it.title)}</span>
+                    <span className="font-heading font-medium text-lg xl:text-xl -tracking-[0.02em] flex-1">{t(it.title)}</span>
                     <span className={`h-px transition-all duration-500 ${i === active ? "w-10 bg-[linear-gradient(90deg,#8fb0ff,#ff9ab0)]" : "w-0 bg-white/30"}`} />
                   </button>
                 </li>
@@ -128,7 +129,7 @@ const ServicesSection = () => {
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col gap-4"
                 >
-                  <h3 className="lg:hidden font-heading font-extrabold text-2xl text-white">{t(item.title)}</h3>
+                  <h3 className="lg:hidden font-heading font-semibold text-2xl text-white -tracking-[0.03em]">{t(item.title)}</h3>
                   <p className="text-white/90 text-lg md:text-xl font-light leading-snug max-w-xl">{t(item.subtitle)}</p>
                   <p className="text-[#A0A5B0] text-sm md:text-[15px] font-light leading-relaxed max-w-xl hidden sm:block">{t(item.description)}</p>
                   <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 max-w-xl">
@@ -163,7 +164,7 @@ const ServicesSection = () => {
             <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.16),transparent_65%)] blur-2xl" />
             <span
               aria-hidden="true"
-              className="absolute right-0 top-0 font-heading font-extrabold text-[9rem] lg:text-[14rem] leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.07)] select-none tabular-nums"
+              className="absolute right-0 top-0 font-heading font-bold text-[9rem] lg:text-[14rem] -tracking-[0.06em] leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.07)] select-none tabular-nums"
             >
               {num(active)}
             </span>

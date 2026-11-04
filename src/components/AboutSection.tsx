@@ -67,7 +67,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <figcaption className="absolute left-5 right-5 bottom-5 flex items-end justify-between gap-4">
                 <div>
-                  <p className="font-heading font-bold text-white text-lg leading-tight">Mario Bencomo</p>
+                  <p className="font-heading font-semibold text-white text-lg leading-tight">Mario Bencomo</p>
                   <p className="text-white/60 text-xs">Full Stack Developer</p>
                 </div>
                 <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/60">Culiacán · MX</span>
@@ -81,7 +81,7 @@ const AboutSection = () => {
               as="h2"
               text={statement}
               dim={0.14}
-              className="font-heading font-bold text-white text-3xl md:text-[2.75rem] leading-[1.12] -tracking-[0.02em]"
+              className="font-heading font-semibold text-white text-3xl md:text-[2.75rem] leading-[1.1] -tracking-[0.04em]"
             />
 
             <p className="text-[#A0A5B0] font-light text-base md:text-lg leading-relaxed max-w-2xl">{t(a.p1)}</p>
@@ -91,7 +91,7 @@ const AboutSection = () => {
                 <div key={s.label} className={`pt-6 pr-4 ${i ? "pl-4 md:pl-6 border-l border-white/10" : ""}`}>
                   <dt className="sr-only">{s.label}</dt>
                   <dd className="flex flex-col gap-2">
-                    <CountUp value={s.value} className="font-heading font-extrabold text-white text-3xl md:text-5xl tabular-nums" />
+                    <CountUp value={s.value} className="font-heading font-semibold text-white text-3xl md:text-5xl -tracking-[0.04em] tabular-nums" />
                     <span className="text-[10px] md:text-[11px] text-white/50 uppercase tracking-[0.18em] leading-snug">{s.label}</span>
                   </dd>
                 </div>

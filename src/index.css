@@ -166,3 +166,7 @@ html.lenis, html.lenis body { height: auto; }
   filter: blur(56px);
 }
 @keyframes rgb-spin { to { --rgb-angle: 360deg; } }
+
+/* ---- Light bands (FAQ): headings stay dark even under the global .dark rule ---- */
+.dark .on-light h1, .dark .on-light h2, .dark .on-light h3, .dark .on-light h4 { color: #0a0a0a; }
+body { background-color: #0a0a0a; }

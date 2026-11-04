@@ -74,7 +74,7 @@ const ProjectCard = ({ item, index, data }: { item: (typeof projectsList)[number
           )}
         </div>
         <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 flex flex-col gap-3" style={{ transform: "translateZ(40px)" }}>
-          <h3 className="font-heading font-extrabold text-3xl md:text-5xl text-white leading-[1.02] -tracking-[0.02em] max-w-2xl" style={{ textWrap: "balance" } as Record<string, string>}>
+          <h3 className="font-heading font-semibold text-3xl md:text-5xl text-white leading-[1.02] -tracking-[0.04em] max-w-2xl" style={{ textWrap: "balance" } as Record<string, string>}>
             {t(data.name)}
           </h3>
           <p className="text-white/65 font-light text-sm md:text-base max-w-xl">{t(data.oneliner)}</p>
@@ -141,9 +141,10 @@ const ProjectsSection = () => {
   const header = (
     <motion.div style={pinned ? { y: headY } : undefined}>
       <SectionHeading
-        index="02"
+        index="03"
         label={t(p.label)}
         title={t(p.title)}
+        muted={t({ en: "Recent projects.", es: "Proyectos recientes." })}
         aside={
           <span className="hidden md:inline-flex items-center gap-3 text-[10px] font-mono tracking-[0.22em] uppercase text-white/40 pb-2">
             {t({ en: "Scroll to explore", es: "Desliza para explorar" })}
@@ -180,7 +181,7 @@ const ProjectsSection = () => {
             </div>
           ))}
           <div className="shrink-0 w-[min(30vw,380px)] h-[58svh] max-h-[620px] flex flex-col justify-center gap-5">
-            <p className="font-heading font-extrabold text-3xl text-white leading-tight">{t({ en: "Want to see the full story?", es: "¿Quieres ver la historia completa?" })}</p>
+            <p className="font-heading font-semibold text-3xl text-white leading-tight -tracking-[0.03em]">{t({ en: "Want to see the full story?", es: "¿Quieres ver la historia completa?" })}</p>
             <a href="/portafolio" className="w-fit inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-colors">
               {t({ en: "All projects", es: "Todos los proyectos" })}
               <ArrowUpRight size={16} />
