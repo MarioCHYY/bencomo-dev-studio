@@ -45,6 +45,7 @@ const Footer = () => {
     { label: t(n.projects), to: "/portafolio" },
     { label: t(n.services), to: "/servicios" },
     { label: t(n.contact), to: "/contacto" },
+    { label: t({ en: "Privacy", es: "Privacidad" }), to: "/privacidad" },
   ];
 
   return (
