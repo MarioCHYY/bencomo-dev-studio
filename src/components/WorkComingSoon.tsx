@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
@@ -13,6 +14,99 @@ const blobs = [
   "radial-gradient(circle at 65% 30%, rgba(183,168,255,0.5), transparent 55%), radial-gradient(circle at 30% 75%, rgba(255,154,176,0.42), transparent 55%)",
   "radial-gradient(circle at 40% 30%, rgba(255,154,176,0.48), transparent 55%), radial-gradient(circle at 70% 75%, rgba(255,196,138,0.42), transparent 55%)",
 ];
+
+
+/** The brand reel playing inside a dark "screen" that rests on the page: the hero of /portafolio. */
+const ReelHero = ({ es }: { es: boolean }) => {
+  const reduce = useReducedMotion();
+  const ref = useRef<HTMLVideoElement>(null);
+  // only play while on screen (and never for reduced motion)
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    if (reduce) {
+      v.pause();
+      return;
+    }
+    // the reel opens on a quiet starfield; jump to just before the mark lands so it shows right away
+    // (retried until the file is seekable that far; only once, later loops play in full)
+    const start = () => {
+      if (v.currentTime < 1 && v.seekable.length && v.seekable.end(0) > 4.6) {
+        v.currentTime = 4.4;
+        ["loadedmetadata", "progress", "timeupdate"].forEach((ev) => v.removeEventListener(ev, start));
+      }
+    };
+    ["loadedmetadata", "progress", "timeupdate"].forEach((ev) => v.addEventListener(ev, start));
+    start();
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => undefined) : v.pause()), { threshold: 0.15 });
+    io.observe(v);
+    return () => {
+      io.disconnect();
+      ["loadedmetadata", "progress", "timeupdate"].forEach((ev) => v.removeEventListener(ev, start));
+    };
+  }, [reduce]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.985 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1.1, ease }}
+      className="theme-dark relative overflow-hidden rounded-[24px] md:rounded-[36px] border border-white/10 bg-[#0B0B0D] flex flex-col sm:block sm:aspect-[16/11] lg:aspect-[16/8.2] shadow-[0_40px_120px_-40px_rgba(11,11,13,0.55)]"
+    >
+      {/* phones: the film sits on top and the copy below it; wider screens: copy over the film */}
+      <div className="relative aspect-[4/3] sm:absolute sm:inset-0 sm:aspect-auto">
+      <video
+        ref={ref}
+        className="absolute inset-0 h-full w-full object-cover object-[66%_50%]"
+        src="/video/bencomo-reel.mp4#t=4.4"
+        poster="/video/bencomo-reel.jpg"
+        muted
+        loop
+        playsInline
+        autoPlay={!reduce}
+        preload="metadata"
+        aria-hidden="true"
+      />
+      <div aria-hidden="true" className="sm:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B0B0D] to-transparent" />
+      </div>
+      {/* keep the copy readable: from the left on wide screens, from the bottom on phones */}
+      <div aria-hidden="true" className="hidden sm:block absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,13,0.85)_0%,rgba(11,11,13,0.45)_38%,transparent_62%)]" />
+
+      <div className="relative sm:h-full flex flex-col sm:justify-center gap-6 px-6 pb-8 -mt-10 sm:mt-0 sm:p-10 lg:p-16 max-w-2xl">
+        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur px-4 py-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-white/80">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B7A8FF] opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B7A8FF]" />
+          </span>
+          {es ? "Próximamente" : "Coming soon"}
+        </span>
+        <h1 className="font-heading font-semibold text-white text-[2.6rem] sm:text-6xl lg:text-7xl leading-[0.98] -tracking-[0.05em]" style={{ textWrap: "balance" } as Record<string, string>}>
+          {es ? "Casos de estudio," : "Case studies,"} <span className="text-white/45">{es ? "muy pronto." : "coming soon."}</span>
+        </h1>
+        <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-md">
+          {es
+            ? "Estoy preparando proyectos que de verdad valga la pena mostrar, contados con su proceso completo. Mientras tanto, el mejor caso de estudio puede ser el tuyo."
+            : "I'm preparing projects that are truly worth showing, told with their full process. Meanwhile, the best case study could be yours."}
+        </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            to="/contacto"
+            className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors"
+          >
+            {es ? "Cuéntame tu proyecto" : "Tell me about your project"}
+            <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+          <Link
+            to="/servicios"
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white/85 hover:text-white hover:border-white/40 transition-colors"
+          >
+            {es ? "Ver lo que puedo construir" : "See what I can build"}
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 /**
  * "My work" while there are no case studies worth showing yet:
@@ -38,10 +132,20 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
   return (
     <section
       id="projects"
-      className={`relative z-20 overflow-hidden ${page ? "min-h-[100svh] pt-36 md:pt-44 pb-28" : "bg-paper py-28 md:py-36"}`}
+      className={`relative z-20 overflow-hidden ${page ? "min-h-[100svh] pt-28 md:pt-32 pb-28" : "bg-paper py-28 md:py-36"}`}
     >
       {!page && <Starfield contained count={80} />}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8">
+        {page ? (
+          <>
+            <ReelHero es={es} />
+            <div className="mt-20 md:mt-28 flex items-center gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase">
+              <span className="text-white">{es ? "En el taller" : "In the workshop"}</span>
+              <span className="h-px w-10 bg-[linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)]" />
+              <span className="text-white/45">{es ? "Lo que se está cocinando" : "What's cooking"}</span>
+            </div>
+          </>
+        ) : (
         <SectionHeading
           index="03"
           label={es ? "Mi trabajo" : "My work"}
@@ -63,8 +167,9 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
             </span>
           }
         />
+        )}
 
-        <div className="mt-14 grid md:grid-cols-3 gap-5">
+        <div className={`${page ? "mt-8" : "mt-14"} grid md:grid-cols-3 gap-5`}>
           {cards.map((c, i) => (
             <motion.article
               key={c.n}
@@ -111,6 +216,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           ))}
         </div>
 
+        {!page && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -132,6 +238,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
             {es ? "Ver lo que puedo construir" : "See what I can build"}
           </Link>
         </motion.div>
+        )}
       </div>
     </section>
   );
