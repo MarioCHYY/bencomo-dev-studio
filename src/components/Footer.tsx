@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useScroll, useMotionValueEvent } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { animate, useMotionValueEvent, useScroll } from "framer-motion";
 import { Github, Linkedin, ArrowUp, Instagram, Mail, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
@@ -10,11 +10,27 @@ import { BrandLogo, BrandMark, BrandWordmark } from "@/components/brand/Logo";
 const Footer = () => {
   const { t } = useLang();
   const n = translations.nav;
-  // the cut in the big mark opens as the footer scrolls into view
+  // the cut in the big mark opens once you reach the very bottom of the page (after a short pause),
+  // slowly enough to be seen; it closes again when you scroll back up
   const bigRef = useRef<HTMLDivElement>(null);
   const [slip, setSlip] = useState(0);
-  const { scrollYProgress } = useScroll({ target: bigRef, offset: ["start 95%", "end end"] });
-  useMotionValueEvent(scrollYProgress, "change", (v) => setSlip(Math.min(1, v * 1.15)));
+  const [atBottom, setAtBottom] = useState(false);
+  const { scrollYProgress } = useScroll();
+  useMotionValueEvent(scrollYProgress, "change", (v) => setAtBottom((was) => (was ? v > 0.97 : v > 0.995)));
+  const slipRef = useRef(0);
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ctl = animate(slipRef.current, atBottom ? 1 : 0, {
+      delay: atBottom ? 0.45 : 0,
+      duration: reduce ? 0 : atBottom ? 1.4 : 0.6,
+      ease: [0.65, 0, 0.35, 1],
+      onUpdate: (v) => {
+        slipRef.current = v;
+        setSlip(v);
+      },
+    });
+    return () => ctl.stop();
+  }, [atBottom]);
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/MarioCHYY", label: "GitHub" },
