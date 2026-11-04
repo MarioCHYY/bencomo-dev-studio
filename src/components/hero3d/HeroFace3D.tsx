@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
+import { createPortal } from "react-dom";
 import type { FaceSceneHandle, FaceSceneState } from "./FaceScene";
 
 interface HeroFace3DProps {
-  /** Hero <section>, used for scroll progress and visibility */
+  /** Hero <section> */
   sectionRef: RefObject<HTMLElement>;
   /** Box the face should fill (the old photo box) */
   anchorRef: RefObject<HTMLElement>;
@@ -17,6 +18,9 @@ const STATE_LABEL: Record<FaceSceneState, string> = {
   live: "live · tracking cursor",
   dispersing: "dispersing",
 };
+
+/** Sections where the particles re-form, in scroll order */
+const SECTION_IDS = ["about", "projects", "services", "cta"];
 
 function hasWebGL() {
   try {
@@ -34,8 +38,12 @@ export default function HeroFace3D({ sectionRef, anchorRef, onFail }: HeroFace3D
   const pctRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLSpanElement>(null);
   const [hudOn, setHudOn] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
+    if (!mounted) return;
     const layer = layerRef.current;
     const section = sectionRef.current;
     const anchor = anchorRef.current;
@@ -58,6 +66,7 @@ export default function HeroFace3D({ sectionRef, anchorRef, onFail }: HeroFace3D
           container: layer,
           anchor,
           section,
+          getSections: () => SECTION_IDS.map((id) => document.getElementById(id)),
           textureUrl: "/hero3d/face.webp",
           depthUrl: "/hero3d/depth.png",
           reducedMotion,
@@ -88,11 +97,16 @@ export default function HeroFace3D({ sectionRef, anchorRef, onFail }: HeroFace3D
       handle?.dispose();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mounted]);
 
   return (
     <>
-      <div ref={layerRef} className="absolute inset-0 z-10 pointer-events-none" aria-hidden="true" />
+      {/* Page-wide canvas: fixed to the viewport, above section backgrounds, below content (z-20+) */}
+      {mounted &&
+        createPortal(
+          <div ref={layerRef} className="fixed inset-0 z-[15] pointer-events-none" aria-hidden="true" />,
+          document.body,
+        )}
 
       {/* Readout under the face, desktop only */}
       <div

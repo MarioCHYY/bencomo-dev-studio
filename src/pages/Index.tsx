@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import IntegratedHero from "@/components/IntegratedHero";
 import SectionSeparator from "@/components/SectionSeparator";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
@@ -22,6 +23,7 @@ const SectionSkeleton = () => (
 );
 
 const Index = () => {
+  useSmoothScroll();
   return (
     <main className="min-h-screen">
       <Navbar />

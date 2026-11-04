@@ -34,6 +34,7 @@ const CTASection = () => {
   
   return (
     <FloatingIconsSection
+      id="cta"
       title={t(translations.ctaSection.title)}
       subtitle={t(translations.ctaSection.subtitle)}
       ctaText={t(translations.ctaSection.button)}

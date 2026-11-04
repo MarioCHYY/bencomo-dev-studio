@@ -152,7 +152,7 @@ export default function IntegratedHero() {
                     <>
                         <HeroFace3D sectionRef={sectionRef} anchorRef={photoRef} onFail={() => setPhotoFallback(true)} />
                         {/* Mobile/tablet: keep the copy readable over the face */}
-                        <div className="absolute inset-x-0 top-0 h-[46%] z-[15] pointer-events-none lg:hidden" style={{ background: `linear-gradient(to bottom, ${bg} 35%, transparent 100%)` }} />
+                        <div className="absolute inset-x-0 top-0 h-[46%] z-[16] pointer-events-none lg:hidden" style={{ background: `linear-gradient(to bottom, ${bg} 35%, transparent 100%)` }} />
                     </>
                 )}
 
@@ -237,7 +237,7 @@ export default function IntegratedHero() {
                 </motion.div>
 
                 {/* Full-width bottom fade to seamlessly blend with the next section without vertical cut lines */}
-                <div className="absolute bottom-0 left-0 w-full h-[15%] z-30 pointer-events-none" style={{ background: `linear-gradient(to top, ${bg} 0%, transparent 100%)`, transition: `background ${bgTransition}` }} />
+                <div className="absolute bottom-0 left-0 w-full h-[15%] z-[14] pointer-events-none" style={{ background: `linear-gradient(to top, ${bg} 0%, transparent 100%)`, transition: `background ${bgTransition}` }} />
             </div>
         </section>
     );
