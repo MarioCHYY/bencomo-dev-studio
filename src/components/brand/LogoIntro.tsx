@@ -55,7 +55,7 @@ const LogoIntro = () => {
           key="intro"
           role="presentation"
           onClick={() => setShow(false)}
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#050506] cursor-pointer"
+          className="theme-dark fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#050506] cursor-pointer"
           exit={{ opacity: 0, scale: 1.04 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >

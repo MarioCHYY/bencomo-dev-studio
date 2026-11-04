@@ -1,5 +1,6 @@
 import {
   AdditiveBlending,
+  NormalBlending,
   BufferGeometry,
   Clock,
   Float32BufferAttribute,
@@ -136,6 +137,7 @@ export async function createMorphScene(
     uSize: { value: lowPower ? 2.2 : 2.0 },
     uMouse: { value: new Vector2() },
     uFade: { value: 1 },
+    uLight: { value: 0 },
   };
 
   const mat = new ShaderMaterial({
@@ -146,7 +148,7 @@ export async function createMorphScene(
     vertexShader: /* glsl */ `
       attribute vec3 aP0; attribute vec3 aP1; attribute vec3 aP2; attribute vec3 aP3; attribute vec3 aP4; attribute vec3 aP5;
       attribute float aRand;
-      uniform float uTime, uFrom, uTo, uMix, uPR, uSize, uFade;
+      uniform float uTime, uFrom, uTo, uMix, uPR, uSize, uFade, uLight;
       uniform vec2 uMouse;
       varying vec3 vCol;
       varying float vA;
@@ -186,8 +188,10 @@ export async function createMorphScene(
         float d = clamp((p.x - p.y) * 0.35 + 0.5, 0.0, 1.0);
         vec3 c1 = vec3(0.56, 0.69, 1.0), c2 = vec3(0.72, 0.66, 1.0), c3 = vec3(1.0, 0.64, 0.76), c4 = vec3(1.0, 0.8, 0.6);
         vec3 col = d < 0.5 ? mix(c1, c2, d / 0.5) : (d < 0.8 ? mix(c2, c3, (d - 0.5) / 0.3) : mix(c3, c4, (d - 0.8) / 0.2));
-        vCol = mix(vec3(1.0), col, 0.55 + aRand * 0.3);
-        vA = (0.12 + depth * 0.78) * (0.7 + 0.3 * sin(uTime * 2.0 + aRand * 80.0)) * uFade;
+        vec3 cDark = mix(vec3(1.0), col, 0.55 + aRand * 0.3);
+        vec3 cLight = mix(vec3(0.09), col * vec3(0.55, 0.5, 0.78), 0.5 + aRand * 0.4);
+        vCol = mix(cDark, cLight, uLight);
+        vA = (0.12 + depth * 0.78) * (0.7 + 0.3 * sin(uTime * 2.0 + aRand * 80.0)) * uFade * mix(1.0, 1.15, uLight);
       }
     `,
     fragmentShader: /* glsl */ `
@@ -201,6 +205,17 @@ export async function createMorphScene(
       }
     `,
   });
+  // on the light theme: dark, normally-blended dots (additive light disappears on white)
+  const root = document.documentElement;
+  const applyTheme = () => {
+    const light = !root.classList.contains("dark");
+    uniforms.uLight.value = light ? 1 : 0;
+    mat.blending = light ? NormalBlending : AdditiveBlending;
+    mat.needsUpdate = true;
+  };
+  applyTheme();
+  const themeObserver = new MutationObserver(applyTheme);
+  themeObserver.observe(root, { attributes: true, attributeFilter: ["class"] });
   const points = new Points(geo, mat);
   points.frustumCulled = false;
   scene.add(points);
@@ -280,6 +295,7 @@ export async function createMorphScene(
 
   return {
     dispose() {
+      themeObserver.disconnect();
       cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();

@@ -29,7 +29,7 @@ const FaqSection = () => {
       ];
 
   return (
-    <section id="faq" className="on-light relative z-20 bg-[#f4f4f6] text-[#0a0a0a] py-28 md:py-36">
+    <section id="faq" className="theme-flip bg-paper relative z-20 py-28 md:py-36">
       <div className="max-w-3xl mx-auto px-6 md:px-8">
         <SectionHeading
           index="05"
@@ -37,21 +37,20 @@ const FaqSection = () => {
           title={es ? "Lo que suelen" : "What people"}
           muted={es ? "preguntarme." : "usually ask."}
           align="center"
-          light
         />
         <ul className="mt-14 flex flex-col gap-3">
           {items.map((it, i) => {
             const isOpen = open === i;
             return (
-              <li key={it.q} className={`rounded-2xl border bg-white transition-colors ${isOpen ? "border-black/15" : "border-black/[0.07] hover:border-black/15"}`}>
+              <li key={it.q} className={`rounded-2xl border bg-white/[0.04] transition-colors ${isOpen ? "border-white/25" : "border-white/10 hover:border-white/25"}`}>
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
                   className="w-full flex items-center justify-between gap-6 text-left px-6 md:px-7 py-6"
                 >
-                  <span className="text-[17px] md:text-lg font-medium text-[#0a0a0a] -tracking-[0.01em]">{it.q}</span>
-                  <Plus size={20} className={`shrink-0 text-black/50 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`} />
+                  <span className="text-[17px] md:text-lg font-medium text-white -tracking-[0.01em]">{it.q}</span>
+                  <Plus size={20} className={`shrink-0 text-white/50 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`} />
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -62,7 +61,7 @@ const FaqSection = () => {
                       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="px-6 md:px-7 pb-6 -mt-1 text-[15px] leading-relaxed text-black/60 max-w-2xl">{it.a}</p>
+                      <p className="px-6 md:px-7 pb-6 -mt-1 text-[15px] leading-relaxed text-white/60 max-w-2xl">{it.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -24,7 +24,7 @@ const TechStrip = () => {
             src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${x.icon}.svg`}
             alt=""
             loading="lazy"
-            className="w-6 h-6 object-contain grayscale brightness-[1.8] opacity-60 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100 transition"
+            className="w-6 h-6 object-contain grayscale opacity-60 dark:brightness-[1.8] group-hover:grayscale-0 dark:group-hover:brightness-100 group-hover:opacity-100 transition"
           />
           <span className="text-[13px] font-semibold tracking-[0.18em] uppercase whitespace-nowrap">{x.name}</span>
         </li>

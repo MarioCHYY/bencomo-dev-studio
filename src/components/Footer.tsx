@@ -31,7 +31,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative z-20 border-t border-white/[0.06] bg-[#050505]">
+    <footer className="theme-dark relative z-20 border-t border-white/[0.06] bg-[#050505]">
       <div className="max-w-7xl mx-auto px-6 md:px-8 pt-16 pb-10 flex flex-col gap-14">
         <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] gap-10 items-start">
           <div className="flex flex-col gap-3">

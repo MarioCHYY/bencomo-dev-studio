@@ -3,6 +3,32 @@
 @tailwind utilities;
 
 @layer base {
+  /* Theme roles: "white" = foreground ink, "black" = what sits on it, "paper" = page ground.
+     Tailwind's white/black map to these, so every text-white/50, border-white/10, bg-white/5 flips with the theme. */
+  :root {
+    --c-fg: 10 10 10;
+    --c-bg: 255 255 255;
+    --c-paper: 250 250 250;
+    --c-logo: 11 11 13;
+  }
+  .dark {
+    --c-fg: 255 255 255;
+    --c-bg: 0 0 0;
+    --c-paper: 10 10 10;
+    --c-logo: 242 240 234;
+  }
+  /* sections that stay dark in both themes (cinematic bands, footer, photo overlays) */
+  .theme-dark, .dark .theme-dark {
+    --c-fg: 255 255 255;
+    --c-bg: 0 0 0;
+    --c-paper: 10 10 10;
+    --c-logo: 242 240 234;
+    color-scheme: dark;
+  }
+  /* a band that contrasts with the page: dark on the light theme, light on the dark one */
+  .theme-flip { --c-fg: 255 255 255; --c-bg: 0 0 0; --c-paper: 10 10 10; --c-logo: 242 240 234; }
+  .dark .theme-flip { --c-fg: 10 10 10; --c-bg: 255 255 255; --c-paper: 244 244 246; --c-logo: 11 11 13; }
+
   :root {
     /* Light mode defaults */
     --background: 0 0% 97%; /* #F8F8F8 */
@@ -72,13 +98,12 @@
   }
 
   body {
-    @apply bg-background text-white/45 antialiased font-sans;
+    @apply text-white/45 antialiased font-sans;
+    background-color: rgb(var(--c-paper));
   }
 
   /* Reset headings — contextual per theme */
-  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    @apply text-white;
-  }
+  h1, h2, h3, h4, h5, h6 { color: rgb(var(--c-fg)); }
 }
 
 @layer utilities {
@@ -167,6 +192,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 @keyframes rgb-spin { to { --rgb-angle: 360deg; } }
 
-/* ---- Light bands (FAQ): headings stay dark even under the global .dark rule ---- */
-.dark .on-light h1, .dark .on-light h2, .dark .on-light h3, .dark .on-light h4 { color: #0a0a0a; }
-body { background-color: #0a0a0a; }
+/* ---- Theme helpers ---- */
+.bg-paper-solid { background-color: rgb(var(--c-paper)); }
+body { transition: background-color .35s ease; }

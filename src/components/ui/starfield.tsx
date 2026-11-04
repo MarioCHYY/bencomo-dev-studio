@@ -14,6 +14,19 @@ export function Starfield({ count = 120 }: { count?: number }) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let w = 0, h = 0, raf = 0;
+    let ink = "255,255,255";
+    let k = 1;
+    const readTheme = () => {
+      const v = getComputedStyle(document.documentElement).getPropertyValue("--c-fg").trim().split(/\s+/).join(",");
+      ink = v || "255,255,255";
+      k = document.documentElement.classList.contains("dark") ? 1 : 0.55;
+    };
+    readTheme();
+    const mo = new MutationObserver(() => {
+      readTheme();
+      if (!raf) raf = requestAnimationFrame(draw);
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     const stars = Array.from({ length: count }, () => ({
       x: Math.random(),
       y: Math.random(),
@@ -41,8 +54,8 @@ export function Starfield({ count = 120 }: { count?: number }) {
       for (const s of stars) {
         const y = (((s.y * h - sy * 0.08 * s.z - t * 4 * s.z) % h) + h) % h;
         const x = s.x * w + Math.sin(t * 0.1 + s.tw) * 6 * s.z;
-        const a = (0.15 + s.z * 0.45) * (0.7 + 0.3 * Math.sin(t * 1.3 + s.tw));
-        ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
+        const a = (0.15 + s.z * 0.45) * (0.7 + 0.3 * Math.sin(t * 1.3 + s.tw)) * k;
+        ctx.fillStyle = `rgba(${ink},${a.toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(x, y, 0.5 + s.z * 0.9, 0, Math.PI * 2);
         ctx.fill();
@@ -59,6 +72,7 @@ export function Starfield({ count = 120 }: { count?: number }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVis);
     return () => {
+      mo.disconnect();
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);

@@ -18,6 +18,9 @@ export default {
 				heading: ['"Plus Jakarta Sans Variable"', '"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 			},
 			colors: {
+				white: 'rgb(var(--c-fg) / <alpha-value>)',
+				black: 'rgb(var(--c-bg) / <alpha-value>)',
+				paper: 'rgb(var(--c-paper) / <alpha-value>)',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

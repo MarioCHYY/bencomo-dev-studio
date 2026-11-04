@@ -157,7 +157,7 @@ const ProjectsSection = () => {
 
   if (!pinned) {
     return (
-      <section id="projects" className="relative py-24">
+      <section id="projects" className="theme-dark bg-paper relative py-24">
         <div className="relative z-20 px-6">{header}</div>
         <div className="relative z-20 mt-10 flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-6 [scrollbar-width:none]">
           {cards.map(({ item, index, projData }) => (
@@ -171,7 +171,7 @@ const ProjectsSection = () => {
   }
 
   return (
-    <section id="projects" ref={sectionRef} className="relative" style={{ height: `${100 + projectsList.length * 70}vh` }}>
+    <section id="projects" ref={sectionRef} className="theme-dark bg-paper relative" style={{ height: `${100 + projectsList.length * 70}vh` }}>
       <div className="sticky top-0 z-20 h-[100svh] overflow-hidden flex flex-col justify-center gap-10">
         <div className="relative z-20 max-w-7xl w-full mx-auto px-8 pt-20">{header}</div>
         <motion.div ref={trackRef} style={{ x }} className="relative z-20 flex gap-8 pl-[max(2rem,calc((100vw-80rem)/2+2rem))] pr-[12vw] will-change-transform">

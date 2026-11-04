@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,13 +15,13 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://www.mariobencomodev.com/og-image.jpg" />
-    <meta name="theme-color" content="#0B0B0D" />
+    <meta name="theme-color" content="#FAFAFA" />
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico?v=7" sizes="48x48" />
     <link rel="icon" href="/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
-    <!-- Force dark mode before React loads to prevent flash of light mode -->
-    <script>document.documentElement.classList.add('dark'); document.documentElement.classList.remove('light'); localStorage.setItem('theme','dark');</script>
+    <!-- Apply the saved theme (light by default) before React loads, to avoid a flash -->
+    <script>try{var t=localStorage.getItem('bencomo-theme')==='dark'?'dark':'light';var r=document.documentElement;r.classList.toggle('dark',t==='dark');r.classList.toggle('light',t==='light');r.style.colorScheme=t}catch(e){}</script>
   </head>
 
   <body>

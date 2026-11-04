@@ -83,7 +83,7 @@ const ServicesSection = () => {
   const num = (i: number) => String(i + 1).padStart(2, "0");
 
   return (
-    <section id="services" ref={sectionRef} className="relative" style={{ height: `${100 + n * 55}vh` }}>
+    <section id="services" ref={sectionRef} className="theme-dark bg-paper relative" style={{ height: `${100 + n * 55}vh` }}>
       <div className="sticky top-0 z-20 h-[100svh] overflow-hidden">
         <div className="relative z-20 max-w-7xl mx-auto h-full px-6 md:px-8 pt-24 pb-10 grid grid-rows-[auto_1fr] lg:grid-rows-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-6 lg:gap-12 items-center">
           {/* ---------- copy */}

@@ -14,8 +14,9 @@ const REST = [0.1102, -0.1407] as const;
 const OPEN = [0.2094, -0.2618] as const;
 const STOPS: [number, string][] = [[0, "#8FB0FF"], [0.4, "#B7A8FF"], [0.72, "#FF9AB0"], [1, "#FFC48A"]];
 
-type Tone = "light" | "dark";
-const ink = (tone: Tone) => (tone === "light" ? "#F2F0EA" : "#0B0B0D");
+type Tone = "auto" | "light" | "dark";
+// "auto" follows the page theme through --c-logo (bone on dark, ink on light)
+const ink = (tone: Tone) => (tone === "auto" ? "rgb(var(--c-logo))" : tone === "light" ? "#F2F0EA" : "#0B0B0D");
 
 function Aurora({ id }: { id: string }) {
   return (
@@ -42,13 +43,13 @@ function MarkShapes({ id, fill, open, core = true }: { id: string; fill: string;
   return (
     <>
       {core && <circle r="0.9" fill={`url(#${id})`} />}
-      <path d={TOP} fill={fill} style={half(x, y, driven)} />
-      <path d={BOTTOM} fill={fill} style={half(-x, -y, driven)} />
+      <path d={TOP} style={{ ...half(x, y, driven), fill }} />
+      <path d={BOTTOM} style={{ ...half(-x, -y, driven), fill }} />
     </>
   );
 }
 
-export function BrandMark({ size = 32, tone = "light", open, className = "", title }: { size?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string }) {
+export function BrandMark({ size = 32, tone = "auto", open, className = "", title }: { size?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string }) {
   const id = `bc-${useId().replace(/:/g, "")}`;
   return (
     <svg viewBox="-1.15 -1.15 2.3 2.3" width={size} height={size} className={className} overflow="visible" role={title ? "img" : undefined} aria-hidden={title ? undefined : true}>
@@ -60,7 +61,7 @@ export function BrandMark({ size = 32, tone = "light", open, className = "", tit
 }
 
 /** Mark + wordmark lockup. Height drives the size; hover slips the cut open. */
-export function BrandLogo({ height = 28, tone = "light", open, className = "", title = "Bencomo" }: { height?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string }) {
+export function BrandLogo({ height = 28, tone = "auto", open, className = "", title = "Bencomo" }: { height?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string }) {
   const id = `bc-${useId().replace(/:/g, "")}`;
   const vb = [0, -848.6, 5420.7, 940.2];
   return (
@@ -70,7 +71,7 @@ export function BrandLogo({ height = 28, tone = "light", open, className = "", t
       <g transform="translate(388.34 -378.50) scale(408.780)">
         <MarkShapes id={id} fill={ink(tone)} open={open} />
       </g>
-      <path transform="translate(1016.18 0)" d={WORD} fill={ink(tone)} />
+      <path transform="translate(1016.18 0)" d={WORD} style={{ fill: ink(tone) }} />
     </svg>
   );
 }
