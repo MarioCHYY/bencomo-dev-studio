@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { ExternalLink, ChevronRight } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
@@ -49,6 +50,11 @@ const ProjectsSection = () => {
   const { t } = useLang();
   const p = translations.projects;
   const navigate = useNavigate();
+  const showRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: showRef, offset: ["start end", "start 0.25"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.84, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [90, 0]);
+  const fade = useTransform(scrollYProgress, [0, 0.6], [0.25, 1]);
 
   return (
     <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
@@ -77,14 +83,7 @@ const ProjectsSection = () => {
           </span>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 60, rotateX: 18, scale: 0.96 }}
-          whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          style={{ transformPerspective: 1400 }}
-          className="w-full relative"
-        >
+        <motion.div ref={showRef} style={{ scale, y, opacity: fade }} className="w-full relative origin-top">
           <ProgressSlider vertical={false} activeSlider="project2" items={projectsList.map((pr) => pr.id)}>
             <SliderContent>
               {projectsList.map((item) => {
@@ -92,8 +91,8 @@ const ProjectsSection = () => {
                 const projData = p[item.translationKey];
                 return (
                   <SliderWrapper key={item.id} value={item.id}>
-                    <TiltCard max={5} lift={0} spotColor="rgba(140,180,255,0.16)" className="rounded-2xl">
-                      <div className="relative group rounded-2xl overflow-hidden w-full 2xl:h-[600px] h-[500px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(51,133,255,0.45)]">
+                    <TiltCard max={5} lift={0} className="rounded-2xl rgb-glow">
+                      <div className="relative group rounded-2xl overflow-hidden w-full 2xl:h-[600px] h-[500px] border border-white/10 shadow-[0_40px_120px_-50px_rgba(51,133,255,0.35)]">
                         <img
                           className="w-full h-full object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                           src={item.img}

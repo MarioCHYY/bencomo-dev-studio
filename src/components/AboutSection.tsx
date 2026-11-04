@@ -7,6 +7,7 @@ import { FlipLink } from "@/components/ui/flip-links";
 import { useNavigate } from "react-router-dom";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { CountUp } from "@/components/ui/count-up";
+import { ScrollRevealText } from "@/components/ui/scroll-reveal-text";
 
 const AboutSection = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const AboutSection = () => {
           <TiltCard
             max={4}
             lift={10}
-            className="group rounded-2xl border border-primary/30 shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:border-primary/50 hover:shadow-[0_0_50px_rgba(59,130,246,0.28)] transition-[border-color,box-shadow] duration-500 bg-black/45 backdrop-blur-xl"
+            className="group rgb-glow rounded-2xl border border-white/[0.06] bg-black/45 backdrop-blur-xl"
           >
             <div className="flex flex-col md:flex-row overflow-hidden rounded-2xl">
               {/* Photo */}
@@ -75,11 +76,12 @@ const AboutSection = () => {
 
               {/* Text + stats */}
               <div className="relative flex flex-col justify-center gap-5 p-6 md:p-8 flex-1" style={{ transform: "translateZ(30px)" }}>
-                <p className="text-[#A0A5B0] font-light leading-[1.75] text-sm lg:text-base max-w-2xl">
-                  {lang === "es"
+                <ScrollRevealText
+                  className="text-white font-light leading-[1.35] text-xl md:text-2xl lg:text-[1.75rem] -tracking-[0.01em] max-w-3xl"
+                  text={lang === "es"
                     ? "Desarrollo productos digitales donde el diseño y el código trabajan juntos. Creo experiencias modernas con un enfoque obsesivo por los detalles."
                     : "I develop digital products where design and code work together. I create modern experiences with an obsessive focus on details."}
-                </p>
+                />
 
                 <div
                   className="flex items-center gap-2 group/link w-fit cursor-pointer"
@@ -100,7 +102,7 @@ const AboutSection = () => {
                     <div key={i} className="flex flex-col justify-center items-start text-left group/stat">
                       <CountUp
                         value={stat.value}
-                        className="inline-block text-2xl sm:text-3xl md:text-5xl font-heading font-extrabold text-primary mb-1 tabular-nums [text-shadow:0_0_24px_rgba(51,141,255,0.45)] group-hover/stat:scale-105 transition-transform duration-300 origin-left"
+                        className="inline-block text-2xl sm:text-3xl md:text-5xl font-heading font-extrabold text-primary mb-1 tabular-nums [text-shadow:0_0_24px_rgba(51,141,255,0.25)] group-hover/stat:scale-105 transition-transform duration-300 origin-left"
                       />
                       <div className="text-[10px] text-white/60 uppercase tracking-[0.2em] font-medium">
                         {lang === "es" ? stat.label.es : stat.label.en}

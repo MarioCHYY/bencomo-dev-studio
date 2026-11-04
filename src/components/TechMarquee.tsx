@@ -131,9 +131,9 @@ const TechMarquee = () => {
         {/* orbit ellipse */}
         <div
           aria-hidden="true"
-          className="absolute left-1/2 top-[calc(50%-20px)] w-[84%] max-w-[1040px] aspect-[1/0.12] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/20 shadow-[0_0_40px_rgba(51,133,255,0.12)_inset]"
+          className="absolute left-1/2 top-[calc(50%-20px)] w-[84%] max-w-[1040px] aspect-[1/0.12] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/[0.08] shadow-[0_0_40px_rgba(51,133,255,0.08)_inset]"
         />
-        <div aria-hidden="true" className="absolute left-1/2 top-1/2 w-[60%] h-20 -translate-x-1/2 -translate-y-1/2 bg-primary/10 blur-3xl rounded-full" />
+        <div aria-hidden="true" className="absolute left-1/2 top-1/2 w-[60%] h-20 -translate-x-1/2 -translate-y-1/2 bg-primary/[0.07] blur-3xl rounded-full" />
 
         <div className="absolute left-1/2 top-1/2" style={{ transformStyle: "preserve-3d" }}>
           {skills.map((s, i) => (
@@ -142,7 +142,7 @@ const TechMarquee = () => {
               ref={(el) => (itemsRef.current[i] = el)}
               className="absolute -left-[46px] -top-[56px] w-[92px] flex flex-col items-center gap-3 group will-change-transform"
             >
-              <div className="h-[72px] w-[72px] rounded-2xl flex items-center justify-center bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-[0_10px_40px_-12px_rgba(51,133,255,0.45)] group-hover:border-primary/60 group-hover:bg-primary/10 transition-colors duration-300">
+              <div className="h-[72px] w-[72px] rounded-2xl flex items-center justify-center bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-[0_10px_40px_-16px_rgba(51,133,255,0.35)] group-hover:border-white/30 group-hover:bg-white/[0.07] transition-colors duration-300">
                 <img
                   src={iconUrl(s.icon)}
                   alt={s.name}

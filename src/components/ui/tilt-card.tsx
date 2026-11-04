@@ -22,7 +22,7 @@ export function TiltCard({
   className,
   max = 8,
   spotlight = true,
-  spotColor = "rgba(51,133,255,0.18)",
+  spotColor = "rgba(255,255,255,0.07)",
   lift = 14,
   style,
   ...rest
@@ -106,7 +106,7 @@ export function TiltCard({
           style={{
             opacity: "var(--spot-o,0)",
             padding: 1,
-            background: `radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(120,170,255,0.9), transparent 65%)`,
+            background: `radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.6), transparent 65%)`,
             WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
             WebkitMaskComposite: "xor",
             maskComposite: "exclude",

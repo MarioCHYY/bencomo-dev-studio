@@ -82,7 +82,7 @@ const Icon = ({
       <motion.div style={{ x: springX, y: springY }}>
         <motion.div
           className={cn(
-            'flex items-center justify-center p-4 rounded-2xl bg-white/[0.04] backdrop-blur-md border border-white/10 overflow-hidden cursor-crosshair hover:border-primary/50 hover:bg-primary/10 transition-colors duration-300 shadow-[0_20px_50px_-20px_rgba(51,133,255,0.6)]',
+            'flex items-center justify-center p-4 rounded-2xl bg-white/[0.04] backdrop-blur-md border border-white/10 overflow-hidden cursor-crosshair hover:border-primary/50 hover:bg-primary/10 transition-colors duration-300 shadow-[0_20px_50px_-24px_rgba(51,133,255,0.4)]',
             size,
           )}
           animate={{ y: [0, -10, 0, 10, 0], x: [0, 8, 0, -8, 0], rotate: [0, 5, 0, -5, 0] }}
@@ -150,10 +150,10 @@ const FloatingIconsSection = React.forwardRef<
         <div className="relative w-[min(90vw,760px)] aspect-square" style={{ transformStyle: 'preserve-3d', transform: 'rotateX(72deg)' }}>
           <div className="absolute inset-0 rounded-full border border-primary/25 animate-[spin_40s_linear_infinite] shadow-[0_0_60px_rgba(51,133,255,0.15)]" />
           <div className="absolute inset-[12%] rounded-full border border-dashed border-white/10 animate-[spin_26s_linear_infinite_reverse]" />
-          <div className="absolute inset-[26%] rounded-full border border-[#ff3d5a]/20 animate-[spin_18s_linear_infinite]" />
+          <div className="absolute inset-[26%] rounded-full border border-white/[0.07] animate-[spin_18s_linear_infinite]" />
         </div>
       </div>
-      <div aria-hidden="true" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[320px] bg-primary/15 blur-[110px] rounded-full pointer-events-none" />
+      <div aria-hidden="true" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[320px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Floating icons */}
       <div className="absolute inset-0 z-20 w-full h-full max-w-7xl mx-auto pointer-events-none">
@@ -178,7 +178,7 @@ const FloatingIconsSection = React.forwardRef<
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: 'easeOut' }}
-          className="font-heading font-extrabold text-5xl md:text-6xl lg:text-7xl -tracking-[0.03em] leading-[1.02] mb-6 pointer-events-auto text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-[#8fb4ff] [filter:drop-shadow(0_0_30px_rgba(51,133,255,0.35))]"
+          className="font-heading font-extrabold text-5xl md:text-6xl lg:text-7xl -tracking-[0.03em] leading-[1.02] mb-6 pointer-events-auto text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-[#b9cbff] [filter:drop-shadow(0_0_30px_rgba(51,133,255,0.2))]"
           style={{ textWrap: 'balance' } as React.CSSProperties}
         >
           {title}

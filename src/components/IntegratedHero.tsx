@@ -79,10 +79,12 @@ export default function IntegratedHero() {
     }, []);
 
     // Mappings
-    const textDragY = 0;
+    // Scroll: the copy drifts up and fades while the face breaks into particles
+    const { scrollYProgress: heroProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+    const textDragY = useTransform(heroProgress, [0, 1], [0, -160]);
     const textDragX = 0;
-    const textScale = 1;
-    const textOpacity = 1;
+    const textScale = useTransform(heroProgress, [0, 1], [1, 0.96]);
+    const textOpacity = useTransform(heroProgress, [0, 0.55], [1, 0]);
 
     // Trigger Hero Text animations immediately
     const heroInView = true;

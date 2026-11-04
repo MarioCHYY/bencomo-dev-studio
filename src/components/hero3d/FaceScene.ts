@@ -69,9 +69,11 @@ const FACE_W = FACE_H * ASPECT;
 const DEPTH = 0.26;
 const SHAPES = 4;
 
-const BLUE = new Color("#3385ff");
-const RED = new Color("#ff3d5a");
-const ICE = new Color("#dbe6ff");
+// Soft versions of the hero's RGB dots
+const BLUE = new Color("#8fb0ff");
+const RED = new Color("#ff9aa8");
+const ICE = new Color("#e8eeff");
+const GREEN = new Color("#a4efc8");
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -239,13 +241,13 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     uCell: { value: 3 },
     uShapeSize: { value: 2.2 },
     uShapeAlpha: { value: 0.6 },
+    uKeep: { value: 0.35 }, // share of particles kept once they leave the face (cleaner shapes)
+    uAspect: { value: 1 },
     uCamZ: { value: camera.position.z },
     uFace: { value: new Matrix4() },
     uXf: { value: xf }, // per shape: centre x, centre y, scale, tilt (rad)
     uMouse: { value: new Vector3() },
-    uBlue: { value: BLUE },
-    uRed: { value: RED },
-    uIce: { value: ICE },
+    uPointer: { value: new Vector3(0, 0, 0) }, // cursor on the z=0 plane (x, y) + repel radius
   };
 
   const pMat = new ShaderMaterial({
@@ -261,16 +263,35 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
       attribute vec3 aS2;
       attribute vec3 aS3;
       attribute vec3 aS4;
-      uniform float uTime, uAssemble, uScan, uAfter, uMorph, uScatter, uPR, uCell, uShapeSize, uShapeAlpha, uCamZ;
+      uniform float uTime, uAssemble, uScan, uAfter, uMorph, uScatter, uPR, uCell, uShapeSize, uShapeAlpha, uCamZ, uKeep, uAspect;
       uniform mat4 uFace;
       uniform vec4 uXf[5];
       uniform vec3 uMouse;
-      uniform vec3 uBlue, uRed, uIce;
+      uniform vec3 uPointer;
       varying vec3 vCol;
       varying float vAlpha;
+      varying float vAngle;
+      varying float vStretch;
 
       mat3 rotY(float a){ float c=cos(a), s=sin(a); return mat3(c,0.,-s, 0.,1.,0., s,0.,c); }
       mat3 rotX(float a){ float c=cos(a), s=sin(a); return mat3(1.,0.,0., 0.,c,s, 0.,-s,c); }
+
+      // The hero's RGB dot gradient, spread softly across the screen and drifting slowly. Pastel, not neon.
+      vec3 field(vec2 ndc) {
+        // mostly blue → violet, warming to pink/peach towards the bottom-right, mint at the bottom-left
+        float d = clamp((ndc.x - ndc.y + 2.0) * 0.25 + sin(uTime * 0.15) * 0.04, 0.0, 1.0);
+        vec3 c1 = vec3(0.50, 0.66, 1.00);
+        vec3 c2 = vec3(0.68, 0.62, 1.00);
+        vec3 c3 = vec3(1.00, 0.62, 0.74);
+        vec3 c4 = vec3(1.00, 0.80, 0.58);
+        vec3 col = d < 0.55 ? mix(c1, c2, d / 0.55) : (d < 0.8 ? mix(c2, c3, (d - 0.55) / 0.25) : mix(c3, c4, (d - 0.8) / 0.2));
+        float g = clamp((-ndc.x - ndc.y) * 0.5, 0.0, 1.0);
+        return mix(col, vec3(0.62, 0.95, 0.80), smoothstep(0.35, 1.0, g) * 0.55);
+      }
+      vec2 toNdc(vec3 w) {
+        vec4 c = projectionMatrix * viewMatrix * vec4(w, 1.0);
+        return c.xy / c.w;
+      }
 
       vec3 place(int k, vec3 p, float spin) {
         vec4 x = uXf[k];
@@ -280,19 +301,15 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
       }
 
       vec3 shapeWorld(int k) {
-        if (k == 1) return place(1, aS1, uTime * 0.12);
+        if (k == 1) return place(1, aS1, uTime * 0.1);
         if (k == 2) {
           vec3 p = aS2;
-          p.y = sin(p.x * 3.2 + uTime * 0.9) * 0.09 + cos(p.z * 4.1 + uTime * 0.7) * 0.07
-              + sin((p.x + p.z) * 6.0 - uTime * 1.3) * 0.025;
+          p.y = sin(p.x * 3.2 + uTime * 0.8) * 0.09 + cos(p.z * 4.1 + uTime * 0.6) * 0.07
+              + sin((p.x + p.z) * 6.0 - uTime * 1.1) * 0.025;
           return place(2, p, 0.0);
         }
-        if (k == 3) return place(3, aS3, uTime * 0.18);
-        return place(4, aS4, -uTime * 0.07);
-      }
-
-      vec3 shapeTint() {
-        return aRand > 0.9 ? uRed : (aRand > 0.8 ? uIce : uBlue);
+        if (k == 3) return place(3, aS3, uTime * 0.15);
+        return place(4, aS4, -uTime * 0.06);
       }
 
       void main() {
@@ -318,44 +335,71 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
         vec3 A = k0 == 0 ? faceW : shapeWorld(k0);
         vec3 B = shapeWorld(k0 + 1);
         vec3 p = mix(A, B, f);
-        // fly apart mid-way: that's the "dispersion" you see while scrolling
-        vec3 rd = normalize(aStart + vec3(0.001));
         float burst = sin(f * 3.14159);
+        vec3 rd = normalize(aStart + vec3(0.001));
         p += rd * burst * uScatter * (0.35 + aRand * 0.9);
         p.y += burst * (aRand - 0.5) * uScatter * 0.5;
+
+        float leaveFace = k0 == 0 ? smoothstep(0.0, 0.35, f) : 1.0;
+
+        // ---- cursor pushes the field away (not the face)
+        vec2 dP = p.xy - uPointer.xy;
+        float rP = length(dP);
+        float push = (1.0 - smoothstep(0.0, uPointer.z, rP)) * leaveFace;
+        p.xy += (dP / max(rP, 1e-4)) * push * uPointer.z * 0.45;
+
+        vec2 ndc = toNdc(p);
+        vec3 fieldCol = field(ndc);
 
         // ---- colour + alpha
         float reveal = smoothstep(uScan - 0.012, uScan + 0.012, position.y);
         float band = 1.0 - smoothstep(0.0, 0.016, abs(position.y - uScan));
         float lum = dot(aColor, vec3(0.299, 0.587, 0.114));
-        vec3 pre = shapeTint() * (0.3 + lum * 2.6);
-        vec3 post = aColor * 1.6 + uBlue * 0.2;
-        vec3 faceCol = mix(pre, post, reveal) + vec3(0.45, 0.6, 1.0) * band;
-        float twinkle = 0.55 + 0.45 * sin(uTime * 2.6 + aRand * 90.0);
-        float faceAlpha = mix(0.85, mix(0.16, 0.07 * twinkle, uAfter), reveal) + band * 0.45;
+        vec3 pre = fieldCol * (0.3 + lum * 1.9);
+        vec3 post = aColor * 1.55 + fieldCol * 0.08;
+        vec3 faceCol = mix(pre, post, reveal) + vec3(0.85, 0.9, 1.0) * band * 0.5;
+        float twinkle = 0.6 + 0.4 * sin(uTime * 2.2 + aRand * 90.0);
+        float faceAlpha = mix(0.8, mix(0.14, 0.06 * twinkle, uAfter), reveal) + band * 0.4;
 
-        float leaveFace = k0 == 0 ? smoothstep(0.0, 0.35, f) : 1.0;
-        vec3 shapeCol = shapeTint() * (0.55 + 0.45 * twinkle);
-        float shapeAlpha = uShapeAlpha * (0.55 + 0.45 * twinkle);
+        float keep = step(fract(aRand * 7.31), uKeep);
+        vec3 shapeCol = fieldCol * (0.8 + 0.2 * twinkle);
+        float shapeAlpha = mix(0.75, uShapeAlpha * twinkle, abs(f * 2.0 - 1.0));
         vCol = mix(faceCol, shapeCol, leaveFace);
-        vAlpha = mix(faceAlpha, mix(0.9, shapeAlpha, abs(f * 2.0 - 1.0)), leaveFace);
+        vAlpha = mix(faceAlpha, shapeAlpha * keep, leaveFace);
+
+        // ---- dashes: point away from the cursor at rest, along the flight while moving
+        vec2 pN = toNdc(vec3(uPointer.xy, 0.0));
+        vec2 radial = (ndc - pN) * vec2(uAspect, 1.0);
+        vec2 travel = (toNdc(B) - toNdc(A)) * vec2(uAspect, 1.0);
+        vec2 dir = normalize(radial + 1e-4);
+        if (length(travel) > 1e-4) dir = normalize(mix(dir, normalize(travel), clamp(burst * 1.6, 0.0, 1.0)));
+        vAngle = atan(dir.y, dir.x);
+        vStretch = mix(1.0, 2.6 + burst * 2.2, leaveFace);
 
         vec4 mv = viewMatrix * vec4(p, 1.0);
         gl_Position = projectionMatrix * mv;
         float faceSize = uCell * (0.65 + aRand * 0.75) * (1.0 + band * 0.7) * (1.0 + sw * 0.8);
-        float shapeSize = uShapeSize * (0.6 + aRand * 0.9) * (1.0 + burst * 0.6);
+        float shapeSize = uShapeSize * (0.7 + aRand * 0.6) * vStretch;
         float s = mix(faceSize, shapeSize, leaveFace);
-        gl_PointSize = min(s * uPR * (uCamZ / -mv.z), 14.0 * uPR);
+        gl_PointSize = min(s * uPR * (uCamZ / -mv.z), 24.0 * uPR);
       }
     `,
     fragmentShader: /* glsl */ `
       varying vec3 vCol;
       varying float vAlpha;
+      varying float vAngle;
+      varying float vStretch;
       void main() {
-        vec2 d = gl_PointCoord - 0.5;
-        float r = length(d);
-        if (r > 0.5) discard;
-        float a = smoothstep(0.5, 0.05, r);
+        if (vAlpha < 0.003) discard;
+        vec2 c = gl_PointCoord - 0.5;
+        c.y = -c.y;
+        float ca = cos(vAngle), sa = sin(vAngle);
+        c = vec2(ca * c.x + sa * c.y, -sa * c.x + ca * c.y);
+        float hw = 0.5 / vStretch;
+        float dx = max(abs(c.x) - (0.5 - hw), 0.0);
+        float d = length(vec2(dx, c.y));
+        if (d > hw) discard;
+        float a = smoothstep(hw, hw * 0.35, d);
         gl_FragColor = vec4(vCol, a * vAlpha);
       }
     `,
@@ -421,7 +465,7 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
         float key = max(dot(n, normalize(uLight)), 0.0);
         float rim = pow(1.0 - clamp(n.z, 0.0, 1.0), 2.4);
         vec3 c = tex.rgb * (0.9 + key * 0.3);
-        c += uBlue * rim * 0.55 * smoothstep(0.02, 0.2, tex.a);
+        c += uBlue * rim * 0.4 * smoothstep(0.02, 0.2, tex.a);
         c *= 1.0 - step(0.5, fract(vPos.y * 320.0 - uTime * 0.6)) * 0.035;
         float band = 1.0 - smoothstep(0.0, 0.014, abs(vPos.y - uScan));
         c += vec3(0.45, 0.65, 1.0) * band * 0.7;
@@ -448,7 +492,7 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
   for (let i = 0; i < RING_N; i++) {
     const a = (i / RING_N) * Math.PI * 2;
     ringPos.push(Math.cos(a) * 0.5, 0, Math.sin(a) * 0.5);
-    const c = i % 11 === 0 ? RED : i % 5 === 0 ? ICE : BLUE;
+    const c = new Color().setHSL((0.6 + i / RING_N) % 1, 0.65, 0.78);
     ringCol.push(c.r, c.g, c.b);
   }
   const ringGeo = new BufferGeometry();
@@ -474,7 +518,7 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
   addDeco(new Mesh(new TorusGeometry(0.026, 0.009, 8, 24), torMat), torMat, -0.32, -0.06, 0.2, 0.6);
   const octMat = new LineBasicMaterial({ color: ICE, transparent: true, opacity: 0 });
   addDeco(new LineSegments(new EdgesGeometry(new OctahedronGeometry(0.026, 0)), octMat), octMat, -0.46, -0.3, -0.05, 0.7);
-  const boxMat = new LineBasicMaterial({ color: BLUE, transparent: true, opacity: 0 });
+  const boxMat = new LineBasicMaterial({ color: GREEN, transparent: true, opacity: 0 });
   addDeco(new LineSegments(new EdgesGeometry(new BoxGeometry(0.032, 0.032, 0.032)), boxMat), boxMat, 0.28, 0.36, 0.1, 0.8);
 
   // ---------- layout
@@ -499,17 +543,20 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
       xf[2].set(0, -visH * 0.3, visW * 0.6, 1.0);
       xf[3].set(0, visH * 0.02, u * 0.32, 0.25);
       xf[4].set(0, 0, u * 0.36, 1.05);
-      uniforms.uShapeAlpha.value = 0.42;
-      uniforms.uShapeSize.value = 2.0;
+      uniforms.uShapeAlpha.value = 0.5;
+      uniforms.uShapeSize.value = 1.9;
+      uniforms.uKeep.value = 0.26;
     } else {
       xf[1].set(visW * 0.3, -visH * 0.06, u * 0.24, 0.38);
       xf[2].set(0, -visH * 0.32, visW * 0.5, 1.0);
       xf[3].set(visW * 0.3, visH * 0.16, u * 0.26, 0.25);
       xf[4].set(0, -visH * 0.02, u * 0.42, 1.08);
-      uniforms.uShapeAlpha.value = 0.6;
-      uniforms.uShapeSize.value = 2.4;
+      uniforms.uShapeAlpha.value = 0.62;
+      uniforms.uShapeSize.value = 2.1;
+      uniforms.uKeep.value = 0.3;
     }
     uniforms.uScatter.value = visH * 0.32;
+    uniforms.uAspect.value = camera.aspect;
   };
   const placeFace = () => {
     const ar = anchor.getBoundingClientRect();
@@ -562,13 +609,18 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
   // ---------- input
   const target = { x: 0, y: 0 };
   const cur = { x: 0, y: 0 };
+  const ptr = { x: 0, y: 0, r: 0, tx: 0, ty: 0, tr: 0 };
   const onMove = (e: PointerEvent) => {
+    ptr.tx = ((e.clientX / Math.max(1, cw)) * 2 - 1) * (visW / 2);
+    ptr.ty = (1 - (e.clientY / Math.max(1, ch)) * 2) * (visH / 2);
+    ptr.tr = e.pointerType === "mouse" ? visH * 0.11 : 0;
     target.x = Math.max(-1, Math.min(1, (e.clientX - window.innerWidth * 0.35) / (window.innerWidth * 0.45)));
     target.y = Math.max(-1, Math.min(1, (e.clientY - window.innerHeight * 0.45) / (window.innerHeight * 0.5)));
   };
   const onLeave = () => {
     target.x = 0;
     target.y = 0;
+    ptr.tr = 0;
   };
   window.addEventListener("pointermove", onMove, { passive: true });
   document.documentElement.addEventListener("pointerleave", onLeave);
@@ -629,6 +681,11 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     rig.rotation.x = cur.y * 0.16;
     meshUniforms.uLight.value.set(cur.x * 1.2 + 0.25, -cur.y * 0.9 + 0.35, 1);
     uniforms.uMouse.value.set(cur.x, cur.y, 0);
+    const pk = reducedMotion ? 1 : 1 - Math.exp(-dt * 9);
+    ptr.x += (ptr.tx - ptr.x) * pk;
+    ptr.y += (ptr.ty - ptr.y) * pk;
+    ptr.r += (ptr.tr - ptr.r) * (1 - Math.exp(-dt * 4));
+    uniforms.uPointer.value.set(ptr.x, ptr.y, reducedMotion ? 0 : ptr.r);
 
     // decorations around the head
     const dIn = easeOut((t - 2.3) / 1.4) * faceOn;

@@ -120,7 +120,7 @@ export default function HeroFace3D({ sectionRef, anchorRef, onFail }: HeroFace3D
         <span className="relative block h-px bg-white/10 overflow-hidden">
           <span
             ref={barRef}
-            className="absolute inset-0 origin-left bg-gradient-to-r from-primary to-[#ff3d5a]"
+            className="absolute inset-0 origin-left bg-[linear-gradient(90deg,#8fb0ff,#c9a8ff,#ff9aa8,#ffd99a)]"
             style={{ transform: "scaleX(0)" }}
           />
         </span>
