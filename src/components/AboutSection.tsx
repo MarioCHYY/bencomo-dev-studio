@@ -1,122 +1,141 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import TechMarquee from "./TechMarquee";
-import { FlipLink } from "@/components/ui/flip-links";
-import { useNavigate } from "react-router-dom";
-import { TiltCard } from "@/components/ui/tilt-card";
 import { CountUp } from "@/components/ui/count-up";
 import { ScrollRevealText } from "@/components/ui/scroll-reveal-text";
+import { SectionHeading } from "@/components/ui/section-heading";
+
+const stack = [
+  { name: "React", icon: "react/react-original" },
+  { name: "TypeScript", icon: "typescript/typescript-original" },
+  { name: "JavaScript", icon: "javascript/javascript-original" },
+  { name: "Node.js", icon: "nodejs/nodejs-original" },
+  { name: "Python", icon: "python/python-original" },
+  { name: "Tailwind CSS", icon: "tailwindcss/tailwindcss-original" },
+  { name: "Docker", icon: "docker/docker-original" },
+  { name: "Git", icon: "git/git-original" },
+  { name: "Java", icon: "java/java-original" },
+  { name: "Figma", icon: "figma/figma-original" },
+];
 
 const AboutSection = () => {
   const navigate = useNavigate();
   const { t, lang } = useLang();
+  const es = lang === "es";
   const a = translations.about;
 
+  const photoRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
+
   const stats = [
-    { value: "10+", label: { en: "Developed Projects", es: "Proyectos creados" } },
-    { value: "2+", label: { en: "Years of Experience", es: "Años aprendiendo y construyendo" } },
-    { value: "100%", label: { en: "Commitment", es: "Intención en cada detalle" } },
+    { value: "10+", label: es ? "Proyectos creados" : "Projects built" },
+    { value: "2+", label: es ? "Años construyendo" : "Years building" },
+    { value: "100%", label: es ? "Intención en cada detalle" : "Intent in every detail" },
   ];
 
+  const statement = es
+    ? "No solo escribo código. Diseño productos que se sienten vivos, del primer boceto al último pixel."
+    : "I don't just write code. I design products that feel alive, from the first sketch to the last pixel.";
+
   return (
-    <section id="about" className="section-padding relative">
-      <div className="w-full h-px dark:bg-white/[0.05] bg-black/[0.05] absolute top-0 left-0 right-0" />
+    <section id="about" className="relative py-28 md:py-40">
+      <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-8">
+        <SectionHeading index="01" label={t(a.title)} />
 
-      <div className="relative z-20 max-w-7xl mx-auto px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(a.label)}</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold text-white -tracking-[0.03em]">
-            {t(a.title)}
-          </h2>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40, rotateX: 14 }}
-          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          style={{ transformPerspective: 1200 }}
-        >
-          <TiltCard
-            max={4}
-            lift={10}
-            className="group rgb-glow rounded-2xl border border-white/[0.06] bg-black/45 backdrop-blur-xl"
+        <div className="mt-12 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-20 items-start">
+          {/* portrait */}
+          <motion.figure
+            ref={photoRef}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative rgb-glow rounded-[28px]"
           >
-            <div className="flex flex-col md:flex-row overflow-hidden rounded-2xl">
-              {/* Photo */}
-              <div className="relative w-full md:w-[35%] min-h-[200px] md:min-h-[280px] overflow-hidden shrink-0">
-                <img
-                  src="/gallery/sobre_mi_home.webp"
-                  alt="Mario Bencomo"
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover scale-[1.04] group-hover:scale-[1.09] transition-transform duration-[1200ms] ease-out"
-                />
-                {/* scanlines + cold light, same language as the hero */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 opacity-30 mix-blend-overlay"
-                  style={{ backgroundImage: "repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 3px)" }}
-                />
-                <div className="hidden md:block absolute inset-0" style={{ background: "linear-gradient(to right, transparent 55%, rgba(0,0,0,0.85))" }} />
-                <div className="md:hidden absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 70%)" }} />
-                <span className="absolute left-4 bottom-4 text-[9px] font-mono tracking-[0.22em] uppercase text-white/60 bg-black/40 backdrop-blur px-2 py-1 rounded">
-                  Culiacán · MX
-                </span>
-              </div>
-
-              {/* Text + stats */}
-              <div className="relative flex flex-col justify-center gap-5 p-6 md:p-8 flex-1" style={{ transform: "translateZ(30px)" }}>
-                <ScrollRevealText
-                  className="text-white font-light leading-[1.35] text-xl md:text-2xl lg:text-[1.75rem] -tracking-[0.01em] max-w-3xl"
-                  text={lang === "es"
-                    ? "Desarrollo productos digitales donde el diseño y el código trabajan juntos. Creo experiencias modernas con un enfoque obsesivo por los detalles."
-                    : "I develop digital products where design and code work together. I create modern experiences with an obsessive focus on details."}
-                />
-
-                <div
-                  className="flex items-center gap-2 group/link w-fit cursor-pointer"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/sobre-mi");
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <FlipLink href="/sobre-mi" className="text-primary font-bold text-sm md:text-base uppercase tracking-wider">
-                    {lang === "es" ? "Conoce mi historia" : "Read my story"}
-                  </FlipLink>
-                  <ArrowUpRight size={18} className="text-primary transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
+            <div className="relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0a0b10]">
+              <motion.img
+                style={{ y: imgY }}
+                src="/gallery/sobre_mi_home.webp"
+                alt="Mario Bencomo"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover scale-[1.16]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <figcaption className="absolute left-5 right-5 bottom-5 flex items-end justify-between gap-4">
+                <div>
+                  <p className="font-heading font-bold text-white text-lg leading-tight">Mario Bencomo</p>
+                  <p className="text-white/60 text-xs">Full Stack Developer</p>
                 </div>
-
-                <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 pt-4 border-t border-white/[0.06]">
-                  {stats.map((stat, i) => (
-                    <div key={i} className="flex flex-col justify-center items-start text-left group/stat">
-                      <CountUp
-                        value={stat.value}
-                        className="inline-block text-2xl sm:text-3xl md:text-5xl font-heading font-extrabold text-primary mb-1 tabular-nums [text-shadow:0_0_24px_rgba(51,141,255,0.25)] group-hover/stat:scale-105 transition-transform duration-300 origin-left"
-                      />
-                      <div className="text-[10px] text-white/60 uppercase tracking-[0.2em] font-medium">
-                        {lang === "es" ? stat.label.es : stat.label.en}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/60">Culiacán · MX</span>
+              </figcaption>
             </div>
-          </TiltCard>
-        </motion.div>
-      </div>
+          </motion.figure>
 
-      <TechMarquee />
+          {/* copy */}
+          <div className="flex flex-col gap-10 lg:pt-4 min-w-0">
+            <ScrollRevealText
+              as="h2"
+              text={statement}
+              dim={0.14}
+              className="font-heading font-bold text-white text-3xl md:text-[2.75rem] leading-[1.12] -tracking-[0.02em]"
+            />
+
+            <p className="text-[#A0A5B0] font-light text-base md:text-lg leading-relaxed max-w-2xl">{t(a.p1)}</p>
+
+            <dl className="grid grid-cols-3 border-t border-white/10">
+              {stats.map((s, i) => (
+                <div key={s.label} className={`pt-6 pr-4 ${i ? "pl-4 md:pl-6 border-l border-white/10" : ""}`}>
+                  <dt className="sr-only">{s.label}</dt>
+                  <dd className="flex flex-col gap-2">
+                    <CountUp value={s.value} className="font-heading font-extrabold text-white text-3xl md:text-5xl tabular-nums" />
+                    <span className="text-[10px] md:text-[11px] text-white/50 uppercase tracking-[0.18em] leading-snug">{s.label}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="flex flex-col gap-4">
+              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/40">Stack</span>
+              <ul className="flex flex-wrap gap-2">
+                {stack.map((s, i) => (
+                  <motion.li
+                    key={s.name}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.04 }}
+                    className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] pl-2 pr-3.5 py-1.5 text-[13px] text-white/70 hover:text-white hover:border-white/25 transition-colors"
+                  >
+                    <img
+                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${s.icon}.svg`}
+                      alt=""
+                      loading="lazy"
+                      className="w-4 h-4 object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition"
+                    />
+                    {s.name}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                navigate("/sobre-mi");
+                window.scrollTo(0, 0);
+              }}
+              className="group w-fit inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-black transition-colors"
+            >
+              {es ? "Conoce mi historia" : "Read my story"}
+              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

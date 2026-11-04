@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import type { ServicesSceneHandle } from "@/components/services3d/ServicesScene";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 type Lenisish = { scrollTo: (y: number, o?: { duration?: number }) => void };
 
@@ -87,15 +88,17 @@ const ServicesSection = () => {
         <div className="relative z-20 max-w-7xl mx-auto h-full px-6 md:px-8 pt-24 pb-10 grid grid-rows-[auto_1fr] lg:grid-rows-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-6 lg:gap-12 items-center">
           {/* ---------- copy */}
           <div className="min-w-0 order-2 lg:order-1 flex flex-col gap-6">
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(s.label) || "What I do"}</span>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white -tracking-[0.03em]">{t(s.title)}</h2>
-              </div>
-              <span className="font-mono text-xs tracking-[0.2em] text-white/40 tabular-nums pb-2">
-                <span className="text-white">{num(active)}</span> / {num(n - 1)}
-              </span>
-            </div>
+            <SectionHeading
+              index="03"
+              size="md"
+              label={t(s.title)}
+              title={t({ en: "What I can build for you", es: "Lo que puedo construir para ti" })}
+              aside={
+                <span className="font-mono text-xs tracking-[0.2em] text-white/40 tabular-nums pb-1">
+                  <span className="text-white">{num(active)}</span> / {num(n - 1)}
+                </span>
+              }
+            />
 
             {/* list (desktop) */}
             <ul className="hidden lg:flex flex-col border-t border-white/[0.07]">

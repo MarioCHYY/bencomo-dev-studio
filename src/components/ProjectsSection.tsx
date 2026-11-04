@@ -5,6 +5,7 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useNavigate } from "react-router-dom";
 import { TiltCard } from "@/components/ui/tilt-card";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 export const techStackFeatured = ["React", "Vite", "TypeScript", "TailwindCSS", "Shadcn UI"];
 
@@ -138,16 +139,18 @@ const ProjectsSection = () => {
   });
 
   const header = (
-    <motion.div style={pinned ? { y: headY } : undefined} className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-      <div>
-        <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-3">{t(p.label)}</h2>
-        <p className="text-4xl md:text-6xl font-heading font-extrabold text-white -tracking-[0.03em] leading-[1]">{t(p.title)}</p>
-        <p className="mt-4 text-base text-[#A0A5B0] font-light max-w-xl">{t(p.subtitle)}</p>
-      </div>
-      <span className="hidden md:inline-flex items-center gap-3 text-[10px] font-mono tracking-[0.22em] uppercase text-white/40 pb-2">
-        {t({ en: "Scroll to explore", es: "Desliza para explorar" })}
-        <span className="w-10 h-px bg-white/30" />
-      </span>
+    <motion.div style={pinned ? { y: headY } : undefined}>
+      <SectionHeading
+        index="02"
+        label={t(p.label)}
+        title={t(p.title)}
+        aside={
+          <span className="hidden md:inline-flex items-center gap-3 text-[10px] font-mono tracking-[0.22em] uppercase text-white/40 pb-2">
+            {t({ en: "Scroll to explore", es: "Desliza para explorar" })}
+            <span className="w-10 h-px bg-white/30" />
+          </span>
+        }
+      />
     </motion.div>
   );
 

@@ -1,59 +1,90 @@
 import { Github, Linkedin, ArrowUp, Instagram, Mail, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 
 const Footer = () => {
   const { t } = useLang();
+  const n = translations.nav;
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/MarioCHYY", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/mario-bencomo-4998273aa/", label: "LinkedIn" },
-    { icon: Instagram, href: "https://www.instagram.com/mario_bencomo06?igsh=MXhjYXR2YnQwc3FodA%3D%3D&utm_source=qr", label: "Instagram" },
-    { icon: MessageCircle, href: "https://wa.me/526674962484?text=Hola%20Mario,%20me%20gustaría%20hablar%20sobre%20un%20proyecto.", label: "WhatsApp" },
+    { icon: Instagram, href: "https://www.instagram.com/mario_bencomo06", label: "Instagram" },
+    { icon: MessageCircle, href: "https://wa.me/526674962484", label: "WhatsApp" },
     { icon: Mail, href: "mailto:mariobencomo057@gmail.com", label: "Email" },
+  ];
+  const nav = [
+    { label: t(n.home), to: "/" },
+    { label: t(n.about), to: "/sobre-mi" },
+    { label: t(n.projects), to: "/portafolio" },
+    { label: t(n.services), to: "/servicios" },
+    { label: t(n.contact), to: "/contacto" },
   ];
 
   return (
-    <footer className="relative z-20 overflow-hidden border-t border-white/[0.05]">
-      {/* Signature wordmark: outlined, fills with light on hover */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-16 select-none" aria-hidden="true">
-        <div className="group relative font-heading font-extrabold uppercase leading-[0.85] -tracking-[0.04em] text-[17vw] lg:text-[13.5rem] whitespace-nowrap text-center">
-          <span className="block text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.12)] transition-all duration-700">
-            Bencomo
-          </span>
-          <span
-            className="absolute inset-0 block text-transparent bg-clip-text bg-gradient-to-b from-primary/70 via-primary/20 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-700"
-            style={{ WebkitMaskImage: "linear-gradient(to bottom, black 30%, transparent 95%)", maskImage: "linear-gradient(to bottom, black 30%, transparent 95%)" }}
-          >
-            Bencomo
-          </span>
-        </div>
-      </div>
-
-      <div className="relative py-8 px-4 sm:px-6 md:px-12 bg-[#030303]/80 backdrop-blur-md border-t border-white/[0.05]">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-[10px] text-white/25 font-normal tracking-widest uppercase">
-            {t(translations.footer.copyright)}
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {socialLinks.map((link) => (
+    <footer className="relative z-20 border-t border-white/[0.06] bg-[#050505]">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-16 pb-10 flex flex-col gap-14">
+        <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] gap-10 items-start">
+          <div className="flex flex-col gap-3">
+            <span className="font-heading font-extrabold text-white text-xl">
+              MARIO <span className="text-primary">BENCOMO</span>
+            </span>
+            <p className="text-white/45 text-sm max-w-xs leading-relaxed">{t(translations.footer.shortText)}</p>
+          </div>
+          <nav className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
+            {nav.map((l) => (
+              <Link key={l.to} to={l.to} className="text-white/50 hover:text-white transition-colors w-fit">
+                {l.label as string}
+              </Link>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            {socialLinks.map((s) => (
               <a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                key={s.label}
+                href={s.href}
+                target={s.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="text-white/30 hover:text-primary hover:-translate-y-0.5 hover:drop-shadow-[0_0_10px_rgba(51,133,255,0.8)] transition-all p-1.5"
-                aria-label={link.label}
+                aria-label={s.label}
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-colors"
               >
-                <link.icon size={15} />
+                <s.icon size={15} />
               </a>
             ))}
-            <span className="text-[10px] text-white/25 font-normal tracking-widest uppercase ml-2">
-              {t(translations.footer.builtWith)}
-            </span>
+          </div>
+        </div>
+
+        {/* wordmark: SVG so it always fits the width exactly */}
+        <svg viewBox="0 0 1000 156" className="w-full h-auto select-none" aria-hidden="true">
+          <defs>
+            <linearGradient id="footer-wordmark" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#ffffff" stopOpacity="0.24" />
+              <stop offset="1" stopColor="#ffffff" stopOpacity="0.01" />
+            </linearGradient>
+          </defs>
+          <text
+            x="500"
+            y="138"
+            textAnchor="middle"
+            textLength="996"
+            lengthAdjust="spacingAndGlyphs"
+            fill="url(#footer-wordmark)"
+            stroke="rgba(255,255,255,0.08)"
+            strokeWidth="1"
+            style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 176, letterSpacing: "-0.02em" }}
+          >
+            BENCOMO
+          </text>
+        </svg>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] tracking-[0.14em] uppercase text-white/30">
+          <span>{t(translations.footer.copyright)}</span>
+          <div className="flex items-center gap-4">
+            <span>{t(translations.footer.builtWith)}</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-white/40 hover:text-white bg-white/5 hover:bg-primary border border-white/10 hover:border-primary p-2 rounded-full transition-all hover:shadow-[0_0_20px_rgba(51,133,255,0.6)]"
+              className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-colors"
               aria-label="Scroll to top"
             >
               <ArrowUp size={14} />

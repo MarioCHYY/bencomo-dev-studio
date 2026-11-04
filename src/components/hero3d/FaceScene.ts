@@ -24,7 +24,6 @@ import {
   Texture,
   TorusGeometry,
   Vector3,
-  Vector4,
   WebGLRenderer,
 } from "three";
 
@@ -45,9 +44,9 @@ export type FaceSceneState = "loading" | "assembling" | "scanning" | "live" | "d
 export interface FaceSceneOptions {
   container: HTMLElement; // fixed, full-viewport layer
   anchor: HTMLElement; // box the face sits in (old photo box)
-  section?: HTMLElement; // hero section (kept for API compatibility)
+  section?: HTMLElement; // hero section: leaving it releases the face into the field
   /** Elements whose vertical centre is where shapes 1..4 are fully formed. Missing ones are skipped. */
-  getSections: () => (HTMLElement | null)[];
+  getSections?: () => (HTMLElement | null)[];
   textureUrl: string;
   depthUrl: string;
   reducedMotion?: boolean;
@@ -67,7 +66,6 @@ const ASPECT = 1024 / 1138;
 const FACE_H = 1;
 const FACE_W = FACE_H * ASPECT;
 const DEPTH = 0.26;
-const SHAPES = 4;
 
 // Soft versions of the hero's RGB dots
 const BLUE = new Color("#8fb0ff");
@@ -106,55 +104,13 @@ const easeInOut = (x: number) => {
   return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 };
 
-// ---------- section shapes (unit-sized, centred on the origin)
-function planet(out: number[]) {
-  if (Math.random() < 0.72) {
-    // uniform sphere shell with a little thickness
-    const yy = 1 - 2 * Math.random();
-    const th = Math.random() * Math.PI * 2;
-    const rad = 1 + (Math.random() - 0.5) * 0.04;
-    const s = Math.sqrt(1 - yy * yy);
-    out.push(Math.cos(th) * s * rad, yy * rad, Math.sin(th) * s * rad);
-  } else {
-    // flat ring, saturn style
-    const th = Math.random() * Math.PI * 2;
-    const rr = 1.45 + Math.pow(Math.random(), 0.7) * 0.55;
-    out.push(Math.cos(th) * rr, (Math.random() - 0.5) * 0.03, Math.sin(th) * rr);
-  }
-}
-function waveField(out: number[]) {
-  out.push((Math.random() * 2 - 1) * 1.7, 0, (Math.random() * 2 - 1) * 1.0);
-}
-// two thin orbits that frame the services 3D render
-function orbits(out: number[]) {
-  const a = Math.random() * Math.PI * 2;
-  const outer = Math.random() < 0.62;
-  const r = (outer ? 1.0 : 0.78) + (Math.random() - 0.5) * 0.03;
-  const x = Math.cos(a) * r, z = Math.sin(a) * r;
-  const y = (Math.random() - 0.5) * 0.015;
-  if (outer) out.push(x, y, z);
-  else {
-    // inner orbit tilted the other way
-    const t = 0.5;
-    out.push(x, y * Math.cos(t) - z * Math.sin(t), y * Math.sin(t) + z * Math.cos(t));
-  }
-}
-function galaxy(out: number[]) {
-  const arms = 3;
-  const arm = Math.floor(Math.random() * arms);
-  const r = Math.pow(Math.random(), 0.65) * 1.25;
-  const spin = r * 3.1;
-  const scatter = (1 - r / 1.4) * 0.18 + 0.04;
-  const a = (arm / arms) * Math.PI * 2 + spin + (Math.random() - 0.5) * 0.5;
-  out.push(
-    Math.cos(a) * r + (Math.random() - 0.5) * scatter,
-    (Math.random() - 0.5) * scatter * 0.6,
-    Math.sin(a) * r + (Math.random() - 0.5) * scatter,
-  );
+// ---------- after the face: a calm, sparse field that fills the viewport (x, y in viewport fractions)
+function ambient(out: number[]) {
+  out.push(Math.random() - 0.5, Math.random() - 0.5, -1.2 + Math.random() * 1.5);
 }
 
 export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceSceneHandle> {
-  const { container, anchor, getSections, reducedMotion = false, lowPower = false, onFrame } = opts;
+  const { container, anchor, reducedMotion = false, lowPower = false, onFrame } = opts;
 
   const [texImg, depthImg] = await Promise.all([loadImage(opts.textureUrl), loadImage(opts.depthUrl)]);
 
@@ -214,25 +170,15 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
   }
   const count = pos.length / 3;
 
-  const s1: number[] = [], s2: number[] = [], s3: number[] = [], s4: number[] = [];
-  for (let i = 0; i < count; i++) {
-    planet(s1);
-    waveField(s2);
-    orbits(s3);
-    galaxy(s4);
-  }
+  const s1: number[] = [];
+  for (let i = 0; i < count; i++) ambient(s1);
 
   const pGeo = new BufferGeometry();
   pGeo.setAttribute("position", new Float32BufferAttribute(pos, 3));
   pGeo.setAttribute("aStart", new Float32BufferAttribute(start, 3));
   pGeo.setAttribute("aColor", new Float32BufferAttribute(col, 3));
   pGeo.setAttribute("aRand", new Float32BufferAttribute(rnd, 1));
-  pGeo.setAttribute("aS1", new Float32BufferAttribute(s1, 3));
-  pGeo.setAttribute("aS2", new Float32BufferAttribute(s2, 3));
-  pGeo.setAttribute("aS3", new Float32BufferAttribute(s3, 3));
-  pGeo.setAttribute("aS4", new Float32BufferAttribute(s4, 3));
-
-  const xf = [new Vector4(), new Vector4(), new Vector4(), new Vector4(), new Vector4()];
+  pGeo.setAttribute("aField", new Float32BufferAttribute(s1, 3));
   const uniforms = {
     uTime: { value: 0 },
     uAssemble: { value: 0 },
@@ -248,7 +194,8 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     uAspect: { value: 1 },
     uCamZ: { value: camera.position.z },
     uFace: { value: new Matrix4() },
-    uXf: { value: xf }, // per shape: centre x, centre y, scale, tilt (rad)
+    uView: { value: new Vector3(1, 1, 0) }, // visible world size at z=0 (x, y)
+    uScroll: { value: 0 }, // page scroll in viewport heights, drives the field parallax
     uMouse: { value: new Vector3() },
     uPointer: { value: new Vector3(0, 0, 0) }, // cursor on the z=0 plane (x, y) + repel radius
   };
@@ -262,22 +209,16 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
       attribute vec3 aStart;
       attribute vec3 aColor;
       attribute float aRand;
-      attribute vec3 aS1;
-      attribute vec3 aS2;
-      attribute vec3 aS3;
-      attribute vec3 aS4;
-      uniform float uTime, uAssemble, uScan, uAfter, uMorph, uScatter, uPR, uCell, uShapeSize, uShapeAlpha, uCamZ, uKeep, uAspect;
+      attribute vec3 aField;
+      uniform float uTime, uAssemble, uScan, uAfter, uMorph, uScatter, uPR, uCell, uShapeSize, uShapeAlpha, uCamZ, uKeep, uAspect, uScroll;
       uniform mat4 uFace;
-      uniform vec4 uXf[5];
+      uniform vec3 uView;
       uniform vec3 uMouse;
       uniform vec3 uPointer;
       varying vec3 vCol;
       varying float vAlpha;
       varying float vAngle;
       varying float vStretch;
-
-      mat3 rotY(float a){ float c=cos(a), s=sin(a); return mat3(c,0.,-s, 0.,1.,0., s,0.,c); }
-      mat3 rotX(float a){ float c=cos(a), s=sin(a); return mat3(1.,0.,0., 0.,c,s, 0.,-s,c); }
 
       // The hero's RGB dot gradient, spread softly across the screen and drifting slowly. Pastel, not neon.
       vec3 field(vec2 ndc) {
@@ -296,23 +237,12 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
         return c.xy / c.w;
       }
 
-      vec3 place(int k, vec3 p, float spin) {
-        vec4 x = uXf[k];
-        p = rotY(spin + uMouse.x * 0.35) * p;
-        p = rotX(x.w + uMouse.y * 0.18) * p;
-        return vec3(x.x, x.y, 0.0) + p * x.z;
-      }
-
-      vec3 shapeWorld(int k) {
-        if (k == 1) return place(1, aS1, uTime * 0.1);
-        if (k == 2) {
-          vec3 p = aS2;
-          p.y = sin(p.x * 3.2 + uTime * 0.8) * 0.09 + cos(p.z * 4.1 + uTime * 0.6) * 0.07
-              + sin((p.x + p.z) * 6.0 - uTime * 1.1) * 0.025;
-          return place(2, p, 0.0);
-        }
-        if (k == 3) return place(3, aS3, uTime * 0.15);
-        return place(4, aS4, -uTime * 0.06);
+      // calm field: drifts slowly, closer dashes move more with the scroll (parallax), wraps vertically
+      vec3 fieldWorld() {
+        float depth = 0.35 + aRand * 0.9;
+        vec2 drift = vec2(sin(uTime * 0.05 + aRand * 40.0), cos(uTime * 0.04 + aRand * 30.0)) * 0.015;
+        float y = fract(aField.y + uScroll * 0.12 * depth + drift.y + 0.5) - 0.5;
+        return vec3((aField.x + drift.x) * uView.x * 1.08, y * uView.y * 1.12, aField.z);
       }
 
       void main() {
@@ -327,23 +257,19 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
         fp += 0.0025 * vec3(sin(uTime * 1.7 + aRand * 60.0), cos(uTime * 1.3 + aRand * 40.0), sin(uTime * 1.1 + aRand * 20.0));
         vec3 faceW = (uFace * vec4(fp, 1.0)).xyz;
 
-        // ---- scroll morph between consecutive shapes
-        float m = clamp(uMorph, 0.0, 4.0);
-        int k0 = int(floor(m));
-        if (k0 > 3) k0 = 3;
-        float f = m - float(k0);
-        f = clamp(f * 1.45 - aRand * 0.45, 0.0, 1.0);
+        // ---- scroll: face → calm field (once)
+        float f = clamp(clamp(uMorph, 0.0, 1.0) * 1.45 - aRand * 0.45, 0.0, 1.0);
         f = f * f * (3.0 - 2.0 * f);
 
-        vec3 A = k0 == 0 ? faceW : shapeWorld(k0);
-        vec3 B = shapeWorld(k0 + 1);
+        vec3 A = faceW;
+        vec3 B = fieldWorld();
         vec3 p = mix(A, B, f);
         float burst = sin(f * 3.14159);
         vec3 rd = normalize(aStart + vec3(0.001));
         p += rd * burst * uScatter * (0.35 + aRand * 0.9);
         p.y += burst * (aRand - 0.5) * uScatter * 0.5;
 
-        float leaveFace = k0 == 0 ? smoothstep(0.0, 0.35, f) : 1.0;
+        float leaveFace = smoothstep(0.0, 0.35, f);
 
         // ---- cursor pushes the field away (not the face)
         vec2 dP = p.xy - uPointer.xy;
@@ -539,25 +465,10 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     narrow = cw < 1024;
     uniforms.uPR.value = renderer.getPixelRatio();
 
-    // where each section shape lives on screen (world units, centre of viewport = 0,0)
-    const u = Math.min(visH, visW * 0.9);
-    if (narrow) {
-      xf[1].set(0, visH * 0.05, u * 0.22, 0.35);
-      xf[2].set(0, -visH * 0.3, visW * 0.6, 1.0);
-      xf[3].set(0, visH * 0.2, u * 0.34, 1.25);
-      xf[4].set(0, 0, u * 0.36, 1.05);
-      uniforms.uShapeAlpha.value = 0.5;
-      uniforms.uShapeSize.value = 1.9;
-      uniforms.uKeep.value = 0.26;
-    } else {
-      xf[1].set(visW * 0.3, -visH * 0.06, u * 0.24, 0.38);
-      xf[2].set(0, -visH * 0.32, visW * 0.5, 1.0);
-      xf[3].set(visW * 0.24, -visH * 0.02, u * 0.33, 1.25);
-      xf[4].set(0, -visH * 0.02, u * 0.42, 1.08);
-      uniforms.uShapeAlpha.value = 0.62;
-      uniforms.uShapeSize.value = 2.1;
-      uniforms.uKeep.value = 0.3;
-    }
+    uniforms.uView.value.set(visW, visH, 0);
+    uniforms.uShapeAlpha.value = narrow ? 0.38 : 0.45;
+    uniforms.uShapeSize.value = narrow ? 1.8 : 2.0;
+    uniforms.uKeep.value = narrow ? 0.09 : 0.11;
     uniforms.uScatter.value = visH * 0.32;
     uniforms.uAspect.value = camera.aspect;
   };
@@ -581,34 +492,13 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
   ro.observe(container);
   window.addEventListener("resize", resize);
 
-  // ---------- scroll → morph value
+  // ---------- scroll → morph value: the face lets go while you leave the hero
+  const heroEl = opts.section;
   const morphFromScroll = () => {
     const vh = window.innerHeight;
-    const y = window.scrollY;
-    const keys: number[] = [0];
-    const els = getSections();
-    for (let i = 0; i < SHAPES; i++) {
-      const el = els[i];
-      if (!el) break;
-      const r = el.getBoundingClientRect();
-      const k = y + r.top + Math.min(r.height, vh) / 2 - vh / 2;
-      if (k <= keys[keys.length - 1]) break;
-      keys.push(k);
-    }
-    // hold the face for the first bit of scroll so the hero can breathe
-    const hold = vh * 0.06;
-    if (y <= hold || keys.length < 2) return 0;
-    for (let i = 0; i < keys.length - 1; i++) {
-      const b = keys[i + 1];
-      // after leaving the face, only fly during the last screen before the next section
-      const a = i === 0 ? hold : Math.max(keys[i], b - vh * 1.1);
-      if (y < b) {
-        if (y < a) return i;
-        const f = (y - a) / (b - a);
-        return i + smooth(0.08, 0.92, f);
-      }
-    }
-    return keys.length - 1;
+    const r = heroEl ? heroEl.getBoundingClientRect() : { top: -window.scrollY, height: vh };
+    const p = clamp01((-r.top - vh * 0.06) / Math.max(1, r.height * 0.75));
+    return smooth(0, 1, p);
   };
 
   // ---------- input
@@ -668,6 +558,7 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     // during the intro, keep the face until it has been built
     const m = asm < 1 ? Math.min(morph, 0.0) : morph;
     uniforms.uMorph.value = m;
+    uniforms.uScroll.value = window.scrollY / Math.max(1, window.innerHeight);
     uniforms.uScatter.value = reducedMotion ? 0 : visH * 0.32;
 
     const faceOn = 1 - smooth(0.0, 0.3, m);
@@ -693,7 +584,8 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     uniforms.uPointer.value.set(ptr.x, ptr.y, reducedMotion ? 0 : ptr.r);
 
     // decorations around the head
-    const dIn = easeOut((t - 2.3) / 1.4) * faceOn;
+    // the ring and shapes go away as soon as you start scrolling
+    const dIn = easeOut((t - 2.3) / 1.4) * (1 - smooth(0, 0.08, m));
     ringMat.opacity = dIn * 0.7;
     ring.rotation.y = time * 0.22;
     ring.visible = dIn > 0.001;

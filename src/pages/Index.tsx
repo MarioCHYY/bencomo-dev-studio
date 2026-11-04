@@ -1,11 +1,8 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import IntegratedHero from "@/components/IntegratedHero";
-import ManifestoSection from "@/components/ManifestoSection";
-import { VelocityMarquee } from "@/components/ui/velocity-marquee";
 import { CursorFollower } from "@/components/ui/cursor-follower";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { useLang } from "@/i18n/LanguageContext";
 
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
@@ -26,17 +23,12 @@ const SectionSkeleton = () => (
 
 const Index = () => {
   useSmoothScroll();
-  const { lang } = useLang();
-  const es = lang === "es";
 
   return (
     <main className="min-h-screen">
       <CursorFollower />
       <Navbar />
       <IntegratedHero />
-
-      <ManifestoSection />
-      <VelocityMarquee words={es ? ["Diseño", "Código", "3D", "Movimiento", "IA"] : ["Design", "Code", "3D", "Motion", "AI"]} />
 
       <Suspense fallback={<SectionSkeleton />}>
         <AboutSection />
@@ -45,12 +37,6 @@ const Index = () => {
       <Suspense fallback={<SectionSkeleton />}>
         <ProjectsSection />
       </Suspense>
-
-      <VelocityMarquee
-        outline
-        baseVelocity={2}
-        words={es ? ["Sitios web", "Apps", "Sistemas", "Automatización", "IA"] : ["Websites", "Apps", "Systems", "Automation", "AI"]}
-      />
 
       <Suspense fallback={<SectionSkeleton />}>
         <ServicesSection />
