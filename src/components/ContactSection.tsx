@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { useLang } from "@/i18n/LanguageContext";
 import { BrandMark } from "@/components/brand/Logo";
@@ -247,6 +248,13 @@ const ContactSection = () => {
                       <ArrowUpRight size={18} className={`transition-transform ${sending ? "animate-pulse" : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"}`} />
                     </span>
                   </button>
+                  <p className="-mt-4 text-xs text-white/45 leading-relaxed max-w-md">
+                    {es ? "Al enviar aceptas el " : "By sending you accept the "}
+                    <Link to="/privacidad" className="underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white transition-colors">
+                      {es ? "aviso de privacidad" : "privacy notice"}
+                    </Link>
+                    {es ? ". Solo uso tus datos para responderte." : ". I only use your data to reply."}
+                  </p>
                 </motion.form>
               )}
             </AnimatePresence>

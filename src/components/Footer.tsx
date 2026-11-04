@@ -94,7 +94,10 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] tracking-[0.14em] uppercase text-white/30">
-          <span>{t(translations.footer.copyright)}</span>
+          <span className="flex flex-col sm:flex-row items-center gap-2 sm:gap-5">
+            <span>{t(translations.footer.copyright)}</span>
+            <Link to="/privacidad" className="hover:text-white transition-colors">{t({ en: "Privacy notice", es: "Aviso de privacidad" })}</Link>
+          </span>
           <div className="flex items-center gap-4">
             <span>{t(translations.footer.builtWith)}</span>
             <button

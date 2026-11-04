@@ -14,6 +14,7 @@ const Services = lazy(() => import("./pages/Services"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Privacy = lazy(() => import("./pages/Privacy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Fallback loader
@@ -38,6 +39,7 @@ const App = () => (
               <Route path="/portafolio" element={<Portfolio />} />
               <Route path="/sobre-mi" element={<About />} />
               <Route path="/contacto" element={<Contact />} />
+              <Route path="/privacidad" element={<Privacy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
