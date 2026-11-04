@@ -1,25 +1,21 @@
-import { Suspense, lazy } from 'react';
-import Navbar from '@/components/Navbar';
+import { Suspense, lazy } from "react";
+import Navbar from "@/components/Navbar";
+import { Starfield } from "@/components/ui/starfield";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
-const ServicesPageContent = lazy(() => import('@/components/ServicesPageContent'));
-const Footer = lazy(() => import('@/components/Footer'));
-
-const SectionSkeleton = () => (
-  <div className="min-h-screen w-full flex items-center justify-center">
-    <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-  </div>
-);
+const ServicesPageContent = lazy(() => import("@/components/ServicesPageContent"));
+const CTASection = lazy(() => import("@/components/CTASection"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Services = () => {
+  useSmoothScroll();
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen">
+      <Starfield />
       <Navbar />
-      <div className="pt-24">
-        <Suspense fallback={<SectionSkeleton />}>
-          <ServicesPageContent />
-        </Suspense>
-      </div>
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <ServicesPageContent />
+        <CTASection />
         <Footer />
       </Suspense>
     </main>

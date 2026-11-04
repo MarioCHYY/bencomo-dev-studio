@@ -1,10 +1,10 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import type { ServicesSceneHandle } from "@/components/services3d/ServicesScene";
+import { useServicesScene } from "@/components/services3d/useServicesScene";
 import { Starfield } from "@/components/ui/starfield";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -22,9 +22,8 @@ const ServicesSection = () => {
 
   const sectionRef = useRef<HTMLElement>(null);
   const viewRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<ServicesSceneHandle | null>(null);
   const [active, setActive] = useState(0);
-  const [noGL, setNoGL] = useState(false);
+  const noGL = useServicesScene(viewRef, active);
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const bar = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -32,41 +31,6 @@ const ServicesSection = () => {
     const i = Math.min(n - 1, Math.max(0, Math.floor(v * n * 0.999)));
     setActive((prev) => (prev === i ? prev : i));
   });
-
-  useEffect(() => {
-    sceneRef.current?.setActive(active);
-  }, [active]);
-
-  useEffect(() => {
-    const el = viewRef.current;
-    if (!el) return;
-    let cancelled = false;
-    let ok = false;
-    try {
-      const c = document.createElement("canvas");
-      ok = !!(c.getContext("webgl2") || c.getContext("webgl"));
-    } catch {
-      ok = false;
-    }
-    if (!ok) {
-      setNoGL(true);
-      return;
-    }
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    import("@/components/services3d/ServicesScene")
-      .then(({ createServicesScene }) => createServicesScene(el, { reducedMotion }))
-      .then((h) => {
-        if (cancelled) return h.dispose();
-        sceneRef.current = h;
-        h.setActive(0);
-      })
-      .catch(() => !cancelled && setNoGL(true));
-    return () => {
-      cancelled = true;
-      sceneRef.current?.dispose();
-      sceneRef.current = null;
-    };
-  }, []);
 
   const goTo = (i: number) => {
     const el = sectionRef.current;
