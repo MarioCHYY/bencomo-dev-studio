@@ -1,12 +1,15 @@
 import { Suspense, lazy } from "react";
 import Navbar from "@/components/Navbar";
 import { Starfield } from "@/components/ui/starfield";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const AboutPageContent = lazy(() => import("@/components/AboutPageContent"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
 
-const About = () => (
+const About = () => {
+  useSmoothScroll();
+  return (
   <main className="min-h-screen">
     <Starfield />
     <Navbar />
@@ -16,6 +19,7 @@ const About = () => (
       <Footer />
     </Suspense>
   </main>
-);
+  );
+};
 
 export default About;

@@ -4,26 +4,12 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import { CountUp } from "@/components/ui/count-up";
 import { ScrollRevealText } from "@/components/ui/scroll-reveal-text";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const stack = [
-  { name: "React", icon: "react/react-original" },
-  { name: "TypeScript", icon: "typescript/typescript-original" },
-  { name: "JavaScript", icon: "javascript/javascript-original" },
-  { name: "Node.js", icon: "nodejs/nodejs-original" },
-  { name: "Python", icon: "python/python-original" },
-  { name: "Tailwind CSS", icon: "tailwindcss/tailwindcss-original" },
-  { name: "Docker", icon: "docker/docker-original" },
-  { name: "Git", icon: "git/git-original" },
-  { name: "Java", icon: "java/java-original" },
-  { name: "Figma", icon: "figma/figma-original" },
-];
-
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** Home "About": who I am in one scroll: portrait, a point of view, three principles, numbers, stack. */
+/** Home "About": a short teaser (portrait, a point of view, one paragraph); the full story lives on /sobre-mi. */
 const AboutSection = () => {
   const navigate = useNavigate();
   const { t, lang } = useLang();
@@ -33,24 +19,6 @@ const AboutSection = () => {
   const photoRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start end", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
-
-  const principles = es
-    ? [
-        { n: "01", title: "Entender primero", text: "No empiezo escribiendo código. Primero entiendo el problema, hago bocetos y pienso en la experiencia que quiero crear." },
-        { n: "02", title: "Menos es más", text: "Una interfaz limpia no es solo estética: es respetar el tiempo de quien la usa." },
-        { n: "03", title: "Diseño con base técnica", text: "No entiendo el desarrollo sin visión estética, ni el diseño sin una base sólida que lo haga real." },
-      ]
-    : [
-        { n: "01", title: "Understand first", text: "I don't start by writing code. I understand the problem, sketch, and think about the experience I want to create." },
-        { n: "02", title: "Less is more", text: "A clean interface isn't just aesthetics: it respects the time of whoever uses it." },
-        { n: "03", title: "Design with a technical base", text: "I don't understand development without a clear aesthetic vision, nor design without a solid base to make it real." },
-      ];
-
-  const stats = [
-    { value: "10+", label: es ? "Proyectos creados" : "Projects built" },
-    { value: "2+", label: es ? "Años construyendo" : "Years building" },
-    { value: "100%", label: es ? "Intención en cada detalle" : "Intent in every detail" },
-  ];
 
   const statement = es
     ? "No solo escribo código. Diseño productos que se sienten vivos, del primer boceto al último pixel."
@@ -104,60 +72,6 @@ const AboutSection = () => {
             />
 
             <p className="text-white/55 text-base md:text-lg leading-relaxed max-w-2xl">{t(a.p1)}</p>
-
-            {/* three principles */}
-            <ol className="border-t border-white/10">
-              {principles.map((p, i) => (
-                <motion.li
-                  key={p.n}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.7, ease, delay: i * 0.05 }}
-                  className="group grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_14rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-white/10"
-                >
-                  <span className="font-mono text-xs text-white/35 pt-1 tabular-nums">{p.n}</span>
-                  <h4 className="font-heading font-semibold text-white text-lg -tracking-[0.02em] group-hover:translate-x-1 transition-transform duration-500">{p.title}</h4>
-                  <p className="col-start-2 md:col-start-auto text-white/50 text-[15px] leading-relaxed">{p.text}</p>
-                </motion.li>
-              ))}
-            </ol>
-
-            <dl className="grid grid-cols-3">
-              {stats.map((s, i) => (
-                <div key={s.label} className={`pr-4 ${i ? "pl-4 md:pl-8 border-l border-white/10" : ""}`}>
-                  <dt className="sr-only">{s.label}</dt>
-                  <dd className="flex flex-col gap-2">
-                    <CountUp value={s.value} className="font-heading font-semibold text-white text-4xl md:text-6xl -tracking-[0.05em] tabular-nums" />
-                    <span className="text-[10px] md:text-[11px] text-white/45 uppercase tracking-[0.18em] leading-snug">{s.label}</span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-
-            <div className="flex flex-col gap-4">
-              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/35">{es ? "Con qué construyo" : "What I build with"}</span>
-              <ul className="flex flex-wrap gap-2">
-                {stack.map((s, i) => (
-                  <motion.li
-                    key={s.name}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.04 }}
-                    className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] pl-2 pr-3.5 py-1.5 text-[13px] text-white/70 hover:text-white hover:border-white/25 transition-colors"
-                  >
-                    <img
-                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${s.icon}.svg`}
-                      alt=""
-                      loading="lazy"
-                      className="w-4 h-4 object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition"
-                    />
-                    {s.name}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
 
             <button
               type="button"
