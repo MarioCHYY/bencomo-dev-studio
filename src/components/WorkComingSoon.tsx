@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
@@ -115,6 +115,17 @@ const ReelHero = ({ es }: { es: boolean }) => {
  */
 const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
   const { lang } = useLang();
+  // the mark on each card slips open like the one in the navbar: on hover, or (touch screens) while the card is in view
+  const [openCards, setOpenCards] = useState<Set<number>>(() => new Set());
+  const touch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+  const setCard = (i: number, on: boolean) =>
+    setOpenCards((prev) => {
+      if (prev.has(i) === on) return prev;
+      const next = new Set(prev);
+      if (on) next.add(i);
+      else next.delete(i);
+      return next;
+    });
   const es = lang === "es";
 
   const cards = es
@@ -173,6 +184,10 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           {cards.map((c, i) => (
             <motion.article
               key={c.n}
+              onHoverStart={() => !touch && setCard(i, true)}
+              onHoverEnd={() => !touch && setCard(i, false)}
+              onViewportEnter={() => touch && setCard(i, true)}
+              onViewportLeave={() => touch && setCard(i, false)}
               initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -191,7 +206,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
                 style={{ background: `linear-gradient(180deg, rgb(var(--c-tint-${i + 1}) / 0.1), rgb(var(--c-tint-${i + 1}) / 0.82))` }}
               />
               <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
-                <BrandMark size={72} tone="auto" className="opacity-25 group-hover:opacity-50 transition-opacity duration-700" open={false} />
+                <BrandMark size={72} tone="auto" className="opacity-30 group-hover:opacity-60 transition-opacity duration-700" open={openCards.has(i)} />
               </div>
 
               <div className="relative h-full flex flex-col justify-between p-6 md:p-7">
