@@ -605,12 +605,23 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
   ro.observe(container);
 
   const pointer = { x: 0, y: 0, cx: 0, cy: 0 };
+  // gentle tilt toward the mouse, measured from the model's centre against the whole window
+  // and clamped, so a pointer far away (over the text, the other side of the screen) can't flip it
+  const clamp1 = (v: number) => Math.max(-1, Math.min(1, v));
   const onMove = (e: PointerEvent) => {
+    if (e.pointerType === "touch") return;
     const r = container.getBoundingClientRect();
-    pointer.x = ((e.clientX - r.left) / r.width) * 2 - 1;
-    pointer.y = ((e.clientY - r.top) / r.height) * 2 - 1;
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    pointer.x = clamp1((e.clientX - cx) / (window.innerWidth * 0.5));
+    pointer.y = clamp1((e.clientY - cy) / (window.innerHeight * 0.5));
+  };
+  const onLeave = () => {
+    pointer.x = 0;
+    pointer.y = 0;
   };
   window.addEventListener("pointermove", onMove, { passive: true });
+  document.documentElement.addEventListener("pointerleave", onLeave);
+  window.addEventListener("blur", onLeave);
 
   let visible = true;
   const io = new IntersectionObserver(([e]) => {
@@ -646,8 +657,8 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
     });
     pointer.cx += (pointer.x - pointer.cx) * 0.06;
     pointer.cy += (pointer.y - pointer.cy) * 0.06;
-    stage.rotation.y = pointer.cx * 0.35;
-    stage.rotation.x = pointer.cy * 0.15;
+    stage.rotation.y = pointer.cx * 0.28;
+    stage.rotation.x = pointer.cy * 0.1;
     renderer.render(scene, camera);
   };
   function kick() {
@@ -667,6 +678,8 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
       ro.disconnect();
       io.disconnect();
       window.removeEventListener("pointermove", onMove);
+      document.documentElement.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("blur", onLeave);
       document.removeEventListener("visibilitychange", onVis);
       scene.traverse((o) => {
         const a = o as unknown as { geometry?: BufferGeometry; material?: Material | Material[] };

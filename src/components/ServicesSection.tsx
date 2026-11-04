@@ -60,7 +60,7 @@ const ServicesSection = () => {
               title={t({ en: "What I can build", es: "Lo que puedo construir" })}
               muted={t({ en: "for you.", es: "para ti." })}
               aside={
-                <span className="font-mono text-xs tracking-[0.2em] text-white/40 tabular-nums pb-1">
+                <span className="font-mono text-xs tracking-[0.2em] text-white/40 tabular-nums whitespace-nowrap pb-1">
                   <span className="text-white">{num(active)}</span> / {num(n - 1)}
                 </span>
               }
