@@ -2,6 +2,7 @@ import { Github, Linkedin, ArrowUp, Instagram, Mail, MessageCircle } from "lucid
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
+import { BrandLogo, BrandWordmark } from "@/components/brand/Logo";
 
 const Footer = () => {
   const { t } = useLang();
@@ -27,7 +28,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-8 pt-16 pb-10 flex flex-col gap-14">
         <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] gap-10 items-start">
           <div className="flex flex-col gap-3">
-            <span className="font-heading font-semibold text-white text-xl -tracking-[0.02em]">mario bencomo</span>
+            <BrandLogo height={30} title="Bencomo" />
             <p className="text-white/45 text-sm max-w-xs leading-relaxed">{t(translations.footer.shortText)}</p>
           </div>
           <nav className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
@@ -53,28 +54,18 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* wordmark: SVG so it always fits the width exactly */}
-        <svg viewBox="0 0 1000 200" className="w-full h-auto select-none" aria-hidden="true">
-          <defs>
-            <linearGradient id="footer-wordmark" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#ffffff" stopOpacity="0.24" />
-              <stop offset="1" stopColor="#ffffff" stopOpacity="0.01" />
-            </linearGradient>
-          </defs>
-          <text
-            x="500"
-            y="160"
-            textAnchor="middle"
-            textLength="996"
-            lengthAdjust="spacingAndGlyphs"
-            fill="url(#footer-wordmark)"
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="1"
-            style={{ fontFamily: "'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 210, letterSpacing: "-0.06em" }}
-          >
-            bencomo
-          </text>
-        </svg>
+        {/* outlined wordmark: the real logo, always fits the width exactly */}
+        <div className="relative select-none" aria-hidden="true">
+          <svg width="0" height="0" className="absolute">
+            <defs>
+              <linearGradient id="footer-wordmark" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#ffffff" stopOpacity="0.22" />
+                <stop offset="1" stopColor="#ffffff" stopOpacity="0.01" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <BrandWordmark className="w-full h-auto" fill="url(#footer-wordmark)" stroke="rgba(255,255,255,0.08)" strokeWidth={3} />
+        </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] tracking-[0.14em] uppercase text-white/30">
           <span>{t(translations.footer.copyright)}</span>

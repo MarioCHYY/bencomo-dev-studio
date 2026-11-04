@@ -4,28 +4,14 @@ import { Menu, X } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { Link, useLocation } from "react-router-dom";
-
-/** Temporary wordmark until the new logo is ready. */
-const Wordmark = () => (
-  <span className="flex items-center gap-2.5">
-    <span aria-hidden="true" className="grid grid-cols-3 gap-[2px]">
-      {Array.from({ length: 9 }).map((_, i) => (
-        <span key={i} className={`w-[3px] h-[3px] rounded-full ${[0, 4, 8, 5, 7].includes(i) ? "bg-white" : "bg-white/25"}`} />
-      ))}
-    </span>
-    <span className="leading-[0.95] text-[15px] font-semibold tracking-[-0.01em] text-white">
-      mario
-      <br />
-      bencomo
-    </span>
-  </span>
-);
+import { BrandLogo } from "@/components/brand/Logo";
 
 const Navbar = () => {
   const { lang, setLang, t } = useLang();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [logoHover, setLogoHover] = useState(false);
 
   const links = [
     { label: t(translations.nav.home), href: "/" },
@@ -67,8 +53,16 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 h-[72px] grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center">
-        <Link to="/" aria-label="Mario Bencomo, inicio" className="w-fit">
-          <Wordmark />
+        <Link
+          to="/"
+          aria-label="Bencomo, inicio"
+          className="w-fit"
+          onMouseEnter={() => setLogoHover(true)}
+          onMouseLeave={() => setLogoHover(false)}
+          onFocus={() => setLogoHover(true)}
+          onBlur={() => setLogoHover(false)}
+        >
+          <BrandLogo height={26} open={logoHover} title="Bencomo" />
         </Link>
 
         {/* Desktop links, centred */}

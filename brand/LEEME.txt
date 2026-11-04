@@ -1,0 +1,20 @@
+BENCOMO · identidad "Corte"
+
+Colores
+  Tinta    #0B0B0D   fondo principal
+  Hueso    #F2F0EA   símbolo y texto
+  Aurora   #8FB0FF → #B7A8FF → #FF9AB0 → #FFC48A   (solo dentro del símbolo y en destellos)
+
+Tipografía
+  Plus Jakarta Sans. Wordmark en Bold 700, minúsculas, tracking -4.5 %.
+
+Archivos
+  svg/  vectores: símbolo, logo horizontal y wordmark, en hueso (para fondos oscuros) y tinta (para fondos claros).
+        "mono" = sin aurora, para grabados, sellos o impresión a una tinta.
+  png/  versiones en alta resolución con fondo transparente.
+  web/  favicon, íconos de app y la imagen para compartir en redes (1200×630).
+
+Reglas rápidas
+  - Deja alrededor del logo un espacio libre de al menos la mitad del símbolo.
+  - El corte siempre va a 34°, subiendo hacia la derecha. No lo gires ni lo espejes.
+  - No cambies los colores de la aurora ni la pongas en el texto.
