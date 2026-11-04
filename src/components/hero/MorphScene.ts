@@ -182,16 +182,18 @@ export async function createMorphScene(
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
         gl_Position = projectionMatrix * mv;
         float depth = clamp((p.z + 1.2) / 2.4, 0.0, 1.0); // 0 back → 1 front
-        gl_PointSize = uSize * uPR * (0.6 + aRand * 0.7) * (5.2 / -mv.z);
+        gl_PointSize = uSize * uPR * (0.6 + aRand * 0.7) * (5.2 / -mv.z) * mix(1.0, 1.25, uLight); // a bit bigger on Bone
 
         // soft RGB, the old hero dots in pastel: blue top-left → violet → pink → peach bottom-right
         float d = clamp((p.x - p.y) * 0.35 + 0.5, 0.0, 1.0);
         vec3 c1 = vec3(0.56, 0.69, 1.0), c2 = vec3(0.72, 0.66, 1.0), c3 = vec3(1.0, 0.64, 0.76), c4 = vec3(1.0, 0.8, 0.6);
         vec3 col = d < 0.5 ? mix(c1, c2, d / 0.5) : (d < 0.8 ? mix(c2, c3, (d - 0.5) / 0.3) : mix(c3, c4, (d - 0.8) / 0.2));
         vec3 cDark = mix(vec3(1.0), col, 0.55 + aRand * 0.3);
-        vec3 cLight = mix(vec3(0.09), col * vec3(0.55, 0.5, 0.78), 0.5 + aRand * 0.4);
+        // light theme: the same aurora hues, saturated (pow) so they read on Bone instead of turning grey;
+        // dots further back get a touch deeper for depth
+        vec3 cLight = pow(col, vec3(2.3)) * (0.72 + 0.28 * depth) * (0.9 + 0.1 * aRand);
         vCol = mix(cDark, cLight, uLight);
-        vA = (0.12 + depth * 0.78) * (0.7 + 0.3 * sin(uTime * 2.0 + aRand * 80.0)) * uFade * mix(1.0, 1.15, uLight);
+        vA = (0.12 + depth * 0.78) * (0.7 + 0.3 * sin(uTime * 2.0 + aRand * 80.0)) * uFade * mix(1.0, 1.3, uLight);
       }
     `,
     fragmentShader: /* glsl */ `
