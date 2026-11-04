@@ -50,7 +50,9 @@ const ContactSection = () => {
   const [sent, setSent] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => {
+    window.scrollTo(0, 0); // braces: newer Chrome returns a promise from scrollTo, which React would treat as a cleanup
+  }, []);
 
   const copy = async () => {
     try {

@@ -107,7 +107,9 @@ const AboutPageContent = () => {
   const edu = translations.education;
   const exp = translations.experience;
 
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => {
+    window.scrollTo(0, 0); // braces: newer Chrome returns a promise from scrollTo, which React would treat as a cleanup
+  }, []);
 
   const principles = es
     ? [
