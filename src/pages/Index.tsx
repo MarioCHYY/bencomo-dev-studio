@@ -7,7 +7,8 @@ import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const ProcessSection = lazy(() => import("@/components/ProcessSection"));
-const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
+// case studies are on hold: "coming soon" until there is work worth showing (ProjectsSection keeps the gallery)
+const ProjectsSection = lazy(() => import("@/components/WorkComingSoon"));
 const ServicesSection = lazy(() => import("@/components/ServicesSection"));
 const TechStrip = lazy(() => import("@/components/TechStrip"));
 const FaqSection = lazy(() => import("@/components/FaqSection"));

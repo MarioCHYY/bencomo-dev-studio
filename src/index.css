@@ -191,6 +191,19 @@ html.lenis, html.lenis body { height: auto; }
   filter: blur(56px);
 }
 @keyframes rgb-spin { to { --rgb-angle: 360deg; } }
+/* on the light theme the pastel edge needs more body to read against white */
+:root:not(.dark) .rgb-glow:not(.theme-dark *)::before { opacity: 1; padding: 1.5px; filter: saturate(1.35); }
+:root:not(.dark) .rgb-glow:not(.theme-dark *)::after { opacity: 0.42; inset: 3%; filter: blur(44px) saturate(1.5); }
+
+/* ---- "coming soon" cards: slow aurora drift + shimmer ---- */
+@keyframes aurora-drift {
+  0%, 100% { transform: translate3d(-8%, -6%, 0) scale(1); }
+  50% { transform: translate3d(8%, 6%, 0) scale(1.15); }
+}
+@keyframes soon-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
 
 /* ---- Theme helpers ---- */
 .bg-paper-solid { background-color: rgb(var(--c-paper)); }
