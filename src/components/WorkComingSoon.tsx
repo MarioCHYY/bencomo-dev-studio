@@ -56,8 +56,8 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           aside={
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-white/75">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B7A8FF] opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B7A8FF]" />
               </span>
               {es ? "Próximamente" : "Coming soon"}
             </span>

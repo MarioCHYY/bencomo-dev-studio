@@ -126,7 +126,7 @@ const AboutPageContent = () => {
             transition={{ duration: 1.1, ease, delay: 0.15 }}
             className="relative rgb-glow rounded-[28px] justify-self-center lg:justify-self-end w-full max-w-md"
           >
-            <div className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0a0b10]">
+            <div className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0B0B0D]">
               <motion.img style={{ y: heroImgY }} src="/gallery/sobre_mi_hero.webp" alt="Mario Bencomo" className="absolute inset-0 h-full w-full object-cover scale-[1.12]" />
               <div className="absolute inset-0 bg-gradient-to-t from-[rgb(0_0_0/0.65)] via-transparent to-transparent" />
               <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-[rgb(255_255_255/0.2)] bg-[rgb(0_0_0/0.4)] backdrop-blur-md px-3 py-1.5 text-[11px] font-medium text-[#fff]">
@@ -153,7 +153,7 @@ const AboutPageContent = () => {
           <SectionHeading index="01" label={t(a.storyLabel)} title={es ? "Quién está" : "Who's"} muted={es ? "detrás del código." : "behind the code."} />
           <div className="mt-14 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-20 items-start">
             <Reveal className="lg:sticky lg:top-28">
-              <div className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0a0b10]">
+              <div className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0B0B0D]">
                 {storyImages.map((src, i) => (
                   <img
                     key={src}

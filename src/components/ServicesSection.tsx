@@ -137,7 +137,7 @@ const ServicesSection = () => {
                   <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 max-w-xl">
                     {deliverables.slice(0, 4).map((d) => (
                       <li key={d} className="flex items-start gap-2 text-[13px] text-white/70">
-                        <Check size={14} className="mt-0.5 shrink-0 text-[#9fe8c4]" />
+                        <Check size={14} className="mt-0.5 shrink-0 text-white/70" />
                         <span>{d}</span>
                       </li>
                     ))}

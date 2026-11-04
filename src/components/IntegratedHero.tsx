@@ -77,8 +77,8 @@ export default function IntegratedHero() {
           className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-white/70"
         >
           <span className="relative flex w-1.5 h-1.5">
-            <span className="absolute inset-0 rounded-full bg-[#9fe8c4] animate-ping opacity-60" />
-            <span className="relative w-1.5 h-1.5 rounded-full bg-[#9fe8c4]" />
+            <span className="absolute inset-0 rounded-full bg-[#8FB0FF] animate-ping opacity-60" />
+            <span className="relative w-1.5 h-1.5 rounded-full bg-[#8FB0FF]" />
           </span>
           {es ? "Disponible para nuevos proyectos" : "Available for new projects"}
         </motion.span>

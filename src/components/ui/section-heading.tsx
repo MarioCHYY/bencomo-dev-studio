@@ -32,13 +32,13 @@ export function SectionHeading({ index, label, title, muted, intro, aside, size 
         transition={{ duration: 0.6, ease }}
         className="flex items-center gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase"
       >
-        <span className={cn("tabular-nums", light ? "text-black" : "text-brand")}>{index}</span>
+        <span className={cn("tabular-nums", light ? "text-black" : "text-white")}>{index}</span>
         <motion.span
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease, delay: 0.1 }}
-          className={cn("h-px w-10 origin-left", light ? "bg-black/30" : "bg-white/30")}
+          className="h-px w-10 origin-left bg-[linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)]"
         />
         <span className={light ? "text-black/50" : "text-white/45"}>{label}</span>
       </motion.div>

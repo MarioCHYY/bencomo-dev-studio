@@ -81,7 +81,7 @@ const CTASection = () => {
                 className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/80 hover:border-white/40 transition-colors"
                 aria-live="polite"
               >
-                {copied ? <Check size={13} className="text-[#9fe8c4]" /> : <Copy size={13} />}
+                {copied ? <Check size={13} className="text-white/70" /> : <Copy size={13} />}
                 {copied ? (es ? "Copiado" : "Copied") : es ? "Copiar" : "Copy"}
               </button>
             </div>

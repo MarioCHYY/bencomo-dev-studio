@@ -32,7 +32,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative z-20 overflow-hidden border-t border-white/[0.08] bg-paper dark:bg-[#050505]">
+    <footer className="relative z-20 overflow-hidden border-t border-white/[0.08] bg-paper dark:bg-[#0B0B0D]">
       <Starfield contained count={60} />
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-16 pb-10 flex flex-col gap-14">
         <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] gap-10 items-start">

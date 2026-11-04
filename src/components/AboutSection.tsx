@@ -76,7 +76,7 @@ const AboutSection = () => {
             transition={{ duration: 1, ease }}
             className="relative lg:sticky lg:top-28 rgb-glow rounded-[28px]"
           >
-            <div className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0a0b10]">
+            <div className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0B0B0D]">
               <motion.img
                 style={{ y: imgY }}
                 src="/gallery/sobre_mi_home.webp"
