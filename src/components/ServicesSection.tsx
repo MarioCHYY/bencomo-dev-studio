@@ -84,7 +84,7 @@ const ServicesSection = () => {
   const num = (i: number) => String(i + 1).padStart(2, "0");
 
   return (
-    <section id="services" ref={sectionRef} className="theme-dark bg-paper relative" style={{ height: `${100 + n * 55}vh` }}>
+    <section id="services" ref={sectionRef} className="bg-sand relative" style={{ height: `${100 + n * 55}vh` }}>
       <div className="sticky top-0 z-20 h-[100svh] overflow-hidden">
         <Starfield contained count={90} />
         <div className="relative z-20 max-w-7xl mx-auto h-full px-6 md:px-8 pt-24 pb-10 grid grid-rows-[auto_1fr] lg:grid-rows-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-6 lg:gap-12 items-center">
@@ -133,7 +133,7 @@ const ServicesSection = () => {
                 >
                   <h3 className="lg:hidden font-heading font-semibold text-2xl text-white -tracking-[0.03em]">{t(item.title)}</h3>
                   <p className="text-white/90 text-lg md:text-xl font-light leading-snug max-w-xl">{t(item.subtitle)}</p>
-                  <p className="text-[#A0A5B0] text-sm md:text-[15px] font-light leading-relaxed max-w-xl hidden sm:block">{t(item.description)}</p>
+                  <p className="text-white/55 text-sm md:text-[15px] font-light leading-relaxed max-w-xl hidden sm:block">{t(item.description)}</p>
                   <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 max-w-xl">
                     {deliverables.slice(0, 4).map((d) => (
                       <li key={d} className="flex items-start gap-2 text-[13px] text-white/70">
@@ -166,7 +166,7 @@ const ServicesSection = () => {
             <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.16),transparent_65%)] blur-2xl" />
             <span
               aria-hidden="true"
-              className="absolute right-0 top-0 font-heading font-bold text-[9rem] lg:text-[14rem] -tracking-[0.06em] leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.07)] select-none tabular-nums"
+              className="absolute right-0 top-0 font-heading font-bold text-[9rem] lg:text-[14rem] -tracking-[0.06em] leading-none text-transparent [-webkit-text-stroke:1px_rgb(var(--c-fg)/0.08)] select-none tabular-nums"
             >
               {num(active)}
             </span>

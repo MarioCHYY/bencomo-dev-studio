@@ -126,7 +126,7 @@ export default function IntegratedHero() {
         <motion.div variants={up} initial="hidden" animate="show" custom={0.75} className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <a
             href="#projects"
-            className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3.5 text-[15px] font-semibold hover:bg-white/85 transition-colors"
+            className="group inline-flex items-center gap-2 rounded-full bg-brand text-black px-6 py-3.5 text-[15px] font-semibold hover:bg-brand/90 transition-colors"
           >
             {t(translations.hero.cta)}
             <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" />

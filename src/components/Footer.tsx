@@ -32,7 +32,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="theme-dark relative z-20 overflow-hidden border-t border-white/[0.06] bg-[#050505]">
+    <footer className="relative z-20 overflow-hidden border-t border-white/[0.08] bg-paper dark:bg-[#050505]">
       <Starfield contained count={60} />
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-16 pb-10 flex flex-col gap-14">
         <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] gap-10 items-start">
@@ -68,13 +68,13 @@ const Footer = () => {
           <svg width="0" height="0" className="absolute">
             <defs>
               <linearGradient id="footer-wordmark" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#ffffff" stopOpacity="0.22" />
-                <stop offset="1" stopColor="#ffffff" stopOpacity="0.01" />
+                <stop offset="0" style={{ stopColor: "rgb(var(--c-fg))", stopOpacity: 0.2 }} />
+                <stop offset="1" style={{ stopColor: "rgb(var(--c-fg))", stopOpacity: 0.01 }} />
               </linearGradient>
             </defs>
           </svg>
-          <BrandMark tone="light" open={slip} className="w-[13%] h-auto shrink-0 -mb-[1%] opacity-80" />
-          <BrandWordmark className="w-full h-auto" fill="url(#footer-wordmark)" stroke="rgba(255,255,255,0.08)" strokeWidth={3} />
+          <BrandMark tone="auto" open={slip} className="w-[13%] h-auto shrink-0 -mb-[1%] opacity-80" />
+          <BrandWordmark className="w-full h-auto text-white/[0.09]" fill="url(#footer-wordmark)" stroke="currentColor" strokeWidth={3} />
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] tracking-[0.14em] uppercase text-white/30">

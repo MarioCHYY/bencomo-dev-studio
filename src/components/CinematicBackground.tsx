@@ -1,6 +1,6 @@
 const CinematicBackground = () => {
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none dark:bg-[#050505] bg-[#F8F8F8] transition-colors duration-500">
+    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-paper dark:bg-[#050505] transition-colors duration-500">
       {/* Dramatic, cold bluish-white radial gradients */}
       {/* Main key light from the top right, simulating the light source on the face */}
       <div 

@@ -39,7 +39,7 @@ const CTASection = () => {
   };
 
   return (
-    <section id="cta" className="relative overflow-hidden pt-28 md:pt-40 pb-24">
+    <section id="cta" className="theme-accent bg-paper relative z-20 overflow-hidden pt-28 md:pt-40 pb-24">
       {/* soft RGB horizon, same palette as the hero dots */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_100%,rgba(143,176,255,0.18),rgba(183,168,255,0.08)_40%,transparent_72%)]" />
@@ -59,17 +59,17 @@ const CTASection = () => {
         >
           {t(c.title)}
         </motion.h2>
-        <p className="mt-6 text-[#A0A5B0] font-light text-lg md:text-xl max-w-2xl">{t(c.subtitle)}</p>
+        <p className="mt-6 text-white/70 font-light text-lg md:text-xl max-w-2xl">{t(c.subtitle)}</p>
 
         <div className="mt-14 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-20 items-start">
           {/* primary action + email */}
           <div className="flex flex-col gap-6">
             <a
               href="/contacto"
-              className="group w-fit inline-flex items-center gap-3 rounded-full bg-white text-black pl-7 pr-2 py-2 text-base font-semibold hover:bg-primary hover:text-white transition-colors"
+              className="group w-fit inline-flex items-center gap-3 rounded-full bg-white text-black pl-7 pr-2 py-2 text-base font-semibold hover:bg-white/90 transition-colors"
             >
               {t(c.button)}
-              <span className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-colors">
+              <span className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center transition-colors">
                 <ArrowUpRight size={18} />
               </span>
             </a>

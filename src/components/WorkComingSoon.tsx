@@ -38,7 +38,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
   return (
     <section
       id="projects"
-      className={`relative z-20 overflow-hidden ${page ? "min-h-[100svh] pt-36 md:pt-44 pb-28" : "theme-dark bg-paper py-28 md:py-36"}`}
+      className={`relative z-20 overflow-hidden ${page ? "min-h-[100svh] pt-36 md:pt-44 pb-28" : "bg-paper py-28 md:py-36"}`}
     >
       {!page && <Starfield contained count={80} />}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8">
@@ -56,8 +56,8 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           aside={
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-white/75">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B7A8FF] opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B7A8FF]" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
               </span>
               {es ? "Próximamente" : "Coming soon"}
             </span>
@@ -72,16 +72,21 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.9, ease, delay: i * 0.1 }}
-              className="theme-dark group relative aspect-[4/5] md:aspect-[3/4] rounded-[24px] overflow-hidden border border-white/10 bg-[#0c0c0e]"
+              className="group relative aspect-[4/5] md:aspect-[3/4] rounded-[24px] overflow-hidden border border-white/[0.08]"
+              style={{ backgroundColor: `rgb(var(--c-tint-${i + 1}))` }}
             >
               <div
                 aria-hidden="true"
-                className="absolute -inset-[20%] blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700"
+                className="absolute -inset-[20%] blur-2xl opacity-60 dark:opacity-70 group-hover:opacity-90 transition-opacity duration-700"
                 style={{ background: blobs[i], animation: `aurora-drift ${14 + i * 3}s ease-in-out infinite`, animationDelay: `${-i * 4}s` }}
               />
-              <div aria-hidden="true" className="absolute inset-0 backdrop-blur-[2px] bg-[linear-gradient(180deg,rgba(10,10,10,0.15),rgba(10,10,10,0.75))]" />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 backdrop-blur-[2px]"
+                style={{ background: `linear-gradient(180deg, rgb(var(--c-tint-${i + 1}) / 0.1), rgb(var(--c-tint-${i + 1}) / 0.82))` }}
+              />
               <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
-                <BrandMark size={72} tone="light" className="opacity-25 group-hover:opacity-50 transition-opacity duration-700" open={false} />
+                <BrandMark size={72} tone="auto" className="opacity-25 group-hover:opacity-50 transition-opacity duration-700" open={false} />
               </div>
 
               <div className="relative h-full flex flex-col justify-between p-6 md:p-7">
@@ -115,7 +120,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
         >
           <Link
             to="/contacto"
-            className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors"
+            className="group inline-flex items-center gap-2 rounded-full bg-brand text-black px-6 py-3.5 text-sm font-semibold hover:bg-brand/90 transition-colors"
           >
             {es ? "Cuéntame tu proyecto" : "Tell me about your project"}
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

@@ -18,7 +18,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Fallback loader
 const PageLoader = () => (
-  <div className="min-h-screen w-full flex items-center justify-center bg-[#F8F8F8] dark:bg-[#050505] transition-colors duration-500">
+  <div className="min-h-screen w-full flex items-center justify-center bg-paper dark:bg-[#050505] transition-colors duration-500">
     <Loader2 className="w-8 h-8 animate-spin text-primary opacity-50" />
   </div>
 );
