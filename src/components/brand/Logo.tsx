@@ -27,27 +27,31 @@ function Aurora({ id }: { id: string }) {
   );
 }
 
-const half = (x: number, y: number): CSSProperties => ({
+const half = (x: number, y: number, driven = false): CSSProperties => ({
   transform: `translate(${x}px, ${y}px)`,
-  transition: "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)",
+  transition: driven ? "none" : "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)",
 });
 
 /** The halves + aurora core, drawn in unit space. `open` slips them further. */
-function MarkShapes({ id, fill, open, core = true }: { id: string; fill: string; open?: boolean; core?: boolean }) {
-  const [x, y] = open ? OPEN : REST;
+function MarkShapes({ id, fill, open, core = true }: { id: string; fill: string; open?: boolean | number; core?: boolean }) {
+  // boolean: eased CSS transition; number (0..1): driven directly, e.g. by scroll
+  const v = typeof open === "number" ? Math.max(0, Math.min(1, open)) : open ? 1 : 0;
+  const x = REST[0] + (OPEN[0] - REST[0]) * v;
+  const y = REST[1] + (OPEN[1] - REST[1]) * v;
+  const driven = typeof open === "number";
   return (
     <>
       {core && <circle r="0.9" fill={`url(#${id})`} />}
-      <path d={TOP} fill={fill} style={half(x, y)} />
-      <path d={BOTTOM} fill={fill} style={half(-x, -y)} />
+      <path d={TOP} fill={fill} style={half(x, y, driven)} />
+      <path d={BOTTOM} fill={fill} style={half(-x, -y, driven)} />
     </>
   );
 }
 
-export function BrandMark({ size = 32, tone = "light", open, className = "", title }: { size?: number; tone?: Tone; open?: boolean; className?: string; title?: string }) {
+export function BrandMark({ size = 32, tone = "light", open, className = "", title }: { size?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string }) {
   const id = `bc-${useId().replace(/:/g, "")}`;
   return (
-    <svg viewBox="-1.15 -1.15 2.3 2.3" width={size} height={size} className={className} role={title ? "img" : undefined} aria-hidden={title ? undefined : true}>
+    <svg viewBox="-1.15 -1.15 2.3 2.3" width={size} height={size} className={className} overflow="visible" role={title ? "img" : undefined} aria-hidden={title ? undefined : true}>
       {title && <title>{title}</title>}
       <defs><Aurora id={id} /></defs>
       <MarkShapes id={id} fill={ink(tone)} open={open} />
@@ -56,11 +60,11 @@ export function BrandMark({ size = 32, tone = "light", open, className = "", tit
 }
 
 /** Mark + wordmark lockup. Height drives the size; hover slips the cut open. */
-export function BrandLogo({ height = 28, tone = "light", open, className = "", title = "Bencomo" }: { height?: number; tone?: Tone; open?: boolean; className?: string; title?: string }) {
+export function BrandLogo({ height = 28, tone = "light", open, className = "", title = "Bencomo" }: { height?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string }) {
   const id = `bc-${useId().replace(/:/g, "")}`;
   const vb = [0, -848.6, 5420.7, 940.2];
   return (
-    <svg viewBox={vb.join(" ")} height={height} width={(height * vb[2]) / vb[3]} className={className} role="img">
+    <svg viewBox={vb.join(" ")} height={height} width={(height * vb[2]) / vb[3]} className={className} overflow="visible" role="img">
       <title>{title}</title>
       <defs><Aurora id={id} /></defs>
       <g transform="translate(388.34 -378.50) scale(408.780)">
@@ -75,7 +79,7 @@ export function BrandLogo({ height = 28, tone = "light", open, className = "", t
 export function BrandWordmark({ className = "", fill = "currentColor", stroke, strokeWidth }: { className?: string; fill?: string; stroke?: string; strokeWidth?: number }) {
   return (
     <svg viewBox="60.5 -757.0 4344.0 769.0" className={className} aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-      <path d={WORD} fill={fill} stroke={stroke} strokeWidth={strokeWidth} />
+      <path d={WORD} fill={fill} stroke={stroke} strokeWidth={strokeWidth} strokeLinejoin="round" />
     </svg>
   );
 }

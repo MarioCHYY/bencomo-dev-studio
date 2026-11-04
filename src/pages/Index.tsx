@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import IntegratedHero from "@/components/IntegratedHero";
+import LogoIntro from "@/components/brand/LogoIntro";
 import { Starfield } from "@/components/ui/starfield";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
@@ -20,6 +21,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen">
+      <LogoIntro />
       <Starfield />
       <Navbar />
       <IntegratedHero />

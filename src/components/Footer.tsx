@@ -1,12 +1,19 @@
+import { useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import { Github, Linkedin, ArrowUp, Instagram, Mail, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import { BrandLogo, BrandWordmark } from "@/components/brand/Logo";
+import { BrandLogo, BrandMark, BrandWordmark } from "@/components/brand/Logo";
 
 const Footer = () => {
   const { t } = useLang();
   const n = translations.nav;
+  // the cut in the big mark opens as the footer scrolls into view
+  const bigRef = useRef<HTMLDivElement>(null);
+  const [slip, setSlip] = useState(0);
+  const { scrollYProgress } = useScroll({ target: bigRef, offset: ["start 95%", "end end"] });
+  useMotionValueEvent(scrollYProgress, "change", (v) => setSlip(Math.min(1, v * 1.15)));
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/MarioCHYY", label: "GitHub" },
@@ -55,7 +62,7 @@ const Footer = () => {
         </div>
 
         {/* outlined wordmark: the real logo, always fits the width exactly */}
-        <div className="relative select-none" aria-hidden="true">
+        <div ref={bigRef} className="relative select-none flex items-end gap-[2.2%]" aria-hidden="true">
           <svg width="0" height="0" className="absolute">
             <defs>
               <linearGradient id="footer-wordmark" x1="0" y1="0" x2="0" y2="1">
@@ -64,6 +71,7 @@ const Footer = () => {
               </linearGradient>
             </defs>
           </svg>
+          <BrandMark tone="light" open={slip} className="w-[13%] h-auto shrink-0 -mb-[1%] opacity-80" />
           <BrandWordmark className="w-full h-auto" fill="url(#footer-wordmark)" stroke="rgba(255,255,255,0.08)" strokeWidth={3} />
         </div>
 
