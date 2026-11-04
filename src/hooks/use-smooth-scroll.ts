@@ -17,6 +17,8 @@ export function useSmoothScroll() {
       smoothWheel: true,
       anchors: true,
     });
+    // let page code (e.g. the services list) drive smooth jumps
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
     let raf = 0;
     const loop = (time: number) => {
       lenis.raf(time);
@@ -26,6 +28,7 @@ export function useSmoothScroll() {
 
     return () => {
       cancelAnimationFrame(raf);
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
       lenis.destroy();
     };
   }, []);

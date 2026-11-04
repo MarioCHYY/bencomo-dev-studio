@@ -125,16 +125,19 @@ function planet(out: number[]) {
 function waveField(out: number[]) {
   out.push((Math.random() * 2 - 1) * 1.7, 0, (Math.random() * 2 - 1) * 1.0);
 }
-function torusKnot(out: number[]) {
-  const t = Math.random() * Math.PI * 2;
-  const p = 2, q = 3;
-  const r = 0.62 + 0.28 * Math.cos(q * t);
-  const cx = r * Math.cos(p * t);
-  const cy = r * Math.sin(p * t);
-  const cz = 0.28 * Math.sin(q * t);
+// two thin orbits that frame the services 3D render
+function orbits(out: number[]) {
   const a = Math.random() * Math.PI * 2;
-  const tube = 0.075 * Math.sqrt(Math.random());
-  out.push(cx + Math.cos(a) * tube, cy + Math.sin(a) * tube, cz + Math.cos(a + 1.3) * tube);
+  const outer = Math.random() < 0.62;
+  const r = (outer ? 1.0 : 0.78) + (Math.random() - 0.5) * 0.03;
+  const x = Math.cos(a) * r, z = Math.sin(a) * r;
+  const y = (Math.random() - 0.5) * 0.015;
+  if (outer) out.push(x, y, z);
+  else {
+    // inner orbit tilted the other way
+    const t = 0.5;
+    out.push(x, y * Math.cos(t) - z * Math.sin(t), y * Math.sin(t) + z * Math.cos(t));
+  }
 }
 function galaxy(out: number[]) {
   const arms = 3;
@@ -215,7 +218,7 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
   for (let i = 0; i < count; i++) {
     planet(s1);
     waveField(s2);
-    torusKnot(s3);
+    orbits(s3);
     galaxy(s4);
   }
 
@@ -541,7 +544,7 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     if (narrow) {
       xf[1].set(0, visH * 0.05, u * 0.22, 0.35);
       xf[2].set(0, -visH * 0.3, visW * 0.6, 1.0);
-      xf[3].set(0, visH * 0.02, u * 0.32, 0.25);
+      xf[3].set(0, visH * 0.2, u * 0.34, 1.25);
       xf[4].set(0, 0, u * 0.36, 1.05);
       uniforms.uShapeAlpha.value = 0.5;
       uniforms.uShapeSize.value = 1.9;
@@ -549,7 +552,7 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     } else {
       xf[1].set(visW * 0.3, -visH * 0.06, u * 0.24, 0.38);
       xf[2].set(0, -visH * 0.32, visW * 0.5, 1.0);
-      xf[3].set(visW * 0.3, visH * 0.16, u * 0.26, 0.25);
+      xf[3].set(visW * 0.24, -visH * 0.02, u * 0.33, 1.25);
       xf[4].set(0, -visH * 0.02, u * 0.42, 1.08);
       uniforms.uShapeAlpha.value = 0.62;
       uniforms.uShapeSize.value = 2.1;
@@ -596,9 +599,11 @@ export async function createFaceScene(opts: FaceSceneOptions): Promise<FaceScene
     const hold = vh * 0.06;
     if (y <= hold || keys.length < 2) return 0;
     for (let i = 0; i < keys.length - 1; i++) {
-      const a = i === 0 ? hold : keys[i];
       const b = keys[i + 1];
+      // after leaving the face, only fly during the last screen before the next section
+      const a = i === 0 ? hold : Math.max(keys[i], b - vh * 1.1);
       if (y < b) {
+        if (y < a) return i;
         const f = (y - a) / (b - a);
         return i + smooth(0.08, 0.92, f);
       }

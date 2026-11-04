@@ -1,94 +1,181 @@
-import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { Globe, Monitor, Server, Briefcase, RefreshCw, Smartphone, Bot, Sparkles, ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight, Check } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import { Link } from "react-router-dom";
-import { TiltCard } from "@/components/ui/tilt-card";
-import { ScrollRevealText } from "@/components/ui/scroll-reveal-text";
+import type { ServicesSceneHandle } from "@/components/services3d/ServicesScene";
 
-const icons = [Globe, Monitor, Server, Briefcase, RefreshCw, Smartphone, Bot, Sparkles];
+type Lenisish = { scrollTo: (y: number, o?: { duration?: number }) => void };
 
+/**
+ * Services as a pinned story: the section sticks to the screen while you scroll,
+ * each step swaps the 3D render on the right and the copy on the left.
+ */
 const ServicesSection = () => {
   const { t } = useLang();
   const s = translations.services;
-  const gridRef = useRef<HTMLDivElement>(null);
-  const amp = useMotionValue(0);
+  const items = s.items;
+  const n = items.length;
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const viewRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<ServicesSceneHandle | null>(null);
+  const [active, setActive] = useState(0);
+  const [noGL, setNoGL] = useState(false);
+
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+  const bar = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const i = Math.min(n - 1, Math.max(0, Math.floor(v * n * 0.999)));
+    setActive((prev) => (prev === i ? prev : i));
+  });
+
   useEffect(() => {
-    const wide = window.matchMedia("(min-width: 1024px)").matches;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    amp.set(wide && !reduce ? 1 : 0);
-  }, [amp]);
-  // columns drift at different speeds while you scroll past them
-  const { scrollYProgress } = useScroll({ target: gridRef, offset: ["start end", "end start"] });
-  const drift = (px: number) => ([p, a]: number[]) => (1 - 2 * p) * px * a;
-  const colY = [
-    useTransform([scrollYProgress, amp], drift(40)),
-    useTransform([scrollYProgress, amp], drift(90)),
-    useTransform([scrollYProgress, amp], drift(20)),
-    useTransform([scrollYProgress, amp], drift(70)),
-  ];
+    sceneRef.current?.setActive(active);
+  }, [active]);
+
+  useEffect(() => {
+    const el = viewRef.current;
+    if (!el) return;
+    let cancelled = false;
+    let ok = false;
+    try {
+      const c = document.createElement("canvas");
+      ok = !!(c.getContext("webgl2") || c.getContext("webgl"));
+    } catch {
+      ok = false;
+    }
+    if (!ok) {
+      setNoGL(true);
+      return;
+    }
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    import("@/components/services3d/ServicesScene")
+      .then(({ createServicesScene }) => createServicesScene(el, { reducedMotion }))
+      .then((h) => {
+        if (cancelled) return h.dispose();
+        sceneRef.current = h;
+        h.setActive(0);
+      })
+      .catch(() => !cancelled && setNoGL(true));
+    return () => {
+      cancelled = true;
+      sceneRef.current?.dispose();
+      sceneRef.current = null;
+    };
+  }, []);
+
+  const goTo = (i: number) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    const travel = el.offsetHeight - window.innerHeight;
+    const y = top + ((i + 0.5) / n) * travel;
+    const lenis = (window as unknown as { __lenis?: Lenisish }).__lenis;
+    if (lenis) lenis.scrollTo(y, { duration: 1.1 });
+    else window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  const item = items[active];
+  const deliverables = t(item.deliverables as unknown as Record<string, string[]>) || [];
+  const num = (i: number) => String(i + 1).padStart(2, "0");
 
   return (
-    <section id="services" className="section-padding relative">
-      <div className="relative z-20 max-w-7xl mx-auto px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(s.label)}</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold text-white -tracking-[0.03em]">
-            {t(s.title)}
-          </h2>
-          <ScrollRevealText
-            className="text-[#C9CDD6] mt-4 text-base md:text-lg lg:text-xl max-w-xl font-light leading-relaxed"
-            text={t(s.subtitle) as string}
-          />
-        </motion.div>
+    <section id="services" ref={sectionRef} className="relative" style={{ height: `${100 + n * 55}vh` }}>
+      <div className="sticky top-0 z-20 h-[100svh] overflow-hidden">
+        <div className="relative z-20 max-w-7xl mx-auto h-full px-6 md:px-8 pt-24 pb-10 grid grid-rows-[auto_1fr] lg:grid-rows-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-6 lg:gap-12 items-center">
+          {/* ---------- copy */}
+          <div className="min-w-0 order-2 lg:order-1 flex flex-col gap-6">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <span className="text-[11px] text-primary font-medium tracking-[0.16em] uppercase">{t(s.label) || "What I do"}</span>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white -tracking-[0.03em]">{t(s.title)}</h2>
+              </div>
+              <span className="font-mono text-xs tracking-[0.2em] text-white/40 tabular-nums pb-2">
+                <span className="text-white">{num(active)}</span> / {num(n - 1)}
+              </span>
+            </div>
 
-        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 lg:pb-16" style={{ perspective: 1400 }}>
-          {s.items.map((service, i) => {
-            const Icon = icons[i] || Globe;
-            return (
-              <motion.div
-                key={service.id || i}
-                initial={{ opacity: 0, y: 50, rotateX: 28, rotateY: i % 2 ? -8 : 8 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.8, delay: (i % 4) * 0.08 + Math.floor(i / 4) * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full"
-                style={{ y: colY[i % 4] }}
-              >
-                <Link to={`/servicios#${service.id}`} className="block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                  <TiltCard
-                    max={10}
-                    className="group h-full rounded-2xl bg-white/[0.025] backdrop-blur-md border border-white/[0.07] hover:bg-white/[0.04] transition-colors duration-500"
+            {/* list (desktop) */}
+            <ul className="hidden lg:flex flex-col border-t border-white/[0.07]">
+              {items.map((it, i) => (
+                <li key={it.id}>
+                  <button
+                    type="button"
+                    onClick={() => goTo(i)}
+                    className={`group w-full flex items-center gap-4 py-2.5 border-b border-white/[0.07] text-left transition-colors duration-300 ${i === active ? "text-white" : "text-white/30 hover:text-white/70"}`}
                   >
-                    <div className="relative h-full flex flex-col p-6 lg:p-7" style={{ transform: "translateZ(24px)" }}>
-                      <div className="flex items-start justify-between mb-7">
-                        <div className="relative w-14 h-14 rounded-xl flex items-center justify-center bg-white/[0.04] border border-white/10 group-hover:border-primary/40 shadow-[0_10px_30px_-14px_rgba(51,133,255,0.5)] group-hover:shadow-[0_14px_40px_-10px_rgba(51,133,255,0.7)] transition-shadow duration-500">
-                          <Icon size={26} strokeWidth={1.5} className="text-white/80 group-hover:text-primary group-hover:scale-110 transition-all duration-500" />
-                          <span aria-hidden="true" className="absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_55%)] opacity-40" />
-                        </div>
-                        <ArrowUpRight size={18} className="text-white/20 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300" />
-                      </div>
-                      <h3 className="text-base lg:text-lg font-heading font-extrabold mb-3 text-white">
-                        {t(service.title)}
-                      </h3>
-                      <p className="text-sm text-[#A0A5B0] leading-[1.6] font-light">
-                        {t(service.description)}
-                      </p>
-                    </div>
-                  </TiltCard>
-                </Link>
-              </motion.div>
-            );
-          })}
+                    <span className="font-mono text-[10px] tracking-[0.2em] w-6 tabular-nums">{num(i)}</span>
+                    <span className="font-heading font-bold text-lg xl:text-xl flex-1">{t(it.title)}</span>
+                    <span className={`h-px transition-all duration-500 ${i === active ? "w-10 bg-[linear-gradient(90deg,#8fb0ff,#ff9ab0)]" : "w-0 bg-white/30"}`} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            {/* active detail */}
+            <div className="relative min-h-[210px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col gap-4"
+                >
+                  <h3 className="lg:hidden font-heading font-extrabold text-2xl text-white">{t(item.title)}</h3>
+                  <p className="text-white/90 text-lg md:text-xl font-light leading-snug max-w-xl">{t(item.subtitle)}</p>
+                  <p className="text-[#A0A5B0] text-sm md:text-[15px] font-light leading-relaxed max-w-xl hidden sm:block">{t(item.description)}</p>
+                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 max-w-xl">
+                    {deliverables.slice(0, 4).map((d) => (
+                      <li key={d} className="flex items-start gap-2 text-[13px] text-white/70">
+                        <Check size={14} className="mt-0.5 shrink-0 text-[#9fe8c4]" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={`/servicios#${item.id}`}
+                    className="group/l inline-flex items-center gap-2 w-fit text-sm font-bold uppercase tracking-wider text-primary"
+                  >
+                    {t({ en: "See the details", es: "Ver detalles" })}
+                    <ArrowUpRight size={16} className="transition-transform group-hover/l:translate-x-1 group-hover/l:-translate-y-1" />
+                  </Link>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* step dots (mobile) */}
+            <div className="flex lg:hidden gap-1.5">
+              {items.map((it, i) => (
+                <span key={it.id} className={`h-1 rounded-full transition-all duration-500 ${i === active ? "w-6 bg-white" : "w-1.5 bg-white/25"}`} />
+              ))}
+            </div>
+          </div>
+
+          {/* ---------- 3D view */}
+          <div className="relative order-1 lg:order-2 h-[38svh] sm:h-[44svh] lg:h-[72svh] min-w-0">
+            <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.16),transparent_65%)] blur-2xl" />
+            <span
+              aria-hidden="true"
+              className="absolute right-0 top-0 font-heading font-extrabold text-[9rem] lg:text-[14rem] leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.07)] select-none tabular-nums"
+            >
+              {num(active)}
+            </span>
+            <div ref={viewRef} className="absolute inset-0" role="img" aria-label={t(item.title) as string} />
+            {noGL && (
+              <div className="absolute inset-0 flex items-center justify-center text-white/40 font-mono text-xs tracking-[0.2em] uppercase">
+                {t(item.title)}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* progress */}
+        <div className="absolute left-0 right-0 bottom-0 z-20 h-px bg-white/[0.06]">
+          <motion.div style={{ scaleX: bar }} className="h-full origin-left bg-[linear-gradient(90deg,#8fb0ff,#b7a8ff,#ff9ab0,#ffc48a)]" />
         </div>
       </div>
     </section>

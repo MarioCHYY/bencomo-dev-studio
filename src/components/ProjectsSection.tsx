@@ -1,15 +1,8 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, ChevronRight } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import {
-  SliderBtnGroup,
-  ProgressSlider,
-  SliderBtn,
-  SliderContent,
-  SliderWrapper,
-} from "@/components/ui/progressive-carousel";
 import { useNavigate } from "react-router-dom";
 import { TiltCard } from "@/components/ui/tilt-card";
 
@@ -46,128 +39,156 @@ export const projectsList = [
   }
 ];
 
-const ProjectsSection = () => {
+type Txt = Record<string, string>;
+type ProjData = { name: Txt; oneliner: Txt };
+
+const ProjectCard = ({ item, index, data }: { item: (typeof projectsList)[number]; index: number; data: ProjData }) => {
   const { t } = useLang();
   const p = translations.projects;
   const navigate = useNavigate();
-  const showRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: showRef, offset: ["start end", "start 0.25"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.84, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [90, 0]);
-  const fade = useTransform(scrollYProgress, [0, 0.6], [0.25, 1]);
+  return (
+    <TiltCard max={4} lift={0} className="rounded-[28px] rgb-glow h-full">
+      <article className="group relative h-full rounded-[28px] overflow-hidden border border-white/10 bg-[#07080c]">
+        <img
+          src={item.img}
+          alt={t(data.name)}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover object-top scale-[1.03] group-hover:scale-[1.08] transition-transform duration-[1400ms] ease-out"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/10" />
+        <div className="absolute inset-x-0 top-0 p-6 md:p-8 flex items-start justify-between">
+          <span className="font-mono text-[11px] tracking-[0.24em] text-white/70 bg-black/40 backdrop-blur px-2.5 py-1 rounded-full tabular-nums">
+            {String(index + 1).padStart(2, "0")} / {String(projectsList.length).padStart(2, "0")}
+          </span>
+          {item.live && (
+            <a
+              href={item.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ver proyecto en vivo"
+              className="w-11 h-11 rounded-full border border-white/20 bg-black/30 backdrop-blur flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors"
+            >
+              <ExternalLink size={16} />
+            </a>
+          )}
+        </div>
+        <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 flex flex-col gap-3" style={{ transform: "translateZ(40px)" }}>
+          <h3 className="font-heading font-extrabold text-3xl md:text-5xl text-white leading-[1.02] -tracking-[0.02em] max-w-2xl" style={{ textWrap: "balance" } as Record<string, string>}>
+            {t(data.name)}
+          </h3>
+          <p className="text-white/65 font-light text-sm md:text-base max-w-xl">{t(data.oneliner)}</p>
+          <button
+            onClick={() => navigate("/portafolio#" + item.id)}
+            className="mt-2 w-fit bg-white text-black px-5 py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors flex items-center gap-2"
+          >
+            {t(p.viewCaseStudy) || "Ver Caso de Estudio"}
+            <ArrowUpRight size={16} />
+          </button>
+        </div>
+      </article>
+    </TiltCard>
+  );
+};
+
+/**
+ * Selected work as a horizontal gallery: the section pins and the cards slide
+ * sideways while you scroll down. On touch screens it's a native swipe row.
+ */
+const ProjectsSection = () => {
+  const { t } = useLang();
+  const p = translations.projects;
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [distance, setDistance] = useState(0);
+  const [pinned, setPinned] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px) and (pointer: fine)");
+    const set = () => setPinned(mq.matches);
+    set();
+    mq.addEventListener("change", set);
+    return () => mq.removeEventListener("change", set);
+  }, []);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const tr = trackRef.current;
+      if (!tr) return;
+      setDistance(Math.max(0, tr.scrollWidth - window.innerWidth));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    const ro = new ResizeObserver(measure);
+    if (trackRef.current) ro.observe(trackRef.current);
+    return () => {
+      window.removeEventListener("resize", measure);
+      ro.disconnect();
+    };
+  }, [pinned]);
+
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+  const xRaw = useTransform(scrollYProgress, [0.04, 0.96], [0, -distance]);
+  const x = useSpring(xRaw, { stiffness: 120, damping: 26, mass: 0.4 });
+  const bar = useTransform(scrollYProgress, [0.04, 0.96], [0, 1]);
+  const headY = useTransform(scrollYProgress, [0, 0.3], [0, -30]);
+
+  const cards = projectsList.map((item, index) => {
+    const projData = (p as unknown as Record<string, ProjData>)[item.translationKey];
+    return { item, index, projData };
+  });
+
+  const header = (
+    <motion.div style={pinned ? { y: headY } : undefined} className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div>
+        <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-3">{t(p.label)}</h2>
+        <p className="text-4xl md:text-6xl font-heading font-extrabold text-white -tracking-[0.03em] leading-[1]">{t(p.title)}</p>
+        <p className="mt-4 text-base text-[#A0A5B0] font-light max-w-xl">{t(p.subtitle)}</p>
+      </div>
+      <span className="hidden md:inline-flex items-center gap-3 text-[10px] font-mono tracking-[0.22em] uppercase text-white/40 pb-2">
+        {t({ en: "Scroll to explore", es: "Desliza para explorar" })}
+        <span className="w-10 h-px bg-white/30" />
+      </span>
+    </motion.div>
+  );
+
+  if (!pinned) {
+    return (
+      <section id="projects" className="relative py-24">
+        <div className="relative z-20 px-6">{header}</div>
+        <div className="relative z-20 mt-10 flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-6 [scrollbar-width:none]">
+          {cards.map(({ item, index, projData }) => (
+            <div key={item.id} className="snap-center shrink-0 w-[84vw] h-[62svh]">
+              <ProjectCard item={item} index={index} data={projData} />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-50 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
-        >
-          <div>
-            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-4">
-              {t(p.label)}
-            </h2>
-            <p className="text-3xl md:text-5xl font-heading font-extrabold text-white max-w-2xl leading-tight">
-              {t(p.title)}
-            </p>
-            <p className="mt-4 text-base text-[#A0A5B0] font-light max-w-xl">
-              {t(p.subtitle)}
-            </p>
+    <section id="projects" ref={sectionRef} className="relative" style={{ height: `${100 + projectsList.length * 70}vh` }}>
+      <div className="sticky top-0 z-20 h-[100svh] overflow-hidden flex flex-col justify-center gap-10">
+        <div className="relative z-20 max-w-7xl w-full mx-auto px-8 pt-20">{header}</div>
+        <motion.div ref={trackRef} style={{ x }} className="relative z-20 flex gap-8 pl-[max(2rem,calc((100vw-80rem)/2+2rem))] pr-[12vw] will-change-transform">
+          {cards.map(({ item, index, projData }) => (
+            <div key={item.id} className="shrink-0 w-[min(68vw,980px)] h-[58svh] max-h-[620px]">
+              <ProjectCard item={item} index={index} data={projData} />
+            </div>
+          ))}
+          <div className="shrink-0 w-[min(30vw,380px)] h-[58svh] max-h-[620px] flex flex-col justify-center gap-5">
+            <p className="font-heading font-extrabold text-3xl text-white leading-tight">{t({ en: "Want to see the full story?", es: "¿Quieres ver la historia completa?" })}</p>
+            <a href="/portafolio" className="w-fit inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-colors">
+              {t({ en: "All projects", es: "Todos los proyectos" })}
+              <ArrowUpRight size={16} />
+            </a>
           </div>
-          <span className="hidden md:block text-[10px] font-mono tracking-[0.22em] uppercase text-white/30 pb-2">
-            {projectsList.length.toString().padStart(2, "0")} projects · auto-play
-          </span>
         </motion.div>
-
-        <motion.div ref={showRef} style={{ scale, y, opacity: fade }} className="w-full relative origin-top">
-          <ProgressSlider vertical={false} activeSlider="project2" items={projectsList.map((pr) => pr.id)}>
-            <SliderContent>
-              {projectsList.map((item) => {
-                // @ts-ignore
-                const projData = p[item.translationKey];
-                return (
-                  <SliderWrapper key={item.id} value={item.id}>
-                    <TiltCard max={5} lift={0} className="rounded-2xl rgb-glow">
-                      <div className="relative group rounded-2xl overflow-hidden w-full 2xl:h-[600px] h-[500px] border border-white/10 shadow-[0_40px_120px_-50px_rgba(51,133,255,0.35)]">
-                        <img
-                          className="w-full h-full object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                          src={item.img}
-                          alt={t(projData.name) as string}
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/45" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" />
-                        <div
-                          aria-hidden="true"
-                          className="absolute inset-0 opacity-[0.12] mix-blend-overlay pointer-events-none"
-                          style={{ backgroundImage: "repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0 1px, transparent 1px 3px)" }}
-                        />
-
-                        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 pb-32 md:pb-40 flex flex-col items-start gap-4" style={{ transform: "translateZ(40px)" }}>
-                          <span className="px-3 py-1 bg-primary/20 text-primary text-[10px] font-bold tracking-widest uppercase rounded-full border border-primary/20 backdrop-blur-md">
-                            {t(p.featured) || "PROYECTO"}
-                          </span>
-                          <h3 className="font-heading font-extrabold text-3xl md:text-5xl text-white leading-tight [text-shadow:0_8px_40px_rgba(0,0,0,0.6)]">
-                            {t(projData.name)}
-                          </h3>
-                          <div className="flex gap-4 mt-2">
-                            <button
-                              onClick={() => navigate("/portafolio#" + item.id)}
-                              className="bg-primary text-white px-6 py-3 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-primary/90 hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] flex items-center gap-2"
-                            >
-                              {t(p.viewCaseStudy) || "Ver Caso de Estudio"}
-                              <ChevronRight size={16} />
-                            </button>
-                            {item.live && (
-                              <a
-                                href={item.live}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="border border-white/20 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md"
-                                aria-label="Ver proyecto en vivo"
-                              >
-                                <ExternalLink size={18} />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </TiltCard>
-                  </SliderWrapper>
-                );
-              })}
-            </SliderContent>
-
-            <SliderBtnGroup className="mt-4 md:mt-6 h-fit bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col md:grid md:grid-cols-4 rounded-xl">
-              {projectsList.map((item, index) => {
-                // @ts-ignore
-                const projData = p[item.translationKey];
-                return (
-                  <SliderBtn
-                    key={item.id}
-                    value={item.id}
-                    className={`text-left cursor-pointer p-4 md:p-5 transition-colors duration-300 hover:bg-white/[0.03] ${index !== projectsList.length - 1 ? "border-b md:border-b-0 md:border-r border-white/10" : ""}`}
-                    progressBarClass="bg-primary/20 h-full"
-                  >
-                    <h2 className="relative px-3 py-1 rounded-full w-fit bg-white text-black mb-2 text-xs md:text-sm font-bold tracking-wide">
-                      0{index + 1}
-                    </h2>
-                    <p className="text-sm md:text-base font-bold text-white line-clamp-1 mb-1 font-heading">
-                      {t(projData.name)}
-                    </p>
-                    <p className="text-xs md:text-sm text-[#A0A5B0] font-light line-clamp-1">
-                      {t(projData.oneliner)}
-                    </p>
-                  </SliderBtn>
-                );
-              })}
-            </SliderBtnGroup>
-          </ProgressSlider>
-        </motion.div>
+        <div className="relative z-20 max-w-7xl w-full mx-auto px-8">
+          <div className="h-px bg-white/10 overflow-hidden">
+            <motion.div style={{ scaleX: bar }} className="h-full origin-left bg-[linear-gradient(90deg,#8fb0ff,#b7a8ff,#ff9ab0,#ffc48a)]" />
+          </div>
+        </div>
       </div>
     </section>
   );
