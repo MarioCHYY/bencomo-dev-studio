@@ -1,6 +1,6 @@
-import { Suspense, lazy, useEffect, type ReactNode } from "react";
-import { motion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
+import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowLeft, ArrowUpRight, Check, RotateCcw, Volume2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Starfield } from "@/components/ui/starfield";
@@ -33,6 +33,59 @@ function Chapter({ n, kicker, title, children }: { n: string; kicker: string; ti
         </motion.div>
       </div>
     </section>
+  );
+}
+
+/** corte's brand intro: plays (muted) the first time it scrolls into view, stays on the lockup; replay with sound */
+function BrandIntro({ es }: { es: boolean }) {
+  const reduce = useReducedMotion();
+  const ref = useRef<HTMLVideoElement>(null);
+  const [ended, setEnded] = useState(false);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || reduce) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          v.play().catch(() => undefined);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, [reduce]);
+  const replay = (sound: boolean) => {
+    const v = ref.current;
+    if (!v) return;
+    v.muted = !sound;
+    v.currentTime = 0;
+    setEnded(false);
+    v.play().catch(() => undefined);
+  };
+  return (
+    <div className="theme-dark group relative overflow-hidden rounded-[20px] md:rounded-[28px] border border-white/10" style={{ backgroundColor: CORTE.ink }}>
+      <video
+        ref={ref}
+        className="block w-full aspect-video"
+        src="/work/corte/corte-intro.mp4"
+        poster="/work/corte/corte-intro.jpg"
+        muted
+        playsInline
+        preload="metadata"
+        onEnded={() => setEnded(true)}
+        aria-label={es ? "Intro animada de la marca corte" : "corte brand intro animation"}
+      />
+      <div className={`absolute right-3 bottom-3 md:right-5 md:bottom-5 flex gap-2 transition-opacity duration-300 ${ended || reduce ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+        <button type="button" onClick={() => replay(false)} className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 backdrop-blur px-3 py-1.5 text-xs text-white/85 hover:text-white hover:border-white/40 transition-colors">
+          <RotateCcw size={13} /> {es ? "Repetir" : "Replay"}
+        </button>
+        <button type="button" onClick={() => replay(true)} className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-[#121417] transition-transform hover:-translate-y-0.5" style={{ backgroundColor: CORTE.lime }}>
+          <Volume2 size={13} /> {es ? "Con sonido" : "With sound"}
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -261,12 +314,10 @@ const CaseCorte = () => {
       <Chapter n="06" kicker={es ? "Marca" : "Brand"} title={es ? "Una identidad que se explica sola." : "An identity that explains itself."}>
         <P>
           {es
-            ? "El logo es una tarjeta cortada en diagonal: la fecha de corte que parte el mes en dos. Verde lima sobre gris casi negro, tipografía Space Grotesk para títulos e Inter para la interfaz."
-            : "The logo is a card cut diagonally: the statement date that splits the month in two. Lime green on near-black grey, Space Grotesk for headlines and Inter for the interface."}
+            ? "El logo es una tarjeta cortada en diagonal: la fecha de corte que parte el mes en dos. Verde lima sobre gris casi negro, tipografía Space Grotesk para títulos e Inter para la interfaz. También hice la intro animada de la marca."
+            : "The logo is a card cut diagonally: the statement date that splits the month in two. Lime green on near-black grey, Space Grotesk for headlines and Inter for the interface. I also made the animated brand intro."}
         </P>
-        <div className="theme-dark overflow-hidden rounded-[20px] md:rounded-[28px] border border-white/10">
-          <img src="/work/corte/opengraph-image.png" alt={es ? "Imagen de marca de corte" : "corte brand image"} loading="lazy" className="block w-full" />
-        </div>
+        <BrandIntro es={es} />
         <div className="flex flex-wrap gap-3">
           {[
             ["#C6F432", es ? "Lima" : "Lime"],
