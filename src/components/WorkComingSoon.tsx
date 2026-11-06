@@ -6,6 +6,7 @@ import { useLang } from "@/i18n/LanguageContext";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Starfield } from "@/components/ui/starfield";
 import { BrandMark } from "@/components/brand/Logo";
+import FeaturedProject from "@/components/work/FeaturedProject";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -78,29 +79,29 @@ const ReelHero = ({ es }: { es: boolean }) => {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B7A8FF] opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B7A8FF]" />
           </span>
-          {es ? "Próximamente" : "Coming soon"}
+          {es ? "Nuevo caso: corte" : "New case: corte"}
         </span>
         <h1 className="font-heading font-semibold text-white text-[2.6rem] sm:text-6xl lg:text-7xl leading-[0.98] -tracking-[0.05em]" style={{ textWrap: "balance" } as Record<string, string>}>
-          {es ? "Casos de estudio," : "Case studies,"} <span className="text-white/45">{es ? "muy pronto." : "coming soon."}</span>
+          {es ? "Proyectos," : "Projects,"} <span className="text-white/45">{es ? "con su proceso." : "with their process."}</span>
         </h1>
         <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-md">
           {es
-            ? "Estoy preparando proyectos que de verdad valga la pena mostrar, contados con su proceso completo. Mientras tanto, el mejor caso de estudio puede ser el tuyo."
-            : "I'm preparing projects that are truly worth showing, told with their full process. Meanwhile, the best case study could be yours."}
+            ? "Cada caso cuenta el problema, cómo lo resolví y lo que hay por dentro. El primero ya está aquí y vienen más en camino."
+            : "Each case tells the problem, how I solved it and what's under the hood. The first one is here, and more are on the way."}
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <Link
-            to="/contacto"
+            to="/portafolio/corte"
             className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors"
           >
-            {es ? "Cuéntame tu proyecto" : "Tell me about your project"}
+            {es ? "Ver el caso de corte" : "See the corte case"}
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
           <Link
-            to="/servicios"
+            to="/contacto"
             className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white/85 hover:text-white hover:border-white/40 transition-colors"
           >
-            {es ? "Ver lo que puedo construir" : "See what I can build"}
+            {es ? "Cuéntame tu proyecto" : "Tell me about your project"}
           </Link>
         </div>
       </div>
@@ -130,14 +131,14 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
 
   const cards = es
     ? [
-        { n: "01", kind: "Sitio web", hint: "Identidad y conversión" },
-        { n: "02", kind: "Aplicación web", hint: "Producto a la medida" },
+        { n: "02", kind: "Sitio web", hint: "Identidad y conversión" },
         { n: "03", kind: "Sistema para negocio", hint: "Procesos y datos" },
+        { n: "04", kind: "Rediseño", hint: "De lo que hay a lo que debería ser" },
       ]
     : [
-        { n: "01", kind: "Website", hint: "Identity and conversion" },
-        { n: "02", kind: "Web application", hint: "Custom product" },
+        { n: "02", kind: "Website", hint: "Identity and conversion" },
         { n: "03", kind: "Business system", hint: "Processes and data" },
+        { n: "04", kind: "Redesign", hint: "From what is to what it should be" },
       ];
 
   return (
@@ -150,10 +151,16 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
         {page ? (
           <>
             <ReelHero es={es} />
+            <div className="mt-16 md:mt-24 flex items-center gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase mb-8">
+              <span className="text-white">{es ? "Casos" : "Cases"}</span>
+              <span className="h-px w-10 bg-[linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)]" />
+              <span className="text-white/45">{es ? "Proyectos terminados" : "Finished projects"}</span>
+            </div>
+            <FeaturedProject />
             <div className="mt-20 md:mt-28 flex items-center gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase">
               <span className="text-white">{es ? "En el taller" : "In the workshop"}</span>
               <span className="h-px w-10 bg-[linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)]" />
-              <span className="text-white/45">{es ? "Lo que se está cocinando" : "What's cooking"}</span>
+              <span className="text-white/45">{es ? "Los siguientes casos" : "The next cases"}</span>
             </div>
           </>
         ) : (
@@ -161,12 +168,12 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           index="03"
           label={es ? "Mi trabajo" : "My work"}
           title={es ? "Casos de estudio," : "Case studies,"}
-          muted={es ? "muy pronto." : "coming soon."}
+          muted={es ? "con su proceso." : "with their process."}
           size={page ? "lg" : "lg"}
           intro={
             es
-              ? "Estoy preparando proyectos que de verdad valga la pena mostrar, contados con su proceso completo. Mientras tanto, el mejor caso de estudio puede ser el tuyo."
-              : "I'm preparing projects that are truly worth showing, told with their full process. Meanwhile, the best case study could be yours."
+              ? "Proyectos reales contados de principio a fin: el problema, las decisiones y lo que hay por dentro."
+              : "Real projects told from start to finish: the problem, the decisions and what's under the hood."
           }
           aside={
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-white/75">
@@ -174,13 +181,19 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B7A8FF] opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B7A8FF]" />
               </span>
-              {es ? "Próximamente" : "Coming soon"}
+              {es ? "Nuevo · corte" : "New · corte"}
             </span>
           }
         />
         )}
 
-        <div className={`${page ? "mt-8" : "mt-14"} grid md:grid-cols-3 gap-5`}>
+        {!page && (
+          <div className="mt-14">
+            <FeaturedProject />
+          </div>
+        )}
+
+        {page && <div className="mt-8 grid md:grid-cols-3 gap-5">
           {cards.map((c, i) => (
             <motion.article
               key={c.n}
@@ -229,7 +242,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
               </div>
             </motion.article>
           ))}
-        </div>
+        </div>}
 
         {!page && (
         <motion.div
@@ -240,17 +253,17 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           className="mt-12 flex flex-wrap items-center gap-3"
         >
           <Link
-            to="/contacto"
+            to="/portafolio"
             className="group inline-flex items-center gap-2 rounded-full bg-brand text-black px-6 py-3.5 text-sm font-semibold hover:bg-brand/90 transition-colors"
           >
-            {es ? "Cuéntame tu proyecto" : "Tell me about your project"}
+            {es ? "Ver todo mi trabajo" : "See all my work"}
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
           <Link
-            to="/servicios"
+            to="/contacto"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-semibold text-white/80 hover:text-white hover:border-white/35 transition-colors"
           >
-            {es ? "Ver lo que puedo construir" : "See what I can build"}
+            {es ? "Cuéntame tu proyecto" : "Tell me about your project"}
           </Link>
         </motion.div>
         )}

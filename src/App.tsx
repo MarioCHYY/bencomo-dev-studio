@@ -15,6 +15,7 @@ const Portfolio = lazy(() => import("./pages/Portfolio"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const CaseCorte = lazy(() => import("./pages/CaseCorte"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Fallback loader
@@ -37,6 +38,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/servicios" element={<Services />} />
               <Route path="/portafolio" element={<Portfolio />} />
+              <Route path="/portafolio/corte" element={<CaseCorte />} />
               <Route path="/sobre-mi" element={<About />} />
               <Route path="/contacto" element={<Contact />} />
               <Route path="/privacidad" element={<Privacy />} />
