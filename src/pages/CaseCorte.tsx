@@ -333,9 +333,12 @@ const CaseCorte = () => {
       </Chapter>
 
       <section className="relative z-20 pb-10">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 flex flex-wrap items-center justify-between gap-4">
           <Link to="/portafolio" className="inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white/25 hover:border-white pb-1 transition-colors">
             <ArrowLeft size={15} /> {es ? "Volver a Mi trabajo" : "Back to My work"}
+          </Link>
+          <Link to="/portafolio/tachado" className="inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white/25 hover:border-white pb-1 transition-colors">
+            {es ? "Siguiente caso: Tachado" : "Next case: Tachado"} <ArrowUpRight size={15} />
           </Link>
         </div>
       </section>

@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Starfield } from "@/components/ui/starfield";
 import { BrandMark } from "@/components/brand/Logo";
 import FeaturedProject from "@/components/work/FeaturedProject";
+import TachadoCard from "@/components/work/TachadoCard";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -79,22 +80,22 @@ const ReelHero = ({ es }: { es: boolean }) => {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B7A8FF] opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B7A8FF]" />
           </span>
-          {es ? "Nuevo caso: corte" : "New case: corte"}
+          {es ? "Nuevo caso: Tachado" : "New case: Tachado"}
         </span>
         <h1 className="font-heading font-semibold text-white text-[2.6rem] sm:text-6xl lg:text-7xl leading-[0.98] -tracking-[0.05em]" style={{ textWrap: "balance" } as Record<string, string>}>
           {es ? "Proyectos," : "Projects,"} <span className="text-white/45">{es ? "con su proceso." : "with their process."}</span>
         </h1>
         <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-md">
           {es
-            ? "Cada caso cuenta el problema, cómo lo resolví y lo que hay por dentro. El primero ya está aquí y vienen más en camino."
-            : "Each case tells the problem, how I solved it and what's under the hood. The first one is here, and more are on the way."}
+            ? "Cada caso cuenta el problema, cómo lo resolví y lo que hay por dentro. Ya hay dos aquí y vienen más en camino."
+            : "Each case tells the problem, how I solved it and what's under the hood. Two are here, and more are on the way."}
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <Link
-            to="/portafolio/corte"
+            to="/portafolio/tachado"
             className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors"
           >
-            {es ? "Ver el caso de corte" : "See the corte case"}
+            {es ? "Ver el caso de Tachado" : "See the Tachado case"}
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
           <Link
@@ -131,14 +132,14 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
 
   const cards = es
     ? [
-        { n: "02", kind: "Sitio web", hint: "Identidad y conversión" },
-        { n: "03", kind: "Sistema para negocio", hint: "Procesos y datos" },
-        { n: "04", kind: "Rediseño", hint: "De lo que hay a lo que debería ser" },
+        { n: "03", kind: "Sitio web", hint: "Identidad y conversión" },
+        { n: "04", kind: "Sistema para negocio", hint: "Procesos y datos" },
+        { n: "05", kind: "Rediseño", hint: "De lo que hay a lo que debería ser" },
       ]
     : [
-        { n: "02", kind: "Website", hint: "Identity and conversion" },
-        { n: "03", kind: "Business system", hint: "Processes and data" },
-        { n: "04", kind: "Redesign", hint: "From what is to what it should be" },
+        { n: "03", kind: "Website", hint: "Identity and conversion" },
+        { n: "04", kind: "Business system", hint: "Processes and data" },
+        { n: "05", kind: "Redesign", hint: "From what is to what it should be" },
       ];
 
   return (
@@ -156,7 +157,10 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
               <span className="h-px w-10 bg-[linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)]" />
               <span className="text-white/45">{es ? "Proyectos terminados" : "Finished projects"}</span>
             </div>
-            <FeaturedProject />
+            <div className="flex flex-col gap-6 md:gap-8">
+              <FeaturedProject />
+              <TachadoCard />
+            </div>
             <div className="mt-20 md:mt-28 flex items-center gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase">
               <span className="text-white">{es ? "En el taller" : "In the workshop"}</span>
               <span className="h-px w-10 bg-[linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)]" />
@@ -181,15 +185,16 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B7A8FF] opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B7A8FF]" />
               </span>
-              {es ? "Nuevo · corte" : "New · corte"}
+              {es ? "Nuevo · Tachado" : "New · Tachado"}
             </span>
           }
         />
         )}
 
         {!page && (
-          <div className="mt-14">
+          <div className="mt-14 flex flex-col gap-6 md:gap-8">
             <FeaturedProject />
+            <TachadoCard />
           </div>
         )}
 
