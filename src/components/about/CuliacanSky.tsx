@@ -54,7 +54,7 @@ export default function CuliacanSky({ es }: { es: boolean }) {
   const glow = sky.night ? "rgba(183,168,255,0.55)" : "rgba(255,196,138,0.6)";
 
   return (
-    <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6">
+    <div data-seo-skip className="absolute inset-0 flex flex-col justify-between p-4 md:p-6">
       {/* the light of the hour, coming from where the sun or moon is */}
       <div
         aria-hidden="true"

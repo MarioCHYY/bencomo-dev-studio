@@ -1,0 +1,1362 @@
+{
+ "/": [
+  {
+   "t": "h1",
+   "x": "Diseño y construyo productos digitales que se sienten vivos."
+  },
+  {
+   "t": "li",
+   "x": "01 IDEA"
+  },
+  {
+   "t": "li",
+   "x": "02 DISEÑO"
+  },
+  {
+   "t": "li",
+   "x": "03 ESTRUCTURA"
+  },
+  {
+   "t": "li",
+   "x": "04 CÓDIGO"
+  },
+  {
+   "t": "li",
+   "x": "05 PRODUCTO"
+  },
+  {
+   "t": "li",
+   "x": "06 LANZAMIENTO"
+  },
+  {
+   "t": "p",
+   "x": "No se trata solo de escribir código, sino de mirar más allá de lo evidente. Diseño y construyo experiencias digitales que nacen de una visión, toman forma con intención y se vuelven reales a través del código."
+  },
+  {
+   "t": "h2",
+   "x": "Desarrollador con ojo de diseñador."
+  },
+  {
+   "t": "p",
+   "x": "Mario Bencomo"
+  },
+  {
+   "t": "p",
+   "x": "Full Stack Developer · UI/UX"
+  },
+  {
+   "t": "h3",
+   "x": "No solo escribo código. Diseño productos que se sienten vivos, del primer boceto al último pixel."
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, desarrollador full stack con una visión muy marcada por el diseño, la estética y la experiencia de usuario. Me gusta construir productos digitales que no solo funcionen, sino que tengan presencia, intención y una identidad visual clara."
+  },
+  {
+   "t": "h2",
+   "x": "Un proceso claro, sin sorpresas."
+  },
+  {
+   "t": "p",
+   "x": "Tres principios que guían cada proyecto, desde la primera llamada hasta después del lanzamiento."
+  },
+  {
+   "t": "h3",
+   "x": "Entender tu negocio"
+  },
+  {
+   "t": "p",
+   "x": "Antes de diseñar nada, entiendo cómo funciona tu negocio, a quién le hablas y qué te está frenando hoy."
+  },
+  {
+   "t": "h3",
+   "x": "Diseñar y construir"
+  },
+  {
+   "t": "p",
+   "x": "Diseño la experiencia y la programo a la medida, mostrándote avances reales en cada etapa para que opines a tiempo."
+  },
+  {
+   "t": "h3",
+   "x": "Lanzar y crecer"
+  },
+  {
+   "t": "p",
+   "x": "Publico, mido y ajusto. Tu producto queda listo para crecer junto con tu negocio, no solo para el día del lanzamiento."
+  },
+  {
+   "t": "p",
+   "x": "Diseño, código y marca. Hechos por la misma persona."
+  },
+  {
+   "t": "h2",
+   "x": "Casos de estudio, con su proceso."
+  },
+  {
+   "t": "p",
+   "x": "Proyectos reales contados de principio a fin: el problema, las decisiones y lo que hay por dentro."
+  },
+  {
+   "t": "h3",
+   "x": "La tarjeta es de una. Las compras son de todos."
+  },
+  {
+   "t": "p",
+   "x": "App para repartir gastos de la casa y controlar la tarjeta de crédito que todos usan: fecha de corte, fecha límite y meses sin intereses, sin hacer cuentas a mano."
+  },
+  {
+   "t": "li",
+   "x": "Producto"
+  },
+  {
+   "t": "li",
+   "x": "Diseño UI/UX"
+  },
+  {
+   "t": "li",
+   "x": "Marca"
+  },
+  {
+   "t": "li",
+   "x": "Next.js"
+  },
+  {
+   "t": "li",
+   "x": "PostgreSQL"
+  },
+  {
+   "t": "h3",
+   "x": "El precio tachado no siempre dice la verdad."
+  },
+  {
+   "t": "p",
+   "x": "Bot de Telegram que guarda el historial de precios de Amazon México, avisa cuando baja lo que sigues y revisa si cada oferta es un descuento real o un precio inflado."
+  },
+  {
+   "t": "li",
+   "x": "Bot de Telegram"
+  },
+  {
+   "t": "li",
+   "x": "Página web"
+  },
+  {
+   "t": "li",
+   "x": "Python"
+  },
+  {
+   "t": "li",
+   "x": "Datos"
+  },
+  {
+   "t": "h2",
+   "x": "Lo que puedo construir para ti."
+  },
+  {
+   "t": "li",
+   "x": "01 Sitios Web con Identidad"
+  },
+  {
+   "t": "li",
+   "x": "02 UI/UX e Interfaces"
+  },
+  {
+   "t": "li",
+   "x": "03 Aplicaciones Web"
+  },
+  {
+   "t": "li",
+   "x": "04 Sistemas para Negocios"
+  },
+  {
+   "t": "li",
+   "x": "05 Rediseño Web"
+  },
+  {
+   "t": "li",
+   "x": "06 Prototipos Funcionales"
+  },
+  {
+   "t": "li",
+   "x": "07 Automatización de Tareas"
+  },
+  {
+   "t": "li",
+   "x": "08 Inteligencia Artificial (IA)"
+  },
+  {
+   "t": "h3",
+   "x": "Sitios Web con Identidad"
+  },
+  {
+   "t": "p",
+   "x": "Tu presencia digital, hecha a tu medida."
+  },
+  {
+   "t": "h2",
+   "x": "Así se ve lo que construyo, en línea y funcionando."
+  },
+  {
+   "t": "h2",
+   "x": "Lo que suelen preguntarme."
+  },
+  {
+   "t": "faq",
+   "x": "faq"
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/sobre-mi": [
+  {
+   "t": "h1",
+   "x": "Hola, soy Mario. Código con ojo de diseñador."
+  },
+  {
+   "t": "p",
+   "x": "Soy desarrollador full stack y estudio Ingeniería en Sistemas en Culiacán. Diseño y construyo sitios y aplicaciones que no solo funcionan: se entienden, se ven bien y tienen una identidad clara."
+  },
+  {
+   "t": "h2",
+   "x": "Detrás del código, hay una persona."
+  },
+  {
+   "t": "p",
+   "x": "Mario Bencomo"
+  },
+  {
+   "t": "p",
+   "x": "Full stack · UI/UX"
+  },
+  {
+   "t": "p",
+   "x": "Fuera del escritorio"
+  },
+  {
+   "t": "p",
+   "x": "Entrenar para despejarme"
+  },
+  {
+   "t": "p",
+   "x": "Ingeniería en Sistemas Computacionales"
+  },
+  {
+   "t": "p",
+   "x": "Tecnológico de Culiacán"
+  },
+  {
+   "t": "p",
+   "x": "B1"
+  },
+  {
+   "t": "p",
+   "x": "Cambridge English · Junio 2026"
+  },
+  {
+   "t": "p",
+   "x": "El código hace que funcione. El diseño hace que se entienda."
+  },
+  {
+   "t": "p",
+   "x": "Lo que me inspira"
+  },
+  {
+   "t": "p",
+   "x": "Arquitectura, luz y detalle"
+  },
+  {
+   "t": "h2",
+   "x": "Tres ideas que guían cada proyecto."
+  },
+  {
+   "t": "h3",
+   "x": "Entender primero"
+  },
+  {
+   "t": "p",
+   "x": "No empiezo escribiendo código. Primero entiendo el problema, hago bocetos y pienso en la experiencia que quiero crear."
+  },
+  {
+   "t": "h3",
+   "x": "Menos es más"
+  },
+  {
+   "t": "p",
+   "x": "Una interfaz limpia no es solo estética: es respetar el tiempo de quien la usa."
+  },
+  {
+   "t": "h3",
+   "x": "Diseño con base técnica"
+  },
+  {
+   "t": "p",
+   "x": "Lo que se ve bien tiene que funcionar bien. Diseño pensando en cómo se va a construir, y construyo cuidando cómo se ve."
+  },
+  {
+   "t": "h2",
+   "x": "Hasta ahora."
+  },
+  {
+   "t": "p",
+   "x": "Desarrollador Web"
+  },
+  {
+   "t": "p",
+   "x": "Proyectos independientes"
+  },
+  {
+   "t": "p",
+   "x": "Licenciatura en Ingeniería en Sistemas Computacionales"
+  },
+  {
+   "t": "p",
+   "x": "Programa de Inglés Sabatino"
+  },
+  {
+   "t": "p",
+   "x": "Universidad Autónoma de Sinaloa (UAS)"
+  },
+  {
+   "t": "p",
+   "x": "B1 Preliminary (PET)"
+  },
+  {
+   "t": "p",
+   "x": "Cambridge English"
+  },
+  {
+   "t": "li",
+   "x": "React"
+  },
+  {
+   "t": "li",
+   "x": "TypeScript"
+  },
+  {
+   "t": "li",
+   "x": "JavaScript"
+  },
+  {
+   "t": "li",
+   "x": "Node.js"
+  },
+  {
+   "t": "li",
+   "x": "Python"
+  },
+  {
+   "t": "li",
+   "x": "Tailwind CSS"
+  },
+  {
+   "t": "li",
+   "x": "Docker"
+  },
+  {
+   "t": "li",
+   "x": "Git"
+  },
+  {
+   "t": "li",
+   "x": "Java"
+  },
+  {
+   "t": "li",
+   "x": "Figma"
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/portafolio": [
+  {
+   "t": "h1",
+   "x": "Proyectos, con su proceso."
+  },
+  {
+   "t": "p",
+   "x": "Cada caso cuenta el problema, cómo lo resolví y lo que hay por dentro. Ya hay dos aquí y vienen más en camino."
+  },
+  {
+   "t": "h3",
+   "x": "La tarjeta es de una. Las compras son de todos."
+  },
+  {
+   "t": "p",
+   "x": "App para repartir gastos de la casa y controlar la tarjeta de crédito que todos usan: fecha de corte, fecha límite y meses sin intereses, sin hacer cuentas a mano."
+  },
+  {
+   "t": "li",
+   "x": "Producto"
+  },
+  {
+   "t": "li",
+   "x": "Diseño UI/UX"
+  },
+  {
+   "t": "li",
+   "x": "Marca"
+  },
+  {
+   "t": "li",
+   "x": "Next.js"
+  },
+  {
+   "t": "li",
+   "x": "PostgreSQL"
+  },
+  {
+   "t": "h3",
+   "x": "El precio tachado no siempre dice la verdad."
+  },
+  {
+   "t": "p",
+   "x": "Bot de Telegram que guarda el historial de precios de Amazon México, avisa cuando baja lo que sigues y revisa si cada oferta es un descuento real o un precio inflado."
+  },
+  {
+   "t": "li",
+   "x": "Bot de Telegram"
+  },
+  {
+   "t": "li",
+   "x": "Página web"
+  },
+  {
+   "t": "li",
+   "x": "Python"
+  },
+  {
+   "t": "li",
+   "x": "Datos"
+  },
+  {
+   "t": "h3",
+   "x": "Sitio web"
+  },
+  {
+   "t": "p",
+   "x": "Identidad y conversión"
+  },
+  {
+   "t": "h3",
+   "x": "Sistema para negocio"
+  },
+  {
+   "t": "p",
+   "x": "Procesos y datos"
+  },
+  {
+   "t": "h3",
+   "x": "Rediseño"
+  },
+  {
+   "t": "p",
+   "x": "De lo que hay a lo que debería ser"
+  }
+ ],
+ "/portafolio/corte": [
+  {
+   "t": "h1",
+   "x": "La tarjeta es de una. Las compras son de todos."
+  },
+  {
+   "t": "p",
+   "x": "corte es una app para repartir gastos entre familia, roomies o amigos, con algo que las apps conocidas no hacen: controlar la tarjeta de crédito que todos usan, con su fecha de corte, su fecha límite y sus meses sin intereses."
+  },
+  {
+   "t": "p",
+   "x": "ROL"
+  },
+  {
+   "t": "p",
+   "x": "Producto, diseño, marca y desarrollo"
+  },
+  {
+   "t": "p",
+   "x": "TIPO"
+  },
+  {
+   "t": "p",
+   "x": "App web instalable + sitio"
+  },
+  {
+   "t": "p",
+   "x": "AÑO"
+  },
+  {
+   "t": "p",
+   "x": "2026"
+  },
+  {
+   "t": "p",
+   "x": "STACK"
+  },
+  {
+   "t": "p",
+   "x": "Next.js · TypeScript · PostgreSQL"
+  },
+  {
+   "t": "h2",
+   "x": "Todos usan la tarjeta de una persona."
+  },
+  {
+   "t": "p",
+   "x": "En muchas casas en México todos usan la tarjeta del mismo titular: para la luz, el súper, compras personales, regalos y cosas a meses. Cuando llega el estado de cuenta, el titular tiene que calcular a mano cuánto le debe cada quien y cobrarlo antes de la fecha límite, porque si no se paga el total, el banco cobra intereses."
+  },
+  {
+   "t": "p",
+   "x": "Y hay detalles que lo complican: lo que se compra un día después del corte ya no entra en ese mes, y las compras a meses se cobran un pedazo en cada corte. Las apps de gastos compartidos no entienden nada de esto."
+  },
+  {
+   "t": "h2",
+   "x": "corte hace esas cuentas solo."
+  },
+  {
+   "t": "p",
+   "x": "Cada cargo cae en su corte, se reparte entre quien corresponde y cada persona ve cuánto depositar y para cuándo. El titular deja de perseguir a todos con una calculadora."
+  },
+  {
+   "t": "li",
+   "x": "Cada cargo cae solo en su fecha de corte; lo que se compra un día después ya entra al siguiente mes."
+  },
+  {
+   "t": "li",
+   "x": "Compras a 3–24 meses sin intereses: cada mensualidad aparece en el corte que le toca."
+  },
+  {
+   "t": "li",
+   "x": "Gastos compartidos (igual, por montos o porcentaje), personales o regalos."
+  },
+  {
+   "t": "li",
+   "x": "Estado de cuenta por persona: cuánto depositar al titular y para cuándo, y cuánto ya pagó."
+  },
+  {
+   "t": "li",
+   "x": "Saldos del grupo y las transferencias mínimas para quedar a mano."
+  },
+  {
+   "t": "li",
+   "x": "Grupos con invitación por link y personas sin cuenta que luego reclaman su lugar."
+  },
+  {
+   "t": "p",
+   "x": "Cuánto le debes al titular y para cuándo."
+  },
+  {
+   "t": "h2",
+   "x": "Cómo funciona, en video."
+  },
+  {
+   "t": "p",
+   "x": "Recorrido completo por la app · 3 min, con audio."
+  },
+  {
+   "t": "h2",
+   "x": "Que las cuentas siempre cuadren."
+  },
+  {
+   "t": "p",
+   "x": "Reglas de negocio puras y probadas"
+  },
+  {
+   "t": "p",
+   "x": "Cortes, mensualidades, divisiones y saldos viven en un módulo sin React ni base de datos, con pruebas automáticas para cada regla."
+  },
+  {
+   "t": "p",
+   "x": "Dinero en centavos enteros"
+  },
+  {
+   "t": "p",
+   "x": "Nunca se usan decimales: los centavos que sobran al dividir se reparten siempre igual, así el total siempre cuadra."
+  },
+  {
+   "t": "p",
+   "x": "Inicio de sesión propio"
+  },
+  {
+   "t": "p",
+   "x": "Sesiones con cookies httpOnly, contraseñas con scrypt e inicio con Google (OAuth 2.0 con PKCE) escrito sin librerías."
+  },
+  {
+   "t": "p",
+   "x": "Base de datos sin fricción"
+  },
+  {
+   "t": "p",
+   "x": "PostgreSQL con Drizzle ORM; en desarrollo corre PGlite dentro del proyecto, y en producción una base real con migraciones automáticas."
+  },
+  {
+   "t": "p",
+   "x": "Instalable en el celular"
+  },
+  {
+   "t": "p",
+   "x": "Funciona como app desde la pantalla de inicio, con una página de respaldo cuando no hay conexión."
+  },
+  {
+   "t": "p",
+   "x": "Sitio aparte, 100 % estático"
+  },
+  {
+   "t": "p",
+   "x": "La página que presenta el producto es un sitio separado, rápido y sin servidor, con regla del corte interactiva y centro de ayuda."
+  },
+  {
+   "t": "li",
+   "x": "Next.js 16"
+  },
+  {
+   "t": "li",
+   "x": "React 19"
+  },
+  {
+   "t": "li",
+   "x": "TypeScript"
+  },
+  {
+   "t": "li",
+   "x": "Tailwind CSS 4"
+  },
+  {
+   "t": "li",
+   "x": "PostgreSQL"
+  },
+  {
+   "t": "li",
+   "x": "Drizzle ORM"
+  },
+  {
+   "t": "li",
+   "x": "PGlite"
+  },
+  {
+   "t": "li",
+   "x": "Zod"
+  },
+  {
+   "t": "li",
+   "x": "Vitest"
+  },
+  {
+   "t": "li",
+   "x": "OAuth 2.0 + PKCE"
+  },
+  {
+   "t": "h2",
+   "x": "Una identidad que se explica sola."
+  },
+  {
+   "t": "p",
+   "x": "El logo es una tarjeta cortada en diagonal: la fecha de corte que parte el mes en dos. Verde lima sobre gris casi negro, tipografía Space Grotesk para títulos e Inter para la interfaz. También hice la intro animada de la marca."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/portafolio/tachado": [
+  {
+   "t": "h1",
+   "x": "El precio tachado no siempre dice la verdad."
+  },
+  {
+   "t": "p",
+   "x": "Tachado es un bot de Telegram que guarda el historial de precios de Amazon México, avisa cuando baja lo que sigues y revisa si cada oferta es un descuento real o un precio “antes” inflado. Con una página pública para revisar cualquier producto."
+  },
+  {
+   "t": "p",
+   "x": "ROL"
+  },
+  {
+   "t": "p",
+   "x": "Producto, diseño y desarrollo"
+  },
+  {
+   "t": "p",
+   "x": "TIPO"
+  },
+  {
+   "t": "p",
+   "x": "Bot de Telegram + página web"
+  },
+  {
+   "t": "p",
+   "x": "AÑO"
+  },
+  {
+   "t": "p",
+   "x": "2026"
+  },
+  {
+   "t": "p",
+   "x": "STACK"
+  },
+  {
+   "t": "p",
+   "x": "Python · SQLite · Next.js · Postgres"
+  },
+  {
+   "t": "h2",
+   "x": "¿Descuento real o precio inflado?"
+  },
+  {
+   "t": "p",
+   "x": "Amazon muestra descuentos contra un precio tachado. A veces ese precio es lo que el producto costaba la semana pasada, y a veces es un “precio de lista” sugerido que casi nadie pagó. Desde la página no hay forma de saber cuál es."
+  },
+  {
+   "t": "p",
+   "x": "Tachado guarda lo que cada producto ha costado de verdad y compara contra eso."
+  },
+  {
+   "t": "h2",
+   "x": "Todo pasa en tu Telegram."
+  },
+  {
+   "t": "li",
+   "x": "Pegas un link de Amazon y lo sigue cada hora; con precio objetivo opcional."
+  },
+  {
+   "t": "li",
+   "x": "Cada aviso llega con la gráfica del historial y botones para cambiar el objetivo o dejar de seguirlo."
+  },
+  {
+   "t": "li",
+   "x": "Avisa cuando algo se agota, cuando vuelve y cuando es el precio más bajo registrado."
+  },
+  {
+   "t": "li",
+   "x": "Cazador de ofertas: eliges una categoría y cada 3 horas manda las mejores, sin repetir y sin las infladas."
+  },
+  {
+   "t": "li",
+   "x": "Avisos al momento o en resumen diario, con horario de silencio por la noche."
+  },
+  {
+   "t": "li",
+   "x": "Canal público que publica en goteo los descuentos verificados del día."
+  },
+  {
+   "t": "p",
+   "x": "La gráfica que llega con cada aviso: historial, tu precio objetivo y el mínimo registrado."
+  },
+  {
+   "t": "h2",
+   "x": "Cómo decide si una oferta es real."
+  },
+  {
+   "t": "p",
+   "x": "Guarda cada precio que ve. “Lo normal” es la mediana de los últimos 30 días, y con eso cada oferta recibe uno de tres veredictos:"
+  },
+  {
+   "t": "p",
+   "x": "Cuesta 8 % o más por debajo de lo normal: la mediana de sus precios de los últimos 30 días."
+  },
+  {
+   "t": "p",
+   "x": "Amazon anuncia 5 % o más de descuento, pero cuesta lo de siempre. Estos nunca se mandan."
+  },
+  {
+   "t": "p",
+   "x": "Todavía no hay historial suficiente (3 precios en 5 días). Lo dice tal cual en el mensaje."
+  },
+  {
+   "t": "p",
+   "x": "Además distingue entre el precio “Anterior” (lo que costaba de verdad) y el “Precio de lista” del fabricante, y lo aclara en cada mensaje."
+  },
+  {
+   "t": "h2",
+   "x": "Revisa cualquier producto."
+  },
+  {
+   "t": "p",
+   "x": "Una página pública donde pegas cualquier link de Amazon y ves su historial y si el descuento de hoy es real. Si el bot todavía no lo conoce, puedes pedir que lo revise y en unos minutos ya tiene sus datos. También muestra los descuentos reales del día y los inflados."
+  },
+  {
+   "t": "h2",
+   "x": "Amable con Amazon, confiable para ti."
+  },
+  {
+   "t": "p",
+   "x": "Bloqueos sin congelar el bot"
+  },
+  {
+   "t": "p",
+   "x": "Si Amazon responde con un bloqueo o captcha, el bot hace pausas crecientes (10, 20, 40… hasta 120 min) y sigue con lo demás. Avisa al administrador cuando empieza y cuando se recupera."
+  },
+  {
+   "t": "p",
+   "x": "Una consulta a la vez"
+  },
+  {
+   "t": "p",
+   "x": "Todas pasan por un solo candado con una pausa al azar de 8 a 16 segundos; si alguien espera en el chat, baja a 2. Cada producto se revisa una vez aunque lo sigan varias personas."
+  },
+  {
+   "t": "p",
+   "x": "Alarma si Amazon cambia su página"
+  },
+  {
+   "t": "p",
+   "x": "Si varias páginas seguidas no se pueden leer sin que haya bloqueo, el bot avisa para ajustar el lector antes de que se note."
+  },
+  {
+   "t": "p",
+   "x": "Pruebas sin internet"
+  },
+  {
+   "t": "p",
+   "x": "Usan HTML real de Amazon guardado y una API de Telegram falsa, así que prueban el bot completo: comandos, botones, avisos, silencio, resumen, canal y bloqueos."
+  },
+  {
+   "t": "p",
+   "x": "Corre en casa, a propósito"
+  },
+  {
+   "t": "p",
+   "x": "Amazon bloquea mucho más rápido las IP de la nube que una conexión residencial. El bot consulta desde casa y la página solo lee una base pública."
+  },
+  {
+   "t": "p",
+   "x": "Privacidad por diseño"
+  },
+  {
+   "t": "p",
+   "x": "En la página solo aparece lo que encontró el cazador o lo que alguien pidió revisar. Lo que cada persona sigue en privado nunca se publica."
+  },
+  {
+   "t": "p",
+   "x": "Bot"
+  },
+  {
+   "t": "p",
+   "x": "en casa · consulta Amazon"
+  },
+  {
+   "t": "p",
+   "x": "Postgres"
+  },
+  {
+   "t": "p",
+   "x": "base pública"
+  },
+  {
+   "t": "p",
+   "x": "Página"
+  },
+  {
+   "t": "p",
+   "x": "Vercel · solo lee"
+  },
+  {
+   "t": "p",
+   "x": "El bot sube precios cada minuto. Cuando alguien pide revisar un producto desde la página, deja una solicitud en la base y el bot la atiende en unos minutos."
+  },
+  {
+   "t": "li",
+   "x": "Python"
+  },
+  {
+   "t": "li",
+   "x": "pyTelegramBotAPI"
+  },
+  {
+   "t": "li",
+   "x": "BeautifulSoup"
+  },
+  {
+   "t": "li",
+   "x": "matplotlib"
+  },
+  {
+   "t": "li",
+   "x": "SQLite"
+  },
+  {
+   "t": "li",
+   "x": "PostgreSQL (Neon)"
+  },
+  {
+   "t": "li",
+   "x": "Next.js"
+  },
+  {
+   "t": "li",
+   "x": "Vercel"
+  },
+  {
+   "t": "li",
+   "x": "pytest"
+  },
+  {
+   "t": "li",
+   "x": "launchd"
+  },
+  {
+   "t": "h2",
+   "x": "Un signo de pesos, tachado."
+  },
+  {
+   "t": "p",
+   "x": "El nombre y el logo dicen lo mismo: un signo de pesos con una raya roja encima, como el precio tachado que el bot revisa. Amarillo de etiqueta de oferta, rojo de tachón y tipografía Archivo condensada para los precios."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/servicios": [
+  {
+   "t": "h1",
+   "x": "Lo que puedo construir para ti."
+  },
+  {
+   "t": "p",
+   "x": "Puedo ayudarte a convertir una idea, marca o negocio en una experiencia digital clara, visualmente fuerte y funcional."
+  },
+  {
+   "t": "li",
+   "x": "01 Sitios Web con Identidad"
+  },
+  {
+   "t": "li",
+   "x": "02 UI/UX e Interfaces"
+  },
+  {
+   "t": "li",
+   "x": "03 Aplicaciones Web"
+  },
+  {
+   "t": "li",
+   "x": "04 Sistemas para Negocios"
+  },
+  {
+   "t": "li",
+   "x": "05 Rediseño Web"
+  },
+  {
+   "t": "li",
+   "x": "06 Prototipos Funcionales"
+  },
+  {
+   "t": "li",
+   "x": "07 Automatización de Tareas"
+  },
+  {
+   "t": "li",
+   "x": "08 Inteligencia Artificial (IA)"
+  },
+  {
+   "t": "h2",
+   "x": "Sitios Web con Identidad"
+  },
+  {
+   "t": "p",
+   "x": "Tu presencia digital, hecha a tu medida."
+  },
+  {
+   "t": "p",
+   "x": "Diseño y desarrollo tu sitio desde cero, con una identidad visual que refleja quién eres y qué ofreces. Rápido, moderno y pensado para convertir visitantes en clientes."
+  },
+  {
+   "t": "li",
+   "x": "Diseño visual con tu marca y colores"
+  },
+  {
+   "t": "li",
+   "x": "Sitio optimizado para carga rápida"
+  },
+  {
+   "t": "li",
+   "x": "Adaptado a celulares y tablets"
+  },
+  {
+   "t": "li",
+   "x": "Estructura clara que guía al cliente"
+  },
+  {
+   "t": "h2",
+   "x": "UI/UX e Interfaces"
+  },
+  {
+   "t": "p",
+   "x": "Que usar tu producto sea fácil y agradable."
+  },
+  {
+   "t": "p",
+   "x": "Diseño interfaces pensando en cómo piensa y navega tu usuario. Cuido cada detalle de jerarquía visual y experiencia para que nadie se pierda ni se frustre."
+  },
+  {
+   "t": "li",
+   "x": "Wireframes y mockups navegables"
+  },
+  {
+   "t": "li",
+   "x": "Sistema de diseño (colores, tipografía, componentes)"
+  },
+  {
+   "t": "li",
+   "x": "Pruebas de usabilidad antes de programar"
+  },
+  {
+   "t": "li",
+   "x": "Interfaces consistentes en toda la plataforma"
+  },
+  {
+   "t": "h2",
+   "x": "Aplicaciones Web"
+  },
+  {
+   "t": "p",
+   "x": "Plataformas completas, hechas a la medida de tu negocio."
+  },
+  {
+   "t": "p",
+   "x": "Desarrollo aplicaciones con frontend, backend y base de datos funcionando en conjunto. Desde dashboards internos hasta plataformas con las que tus clientes interactúan directamente."
+  },
+  {
+   "t": "li",
+   "x": "Frontend y backend funcionando juntos"
+  },
+  {
+   "t": "li",
+   "x": "Base de datos organizada y segura"
+  },
+  {
+   "t": "li",
+   "x": "Funcionalidades a la medida de tu operación"
+  },
+  {
+   "t": "li",
+   "x": "Hosting y despliegue listo para producción"
+  },
+  {
+   "t": "h2",
+   "x": "Sistemas para Negocios"
+  },
+  {
+   "t": "p",
+   "x": "Herramientas que ordenan y agilizan tu operación."
+  },
+  {
+   "t": "p",
+   "x": "Construyo sistemas que resuelven procesos reales de tu empresa: cotizaciones, inventario, cobros o seguimiento de clientes. Menos trabajo manual, menos errores."
+  },
+  {
+   "t": "li",
+   "x": "Automatización de procesos repetitivos"
+  },
+  {
+   "t": "li",
+   "x": "Cotizaciones o reportes generados al instante"
+  },
+  {
+   "t": "li",
+   "x": "Cobros en línea integrados (PayPal, etc.)"
+  },
+  {
+   "t": "li",
+   "x": "Panel de control fácil de usar"
+  },
+  {
+   "t": "h2",
+   "x": "Rediseño Web"
+  },
+  {
+   "t": "p",
+   "x": "Dale a tu sitio el acabado que merece."
+  },
+  {
+   "t": "p",
+   "x": "Tomo tu sitio actual y lo transformo: mejor estructura, mejor diseño, mejor rendimiento. Ideal si tu página se ve anticuada o carga lento."
+  },
+  {
+   "t": "li",
+   "x": "Diagnóstico completo del sitio actual"
+  },
+  {
+   "t": "li",
+   "x": "Nueva estructura y diseño moderno"
+  },
+  {
+   "t": "li",
+   "x": "Mejora de velocidad de carga"
+  },
+  {
+   "t": "li",
+   "x": "Optimización para buscadores (SEO básico)"
+  },
+  {
+   "t": "h2",
+   "x": "Prototipos Funcionales"
+  },
+  {
+   "t": "p",
+   "x": "Valida tu idea antes de invertir en desarrollo completo."
+  },
+  {
+   "t": "p",
+   "x": "Creo demos navegables e interactivas para que puedas probar tu idea con clientes reales o inversionistas antes de construir el producto final."
+  },
+  {
+   "t": "li",
+   "x": "Demo clicable de la idea o producto"
+  },
+  {
+   "t": "li",
+   "x": "Simulación de flujo real de usuario"
+  },
+  {
+   "t": "li",
+   "x": "Ajustes rápidos según retroalimentación"
+  },
+  {
+   "t": "li",
+   "x": "Base lista para pasar a desarrollo completo"
+  },
+  {
+   "t": "h2",
+   "x": "Automatización de Tareas"
+  },
+  {
+   "t": "p",
+   "x": "La tecnología hace el trabajo aburrido por ti."
+  },
+  {
+   "t": "p",
+   "x": "Configuro sistemas que realizan tareas repetitivas de forma automática. Desde organizar información hasta conectar los programas que ya usas, para que ahorres tiempo y evites errores manuales."
+  },
+  {
+   "t": "li",
+   "x": "Extracción rápida de información"
+  },
+  {
+   "t": "li",
+   "x": "Creación de reportes automáticos"
+  },
+  {
+   "t": "li",
+   "x": "Conexión entre diferentes aplicaciones"
+  },
+  {
+   "t": "li",
+   "x": "Procesos que trabajan 24/7 sin fallar"
+  },
+  {
+   "t": "h2",
+   "x": "Inteligencia Artificial (IA)"
+  },
+  {
+   "t": "p",
+   "x": "Asistentes inteligentes para agilizar tu trabajo."
+  },
+  {
+   "t": "p",
+   "x": "Integro herramientas de inteligencia artificial en tu negocio. Te ayudo a automatizar respuestas a clientes, analizar textos largos o crear asistentes que te asesoren de manera instantánea."
+  },
+  {
+   "t": "li",
+   "x": "Asistentes virtuales para clientes"
+  },
+  {
+   "t": "li",
+   "x": "Instrucciones precisas para la IA"
+  },
+  {
+   "t": "li",
+   "x": "Generación automática de contenido"
+  },
+  {
+   "t": "li",
+   "x": "Organización inteligente de datos"
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/contacto": [
+  {
+   "t": "h1",
+   "x": "Hablemos de tu proyecto."
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "p",
+   "x": "Al enviar aceptas el aviso de privacidad. Solo uso tus datos para responderte."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  }
+ ],
+ "/privacidad": [
+  {
+   "t": "h1",
+   "x": "Tus datos, en claro."
+  },
+  {
+   "t": "p",
+   "x": "Lo corto: solo recibo lo que tú me escribes, lo uso para responderte y no hay rastreo. Aquí el detalle, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares."
+  },
+  {
+   "t": "h2",
+   "x": "Formulario de contacto"
+  },
+  {
+   "t": "p",
+   "x": "Cuando me escribes desde el formulario recibo tu nombre, tu correo, el tipo de proyecto que elijas (opcional) y tu mensaje. Se envían con Web3Forms, un servicio que solo transmite el mensaje a mi correo de Gmail; este sitio no los guarda en ningún servidor propio. Los uso únicamente para responderte y, si lo pides, enviarte una propuesta o cotización. No los vendo ni los comparto con nadie más."
+  },
+  {
+   "t": "h2",
+   "x": "Contacto y enlaces externos"
+  },
+  {
+   "t": "p",
+   "x": "Si me contactas por WhatsApp, correo, LinkedIn, Instagram o GitHub, uso lo que compartas solo para atender tu consulta. Esas plataformas tienen sus propias políticas de privacidad."
+  },
+  {
+   "t": "h2",
+   "x": "Preferencias en tu navegador"
+  },
+  {
+   "t": "p",
+   "x": "Este sitio no usa cookies de rastreo ni herramientas de analítica. Solo guarda en tu navegador el idioma y el tema (claro u oscuro) que elijas; puedes borrarlos cuando quieras. Las animaciones y modelos 3D corren en tu propio dispositivo y no envían información. Algunos íconos se cargan desde jsDelivr, un servicio público de archivos."
+  },
+  {
+   "t": "h2",
+   "x": "Consultas sobre tu información"
+  },
+  {
+   "t": "p",
+   "x": "Puedes pedirme acceder, corregir o borrar la información que me enviaste, oponerte a su uso o retirar tu consentimiento (derechos ARCO). Escríbeme a mariobencomo057@gmail.com con tu nombre y el correo con el que me contactaste. Te respondo en máximo 20 días hábiles y, si procede, lo aplico en los 15 días hábiles siguientes. Si no llegamos a trabajar juntos y me lo pides, borro tu mensaje."
+  },
+  {
+   "t": "h2",
+   "x": "Responsable y cambios"
+  },
+  {
+   "t": "p",
+   "x": "El responsable de tus datos es Mario Bencomo, desarrollador independiente en Culiacán, Sinaloa, México (mariobencomo057@gmail.com). Si este aviso cambia, publicaré aquí la nueva versión con su fecha. Al enviar el formulario aceptas este aviso."
+  }
+ ]
+}

@@ -275,7 +275,7 @@ const ContactSection = () => {
                 </span>
                 {es ? "Disponible para nuevos proyectos" : "Open to new projects"}
               </span>
-              <p className="text-white/50 text-sm">
+              <p data-seo-skip className="text-white/50 text-sm">
                 {es ? `Culiacán, México · son las ${now} aquí (hora del Pacífico)` : `Culiacán, Mexico · it's ${now} here (Pacific time)`}
               </p>
             </div>

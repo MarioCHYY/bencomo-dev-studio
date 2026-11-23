@@ -1,0 +1,50 @@
+{
+  "/": {
+    "title": "Mario Bencomo · Diseño y desarrollo web en Culiacán",
+    "description": "Desarrollador web full stack en Culiacán, Sinaloa. Diseño y construyo sitios, apps y sistemas a la medida que se sienten vivos, con marca incluida.",
+    "image": "/og/home.jpg",
+    "name": "Inicio"
+  },
+  "/sobre-mi": {
+    "title": "Sobre mí · Mario Bencomo, desarrollador web en Culiacán",
+    "description": "Soy Mario Bencomo, desarrollador full stack con ojo de diseñador en Culiacán, Sinaloa. Cómo trabajo, mi trayectoria y con qué construyo.",
+    "image": "/og/sobre-mi.jpg",
+    "name": "Sobre mí"
+  },
+  "/portafolio": {
+    "title": "Portafolio de diseño y desarrollo web · Mario Bencomo",
+    "description": "Casos de estudio con su proceso: corte, una app para repartir los gastos de una tarjeta de crédito, y Tachado, un bot que revisa ofertas de Amazon México.",
+    "image": "/og/portafolio.jpg",
+    "name": "Mi trabajo"
+  },
+  "/portafolio/corte": {
+    "title": "corte, app para repartir gastos de la tarjeta · Mario Bencomo",
+    "description": "La tarjeta es de una, las compras son de todos: caso de estudio de corte, una app para repartir gastos y controlar la tarjeta de crédito que usa toda la casa.",
+    "image": "/og/corte.jpg",
+    "name": "corte"
+  },
+  "/portafolio/tachado": {
+    "title": "Tachado, bot de ofertas reales en Amazon México · Mario Bencomo",
+    "description": "Caso de estudio de Tachado: un bot de Telegram que guarda el historial de precios de Amazon México y revisa si cada oferta es un descuento real o un precio inflado.",
+    "image": "/og/tachado.jpg",
+    "name": "Tachado"
+  },
+  "/servicios": {
+    "title": "Servicios de diseño y desarrollo web en Culiacán · Mario Bencomo",
+    "description": "Sitios web con identidad, aplicaciones web, sistemas para negocios, rediseño, UI/UX, prototipos, automatización e IA. Diseño y desarrollo a la medida desde Culiacán.",
+    "image": "/og/servicios.jpg",
+    "name": "Servicios"
+  },
+  "/contacto": {
+    "title": "Contacto · Mario Bencomo, diseño y desarrollo web",
+    "description": "Cuéntame de tu proyecto, ya sea un sitio web, una app o un sistema, y te respondo con una propuesta clara y un plan de trabajo.",
+    "image": "/og/contacto.jpg",
+    "name": "Contacto"
+  },
+  "/privacidad": {
+    "title": "Aviso de privacidad · Mario Bencomo",
+    "description": "Qué datos se recogen en este sitio, para qué y cómo pedir que se borren.",
+    "image": "/og/privacidad.jpg",
+    "name": "Aviso de privacidad"
+  }
+}

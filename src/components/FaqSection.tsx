@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { SectionHeading } from "@/components/ui/section-heading";
+// the questions live in a JSON file so the build can also write them into the page HTML and its structured data
+import faq from "@/seo/faq.json";
 
 /** Common questions, on a light band to break the rhythm of the dark page. */
 const FaqSection = () => {
@@ -10,23 +12,7 @@ const FaqSection = () => {
   const es = lang === "es";
   const [open, setOpen] = useState<number | null>(0);
 
-  const items = es
-    ? [
-        { q: "¿Cuánto tiempo toma un proyecto?", a: "Depende del alcance. Antes de empezar definimos juntos qué incluye y te comparto un cronograma con fechas claras para cada entrega." },
-        { q: "¿Qué tecnologías usas?", a: "Principalmente React, TypeScript, Node.js y Python, con Tailwind para la interfaz. Elijo la herramienta según lo que necesita tu proyecto, no al revés." },
-        { q: "¿Puedes trabajar sobre un sitio o sistema que ya tengo?", a: "Sí. Reviso lo que tienes, te digo qué conviene mejorar y qué conviene rehacer, y trabajamos desde ahí." },
-        { q: "¿Cómo es el proceso de trabajo?", a: "Empezamos con una llamada para entender tu negocio, definimos alcance y prioridades, y te muestro avances conforme construimos para que opines en cada etapa." },
-        { q: "¿Qué pasa después del lanzamiento?", a: "Te acompaño con ajustes, mantenimiento y mejoras. Tu producto no se queda solo el día que sale." },
-        { q: "¿Cómo se calcula el costo?", a: "Según el alcance y la complejidad. Después de la primera llamada te envío una propuesta con el precio y todo lo que incluye." },
-      ]
-    : [
-        { q: "How long does a project take?", a: "It depends on the scope. Before we start we agree on what's included and I share a timeline with clear dates for every delivery." },
-        { q: "What technologies do you use?", a: "Mainly React, TypeScript, Node.js and Python, with Tailwind for the interface. I pick the tool your project needs, not the other way around." },
-        { q: "Can you work on a site or system I already have?", a: "Yes. I review what you have, tell you what's worth improving and what's worth rebuilding, and we take it from there." },
-        { q: "What does working together look like?", a: "We start with a call to understand your business, agree on scope and priorities, and I show you progress as we build so you can weigh in at every stage." },
-        { q: "What happens after launch?", a: "I stay on for fixes, maintenance and improvements. Your product isn't left alone the day it ships." },
-        { q: "How is the cost calculated?", a: "By scope and complexity. After our first call I send you a proposal with the price and everything it includes." },
-      ];
+  const items = es ? faq.es : faq.en;
 
   return (
     <section id="faq" className="cv-auto theme-flip bg-paper relative z-20 py-28 md:py-36">
@@ -38,7 +24,7 @@ const FaqSection = () => {
           muted={es ? "preguntarme." : "usually ask."}
           align="center"
         />
-        <ul className="mt-14 flex flex-col gap-3">
+        <ul data-seo-faq className="mt-14 flex flex-col gap-3">
           {items.map((it, i) => {
             const isOpen = open === i;
             return (

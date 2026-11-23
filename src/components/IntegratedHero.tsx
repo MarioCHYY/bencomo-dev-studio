@@ -91,7 +91,7 @@ export default function IntegratedHero() {
         <h1 className="mt-6 font-heading font-semibold text-white text-[clamp(2.3rem,4.9vw,4.4rem)] leading-[1.04] -tracking-[0.045em] max-w-5xl">
           <motion.span variants={up} initial="hidden" animate={show} custom={0.3} className="block">
             {es ? "Diseño y construyo productos" : "I design and build products"}
-          </motion.span>
+          </motion.span>{" "}
           <motion.span variants={up} initial="hidden" animate={show} custom={0.45} className="block text-white/35">
             {es ? "digitales que se sienten vivos." : "that feel alive."}
           </motion.span>

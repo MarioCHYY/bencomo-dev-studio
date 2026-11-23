@@ -9,6 +9,7 @@ import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
 import PageTransition from "@/components/fx/PageTransition";
 import BlueprintMode from "@/components/fx/BlueprintMode";
+import PageMeta from "@/seo/PageMeta";
 import IntroCut from "@/components/fx/IntroCut";
 import SkyLight from "@/components/fx/SkyLight";
 import RevealObserver from "@/components/fx/RevealObserver";
@@ -43,6 +44,7 @@ const App = () => (
         <IntroCut />
         <BrowserRouter>
           <PageTransition />
+          <PageMeta />
           <BlueprintMode />
           <Suspense fallback={<PageLoader />}>
             <Routes>
