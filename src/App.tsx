@@ -7,6 +7,11 @@ import { ThemeProvider } from "@/components/ThemeContext";
 import CinematicBackground from "@/components/CinematicBackground";
 import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
+import PageTransition from "@/components/fx/PageTransition";
+import BlueprintMode from "@/components/fx/BlueprintMode";
+import IntroCut from "@/components/fx/IntroCut";
+import SkyLight from "@/components/fx/SkyLight";
+import RevealObserver from "@/components/fx/RevealObserver";
 
 // Lazy-loaded routes
 const Index = lazy(() => import("./pages/Index"));
@@ -21,7 +26,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Fallback loader
 const PageLoader = () => (
-  <div className="min-h-screen w-full flex items-center justify-center bg-paper dark:bg-[#050505] transition-colors duration-500">
+  <div data-page-loader className="min-h-screen w-full flex items-center justify-center bg-paper dark:bg-[#050505] transition-colors duration-500">
     <Loader2 className="w-8 h-8 animate-spin text-primary opacity-50" />
   </div>
 );
@@ -33,7 +38,12 @@ const App = () => (
         <CinematicBackground />
         <Toaster />
         <Sonner />
+        <SkyLight />
+        <RevealObserver />
+        <IntroCut />
         <BrowserRouter>
+          <PageTransition />
+          <BlueprintMode />
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />

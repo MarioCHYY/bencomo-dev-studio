@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
+import AuroraLamp from "@/components/fx/AuroraLamp";
 import { Browser } from "@/components/work/CaseUI";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -34,10 +35,12 @@ const TachadoCard = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 1, ease }}
+      data-fx-expand
       className="theme-dark group relative overflow-hidden rounded-[24px] md:rounded-[36px] border border-white/10"
       style={{ backgroundColor: TACHADO.ink }}
     >
       <div aria-hidden="true" className="absolute inset-0" style={{ background: "radial-gradient(60% 70% at 78% 40%, rgba(255,216,77,0.14), transparent 70%)" }} />
+      <AuroraLamp />
       <div className="relative grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-10 p-6 sm:p-10 lg:p-14">
         <div className="flex flex-col justify-between gap-10">
           <div className="flex flex-col gap-6">
@@ -47,7 +50,7 @@ const TachadoCard = () => {
             </div>
             <h3 className="font-heading font-semibold text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.02] -tracking-[0.04em]" style={{ textWrap: "balance" } as Record<string, string>}>
               {es ? "El precio tachado" : "The crossed-out price"}{" "}
-              <span style={{ color: TACHADO.yellow }}>{es ? "no siempre dice la verdad." : "doesn't always tell the truth."}</span>
+              <span style={{ color: TACHADO.yellow }}>{es ? <>no siempre dice la <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">verdad.</em></> : <>doesn't always tell the <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">truth.</em></>}</span>
             </h3>
             <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-md">
               {es
@@ -77,13 +80,13 @@ const TachadoCard = () => {
         </div>
 
         {/* the site, with the price chart floating over it */}
-        <div className="relative flex items-center min-h-[260px] sm:min-h-[360px]">
+        <Link to="/portafolio/tachado" data-cursor={es ? "Ver caso" : "View case"} aria-label={es ? "Ver el caso de Tachado" : "View the Tachado case"} className="relative flex items-center min-h-[260px] sm:min-h-[360px]">
           <Browser src="/work/tachado/panel.webp" alt={es ? "Página de Tachado" : "Tachado website"} url="tachado.mariobencomodev.com" className="w-full transition-transform duration-700 group-hover:-translate-y-1" />
           <div className="absolute -bottom-2 -left-2 sm:left-[-6%] w-[52%] rounded-[12px] overflow-hidden border border-black/10 bg-white shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] transition-transform duration-700 group-hover:-translate-y-2 group-hover:-rotate-1">
             <img src="/work/tachado/grafica.webp" alt="" loading="lazy" className="block w-full" />
           </div>
           <img src="/work/tachado/avatar.webp" alt="" className="absolute -top-3 right-3 w-14 sm:w-20 rounded-[22%] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] rotate-6 transition-transform duration-700 group-hover:rotate-12" />
-        </div>
+        </Link>
       </div>
     </motion.article>
   );

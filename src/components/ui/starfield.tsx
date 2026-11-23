@@ -18,7 +18,7 @@ export function Starfield({ count = 120, contained = false, className = "" }: { 
     const ctx = cv?.getContext("2d");
     if (!cv || !ctx) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     let w = 0, h = 0, raf = 0;
     let light = false;
     const stars = Array.from({ length: count }, (_, i) => ({
@@ -51,9 +51,17 @@ export function Starfield({ count = 120, contained = false, className = "" }: { 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    let onScreen = true;
+    let lastDraw = 0;
     const draw = (time: number) => {
       raf = 0;
-      if (document.hidden) return;
+      if (document.hidden || !onScreen) return;
+      // the dots drift slowly: drawing every other frame looks the same and costs half
+      if (!reduce && time - lastDraw < 30) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+      lastDraw = time;
       ctx.clearRect(0, 0, w, h);
       const sy = contained ? 0 : window.scrollY;
       const t = reduce ? 0 : time / 1000;
@@ -83,6 +91,14 @@ export function Starfield({ count = 120, contained = false, className = "" }: { 
       if (!reduce) raf = requestAnimationFrame(draw);
     };
 
+    // contained fields (inside bands) stop drawing while their band is off screen
+    const io = contained
+      ? new IntersectionObserver(([e]) => {
+          onScreen = e.isIntersecting;
+          if (onScreen) kick();
+        })
+      : null;
+    io?.observe(cv);
     readTheme();
     resize();
     const kick = () => {
@@ -107,6 +123,7 @@ export function Starfield({ count = 120, contained = false, className = "" }: { 
     kick();
     return () => {
       mo.disconnect();
+      io?.disconnect();
       ro?.disconnect();
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);

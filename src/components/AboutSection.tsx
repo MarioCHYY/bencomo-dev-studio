@@ -6,6 +6,7 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { ScrollRevealText } from "@/components/ui/scroll-reveal-text";
 import { SectionHeading } from "@/components/ui/section-heading";
+import AuroraLamp from "@/components/fx/AuroraLamp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -44,11 +45,12 @@ const AboutSection = () => {
             transition={{ duration: 1, ease }}
             className="relative lg:sticky lg:top-28 rgb-glow rounded-[28px]"
           >
-            <div className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0B0B0D]">
+            <div data-reveal className="theme-dark relative aspect-[4/5] rounded-[28px] overflow-hidden border border-white/10 bg-[#0B0B0D]">
+              <AuroraLamp />
               <motion.img
-                style={{ y: imgY }}
-                src="/gallery/sobre_mi_home.webp"
+                src="/about/mario-frente.webp"
                 alt="Mario Bencomo"
+                style={{ y: imgY, objectPosition: "58% 38%" }}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover scale-[1.14]"
               />

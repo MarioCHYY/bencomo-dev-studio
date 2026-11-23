@@ -6,6 +6,7 @@ import { useLang } from "@/i18n/LanguageContext";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Starfield } from "@/components/ui/starfield";
 import { BrandMark } from "@/components/brand/Logo";
+import AuroraLamp from "@/components/fx/AuroraLamp";
 import FeaturedProject from "@/components/work/FeaturedProject";
 import TachadoCard from "@/components/work/TachadoCard";
 
@@ -55,6 +56,7 @@ const ReelHero = ({ es }: { es: boolean }) => {
       transition={{ duration: 1.1, ease }}
       className="theme-dark relative overflow-hidden rounded-[24px] md:rounded-[36px] border border-white/10 bg-[#0B0B0D] flex flex-col sm:block sm:aspect-[16/11] lg:aspect-[16/8.2] shadow-[0_40px_120px_-40px_rgba(11,11,13,0.55)]"
     >
+      <AuroraLamp />
       {/* phones: the film sits on top and the copy below it; wider screens: copy over the film */}
       <div className="relative aspect-[4/3] sm:absolute sm:inset-0 sm:aspect-auto">
       <video
@@ -145,7 +147,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
   return (
     <section
       id="projects"
-      className={`relative z-20 overflow-hidden ${page ? "min-h-[100svh] pt-28 md:pt-32 pb-28" : "bg-paper py-28 md:py-36"}`}
+      className={`relative z-20 overflow-hidden ${page ? "min-h-[100svh] pt-28 md:pt-32 pb-28" : "cv-auto py-28 md:py-36"}`}
     >
       {!page && <Starfield contained count={80} />}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8">
@@ -210,6 +212,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.9, ease, delay: i * 0.1 }}
+              data-cursor={es ? "En el taller" : "In the workshop"}
               className="group relative aspect-[4/5] md:aspect-[3/4] rounded-[24px] overflow-hidden border border-white/[0.08]"
               style={{ backgroundColor: `rgb(var(--c-tint-${i + 1}))` }}
             >
@@ -220,7 +223,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 backdrop-blur-[2px]"
+                className="absolute inset-0"
                 style={{ background: `linear-gradient(180deg, rgb(var(--c-tint-${i + 1}) / 0.1), rgb(var(--c-tint-${i + 1}) / 0.82))` }}
               />
               <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center">

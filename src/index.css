@@ -207,8 +207,7 @@ html.lenis, html.lenis body { height: auto; }
   position: absolute;
   pointer-events: none;
   border-radius: inherit;
-  background: conic-gradient(from var(--rgb-angle), #8fb0ff, #c9a8ff, #ff9aa8, #ffd99a, #a4efc8, #8fb0ff);
-  animation: rgb-spin 10s linear infinite;
+  background: conic-gradient(from 200deg, #8fb0ff, #c9a8ff, #ff9aa8, #ffd99a, #a4efc8, #8fb0ff);
 }
 .rgb-glow::before {
   inset: 0;
@@ -224,8 +223,11 @@ html.lenis, html.lenis body { height: auto; }
   z-index: -1;
   opacity: 0.16;
   filter: blur(56px);
+  /* turning the already-blurred layer is done by the GPU; animating the gradient angle repainted it every frame */
+  animation: rgb-turn 14s linear infinite;
+  will-change: transform;
 }
-@keyframes rgb-spin { to { --rgb-angle: 360deg; } }
+@keyframes rgb-turn { to { transform: rotate(360deg); } }
 /* on the light theme the pastel edge needs more body to read against white */
 :root:not(.dark) .rgb-glow:not(.theme-dark *)::before { opacity: 1; padding: 1.5px; filter: saturate(1.35); }
 :root:not(.dark) .rgb-glow:not(.theme-dark *)::after { opacity: 0.42; inset: 3%; filter: blur(44px) saturate(1.5); }
@@ -243,3 +245,105 @@ html.lenis, html.lenis body { height: auto; }
 /* ---- Theme helpers ---- */
 .bg-paper-solid { background-color: rgb(var(--c-paper)); }
 body { transition: background-color .35s ease; }
+
+
+/* ---- fx: opening cut ---- */
+@keyframes intro-mark-in {
+  from { opacity: 0; transform: scale(0.82); }
+  to { opacity: 1; transform: scale(1); }
+}
+.intro-mark { animation: intro-mark-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+
+/* ---- off-screen sections skip layout and paint until you get near them ---- */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+
+/* ---- lighting text (ScrollRevealText): one --p per block drives every word ---- */
+.srt { --p: 0; }
+.srt-w {
+  position: relative;
+  display: inline-block;
+  margin-right: 0.26em;
+  /* k: 0 when the word starts lighting, 1 when it's fully lit */
+  --k: calc(var(--p) * var(--n) - var(--i));
+  --t: clamp(0, var(--k), 1);
+  /* g: the aurora flash, peaking as the word lights and trailing off over the next few words */
+  --g: clamp(0, calc(1 - max(calc((1 - var(--k)) / 1.2), calc((var(--k) - 1) / var(--s)))), 1);
+  opacity: max(var(--dim), var(--t));
+  transform: translate3d(0, calc((1 - var(--t)) * 0.14em), 0);
+}
+.srt-w:last-child { margin-right: 0; }
+.srt-plain { opacity: calc(1 - var(--g)); }
+.srt-glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-bottom: 0.2em; /* so descenders (p, g, y) get the gradient too */
+  opacity: var(--g);
+  background-image: linear-gradient(100deg, #8FB0FF, #B7A8FF 40%, #FF9AB0 72%, #FFC48A);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  pointer-events: none;
+}
+
+/* ---- media that opens up as it enters (data-reveal) ---- */
+[data-reveal] {
+  clip-path: inset(6% 5% 6% 5% round 32px);
+  transition: clip-path 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal] img,
+[data-reveal] video {
+  scale: 1.07;
+  transition: scale 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* ends well outside the box, so shadows aren't cut off */
+[data-reveal].is-in { clip-path: inset(-90px -90px -90px -90px round 0); }
+[data-reveal].is-in img,
+[data-reveal].is-in video { scale: 1; }
+html.reveal-off [data-reveal] { clip-path: none; }
+html.reveal-off [data-reveal] img,
+html.reveal-off [data-reveal] video { scale: 1; }
+
+/* ---- statement: second line as an outline that the aurora fills, then keeps flowing ---- */
+.statement-flow {
+  background-image: linear-gradient(100deg, #8FB0FF, #B7A8FF 22%, #FF9AB0 44%, #FFC48A 62%, #B7A8FF 82%, #8FB0FF);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: statement-flow 9s linear infinite;
+}
+@keyframes statement-flow { from { background-position: 0% 50%; } to { background-position: -220% 50%; } }
+@media (prefers-reduced-motion: reduce) { .statement-flow { animation: none; } }
+
+/* accent faces, self-hosted (no third-party requests): a serif italic and a mono, used sparingly */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+}
+.font-serif-display { font-family: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif; }
+.font-code { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+.statement-caret {
+  background: linear-gradient(180deg, #8FB0FF, #FF9AB0);
+  animation: statement-caret 1.05s steps(1) infinite;
+}
+@keyframes statement-caret { 50% { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .statement-caret { animation: none; } }
+/* the caret next to "Código" on the About title: blinks a few times, then steps aside */
+.title-caret {
+  background: linear-gradient(180deg, #8FB0FF, #FF9AB0);
+  animation: statement-caret 1.05s steps(1) 0.7s 4, title-caret-out 0.5s ease 5s forwards;
+}
+@keyframes title-caret-out { to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .title-caret { display: none; } }
+

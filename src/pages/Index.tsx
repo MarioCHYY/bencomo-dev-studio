@@ -9,7 +9,8 @@ const ProcessSection = lazy(() => import("@/components/ProcessSection"));
 // case studies are on hold: "coming soon" until there is work worth showing (ProjectsSection keeps the gallery)
 const ProjectsSection = lazy(() => import("@/components/WorkComingSoon"));
 const ServicesSection = lazy(() => import("@/components/ServicesSection"));
-const TechStrip = lazy(() => import("@/components/TechStrip"));
+const ScreensWall = lazy(() => import("@/components/ScreensWall"));
+const Statement = lazy(() => import("@/components/Statement"));
 const FaqSection = lazy(() => import("@/components/FaqSection"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -28,9 +29,10 @@ const Index = () => {
       <Suspense fallback={<SectionSkeleton />}>
         <AboutSection />
         <ProcessSection />
+        <Statement />
         <ProjectsSection />
         <ServicesSection />
-        <TechStrip />
+        <ScreensWall />
         <FaqSection />
         <CTASection />
         <Footer />

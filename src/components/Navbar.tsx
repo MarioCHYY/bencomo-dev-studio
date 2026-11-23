@@ -13,7 +13,9 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [logoHover, setLogoHover] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  // the logo is the scroll bar: its cut opens as you go down the page, fully open at the end
+  const [progress, setProgress] = useState(0);
+  const { theme, auto, toggleTheme } = useTheme();
 
   const links = [
     { label: t(translations.nav.home), href: "/" },
@@ -24,17 +26,40 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    onScroll();
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      setScrolled(window.scrollY > 30);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      setProgress(Math.round(p * 200) / 200);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    measure();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    // pages load their sections lazily, so the page height changes after the first measure
+    const iv = window.setInterval(onScroll, 1500);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearInterval(iv);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   const ThemeToggle = ({ className = "" }: { className?: string }) => (
     <button
       type="button"
       onClick={toggleTheme}
       aria-label={theme === "dark" ? (lang === "es" ? "Cambiar a modo claro" : "Switch to light mode") : lang === "es" ? "Cambiar a modo oscuro" : "Switch to dark mode"}
+      title={
+        auto
+          ? lang === "es" ? "El tema sigue al sol de Culiacán" : "The theme follows the sun over Culiacán"
+          : lang === "es" ? "Elegido por ti hasta el próximo amanecer o atardecer" : "Your pick until the next sunrise or sunset"
+      }
       className={`w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-white hover:border-white/35 transition-colors ${className}`}
     >
       {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
@@ -62,7 +87,7 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 border-b ${
-        scrolled ? "bg-paper/75 backdrop-blur-xl border-white/[0.06]" : "bg-transparent border-transparent"
+        scrolled ? "bg-paper/85 backdrop-blur-md border-white/[0.06]" : "bg-transparent border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 h-[72px] grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center">
@@ -75,7 +100,7 @@ const Navbar = () => {
           onFocus={() => setLogoHover(true)}
           onBlur={() => setLogoHover(false)}
         >
-          <BrandLogo height={26} open={logoHover} title="Bencomo" />
+          <BrandLogo height={26} open={logoHover ? 1 : progress} title="Bencomo" />
         </Link>
 
         {/* Desktop links, centred */}

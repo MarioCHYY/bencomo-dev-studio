@@ -21,7 +21,7 @@ const ProcessSection = () => {
       ];
 
   return (
-    <section id="process" className="relative py-28 md:py-36">
+    <section id="process" className="cv-auto relative py-28 md:py-36">
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-8">
         <SectionHeading
           index="02"

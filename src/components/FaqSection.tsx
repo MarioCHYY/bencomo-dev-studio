@@ -29,7 +29,7 @@ const FaqSection = () => {
       ];
 
   return (
-    <section id="faq" className="theme-flip bg-paper relative z-20 py-28 md:py-36">
+    <section id="faq" className="cv-auto theme-flip bg-paper relative z-20 py-28 md:py-36">
       <div className="max-w-3xl mx-auto px-6 md:px-8">
         <SectionHeading
           index="05"

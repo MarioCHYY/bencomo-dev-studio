@@ -1,40 +1,22 @@
-import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Check, RotateCcw, Volume2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Starfield } from "@/components/ui/starfield";
+import AuroraLamp from "@/components/fx/AuroraLamp";
 import { useLang } from "@/i18n/LanguageContext";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { CORTE, CorteLogo, Phone } from "@/components/work/FeaturedProject";
+import { Chapter, P } from "@/components/work/CaseUI";
+import CaseNav from "@/components/work/CaseNav";
+import PhoneStory from "@/components/work/PhoneStory";
 
 const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const AURORA = "linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)";
-
-function Chapter({ n, kicker, title, children }: { n: string; kicker: string; title: ReactNode; children: ReactNode }) {
-  return (
-    <section className="relative z-20 py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.7fr)] gap-8 lg:gap-20">
-        <div className="flex flex-col gap-5">
-          <div className="flex items-center gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase">
-            <span className="font-mono text-white tabular-nums">{n}</span>
-            <span className="h-px w-10" style={{ background: AURORA }} />
-            <span className="text-white/45">{kicker}</span>
-          </div>
-          <h2 className="font-heading font-semibold text-white text-3xl md:text-[2.6rem] leading-[1.05] -tracking-[0.04em]" style={{ textWrap: "balance" } as Record<string, string>}>
-            {title}
-          </h2>
-        </div>
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.8, ease }} className="min-w-0 flex flex-col gap-6">
-          {children}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
 
 /** corte's brand intro: plays (muted) the first time it scrolls into view, stays on the lockup; replay with sound */
 function BrandIntro({ es }: { es: boolean }) {
@@ -65,7 +47,7 @@ function BrandIntro({ es }: { es: boolean }) {
     v.play().catch(() => undefined);
   };
   return (
-    <div className="theme-dark group relative overflow-hidden rounded-[20px] md:rounded-[28px] border border-white/10" style={{ backgroundColor: CORTE.ink }}>
+    <div data-reveal className="theme-dark group relative overflow-hidden rounded-[20px] md:rounded-[28px] border border-white/10" style={{ backgroundColor: CORTE.ink }}>
       <video
         ref={ref}
         className="block w-full aspect-video"
@@ -89,7 +71,6 @@ function BrandIntro({ es }: { es: boolean }) {
   );
 }
 
-const P = ({ children }: { children: ReactNode }) => <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-2xl">{children}</p>;
 
 const CaseCorte = () => {
   useSmoothScroll();
@@ -163,6 +144,20 @@ const CaseCorte = () => {
     <main className="min-h-screen">
       <Starfield />
       <Navbar />
+      <CaseNav
+        name={<CorteLogo size={22} />}
+        accent={CORTE.lime}
+        accentInk="#121417"
+        live={{ href: CORTE.app, label: es ? "Probar la app" : "Try the app" }}
+        chapters={[
+          { id: "problema", label: es ? "Problema" : "Problem" },
+          { id: "solucion", label: es ? "Solución" : "Solution" },
+          { id: "pantallas", label: es ? "Pantallas" : "Screens" },
+          { id: "recorrido", label: es ? "Recorrido" : "Walkthrough" },
+          { id: "por-dentro", label: es ? "Por dentro" : "Inside" },
+          { id: "marca", label: es ? "Marca" : "Brand" },
+        ]}
+      />
 
       {/* ---------------------------------------------------------------- hero */}
       <section className="relative z-20 pt-32 md:pt-40 pb-10">
@@ -177,7 +172,7 @@ const CaseCorte = () => {
               <span className="text-white/45">corte</span>
             </div>
             <h1 className="font-heading font-semibold text-white text-5xl md:text-7xl lg:text-[5.4rem] leading-[0.98] -tracking-[0.05em] max-w-5xl" style={{ textWrap: "balance" } as Record<string, string>}>
-              {es ? "La tarjeta es de una." : "The card is one person's."} <span className="text-white/35">{es ? "Las compras son de todos." : "The purchases are everyone's."}</span>
+              {es ? <>La tarjeta es de <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">una.</em></> : <>The card is <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">one</em> person's.</>} <span className="text-white/35">{es ? "Las compras son de todos." : "The purchases are everyone's."}</span>
             </h1>
             <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl">
               {es
@@ -213,10 +208,12 @@ const CaseCorte = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease }}
+            data-reveal
             className="theme-dark relative overflow-hidden rounded-[24px] md:rounded-[36px] border border-white/10 px-6 pt-10 md:pt-16"
             style={{ backgroundColor: CORTE.ink }}
           >
             <div aria-hidden="true" className="absolute inset-0" style={{ background: "radial-gradient(55% 60% at 50% 30%, rgba(198,244,50,0.18), transparent 70%)" }} />
+            <AuroraLamp />
             <div className="relative flex justify-center"><CorteLogo size={40} /></div>
             <div className="relative mt-10 md:mt-14 flex items-end justify-center gap-3 md:gap-6 -mb-[12%]">
               {screens.slice(0, 5).map((s, i) => (
@@ -227,7 +224,7 @@ const CaseCorte = () => {
         </div>
       </section>
 
-      <Chapter n="01" kicker={es ? "El problema" : "The problem"} title={es ? "Todos usan la tarjeta de una persona." : "Everyone uses one person's card."}>
+      <Chapter id="problema" n="01" kicker={es ? "El problema" : "The problem"} title={es ? "Todos usan la tarjeta de una persona." : "Everyone uses one person's card."}>
         <P>
           {es
             ? "En muchas casas en México todos usan la tarjeta del mismo titular: para la luz, el súper, compras personales, regalos y cosas a meses. Cuando llega el estado de cuenta, el titular tiene que calcular a mano cuánto le debe cada quien y cobrarlo antes de la fecha límite, porque si no se paga el total, el banco cobra intereses."
@@ -240,7 +237,7 @@ const CaseCorte = () => {
         </P>
       </Chapter>
 
-      <Chapter n="02" kicker={es ? "La solución" : "The solution"} title={es ? "corte hace esas cuentas solo." : "corte does that math by itself."}>
+      <Chapter id="solucion" n="02" kicker={es ? "La solución" : "The solution"} title={es ? "corte hace esas cuentas solo." : "corte does that math by itself."}>
         <P>
           {es
             ? "Cada cargo cae en su corte, se reparte entre quien corresponde y cada persona ve cuánto depositar y para cuándo. El titular deja de perseguir a todos con una calculadora."
@@ -256,46 +253,23 @@ const CaseCorte = () => {
         </ul>
       </Chapter>
 
-      {/* ---------------------------------------------------------------- screens */}
-      <section className="relative z-20 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex items-center gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase">
-            <span className="font-mono text-white tabular-nums">03</span>
-            <span className="h-px w-10" style={{ background: AURORA }} />
-            <span className="text-white/45">{es ? "Pantallas" : "Screens"}</span>
-          </div>
-          <h2 className="mt-5 font-heading font-semibold text-white text-3xl md:text-[2.6rem] leading-[1.05] -tracking-[0.04em] max-w-2xl" style={{ textWrap: "balance" } as Record<string, string>}>
-            {es ? "Pensada para el celular," : "Designed for the phone,"} <span className="text-white/35">{es ? "donde se usa." : "where it's used."}</span>
-          </h2>
-          <div className="mt-10 -mx-6 md:mx-0 px-6 md:px-0 flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4">
-            {screens.map((s, i) => (
-              <motion.figure
-                key={s.src}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease, delay: i * 0.06 }}
-                className="snap-start shrink-0 w-[62%] sm:w-[40%] md:w-auto flex flex-col gap-4"
-              >
-                <Phone src={s.src} alt={s.t} />
-                <figcaption>
-                  <p className="font-heading font-semibold text-white text-base -tracking-[0.01em]">{s.t}</p>
-                  <p className="mt-1 text-white/55 text-sm leading-snug">{s.d}</p>
-                </figcaption>
-              </motion.figure>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ---------------------------------------------------------------- screens: the phone stays put and tells the story */}
+      <PhoneStory
+        id="pantallas"
+        n="03"
+        label={es ? "Pantallas" : "Screens"}
+        glow="rgba(198,244,50,0.22)"
+        steps={screens.map((sc) => ({ src: sc.src, kicker: sc.t, line: sc.d }))}
+      />
 
-      <Chapter n="04" kicker={es ? "Recorrido" : "Walkthrough"} title={es ? "Cómo funciona, en video." : "How it works, on video."}>
-        <div className="theme-dark relative overflow-hidden rounded-[20px] md:rounded-[28px] border border-white/10" style={{ backgroundColor: CORTE.ink }}>
+      <Chapter id="recorrido" n="04" kicker={es ? "Recorrido" : "Walkthrough"} title={es ? "Cómo funciona, en video." : "How it works, on video."}>
+        <div data-reveal className="theme-dark relative overflow-hidden rounded-[20px] md:rounded-[28px] border border-white/10" style={{ backgroundColor: CORTE.ink }}>
           <video className="block w-full aspect-video" src="/work/corte/recorrido.mp4" poster="/work/corte/recorrido.jpg" controls playsInline preload="none" />
         </div>
         <p className="text-white/45 text-sm">{es ? "Recorrido completo por la app · 3 min, con audio." : "Full tour of the app · 3 min, with audio."}</p>
       </Chapter>
 
-      <Chapter n="05" kicker={es ? "Por dentro" : "Under the hood"} title={es ? "Que las cuentas siempre cuadren." : "So the numbers always add up."}>
+      <Chapter id="por-dentro" n="05" kicker={es ? "Por dentro" : "Under the hood"} title={es ? "Que las cuentas siempre cuadren." : "So the numbers always add up."}>
         <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
           {inside.map(([h, d]) => (
             <div key={h} className="rounded-[20px] border border-white/[0.08] bg-white/[0.03] p-5 md:p-6">
@@ -311,7 +285,7 @@ const CaseCorte = () => {
         </ul>
       </Chapter>
 
-      <Chapter n="06" kicker={es ? "Marca" : "Brand"} title={es ? "Una identidad que se explica sola." : "An identity that explains itself."}>
+      <Chapter id="marca" n="06" kicker={es ? "Marca" : "Brand"} title={es ? "Una identidad que se explica sola." : "An identity that explains itself."}>
         <P>
           {es
             ? "El logo es una tarjeta cortada en diagonal: la fecha de corte que parte el mes en dos. Verde lima sobre gris casi negro, tipografía Space Grotesk para títulos e Inter para la interfaz. También hice la intro animada de la marca."

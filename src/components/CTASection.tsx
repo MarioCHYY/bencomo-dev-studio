@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Copy, Check } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
+import AuroraLamp from "@/components/fx/AuroraLamp";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const EMAIL = "mariobencomo057@gmail.com";
@@ -39,7 +40,8 @@ const CTASection = () => {
   };
 
   return (
-    <section id="cta" className="theme-accent bg-paper relative z-20 overflow-hidden pt-28 md:pt-40 pb-24">
+    <section id="cta" className="cv-auto theme-accent bg-paper relative z-20 overflow-hidden pt-28 md:pt-40 pb-24">
+      <AuroraLamp />
       {/* soft RGB horizon, same palette as the hero dots */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_100%,rgba(143,176,255,0.18),rgba(183,168,255,0.08)_40%,transparent_72%)]" />

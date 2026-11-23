@@ -14,7 +14,8 @@ import {
 
 /**
  * Hero sculpture: one cloud of dots that keeps changing shape.
- * sphere → torus knot → cube → double helix → diamond → ring → …
+ * sphere with a nucleus (idea) → Bézier curve with handles (design) → lattice (structure) → double helix (code)
+ * → squircle (product) → vortex (launch) → the Bencomo mark → …
  * Dots are tinted with the soft RGB palette of the old hero dots and dimmed with depth.
  */
 
@@ -22,51 +23,82 @@ export interface MorphSceneHandle {
   dispose: () => void;
 }
 
-export const SHAPE_COUNT = 6;
+export const SHAPE_COUNT = 7; // 6 stages + the brand mark as a signature at the end of the loop
 
 const TAU = Math.PI * 2;
 const rnd = () => Math.random();
+const gauss = () => (rnd() + rnd() + rnd() - 1.5) / 1.5; // soft bell, -1..1
+type V3 = [number, number, number];
+function dir(): V3 {
+  const u = rnd() * 2 - 1, a = rnd() * TAU, r = Math.sqrt(1 - u * u);
+  return [Math.cos(a) * r, u, Math.sin(a) * r];
+}
 
-function sphere(i: number, n: number): [number, number, number] {
+/** 01 Idea: the sphere, with a bright nucleus forming inside it — the idea taking shape */
+function idea(i: number, n: number): V3 {
+  if (rnd() < 0.24) {
+    // nucleus: a dense glow in the middle
+    const d = dir();
+    const r = Math.abs(gauss()) * 0.26;
+    return [d[0] * r, d[1] * r, d[2] * r];
+  }
+  // the sphere's surface, evenly spread (golden angle)
   const y = 1 - (2 * (i + 0.5)) / n;
   const r = Math.sqrt(1 - y * y);
-  const a = i * 2.399963229728653; // golden angle
-  return [Math.cos(a) * r, y, Math.sin(a) * r];
+  const a = i * 2.399963229728653;
+  return [Math.cos(a) * r * 0.95, y * 0.95, Math.sin(a) * r * 0.95];
 }
-function knot(): [number, number, number] {
-  const t = rnd() * TAU;
-  const p = 2, q = 3;
-  const R = 0.55 + 0.25 * Math.cos(q * t);
-  const c = [R * Math.cos(p * t), R * Math.sin(p * t), 0.25 * Math.sin(q * t)];
-  // tube around the curve
-  const t2 = t + 0.001;
-  const R2 = 0.55 + 0.25 * Math.cos(q * t2);
-  const d = [R2 * Math.cos(p * t2) - c[0], R2 * Math.sin(p * t2) - c[1], 0.25 * Math.sin(q * t2) - c[2]];
-  const dl = Math.hypot(d[0], d[1], d[2]);
-  const T = d.map((v) => v / dl);
-  let N = [-T[1], T[0], 0];
-  const nl = Math.hypot(N[0], N[1], N[2]) || 1;
-  N = N.map((v) => v / nl);
-  const B = [T[1] * N[2] - T[2] * N[1], T[2] * N[0] - T[0] * N[2], T[0] * N[1] - T[1] * N[0]];
-  const a = rnd() * TAU;
-  const tube = 0.16;
-  return [
-    c[0] + (N[0] * Math.cos(a) + B[0] * Math.sin(a)) * tube,
-    c[1] + (N[1] * Math.cos(a) + B[1] * Math.sin(a)) * tube,
-    c[2] + (N[2] * Math.cos(a) + B[2] * Math.sin(a)) * tube,
-  ];
+
+/** 02 Design: a Bézier curve with its handles, the way it looks while drawing with the pen tool */
+function bezier(): V3 {
+  const P: [number, number][] = [[-0.95, -0.42], [-0.32, 0.92], [0.32, -0.92], [0.95, 0.42]];
+  const z = () => gauss() * 0.03;
+  const r = rnd();
+  if (r < 0.58) {
+    // the curve, as a thin tube
+    const t = rnd(), u = 1 - t;
+    const x = u * u * u * P[0][0] + 3 * u * u * t * P[1][0] + 3 * u * t * t * P[2][0] + t * t * t * P[3][0];
+    const y = u * u * u * P[0][1] + 3 * u * u * t * P[1][1] + 3 * u * t * t * P[2][1] + t * t * t * P[3][1];
+    const a = rnd() * TAU, w = 0.028;
+    return [x + Math.cos(a) * w, y + Math.sin(a) * w, Math.sin(a) * w * 1.5];
+  }
+  if (r < 0.74) {
+    // handle lines from each anchor to its control point
+    const [a, b] = rnd() < 0.5 ? [P[0], P[1]] : [P[3], P[2]];
+    const t = rnd();
+    return [a[0] + (b[0] - a[0]) * t + gauss() * 0.006, a[1] + (b[1] - a[1]) * t + gauss() * 0.006, z()];
+  }
+  if (r < 0.88) {
+    // anchors: small square outlines on the ends of the curve
+    const c = rnd() < 0.5 ? P[0] : P[3];
+    const h = 0.075, e = rnd() * 8 - 4; // walk around the square's 4 sides
+    const side = Math.floor((e + 4) / 2), f = ((e + 4) % 2) - 1;
+    const q = side === 0 ? [f * h, -h] : side === 1 ? [h, f * h] : side === 2 ? [-f * h, h] : [-h, -f * h];
+    return [c[0] + q[0], c[1] + q[1], z()];
+  }
+  // control points: small round dots at the end of each handle
+  const c = rnd() < 0.5 ? P[1] : P[2];
+  const a = rnd() * TAU, rr = Math.sqrt(rnd()) * 0.06;
+  return [c[0] + Math.cos(a) * rr, c[1] + Math.sin(a) * rr, z()];
 }
-function cube(): [number, number, number] {
-  const f = Math.floor(rnd() * 6);
-  const u = rnd() * 2 - 1, v = rnd() * 2 - 1;
-  const s = 0.68;
-  const p: [number, number, number] =
-    f === 0 ? [1, u, v] : f === 1 ? [-1, u, v] : f === 2 ? [u, 1, v] : f === 3 ? [u, -1, v] : f === 4 ? [u, v, 1] : [u, v, -1];
-  // soften the edges a little
-  const l = Math.hypot(p[0], p[1], p[2]);
-  return [((p[0] * 0.85 + (p[0] / l) * 0.15 * 1.3)) * s, ((p[1] * 0.85 + (p[1] / l) * 0.15 * 1.3)) * s, ((p[2] * 0.85 + (p[2] / l) * 0.15 * 1.3)) * s];
+
+/** 03 Structure: a lattice — dots strung along the lines of a perfect 3D grid */
+function lattice(): V3 {
+  const n = 4; // 5 x 5 x 5 nodes
+  const s = 0.62;
+  const k = () => (Math.floor(rnd() * (n + 1)) / n) * 2 - 1;
+  if (rnd() < 0.18) {
+    // nodes, a touch denser
+    return [k() * s + gauss() * 0.012, k() * s + gauss() * 0.012, k() * s + gauss() * 0.012];
+  }
+  const along = rnd() * 2 - 1;
+  const axis = Math.floor(rnd() * 3);
+  const p: V3 = axis === 0 ? [along, k(), k()] : axis === 1 ? [k(), along, k()] : [k(), k(), along];
+  return [p[0] * s, p[1] * s, p[2] * s];
 }
-function helix(): [number, number, number] {
+
+/** 04 Code: the double helix — DNA is literally a code */
+function helix(): V3 {
   const h = rnd();
   const y = (h - 0.5) * 2.1;
   const a = h * TAU * 2.3;
@@ -76,22 +108,66 @@ function helix(): [number, number, number] {
     const j = 0.025;
     return [Math.cos(a + off) * r + (rnd() - 0.5) * j, y + (rnd() - 0.5) * j, Math.sin(a + off) * r + (rnd() - 0.5) * j];
   }
-  // rungs
   const k = Math.round(h * 22) / 22;
   const yy = (k - 0.5) * 2.1;
   const aa = k * TAU * 2.3;
   const s = rnd() * 2 - 1;
   return [Math.cos(aa) * r * s, yy, Math.sin(aa) * r * s];
 }
-function diamond(i: number, n: number): [number, number, number] {
-  const [x, y, z] = sphere(i, n);
-  const l = Math.abs(x) + Math.abs(y) * 0.8 + Math.abs(z);
-  return [(x / l) * 1.0, (y / l) * 1.15, (z / l) * 1.0];
+
+/** 05 Product: a squircle — the rounded square of an app icon, as a solid, finished object */
+function squircle(): V3 {
+  const S = 0.78, D = 0.2, e = 5;
+  const sq = (a: number) => {
+    // point on the superellipse |x|^e + |y|^e = S^e
+    const c = Math.cos(a), s = Math.sin(a);
+    return [Math.sign(c) * Math.pow(Math.abs(c), 2 / e) * S, Math.sign(s) * Math.pow(Math.abs(s), 2 / e) * S];
+  };
+  if (rnd() < 0.72) {
+    // front / back faces
+    let x = 0, y = 0;
+    do {
+      x = (rnd() * 2 - 1) * S;
+      y = (rnd() * 2 - 1) * S;
+    } while (Math.pow(Math.abs(x / S), e) + Math.pow(Math.abs(y / S), e) > 1);
+    return [x, y, rnd() < 0.5 ? D : -D];
+  }
+  // the rounded rim
+  const [x, y] = sq(rnd() * TAU);
+  return [x, y, (rnd() * 2 - 1) * D];
 }
-function ring(): [number, number, number] {
-  const a = rnd() * TAU, b = rnd() * TAU;
-  const R = 0.78, r = 0.2;
-  return [(R + r * Math.cos(b)) * Math.cos(a), r * Math.sin(b), (R + r * Math.cos(b)) * Math.sin(a)];
+
+/** 06 Launch: a vortex opening upwards, with dots breaking free from the top */
+function vortex(): V3 {
+  if (rnd() < 0.14) {
+    const a = rnd() * TAU, r = 0.25 + rnd() * 0.85;
+    return [Math.cos(a) * r, 0.62 + rnd() * 0.4, Math.sin(a) * r];
+  }
+  const h = rnd();
+  const y = -1.15 + h * 1.8;
+  const r = 0.08 + 0.8 * Math.pow(h, 1.6);
+  const arm = Math.floor(rnd() * 3);
+  const a = h * TAU * 2.2 + (arm * TAU) / 3;
+  const j = 0.03 + h * 0.05;
+  return [Math.cos(a) * r + gauss() * j, y + gauss() * j, Math.sin(a) * r + gauss() * j];
+}
+
+/** Signature: the Bencomo mark — a disc cut at 34°, halves slipped apart, the cut glowing between them */
+function mark(): V3 {
+  if (rnd() < 0.22) {
+    for (;;) {
+      const a = rnd() * TAU, r = Math.sqrt(rnd()) * 0.92;
+      const x = Math.cos(a) * r, y = Math.sin(a) * r;
+      if (Math.abs(0.829 * y - 0.559 * x) < 0.12) return [x, y, -0.08 + gauss() * 0.03];
+    }
+  }
+  let x = 0, y = 0;
+  do {
+    x = rnd() * 2 - 1;
+    y = rnd() * 2 - 1;
+  } while (x * x + y * y > 1);
+  const s = 0.829 * y - 0.559 * x > 0 ? 1 : -1;
+  return [(x + s * 0.18) * 0.85, (y + s * 0.23) * 0.85, gauss() * 0.07];
 }
 
 export async function createMorphScene(
@@ -100,7 +176,7 @@ export async function createMorphScene(
 ): Promise<MorphSceneHandle> {
   const { reducedMotion = false, lowPower = false, onShape, getScroll } = opts;
   const renderer = new WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.5 : 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setClearColor(0x000000, 0);
   const canvas = renderer.domElement;
   canvas.style.cssText = "position:absolute;inset:0;width:100%;height:100%;display:block";
@@ -115,12 +191,13 @@ export async function createMorphScene(
   const shapes: number[][] = Array.from({ length: SHAPE_COUNT }, () => []);
   const rand: number[] = [];
   for (let i = 0; i < N; i++) {
-    shapes[0].push(...sphere(i, N));
-    shapes[1].push(...knot());
-    shapes[2].push(...cube());
+    shapes[0].push(...idea(i, N));
+    shapes[1].push(...bezier());
+    shapes[2].push(...lattice());
     shapes[3].push(...helix());
-    shapes[4].push(...diamond(i, N));
-    shapes[5].push(...ring());
+    shapes[4].push(...squircle());
+    shapes[5].push(...vortex());
+    shapes[6].push(...mark());
     rand.push(rnd());
   }
   const geo = new BufferGeometry();
@@ -136,8 +213,15 @@ export async function createMorphScene(
     uPR: { value: renderer.getPixelRatio() },
     uSize: { value: lowPower ? 2.2 : 2.0 },
     uMouse: { value: new Vector2() },
+    // the cursor in the canvas (NDC), how hard it pushes, the canvas aspect and the reach of the push
+    uPointer: { value: new Vector2(9, 9) },
+    uPush: { value: 0 },
+    uAspect: { value: 1 },
+    uReach: { value: 0.3 },
     uFade: { value: 1 },
     uLight: { value: 0 },
+    uSpin: { value: 0 },
+    uFace: { value: 0 },
   };
 
   const mat = new ShaderMaterial({
@@ -146,10 +230,13 @@ export async function createMorphScene(
     depthWrite: false,
     blending: AdditiveBlending,
     vertexShader: /* glsl */ `
-      attribute vec3 aP0; attribute vec3 aP1; attribute vec3 aP2; attribute vec3 aP3; attribute vec3 aP4; attribute vec3 aP5;
+      attribute vec3 aP0; attribute vec3 aP1; attribute vec3 aP2; attribute vec3 aP3; attribute vec3 aP4; attribute vec3 aP5; attribute vec3 aP6;
       attribute float aRand;
-      uniform float uTime, uFrom, uTo, uMix, uPR, uSize, uFade, uLight;
+      uniform float uTime, uFrom, uTo, uMix, uPR, uSize, uFade, uLight, uSpin;
       uniform vec2 uMouse;
+      uniform vec2 uPointer;
+      uniform float uPush, uAspect, uReach;
+      uniform float uFace;
       varying vec3 vCol;
       varying float vA;
 
@@ -159,7 +246,8 @@ export async function createMorphScene(
         if (k < 2.5) return aP2;
         if (k < 3.5) return aP3;
         if (k < 4.5) return aP4;
-        return aP5;
+        if (k < 5.5) return aP5;
+        return aP6;
       }
       mat3 rotY(float a) { float c = cos(a), s = sin(a); return mat3(c, 0., -s, 0., 1., 0., s, 0., c); }
       mat3 rotX(float a) { float c = cos(a), s = sin(a); return mat3(1., 0., 0., 0., c, s, 0., -s, c); }
@@ -176,10 +264,26 @@ export async function createMorphScene(
         // breathing
         p += 0.012 * vec3(sin(uTime * 1.3 + aRand * 50.0), cos(uTime * 1.1 + aRand * 30.0), sin(uTime * 0.9 + aRand * 70.0));
 
-        p = rotY(uTime * 0.18 + uMouse.x * 0.5) * p;
-        p = rotX(0.28 + uMouse.y * 0.3) * p;
+        p = rotY(uSpin + uMouse.x * 0.5) * p;
+        p = rotX(mix(0.28, 0.06, uFace) + uMouse.y * 0.3) * p;
 
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
+        // the cursor takes the shape apart: dots near it on screen are blown outwards (each at its own
+        // angle and depth, so it scatters instead of making a clean hole) and fall back once it moves on
+        if (uPush > 0.001) {
+          vec4 cl = projectionMatrix * mv;
+          vec2 dv = (cl.xy / cl.w - uPointer) * vec2(uAspect, 1.0);
+          float dist = length(dv);
+          float f = (1.0 - smoothstep(0.0, uReach, dist)) * uPush;
+          if (f > 0.0) {
+            float a = (aRand - 0.5) * 1.4;
+            vec2 dir = dist > 1e-4 ? dv / dist : vec2(cos(aRand * 6.283), sin(aRand * 6.283));
+            dir = mat2(cos(a), sin(a), -sin(a), cos(a)) * dir;
+            f = f * f * (3.0 - 2.0 * f);
+            mv.xy += dir * f * (0.16 + aRand * 0.36);
+            mv.z += (aRand - 0.5) * f * 0.7;
+          }
+        }
         gl_Position = projectionMatrix * mv;
         float depth = clamp((p.z + 1.2) / 2.4, 0.0, 1.0); // 0 back → 1 front
         gl_PointSize = uSize * uPR * (0.6 + aRand * 0.7) * (5.2 / -mv.z) * mix(1.0, 1.25, uLight); // a bit bigger on Bone
@@ -209,11 +313,16 @@ export async function createMorphScene(
   });
   // on the light theme: dark, normally-blended dots (additive light disappears on white)
   const root = document.documentElement;
+  // the <html> class also changes for other reasons (smooth scroll, cursor…): only react to the theme itself.
+  // Blending is render state, so switching it needs no shader rebuild (needsUpdate used to recompile
+  // the program on every class change, which made the dots stutter).
+  let lastLight: boolean | null = null;
   const applyTheme = () => {
     const light = !root.classList.contains("dark");
+    if (light === lastLight) return;
+    lastLight = light;
     uniforms.uLight.value = light ? 1 : 0;
     mat.blending = light ? NormalBlending : AdditiveBlending;
-    mat.needsUpdate = true;
   };
   applyTheme();
   const themeObserver = new MutationObserver(applyTheme);
@@ -228,6 +337,7 @@ export async function createMorphScene(
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    uniforms.uAspect.value = camera.aspect;
     // keep the sculpture fitting the shorter side
     const s = Math.min(1, camera.aspect / 1.0);
     points.scale.setScalar((w < 640 ? 0.95 : 1.18) * s);
@@ -238,10 +348,32 @@ export async function createMorphScene(
   ro.observe(container);
 
   const mouse = { x: 0, y: 0, cx: 0, cy: 0 };
+  // pointer over the sculpture, for taking it apart (works with mouse and with a finger moving on it)
+  const ptr = { x: 9, y: 9, cx: 9, cy: 9, over: false, push: 0, speed: 0, lastX: 0, lastY: 0 };
   const onMove = (e: PointerEvent) => {
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
+    const r = canvas.getBoundingClientRect();
+    // a little margin around the canvas so it starts to react just before you reach it
+    const m = 40;
+    ptr.over = e.clientX > r.left - m && e.clientX < r.right + m && e.clientY > r.top - m && e.clientY < r.bottom + m;
+    const nx = ((e.clientX - r.left) / r.width) * 2 - 1;
+    const ny = -(((e.clientY - r.top) / r.height) * 2 - 1);
+    ptr.speed = Math.min(1, ptr.speed + Math.hypot(nx - ptr.x, ny - ptr.y) * 2);
+    if (ptr.cx > 5) {
+      ptr.cx = nx;
+      ptr.cy = ny;
+    }
+    ptr.x = nx;
+    ptr.y = ny;
+    kick();
   };
+  const onLeave = () => {
+    ptr.over = false;
+    kick();
+  };
+  document.documentElement.addEventListener("pointerleave", onLeave);
+  window.addEventListener("pointercancel", onLeave);
   window.addEventListener("pointermove", onMove, { passive: true });
 
   let visible = true;
@@ -255,6 +387,9 @@ export async function createMorphScene(
   const clock = new Clock();
   let raf = 0;
   let lastShape = -1;
+  // flat shapes (Bézier curve, app icon, mark) stop spinning and sway facing you, so they never turn edge-on
+  const FLAT = new Set([1, 4, 6]);
+  let spin = 0, face = 0, lastT = 0;
   const frame = () => {
     raf = 0;
     if (!visible || document.hidden) return;
@@ -279,11 +414,37 @@ export async function createMorphScene(
         onShape?.(showing);
       }
     }
+    const dt = Math.min(0.1, t - lastT);
+    lastT = t;
+    if (!reducedMotion) {
+      face += ((FLAT.has(lastShape) ? 1 : 0) - face) * Math.min(1, dt * 2.5);
+      spin += dt * 0.18 * (1 - face);
+      if (face > 0.01) {
+        const target = Math.round(spin / TAU) * TAU;
+        spin += (target - spin) * Math.min(1, dt * 2.2) * face;
+      }
+    }
+    uniforms.uSpin.value = spin + Math.sin(t * 0.55) * 0.42 * face;
+    uniforms.uFace.value = face;
     mouse.cx += (mouse.x - mouse.cx) * 0.05;
     mouse.cy += (mouse.y - mouse.cy) * 0.05;
     uniforms.uMouse.value.set(mouse.cx, mouse.cy);
+    // the hole trails the cursor a little and grows when you move fast
+    ptr.cx += (ptr.x - ptr.cx) * Math.min(1, dt * 12);
+    ptr.cy += (ptr.y - ptr.cy) * Math.min(1, dt * 12);
+    // resting on the shape only nudges the dots; moving the mouse is what scatters them,
+    // and once it stops they gather back in
+    const want = ptr.over && !reducedMotion ? 0.3 + 0.7 * Math.min(1, ptr.speed * 1.6) : 0;
+    ptr.push += (want - ptr.push) * Math.min(1, dt * (want > ptr.push ? 9 : 2.2));
+    ptr.speed *= Math.max(0, 1 - dt * 2.5);
+    uniforms.uPointer.value.set(ptr.cx, ptr.cy);
+    uniforms.uPush.value = ptr.push;
+    uniforms.uReach.value = 0.17 + ptr.speed * 0.1;
     const sc = getScroll ? getScroll() : 0; // 0 → 1 while the hero leaves
     uniforms.uFade.value = 1 - sc * 0.85;
+    // leaving the hero: the camera moves in towards the dots, as if going into the piece
+    const zoom = Math.min(1, sc / 0.6);
+    camera.position.z = 5.2 - (reducedMotion ? 0 : zoom * zoom * 2.3);
     points.rotation.z = sc * 0.3;
     points.position.y = sc * 0.4;
     renderer.render(scene, camera);
@@ -302,6 +463,8 @@ export async function createMorphScene(
       ro.disconnect();
       io.disconnect();
       window.removeEventListener("pointermove", onMove);
+      document.documentElement.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("pointercancel", onLeave);
       document.removeEventListener("visibilitychange", onVis);
       geo.dispose();
       mat.dispose();

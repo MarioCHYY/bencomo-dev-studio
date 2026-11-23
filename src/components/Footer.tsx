@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { Starfield } from "@/components/ui/starfield";
+import AuroraLamp from "@/components/fx/AuroraLamp";
+import LocalTime from "@/components/fx/LocalTime";
 import { BrandLogo, BrandMark, BrandWordmark } from "@/components/brand/Logo";
 
 const Footer = () => {
@@ -49,8 +51,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative z-20 overflow-hidden border-t border-white/[0.08] bg-paper dark:bg-[#0B0B0D]">
+    <footer className="cv-auto relative z-20 overflow-hidden border-t border-white/[0.08]">
       <Starfield contained count={60} />
+      <AuroraLamp strength={0.7} />
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-16 pb-10 flex flex-col gap-14">
         <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] gap-10 items-start">
           <div className="flex flex-col gap-3">
@@ -100,7 +103,8 @@ const Footer = () => {
             <Link to="/privacidad" className="hover:text-white transition-colors">{t({ en: "Privacy notice", es: "Aviso de privacidad" })}</Link>
           </span>
           <div className="flex items-center gap-4">
-            <span>{t(translations.footer.builtWith)}</span>
+            <LocalTime className="normal-case tracking-normal text-[12px] text-white/45" />
+            <span className="hidden md:inline">{t(translations.footer.builtWith)}</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-colors"

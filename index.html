@@ -20,8 +20,11 @@
     <link rel="icon" href="/favicon.ico?v=7" sizes="48x48" />
     <link rel="icon" href="/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
-    <!-- Apply the saved theme (light by default) before React loads, to avoid a flash -->
-    <script>try{var t=localStorage.getItem('bencomo-theme')==='dark'?'dark':'light';var r=document.documentElement;r.classList.toggle('dark',t==='dark');r.classList.toggle('light',t==='light');r.style.colorScheme=t}catch(e){}</script>
+    <!-- Theme before React loads (no flash): a manual pick if it's still valid, otherwise the sun over Culiacán -->
+    <script>try{var t=null,r=document.documentElement,n=Date.now();try{var m=JSON.parse(localStorage.getItem('bencomo-theme-manual')||'null');if(m&&n<m.until)t=m.theme}catch(e){}if(!t){var L=new Date(n-252e5),y=L.getUTCFullYear(),d0=Date.UTC(y,L.getUTCMonth(),L.getUTCDate()),g=2*Math.PI/365*((d0-Date.UTC(y,0,1))/864e5+.5),q=Math.PI/180,e=229.18*(75e-6+.001868*Math.cos(g)-.032077*Math.sin(g)-.014615*Math.cos(2*g)-.040849*Math.sin(2*g)),dc=.006918-.399912*Math.cos(g)+.070257*Math.sin(g)-.006758*Math.cos(2*g)+907e-6*Math.sin(2*g)-.002697*Math.cos(3*g)+.00148*Math.sin(3*g),la=24.8091*q,h=Math.acos(Math.max(-1,Math.min(1,Math.cos(90.833*q)/(Math.cos(la)*Math.cos(dc))-Math.tan(la)*Math.tan(dc))))/q,nm=720+4*107.394-e,ri=d0+(nm-4*h)*6e4,se=d0+(nm+4*h)*6e4;t=(n<ri||n>=se)?'dark':'light'}r.classList.toggle('dark',t==='dark');r.classList.toggle('light',t==='light');r.style.colorScheme=t}catch(x){}</script>
+    <!-- first visit of the tab: paint the page ink until the opening cut takes over (no white flash) -->
+    <script>try{if(sessionStorage.getItem('bencomo-intro-v2')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-boot')}catch(e){}</script>
+    <style>html.intro-boot,html.intro-boot body{background:#0B0B0D}</style>
   </head>
 
   <body>

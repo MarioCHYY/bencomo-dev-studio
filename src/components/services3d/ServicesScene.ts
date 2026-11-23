@@ -945,7 +945,7 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
   LINE_K = LIGHT ? 0.75 : 1;
   CLAY = LIGHT ? CLAY_LIGHT : CLAY_DARK;
   const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setClearColor(0x000000, 0);
   renderer.localClippingEnabled = true;
   const canvas = renderer.domElement;

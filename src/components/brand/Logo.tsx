@@ -30,7 +30,7 @@ function Aurora({ id }: { id: string }) {
 
 const half = (x: number, y: number, driven = false): CSSProperties => ({
   transform: `translate(${x}px, ${y}px)`,
-  transition: driven ? "none" : "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)",
+  transition: driven ? "transform 160ms linear" : "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)",
 });
 
 /** The halves + aurora core, drawn in unit space. `open` slips them further. */

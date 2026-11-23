@@ -4,10 +4,12 @@ import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Starfield } from "@/components/ui/starfield";
+import AuroraLamp from "@/components/fx/AuroraLamp";
 import { useLang } from "@/i18n/LanguageContext";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { AURORA, Browser, Chapter, P, ease } from "@/components/work/CaseUI";
 import { TACHADO, TachadoLogo } from "@/components/work/TachadoCard";
+import CaseNav from "@/components/work/CaseNav";
 
 const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -88,6 +90,20 @@ const CaseTachado = () => {
     <main className="min-h-screen">
       <Starfield />
       <Navbar />
+      <CaseNav
+        name={<TachadoLogo size={22} />}
+        accent={TACHADO.yellow}
+        accentInk="#151515"
+        live={{ href: TACHADO.bot, label: es ? "Abrir el bot" : "Open the bot" }}
+        chapters={[
+          { id: "problema", label: es ? "Problema" : "Problem" },
+          { id: "que-hace", label: es ? "Qué hace" : "What it does" },
+          { id: "veredicto", label: es ? "Veredicto" : "Verdict" },
+          { id: "la-pagina", label: es ? "La página" : "Website" },
+          { id: "por-dentro", label: es ? "Por dentro" : "Inside" },
+          { id: "marca", label: es ? "Marca" : "Brand" },
+        ]}
+      />
 
       {/* ---------------------------------------------------------------- hero */}
       <section className="relative z-20 pt-32 md:pt-40 pb-10">
@@ -102,7 +118,7 @@ const CaseTachado = () => {
               <span className="text-white/45">Tachado</span>
             </div>
             <h1 className="font-heading font-semibold text-white text-5xl md:text-7xl lg:text-[5.4rem] leading-[0.98] -tracking-[0.05em] max-w-5xl" style={{ textWrap: "balance" } as Record<string, string>}>
-              {es ? "El precio tachado" : "The crossed-out price"} <span className="text-white/35">{es ? "no siempre dice la verdad." : "doesn't always tell the truth."}</span>
+              {es ? "El precio tachado" : "The crossed-out price"} <span className="text-white/35">{es ? <>no siempre dice la <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">verdad.</em></> : <>doesn't always tell the <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">truth.</em></>}</span>
             </h1>
             <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl">
               {es
@@ -141,9 +157,11 @@ const CaseTachado = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease }}
+            data-reveal
             className="theme-dark relative overflow-hidden rounded-[24px] md:rounded-[36px] border border-white/10 p-6 sm:p-10 md:p-16"
             style={{ backgroundColor: TACHADO.ink }}
           >
+            <AuroraLamp />
             <div aria-hidden="true" className="absolute inset-0" style={{ background: "radial-gradient(55% 60% at 50% 30%, rgba(255,216,77,0.16), transparent 70%)" }} />
             <div className="relative flex justify-center"><TachadoLogo size={40} /></div>
             <div className="relative mt-10 md:mt-12 max-w-5xl mx-auto">
@@ -153,7 +171,7 @@ const CaseTachado = () => {
         </div>
       </section>
 
-      <Chapter n="01" kicker={es ? "El problema" : "The problem"} title={es ? "¿Descuento real o precio inflado?" : "A real discount, or an inflated price?"}>
+      <Chapter id="problema" n="01" kicker={es ? "El problema" : "The problem"} title={es ? "¿Descuento real o precio inflado?" : "A real discount, or an inflated price?"}>
         <P>
           {es
             ? "Amazon muestra descuentos contra un precio tachado. A veces ese precio es lo que el producto costaba la semana pasada, y a veces es un “precio de lista” sugerido que casi nadie pagó. Desde la página no hay forma de saber cuál es."
@@ -166,7 +184,7 @@ const CaseTachado = () => {
         </P>
       </Chapter>
 
-      <Chapter n="02" kicker={es ? "Qué hace" : "What it does"} title={es ? "Todo pasa en tu Telegram." : "It all happens in your Telegram."}>
+      <Chapter id="que-hace" n="02" kicker={es ? "Qué hace" : "What it does"} title={es ? "Todo pasa en tu Telegram." : "It all happens in your Telegram."}>
         <ul className="grid sm:grid-cols-2 gap-x-8 border-t border-white/10">
           {features.map((f) => (
             <li key={f} className="flex items-start gap-3 py-4 border-b border-white/10 text-[15px] text-white/75 leading-relaxed">
@@ -175,13 +193,13 @@ const CaseTachado = () => {
             </li>
           ))}
         </ul>
-        <div className="theme-dark overflow-hidden rounded-[16px] md:rounded-[22px] border border-white/10 bg-white">
+        <div data-reveal className="theme-dark overflow-hidden rounded-[16px] md:rounded-[22px] border border-white/10 bg-white">
           <img src="/work/tachado/grafica.webp" alt={es ? "Gráfica del historial de precio que llega con cada aviso" : "Price-history chart sent with every alert"} loading="lazy" className="block w-full" />
         </div>
         <p className="text-white/45 text-sm">{es ? "La gráfica que llega con cada aviso: historial, tu precio objetivo y el mínimo registrado." : "The chart that comes with every alert: history, your target price and the lowest recorded."}</p>
       </Chapter>
 
-      <Chapter n="03" kicker={es ? "El veredicto" : "The verdict"} title={es ? "Cómo decide si una oferta es real." : "How it decides if a deal is real."}>
+      <Chapter id="veredicto" n="03" kicker={es ? "El veredicto" : "The verdict"} title={es ? "Cómo decide si una oferta es real." : "How it decides if a deal is real."}>
         <P>
           {es
             ? "Guarda cada precio que ve. “Lo normal” es la mediana de los últimos 30 días, y con eso cada oferta recibe uno de tres veredictos:"
@@ -202,7 +220,7 @@ const CaseTachado = () => {
         </P>
       </Chapter>
 
-      <Chapter n="04" kicker={es ? "La página" : "The website"} title={es ? "Revisa cualquier producto." : "Check any product."}>
+      <Chapter id="la-pagina" n="04" kicker={es ? "La página" : "The website"} title={es ? "Revisa cualquier producto." : "Check any product."}>
         <P>
           {es
             ? "Una página pública donde pegas cualquier link de Amazon y ves su historial y si el descuento de hoy es real. Si el bot todavía no lo conoce, puedes pedir que lo revise y en unos minutos ya tiene sus datos. También muestra los descuentos reales del día y los inflados."
@@ -211,7 +229,7 @@ const CaseTachado = () => {
         <Browser src="/work/tachado/ofertas.webp" alt={es ? "Descuentos reales del día en la página de Tachado" : "Today's real discounts on the Tachado site"} url="tachado.mariobencomodev.com/ofertas" />
       </Chapter>
 
-      <Chapter n="05" kicker={es ? "Por dentro" : "Under the hood"} title={es ? "Amable con Amazon, confiable para ti." : "Gentle with Amazon, reliable for you."}>
+      <Chapter id="por-dentro" n="05" kicker={es ? "Por dentro" : "Under the hood"} title={es ? "Amable con Amazon, confiable para ti." : "Gentle with Amazon, reliable for you."}>
         <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
           {inside.map(([h, d]) => (
             <div key={h} className="rounded-[20px] border border-white/[0.08] bg-white/[0.03] p-5 md:p-6">
@@ -254,7 +272,7 @@ const CaseTachado = () => {
         </a>
       </Chapter>
 
-      <Chapter n="06" kicker={es ? "Marca" : "Brand"} title={es ? "Un signo de pesos, tachado." : "A peso sign, struck through."}>
+      <Chapter id="marca" n="06" kicker={es ? "Marca" : "Brand"} title={es ? "Un signo de pesos, tachado." : "A peso sign, struck through."}>
         <P>
           {es
             ? "El nombre y el logo dicen lo mismo: un signo de pesos con una raya roja encima, como el precio tachado que el bot revisa. Amarillo de etiqueta de oferta, rojo de tachón y tipografía Archivo condensada para los precios."

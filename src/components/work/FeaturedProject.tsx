@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
+import AuroraLamp from "@/components/fx/AuroraLamp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 export const CORTE = { lime: "#C6F432", ink: "#121417", site: "https://corte.mariobencomodev.com", app: "https://app.corte.mariobencomodev.com" };
@@ -35,10 +36,12 @@ const FeaturedProject = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 1, ease }}
+      data-fx-expand
       className="theme-dark group relative overflow-hidden rounded-[24px] md:rounded-[36px] border border-white/10"
       style={{ backgroundColor: CORTE.ink }}
     >
       <div aria-hidden="true" className="absolute inset-0" style={{ background: `radial-gradient(60% 70% at 78% 40%, rgba(198,244,50,0.16), transparent 70%)` }} />
+      <AuroraLamp />
       <div className="relative grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-10 p-6 sm:p-10 lg:p-14">
         <div className="flex flex-col justify-between gap-10">
           <div className="flex flex-col gap-6">
@@ -47,7 +50,7 @@ const FeaturedProject = () => {
               <span className="rounded-full border border-white/15 px-3 py-1 text-[10px] font-semibold tracking-[0.18em] uppercase text-white/60">{es ? "Caso 01 · 2026" : "Case 01 · 2026"}</span>
             </div>
             <h3 className="font-heading font-semibold text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.02] -tracking-[0.04em]" style={{ textWrap: "balance" } as Record<string, string>}>
-              {es ? "La tarjeta es de una." : "The card is one person's."} <span style={{ color: CORTE.lime }}>{es ? "Las compras son de todos." : "The purchases are everyone's."}</span>
+              {es ? <>La tarjeta es de <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">una.</em></> : <>The card is <em className="font-serif-display font-normal italic text-[1.1em] -tracking-[0.01em]">one</em> person's.</>} <span style={{ color: CORTE.lime }}>{es ? "Las compras son de todos." : "The purchases are everyone's."}</span>
             </h3>
             <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-md">
               {es
@@ -77,11 +80,11 @@ const FeaturedProject = () => {
         </div>
 
         {/* three screens fanned out */}
-        <div className="relative h-[340px] sm:h-[460px] lg:h-[540px]">
+        <Link to="/portafolio/corte" data-cursor={es ? "Ver caso" : "View case"} aria-label={es ? "Ver el caso de corte" : "View the corte case"} className="relative block h-[340px] sm:h-[460px] lg:h-[540px]">
           <Phone src="/work/corte/corte.webp" alt="" className="absolute left-[4%] top-[12%] w-[34%] -rotate-[7deg] opacity-80 transition-transform duration-700 group-hover:-translate-x-2 group-hover:-rotate-[9deg]" />
           <Phone src="/work/corte/gasto.webp" alt="" className="absolute right-[4%] top-[12%] w-[34%] rotate-[7deg] opacity-80 transition-transform duration-700 group-hover:translate-x-2 group-hover:rotate-[9deg]" />
           <Phone src="/work/corte/resumen.webp" alt={es ? "Pantalla de resumen de corte" : "corte summary screen"} className="absolute left-1/2 top-0 w-[38%] -translate-x-1/2 transition-transform duration-700 group-hover:-translate-y-2" />
-        </div>
+        </Link>
       </div>
     </motion.article>
   );
