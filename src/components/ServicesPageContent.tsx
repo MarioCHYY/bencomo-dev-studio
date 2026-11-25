@@ -226,13 +226,18 @@ const ServicesPageContent = () => {
                       </ul>
                     </div>
 
-                    <Link
-                      to="/contacto"
-                      className="group w-fit mt-2 inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white/25 hover:border-white pb-1 transition-colors"
-                    >
-                      {es ? "Cotizar este servicio" : "Get a quote for this"}
-                      <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
+                    <div className="mt-2 flex flex-wrap items-center gap-x-8 gap-y-3">
+                      <Link
+                        to={`/servicios/${it.id}`}
+                        className="group w-fit inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white/25 hover:border-white pb-1 transition-colors"
+                      >
+                        {es ? "Ver todo sobre este servicio" : "Everything about this service"}
+                        <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </Link>
+                      <Link to="/contacto" className="w-fit text-sm font-semibold text-white/55 hover:text-white transition-colors">
+                        {es ? "Cotizar este servicio" : "Get a quote for this"}
+                      </Link>
+                    </div>
                   </motion.div>
                 </article>
               );

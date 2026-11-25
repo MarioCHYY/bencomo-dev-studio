@@ -42,12 +42,12 @@ const person = {
   name: "Mario Bencomo",
   url: `${SITE}/sobre-mi`,
   image: `${SITE}/about/mario-frente.webp`,
-  jobTitle: "Desarrollador web full stack",
-  description: "Desarrollador full stack con ojo de diseñador en Culiacán, Sinaloa. Diseña y construye sitios, apps y sistemas a la medida, con marca incluida.",
+  jobTitle: "Diseñador UI/UX y desarrollador web",
+  description: "Diseñador UI/UX y desarrollador full stack en Culiacán, Sinaloa. Diseña y construye interfaces, sitios, apps y sistemas a la medida, con marca incluida.",
   address: PLACE,
   sameAs: SAME_AS,
   knowsLanguage: ["es", "en"],
-  knowsAbout: ["Desarrollo web", "Diseño web", "Diseño UI/UX", "Identidad de marca", "React", "TypeScript", "Next.js", "Node.js", "Python", "PostgreSQL", "Tailwind CSS"],
+  knowsAbout: ["Diseño UI/UX", "Diseño de interfaces", "Prototipos", "Sistemas de diseño", "Figma", "Desarrollo web", "Diseño web", "Identidad de marca", "React", "TypeScript", "Next.js", "Node.js", "Python", "PostgreSQL", "Tailwind CSS"],
 };
 
 const website = { "@type": "WebSite", "@id": SITE_ID, url: `${SITE}/`, name: "Mario Bencomo", inLanguage: "es-MX", publisher: { "@id": PERSON_ID } };
@@ -97,6 +97,8 @@ const crumbs = (route) => {
   let acc = "";
   for (const p of parts) {
     acc += `/${p}`;
+    // "/herramientas" has no page of its own: skip it in the trail
+    if (!pages[acc] && acc !== route) continue;
     list.push({ name: pages[acc]?.name ?? p, url: abs(acc) });
   }
   return {
@@ -118,6 +120,26 @@ const caseWork = (route, extra) => ({
   author: { "@id": PERSON_ID },
   ...extra,
 });
+
+// the questions on a page, read from its own text: every h3 + answer under the "Lo que suelen preguntarme" heading
+const faqFrom = (route) => {
+  const blocks = snapshots[route] || [];
+  const start = blocks.findIndex((b) => b.t === "h2" && b.x.startsWith("Lo que suelen preguntarme"));
+  if (start < 0) return [];
+  const out = [];
+  for (let i = start + 1; i < blocks.length && blocks[i].t !== "h2"; i++) {
+    if (blocks[i].t === "h3" && blocks[i + 1]?.t === "p") out.push({ q: blocks[i].x, a: blocks[i + 1].x });
+  }
+  return out;
+};
+const faqPage = (route, list) =>
+  list.length
+    ? [{ "@type": "FAQPage", "@id": `${abs(route)}#preguntas`, mainEntity: list.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }]
+    : [];
+const AREA = [
+  { "@type": "City", name: "Culiacán" },
+  { "@type": "Country", name: "México" },
+];
 
 function graphFor(route) {
   const p = pages[route];
@@ -171,7 +193,87 @@ function graphFor(route) {
     case "/contacto":
       g.push(business, { "@type": "ContactPage", ...page, about: { "@id": BIZ_ID }, breadcrumb: crumbs(route) });
       break;
+    case "/herramientas/tarjeta-qr":
+      g.push(
+        { "@type": "WebPage", ...page, mainEntity: { "@id": `${abs(route)}#herramienta` }, breadcrumb: crumbs(route) },
+        {
+          "@type": "WebApplication",
+          "@id": `${abs(route)}#herramienta`,
+          name: "Diseñador de tarjeta QR de WhatsApp",
+          url: abs(route),
+          description: p.description,
+          applicationCategory: "DesignApplication",
+          operatingSystem: "Cualquiera (en el navegador)",
+          inLanguage: "es-MX",
+          isAccessibleForFree: true,
+          offers: { "@type": "Offer", price: "0", priceCurrency: "MXN" },
+          creator: { "@id": PERSON_ID },
+        },
+        ...faqPage(route, faqFrom(route)),
+      );
+      break;
+    case "/diseno-web-culiacan":
+      g.push(
+        business,
+        { "@type": "WebPage", ...page, about: { "@id": `${abs(route)}#servicio` }, breadcrumb: crumbs(route) },
+        {
+          "@type": "Service",
+          "@id": `${abs(route)}#servicio`,
+          name: "Diseño de páginas web en Culiacán",
+          serviceType: "Diseño y desarrollo web",
+          description: p.description,
+          provider: { "@id": BIZ_ID },
+          areaServed: AREA,
+          url: abs(route),
+        },
+        ...faqPage(route, faqFrom(route)),
+      );
+      break;
+    case "/ejemplos-paginas-web":
+      g.push({
+        "@type": "CollectionPage",
+        ...page,
+        breadcrumb: crumbs(route),
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: [
+            ["Marejada", "Restaurante de mariscos", "marejada"],
+            ["Molar", "Consultorio dental", "molar"],
+            ["Fierro", "Gimnasio de box", "fierro"],
+          ].map(([name, genre, id], i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "CreativeWork",
+              name: `${name}: rediseño de ejemplo (${genre.toLowerCase()})`,
+              genre: "Diseño web de ejemplo",
+              image: `${SITE}/ejemplos/${id}-despues-desk.webp`,
+              creator: { "@id": PERSON_ID },
+              inLanguage: "es-MX",
+            },
+          })),
+        },
+      });
+      break;
     default:
+      if (route.startsWith("/servicios/")) {
+        g.push(
+          business,
+          { "@type": "WebPage", ...page, about: { "@id": `${abs(route)}#servicio` }, breadcrumb: crumbs(route) },
+          {
+            "@type": "Service",
+            "@id": `${abs(route)}#servicio`,
+            name: p.name,
+            serviceType: p.name,
+            description: p.description,
+            provider: { "@id": BIZ_ID },
+            areaServed: AREA,
+            url: abs(route),
+          },
+          ...faqPage(route, faqFrom(route)),
+        );
+        break;
+      }
       g.push({ "@type": "WebPage", ...page, breadcrumb: crumbs(route) });
   }
   // "</" can't appear inside a <script> block
@@ -212,6 +314,9 @@ function textFor(route) {
   const cases = [
     ["/portafolio/corte", "corte, caso de estudio"],
     ["/portafolio/tachado", "Tachado, caso de estudio"],
+    ["/diseno-web-culiacan", "Diseño de páginas web en Culiacán"],
+    ["/ejemplos-paginas-web", "Ejemplos de páginas web: antes y después"],
+    ["/herramientas/tarjeta-qr", "Diseña la tarjeta QR de tu negocio"],
   ]
     .map(([href, name]) => `<a href="${href}">${esc(name)}</a>`)
     .join(" · ");
@@ -275,7 +380,7 @@ for (const [route, p] of Object.entries(pages)) {
 {
   const urls = Object.entries(pages)
     .map(([route, p]) => {
-      const priority = route === "/" ? "1.0" : route.startsWith("/portafolio") || route === "/servicios" ? "0.9" : route === "/privacidad" ? "0.2" : "0.7";
+      const priority = route === "/" ? "1.0" : route === "/diseno-web-culiacan" || route === "/ejemplos-paginas-web" || route.startsWith("/herramientas") || route.startsWith("/portafolio") || route.startsWith("/servicios") ? "0.9" : route === "/privacidad" ? "0.2" : "0.7";
       return `  <url>\n    <loc>${abs(route)}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n    <image:image><image:loc>${SITE + p.image}</image:loc></image:image>\n  </url>`;
     })
     .join("\n");

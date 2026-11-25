@@ -89,6 +89,18 @@ export default function IntegratedHero() {
         </motion.span>
 
         <h1 className="mt-6 font-heading font-semibold text-white text-[clamp(2.3rem,4.9vw,4.4rem)] leading-[1.04] -tracking-[0.045em] max-w-5xl">
+          {/* what and where, in plain words: what people type into Google */}
+          <motion.span
+            variants={up}
+            initial="hidden"
+            animate={show}
+            custom={0.22}
+            className="flex items-center justify-center gap-3 mb-5 font-sans text-[11px] md:text-xs font-semibold tracking-[0.22em] uppercase leading-none text-white/55"
+          >
+            <span aria-hidden="true" className="h-px w-8 bg-[linear-gradient(90deg,transparent,#8FB0FF)]" />
+            {es ? "Diseño UI/UX y desarrollo web en Culiacán" : "UI/UX design & web development in Culiacán, Mexico"}
+            <span aria-hidden="true" className="h-px w-8 bg-[linear-gradient(90deg,#FFC48A,transparent)]" />
+          </motion.span>{" "}
           <motion.span variants={up} initial="hidden" animate={show} custom={0.3} className="block">
             {es ? "Diseño y construyo productos" : "I design and build products"}
           </motion.span>{" "}

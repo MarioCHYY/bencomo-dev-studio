@@ -47,6 +47,9 @@ const Footer = () => {
     { label: t(n.projects), to: "/portafolio" },
     { label: t(n.services), to: "/servicios" },
     { label: t(n.contact), to: "/contacto" },
+    { label: t({ en: "Web design in Culiacán", es: "Diseño web en Culiacán" }), to: "/diseno-web-culiacan" },
+    { label: t({ en: "Before and after examples", es: "Ejemplos: antes y después" }), to: "/ejemplos-paginas-web" },
+    { label: t({ en: "Design your QR card (free)", es: "Diseña tu tarjeta QR gratis" }), to: "/herramientas/tarjeta-qr" },
     { label: t({ en: "Privacy", es: "Privacidad" }), to: "/privacidad" },
   ];
 
@@ -55,15 +58,26 @@ const Footer = () => {
       <Starfield contained count={60} />
       <AuroraLamp strength={0.7} />
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-16 pb-10 flex flex-col gap-14">
-        <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] gap-10 items-start">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)_auto] gap-10 items-start">
           <div className="flex flex-col gap-3">
             <BrandLogo height={30} title="Bencomo" />
             <p className="text-white/45 text-sm max-w-xs leading-relaxed">{t(translations.footer.shortText)}</p>
           </div>
-          <nav className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
+          <nav className="flex flex-col gap-3 text-sm" aria-label={t({ en: "Site", es: "Sitio" }) as string}>
+            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/35">{t({ en: "Site", es: "Sitio" })}</span>
             {nav.map((l) => (
               <Link key={l.to} to={l.to} className="text-white/50 hover:text-white transition-colors w-fit">
                 {l.label as string}
+              </Link>
+            ))}
+          </nav>
+          {/* every service has its own page: listed here so they're one click away from anywhere */}
+          <nav className="flex flex-col gap-3 text-sm" aria-label={t({ en: "Services", es: "Servicios" }) as string}>
+            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/35">{t({ en: "Services", es: "Servicios" })}</span>
+            {/* UI/UX first: it's the focus */}
+            {[...translations.services.items].sort((a, b) => (a.id === "ui-ux" ? -1 : b.id === "ui-ux" ? 1 : 0)).map((it) => (
+              <Link key={it.id} to={`/servicios/${it.id}`} className="text-white/50 hover:text-white transition-colors w-fit">
+                {t(it.title) as string}
               </Link>
             ))}
           </nav>

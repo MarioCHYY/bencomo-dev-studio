@@ -1,13 +1,25 @@
 {
   "/": {
-    "title": "Mario Bencomo · Diseño y desarrollo web en Culiacán",
-    "description": "Desarrollador web full stack en Culiacán, Sinaloa. Diseño y construyo sitios, apps y sistemas a la medida que se sienten vivos, con marca incluida.",
+    "title": "Mario Bencomo · Diseño UI/UX y desarrollo web en Culiacán",
+    "description": "Diseñador UI/UX y desarrollador web en Culiacán, Sinaloa. Diseño interfaces, sitios y apps que se sienten vivos, y también los programo, con marca incluida.",
     "image": "/og/home.jpg",
     "name": "Inicio"
   },
+  "/diseno-web-culiacan": {
+    "title": "Diseño de páginas web en Culiacán · Mario Bencomo",
+    "description": "Diseño y desarrollo de páginas web para negocios de Culiacán: con tu marca, rápidas, adaptadas a celular, listas para Google y con WhatsApp a un clic.",
+    "image": "/og/servicios.jpg",
+    "name": "Diseño web en Culiacán"
+  },
+  "/ejemplos-paginas-web": {
+    "title": "Ejemplos de páginas web: genérica vs. diseñada · Mario Bencomo",
+    "description": "Tres negocios, dos versiones: la página genérica de plantilla o de IA, y la diseñada. Compara el antes y después de un restaurante, un dentista y un gimnasio.",
+    "image": "/og/servicios.jpg",
+    "name": "Ejemplos de páginas web"
+  },
   "/sobre-mi": {
     "title": "Sobre mí · Mario Bencomo, desarrollador web en Culiacán",
-    "description": "Soy Mario Bencomo, desarrollador full stack con ojo de diseñador en Culiacán, Sinaloa. Cómo trabajo, mi trayectoria y con qué construyo.",
+    "description": "Soy Mario Bencomo, diseñador UI/UX y desarrollador full stack en Culiacán, Sinaloa. Cómo trabajo, mi trayectoria y con qué construyo.",
     "image": "/og/sobre-mi.jpg",
     "name": "Sobre mí"
   },
@@ -25,15 +37,69 @@
   },
   "/portafolio/tachado": {
     "title": "Tachado, bot de ofertas reales en Amazon México · Mario Bencomo",
-    "description": "Caso de estudio de Tachado: un bot de Telegram que guarda el historial de precios de Amazon México y revisa si cada oferta es un descuento real o un precio inflado.",
+    "description": "Caso de estudio de Tachado: un bot de Telegram que guarda el historial de precios de Amazon México y te dice si una oferta es real o un precio inflado.",
     "image": "/og/tachado.jpg",
     "name": "Tachado"
   },
   "/servicios": {
     "title": "Servicios de diseño y desarrollo web en Culiacán · Mario Bencomo",
-    "description": "Sitios web con identidad, aplicaciones web, sistemas para negocios, rediseño, UI/UX, prototipos, automatización e IA. Diseño y desarrollo a la medida desde Culiacán.",
+    "description": "Diseño UI/UX, sitios web, aplicaciones, sistemas para negocios, rediseño, prototipos, automatización e IA. Todo a la medida, desde Culiacán.",
     "image": "/og/servicios.jpg",
     "name": "Servicios"
+  },
+  "/servicios/sitios-web": {
+    "title": "Diseño de sitios web con identidad en Culiacán · Mario Bencomo",
+    "description": "Sitios web a la medida para negocios y profesionistas: diseñados con tu marca, rápidos, adaptados a celular y listos para que te encuentren en Google.",
+    "image": "/og/servicios.jpg",
+    "name": "Sitios web con identidad"
+  },
+  "/servicios/ui-ux": {
+    "title": "Diseño UI/UX en Culiacán · Mario Bencomo",
+    "description": "Diseño UI/UX para apps, plataformas y sistemas: investigación, flujos, prototipos navegables y sistema de diseño, hecho por alguien que también programa.",
+    "image": "/og/servicios.jpg",
+    "name": "Diseño UI/UX"
+  },
+  "/servicios/aplicaciones-web": {
+    "title": "Desarrollo de aplicaciones web a la medida · Mario Bencomo",
+    "description": "Aplicaciones web completas, con frontend, backend y base de datos, hechas a la medida de tu negocio. Desde paneles internos hasta plataformas para tus clientes.",
+    "image": "/og/servicios.jpg",
+    "name": "Aplicaciones web"
+  },
+  "/servicios/sistemas-negocios": {
+    "title": "Sistemas para negocios a la medida · Mario Bencomo, Culiacán",
+    "description": "Sistemas de cotizaciones, inventario, cobros o seguimiento de clientes hechos alrededor de tu operación. Menos trabajo manual y menos errores.",
+    "image": "/og/servicios.jpg",
+    "name": "Sistemas para negocios"
+  },
+  "/servicios/rediseno-web": {
+    "title": "Rediseño de páginas web en Culiacán · Mario Bencomo",
+    "description": "¿Tu página se ve vieja, carga lento o nadie la encuentra? Diagnóstico, nueva estructura, diseño moderno, más velocidad y SEO básico.",
+    "image": "/og/servicios.jpg",
+    "name": "Rediseño web"
+  },
+  "/servicios/prototipos-funcionales": {
+    "title": "Prototipos funcionales para validar tu idea · Mario Bencomo",
+    "description": "Demos navegables que se sienten como el producto real, para probar tu idea con clientes o inversionistas antes de invertir en el desarrollo completo.",
+    "image": "/og/servicios.jpg",
+    "name": "Prototipos funcionales"
+  },
+  "/servicios/automatizacion": {
+    "title": "Automatización de tareas para negocios · Mario Bencomo",
+    "description": "Automatizo reportes, revisión de información y conexiones entre los programas que ya usas, para que las tareas repetitivas se hagan solas y sin errores.",
+    "image": "/og/servicios.jpg",
+    "name": "Automatización de tareas"
+  },
+  "/servicios/inteligencia-artificial": {
+    "title": "Inteligencia artificial para tu negocio · Mario Bencomo",
+    "description": "Asistentes que responden a tus clientes con la información de tu negocio, resúmenes de documentos largos y contenido automático, con un enfoque práctico.",
+    "image": "/og/servicios.jpg",
+    "name": "Inteligencia artificial"
+  },
+  "/herramientas/tarjeta-qr": {
+    "title": "Tarjeta QR de WhatsApp para tu negocio, gratis · Mario Bencomo",
+    "description": "Diseña gratis la tarjeta con el código QR de WhatsApp de tu negocio: 3 estilos, para mostrador o historias de Instagram. Sin registro y sin guardar tu número.",
+    "image": "/og/servicios.jpg",
+    "name": "Tarjeta QR de WhatsApp"
   },
   "/contacto": {
     "title": "Contacto · Mario Bencomo, diseño y desarrollo web",

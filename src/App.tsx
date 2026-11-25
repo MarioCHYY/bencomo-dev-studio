@@ -23,6 +23,10 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const CaseCorte = lazy(() => import("./pages/CaseCorte"));
 const CaseTachado = lazy(() => import("./pages/CaseTachado"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const WebDesignCuliacan = lazy(() => import("./pages/WebDesignCuliacan"));
+const QrCardTool = lazy(() => import("./pages/QrCardTool"));
+const Ejemplos = lazy(() => import("./pages/Ejemplos"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Fallback loader
@@ -50,6 +54,10 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/servicios" element={<Services />} />
+              <Route path="/servicios/:id" element={<ServiceDetail />} />
+              <Route path="/diseno-web-culiacan" element={<WebDesignCuliacan />} />
+              <Route path="/herramientas/tarjeta-qr" element={<QrCardTool />} />
+              <Route path="/ejemplos-paginas-web" element={<Ejemplos />} />
               <Route path="/portafolio" element={<Portfolio />} />
               <Route path="/portafolio/corte" element={<CaseCorte />} />
               <Route path="/portafolio/tachado" element={<CaseTachado />} />
