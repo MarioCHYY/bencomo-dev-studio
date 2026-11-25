@@ -10,14 +10,23 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  // Spanish first: the site is for businesses in Culiacán, and it's also what Google renders and indexes
+  // (its crawler has no saved choice). English only when the visitor picked it with the switch.
   const [lang, setLangState] = useState<Lang>(() => {
-    const stored = localStorage.getItem("lang");
-    return (stored === "es" ? "es" : "en") as Lang;
+    try {
+      return (localStorage.getItem("lang") === "en" ? "en" : "es") as Lang;
+    } catch {
+      return "es";
+    }
   });
 
   const setLang = (l: Lang) => {
     setLangState(l);
-    localStorage.setItem("lang", l);
+    try {
+      localStorage.setItem("lang", l);
+    } catch {
+      /* private mode: the choice just lasts this visit */
+    }
   };
 
   const t = <T,>(obj: Record<string, T>): T => obj[lang];

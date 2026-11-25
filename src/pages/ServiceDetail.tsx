@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { MoreLink } from "@/components/ui/more-link";
 import Navbar from "@/components/Navbar";
 import { Starfield } from "@/components/ui/starfield";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
@@ -95,6 +96,9 @@ const ServiceDetail = () => {
         <div className="flex flex-col gap-8">
           <Shots shots={page.shots} es={es} />
           <CaseProof refs={[page.caseRef]} es={es} />
+          {["sitios-web", "ui-ux", "rediseno-web"].includes(page.id) && (
+            <MoreLink to="/ejemplos-paginas-web">{es ? "Ver ejemplos: página genérica contra diseñada" : "See examples: generic page versus designed"}</MoreLink>
+          )}
         </div>
       </Section>
 

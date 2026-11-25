@@ -27,6 +27,8 @@ const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 const WebDesignCuliacan = lazy(() => import("./pages/WebDesignCuliacan"));
 const QrCardTool = lazy(() => import("./pages/QrCardTool"));
 const Ejemplos = lazy(() => import("./pages/Ejemplos"));
+const Notes = lazy(() => import("./pages/Notes"));
+const NoteDetail = lazy(() => import("./pages/NoteDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Fallback loader
@@ -58,6 +60,8 @@ const App = () => (
               <Route path="/diseno-web-culiacan" element={<WebDesignCuliacan />} />
               <Route path="/herramientas/tarjeta-qr" element={<QrCardTool />} />
               <Route path="/ejemplos-paginas-web" element={<Ejemplos />} />
+              <Route path="/notas" element={<Notes />} />
+              <Route path="/notas/:slug" element={<NoteDetail />} />
               <Route path="/portafolio" element={<Portfolio />} />
               <Route path="/portafolio/corte" element={<CaseCorte />} />
               <Route path="/portafolio/tachado" element={<CaseTachado />} />

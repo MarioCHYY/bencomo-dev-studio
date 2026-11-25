@@ -95,10 +95,10 @@ const ServicesSection = () => {
                   className="flex flex-col gap-4"
                 >
                   <h3 className="lg:hidden font-heading font-semibold text-2xl text-white -tracking-[0.03em]">{t(item.title)}</h3>
-                  {/* the home only teases; the full detail lives on /servicios */}
+                  {/* the home only teases; each service has its own page */}
                   <p className="text-white/80 text-lg md:text-xl font-light leading-snug max-w-md">{t(item.subtitle)}</p>
                   <Link
-                    to={`/servicios#${item.id}`}
+                    to={`/servicios/${item.id}`}
                     className="group/l inline-flex items-center gap-2 w-fit text-sm font-semibold text-white border-b border-white/25 hover:border-white pb-1 transition-colors"
                   >
                     {t({ en: "See the full service", es: "Ver el servicio completo" })}

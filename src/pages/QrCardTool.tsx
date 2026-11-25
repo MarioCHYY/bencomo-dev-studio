@@ -383,6 +383,7 @@ const QrCardTool = () => {
                   <input
                     ref={linkRef}
                     readOnly
+                    aria-label={L("Tu link de WhatsApp", "Your WhatsApp link")}
                     value={link || L("Escribe tu número para crear el link", "Type your number to create the link")}
                     className={`${field} font-mono text-sm ${link ? "" : "text-white/35"}`}
                     onFocus={(e) => e.currentTarget.select()}

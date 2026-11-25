@@ -75,7 +75,10 @@ const ScreensWall = () => {
           dim={0.16}
           className="justify-center font-heading font-semibold text-white text-3xl md:text-5xl leading-[1.08] -tracking-[0.045em] max-w-3xl"
         />
-        <MoreLink to="/portafolio">{es ? "Ver los casos de estudio" : "See the case studies"}</MoreLink>
+        <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+          <MoreLink to="/portafolio">{es ? "Ver los casos de estudio" : "See the case studies"}</MoreLink>
+          <MoreLink to="/ejemplos-paginas-web">{es ? "Ver ejemplos antes y después" : "See before-and-after examples"}</MoreLink>
+        </div>
       </div>
 
       {/* the wall, tipped back in space */}

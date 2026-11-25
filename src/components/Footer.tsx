@@ -49,6 +49,7 @@ const Footer = () => {
     { label: t(n.contact), to: "/contacto" },
     { label: t({ en: "Web design in Culiacán", es: "Diseño web en Culiacán" }), to: "/diseno-web-culiacan" },
     { label: t({ en: "Before and after examples", es: "Ejemplos: antes y después" }), to: "/ejemplos-paginas-web" },
+    { label: t({ en: "Design notes", es: "Notas de diseño" }), to: "/notas" },
     { label: t({ en: "Design your QR card (free)", es: "Diseña tu tarjeta QR gratis" }), to: "/herramientas/tarjeta-qr" },
     { label: t({ en: "Privacy", es: "Privacidad" }), to: "/privacidad" },
   ];

@@ -91,6 +91,17 @@ const business = {
   },
 };
 
+// the sources listed under each note, read straight from src/content/notes.ts
+const notesSrc = fs.readFileSync(new URL("../src/content/notes.ts", import.meta.url), "utf8");
+const noteSources = (route) => {
+  const slug = route.split("/").pop();
+  const start = notesSrc.indexOf(`slug: "${slug}"`);
+  if (start < 0) return [];
+  const next = notesSrc.indexOf("slug: ", start + 6);
+  const chunk = notesSrc.slice(start, next < 0 ? undefined : next);
+  return [...chunk.matchAll(/url: "(https?:[^"]+)"/g)].map((m) => m[1]);
+};
+
 const crumbs = (route) => {
   const parts = route.split("/").filter(Boolean);
   const list = [{ name: "Inicio", url: `${SITE}/` }];
@@ -229,6 +240,17 @@ function graphFor(route) {
         ...faqPage(route, faqFrom(route)),
       );
       break;
+    case "/notas":
+      g.push({
+        "@type": "Blog",
+        ...page,
+        breadcrumb: crumbs(route),
+        author: { "@id": PERSON_ID },
+        blogPost: Object.keys(pages)
+          .filter((r) => r.startsWith("/notas/"))
+          .map((r) => ({ "@type": "BlogPosting", headline: pages[r].name, url: abs(r), datePublished: pages[r].date, author: { "@id": PERSON_ID } })),
+      });
+      break;
     case "/ejemplos-paginas-web":
       g.push({
         "@type": "CollectionPage",
@@ -256,6 +278,28 @@ function graphFor(route) {
       });
       break;
     default:
+      if (route.startsWith("/notas/")) {
+        g.push(
+          { "@type": "WebPage", ...page, breadcrumb: crumbs(route), mainEntity: { "@id": `${abs(route)}#nota` } },
+          {
+            "@type": "BlogPosting",
+            "@id": `${abs(route)}#nota`,
+            headline: p.name,
+            description: p.description,
+            url: abs(route),
+            image: SITE + p.image,
+            datePublished: p.date,
+            dateModified: p.date,
+            inLanguage: "es-MX",
+            author: { "@id": PERSON_ID },
+            publisher: { "@id": PERSON_ID },
+            isPartOf: { "@id": `${abs("/notas")}#pagina` },
+            mainEntityOfPage: { "@id": `${abs(route)}#pagina` },
+            citation: noteSources(route),
+          },
+        );
+        break;
+      }
       if (route.startsWith("/servicios/")) {
         g.push(
           business,
@@ -316,6 +360,7 @@ function textFor(route) {
     ["/portafolio/tachado", "Tachado, caso de estudio"],
     ["/diseno-web-culiacan", "Diseño de páginas web en Culiacán"],
     ["/ejemplos-paginas-web", "Ejemplos de páginas web: antes y después"],
+    ["/notas", "Notas de diseño"],
     ["/herramientas/tarjeta-qr", "Diseña la tarjeta QR de tu negocio"],
   ]
     .map(([href, name]) => `<a href="${href}">${esc(name)}</a>`)
@@ -343,7 +388,7 @@ for (const [route, p] of Object.entries(pages)) {
   html = setMeta(html, "name", "robots", "index, follow, max-image-preview:large");
   html = setMeta(html, "property", "og:title", p.title);
   html = setMeta(html, "property", "og:description", p.description);
-  html = setMeta(html, "property", "og:type", route.startsWith("/portafolio/") ? "article" : route === "/sobre-mi" ? "profile" : "website");
+  html = setMeta(html, "property", "og:type", route.startsWith("/portafolio/") || route.startsWith("/notas/") ? "article" : route === "/sobre-mi" ? "profile" : "website");
   html = setMeta(html, "property", "og:url", url);
   html = setMeta(html, "property", "og:image", image);
   html = setMeta(html, "property", "og:image:width", "1200");

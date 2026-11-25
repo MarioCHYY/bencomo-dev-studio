@@ -657,6 +657,1320 @@
    "x": "Instagram @mario_bencomo06"
   }
  ],
+ "/notas": [
+  {
+   "t": "h1",
+   "x": "Notas de diseño. Sin tecnicismos."
+  },
+  {
+   "t": "p",
+   "x": "Lo que hace que una página dé confianza y que la gente te escriba, explicado para quien tiene un negocio. Cada dato viene con su fuente."
+  },
+  {
+   "t": "h3",
+   "x": "¿Por qué tu página web se ve barata? 8 señales y cómo arreglarlas."
+  },
+  {
+   "t": "p",
+   "x": "Una página puede tener buena información y aun así dar mala espina. Casi nunca es una sola cosa: son detalles pequeños que, juntos, dicen «esto se hizo a la carrera». Estas son las ocho señales que más veo, y qué hacer con cada una."
+  },
+  {
+   "t": "h3",
+   "x": "Qué colores dan confianza en una página web."
+  },
+  {
+   "t": "p",
+   "x": "Si buscas «el color de la confianza» vas a leer mil veces «azul». No está mal, pero se queda corto: la confianza depende más de cómo usas el color que del color que eliges."
+  },
+  {
+   "t": "h3",
+   "x": "Tu página tiene 10 segundos. Lo que debe ver un cliente al entrar."
+  },
+  {
+   "t": "p",
+   "x": "Antes de leer una sola palabra, la gente ya decidió si tu página le da confianza. Y si en los primeros segundos no entiende qué haces, se va. Esto es lo que tiene que ver un cliente nada más entrar."
+  },
+  {
+   "t": "h3",
+   "x": "Cómo debe ser la página de un restaurante."
+  },
+  {
+   "t": "p",
+   "x": "Quien entra a la página de un restaurante casi siempre viene por lo mismo: ver qué hay, cuánto cuesta, si está abierto y cómo pedir. Si eso tarda en encontrarse, se va a pedir a otro lado."
+  },
+  {
+   "t": "h3",
+   "x": "El botón de WhatsApp. Dónde va y qué debe decir."
+  },
+  {
+   "t": "p",
+   "x": "Para muchos negocios, la página existe para una sola cosa: que la gente te escriba. Y aun así, el botón de WhatsApp suele estar escondido, ser diminuto o llevar a un número equivocado."
+  },
+  {
+   "t": "h3",
+   "x": "Fotos para tu página, con tu celular. Sin fotógrafo y sin fotos de banco."
+  },
+  {
+   "t": "p",
+   "x": "No necesitas un fotógrafo para tener buenas fotos en tu página. Necesitas fotos reales de tu negocio, bien iluminadas y pensadas para dónde van a ir. Con el celular que ya tienes alcanza."
+  },
+  {
+   "t": "h3",
+   "x": "Dónde poner tu logo en tu página web."
+  },
+  {
+   "t": "p",
+   "x": "Parece un detalle, pero el lugar de tu logo cambia qué tanto te recuerdan y qué tan fácil es moverse por tu página. Y la respuesta es menos creativa de lo que crees: arriba a la izquierda."
+  },
+  {
+   "t": "h3",
+   "x": "Letras que se lean y tengan carácter."
+  },
+  {
+   "t": "p",
+   "x": "La tipografía es la voz de tu página. Antes de que alguien lea lo que dices, ya escuchó cómo lo dices. Estas son las reglas que uso para elegirla."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/por-que-tu-pagina-se-ve-barata": [
+  {
+   "t": "h1",
+   "x": "¿Por qué tu página web se ve barata? 8 señales y cómo arreglarlas."
+  },
+  {
+   "t": "p",
+   "x": "Una página puede tener buena información y aun así dar mala espina. Casi nunca es una sola cosa: son detalles pequeños que, juntos, dicen «esto se hizo a la carrera». Estas son las ocho señales que más veo, y qué hacer con cada una."
+  },
+  {
+   "t": "h2",
+   "x": "Primero: sí, la gente juzga por cómo se ve"
+  },
+  {
+   "t": "p",
+   "x": "Puede sonar superficial, pero así funciona. Antes de leer, la gente ya se formó una idea de tu página, y esa primera idea pesa en si te creen o no."
+  },
+  {
+   "t": "p",
+   "x": "La buena noticia es que casi todo lo que hace ver barata una página se puede corregir sin rehacer tu negocio: es cuestión de diseño."
+  },
+  {
+   "t": "h2",
+   "x": "1. El título dice «Bienvenidos a…»"
+  },
+  {
+   "t": "p",
+   "x": "El título de arriba es el lugar más valioso de tu página, y «Bienvenidos a Mariscos El Ejemplo» lo desperdicia: no dice qué vendes, ni por qué tú y no el de enfrente. Cámbialo por una frase que solo tu negocio podría decir."
+  },
+  {
+   "t": "p",
+   "x": "Prueba: si cambias el nombre y el título le queda igual a cualquier otro negocio, es de plantilla."
+  },
+  {
+   "t": "p",
+   "x": "Marejada, un negocio inventado: versión genérica contra versión diseñada."
+  },
+  {
+   "t": "h2",
+   "x": "2. Emojis y adornos por todos lados"
+  },
+  {
+   "t": "p",
+   "x": "Un emoji en un mensaje de WhatsApp está bien. En títulos, botones y cada tarjeta se ve improvisado. Además, cada teléfono y computadora los dibuja distinto, así que no controlas cómo se ven. Si quieres darle calidez a tu página, consíguela con buenas fotos, color y palabras."
+  },
+  {
+   "t": "h2",
+   "x": "3. Demasiadas tipografías, o la de siempre"
+  },
+  {
+   "t": "p",
+   "x": "Tres o cuatro tipos de letra distintos hacen que todo se vea desordenado. Con dos basta: una con carácter para los títulos y una muy legible para el texto. Y si usas la misma que trae cualquier plantilla, tu página se va a parecer a mil más."
+  },
+  {
+   "t": "h2",
+   "x": "4. Texto que casi no se lee"
+  },
+  {
+   "t": "p",
+   "x": "Gris clarito sobre blanco, letras blancas encima de una foto llena de detalles, texto pequeño en celular. Es uno de los errores más comunes de la web y uno de los que más cansan."
+  },
+  {
+   "t": "p",
+   "x": "Regla rápida: si tienes que entrecerrar los ojos o acercarte a la pantalla, le falta contraste."
+  },
+  {
+   "t": "h2",
+   "x": "5. Fotos de banco que no son tu negocio"
+  },
+  {
+   "t": "p",
+   "x": "El señor sonriente con casco, el equipo de oficina chocando las manos. La gente reconoce esas fotos y, al verlas, deja de creerte un poquito. Una foto real de tu local, tu producto o tu equipo, aunque sea con celular, transmite más. Tómala con luz natural, de frente y sin filtros exagerados."
+  },
+  {
+   "t": "h2",
+   "x": "6. Espacios sin regla"
+  },
+  {
+   "t": "p",
+   "x": "Una sección apretada, la siguiente con un hueco enorme, botones de tamaños distintos, cosas que casi se alinean. Nadie lo nota de forma consciente, pero se siente desordenado. Usa los mismos márgenes y separaciones en toda la página y alinea todo a los mismos bordes."
+  },
+  {
+   "t": "h2",
+   "x": "7. Se ve mal en celular"
+  },
+  {
+   "t": "p",
+   "x": "Así que la versión de celular no es la secundaria: es la principal. Abre tu página en tu propio teléfono y revisa si hay textos cortados, botones que no le atinas con el dedo, menús que tapan todo o fotos que tardan en salir."
+  },
+  {
+   "t": "h2",
+   "x": "8. Señales de abandono"
+  },
+  {
+   "t": "p",
+   "x": "«© 2019» en el pie de página, links que no llevan a ningún lado, un logo pixeleado, secciones de «Próximamente» o un número de WhatsApp que ya no es el tuyo. Cada una le dice al visitante que nadie atiende la página, y que tal vez tampoco el negocio."
+  },
+  {
+   "t": "h2",
+   "x": "Cómo saber si la tuya está en problemas"
+  },
+  {
+   "t": "li",
+   "x": "01 Enséñale tu página a alguien que no la conozca, solo 5 segundos."
+  },
+  {
+   "t": "li",
+   "x": "02 Quítasela y pregúntale qué vendes, para quién y qué tendría que hacer para comprarte."
+  },
+  {
+   "t": "li",
+   "x": "03 Si no puede contestar las tres, el problema no es esa persona: es la página."
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 Lindgaard et al. (2006), Behaviour & Information Technology, reseñado en Nature"
+  },
+  {
+   "t": "li",
+   "x": "2 Stanford y Consumer WebWatch (2002), How Do People Evaluate a Web Site's Credibility?"
+  },
+  {
+   "t": "li",
+   "x": "3 WebAIM, The WebAIM Million (2025)"
+  },
+  {
+   "t": "li",
+   "x": "4 INEGI, ENDUTIH 2024"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "Tu página tiene 10 segundos. Lo que debe ver un cliente al entrar."
+  },
+  {
+   "t": "p",
+   "x": "Antes de leer una sola palabra, la gente ya decidió si tu página le da confianza. Y si en los primeros segundos no entiende qué haces, se va. Esto es lo que tiene que ver un cliente nada más entrar."
+  },
+  {
+   "t": "h3",
+   "x": "Qué colores dan confianza en una página web."
+  },
+  {
+   "t": "p",
+   "x": "Si buscas «el color de la confianza» vas a leer mil veces «azul». No está mal, pero se queda corto: la confianza depende más de cómo usas el color que del color que eliges."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/colores-que-dan-confianza": [
+  {
+   "t": "h1",
+   "x": "Qué colores dan confianza en una página web."
+  },
+  {
+   "t": "p",
+   "x": "Si buscas «el color de la confianza» vas a leer mil veces «azul». No está mal, pero se queda corto: la confianza depende más de cómo usas el color que del color que eliges."
+  },
+  {
+   "t": "h2",
+   "x": "Lo que sí dice la investigación"
+  },
+  {
+   "t": "p",
+   "x": "El color influye en la personalidad que la gente le atribuye a una marca. En un estudio publicado en el Journal of the Academy of Marketing Science, los investigadores encontraron que el rojo se asocia con emoción y el azul con competencia (de ahí el título del estudio: «rojo emocionante y azul competente»). También encontraron que no solo importa el tono: qué tan intenso o qué tan claro u oscuro es el color cambia la impresión."
+  },
+  {
+   "t": "p",
+   "x": "Por eso tantos bancos y aseguradoras son azules: quieren verse serios y capaces. Pero eso no significa que el azul le sirva a cualquiera."
+  },
+  {
+   "t": "h2",
+   "x": "El color tiene que ir con lo que vendes"
+  },
+  {
+   "t": "p",
+   "x": "Una taquería pintada de azul banco se ve fría. Un consultorio en rojo y negro se ve agresivo. El color correcto es el que hace que tu negocio se sienta como es en persona. Estos son los tres ejemplos que hice para negocios inventados:"
+  },
+  {
+   "t": "p",
+   "x": "El mar y el chile: azul profundo, rojo chile y arena. Se antoja y se siente fresco."
+  },
+  {
+   "t": "p",
+   "x": "Verde menta y durazno: limpio sin parecer hospital, tranquilo sin ser frío."
+  },
+  {
+   "t": "p",
+   "x": "Negro y verde ácido: energía y fuerza. Ahí sí, nada de colores suaves."
+  },
+  {
+   "t": "h2",
+   "x": "Lo que de verdad da confianza"
+  },
+  {
+   "t": "li",
+   "x": "01 Consistencia. Los mismos colores en tu página, tu logo, tu Instagram y tu local. Cuando todo coincide, el negocio se ve establecido."
+  },
+  {
+   "t": "li",
+   "x": "02 Contraste. Que el texto se lea sin esfuerzo. Las pautas de accesibilidad de la web piden una relación de contraste de al menos 4.5 a 1 para texto normal y 3 a 1 para texto grande."
+  },
+  {
+   "t": "li",
+   "x": "03 Un color para actuar. El botón principal siempre del mismo color, y que nada más en la página compita con él. Así la gente sabe dónde tocar sin pensarlo."
+  },
+  {
+   "t": "li",
+   "x": "04 Pocos colores. Uno principal, uno de acento y neutros (blancos, negros, grises o cremas). Una regla práctica muy usada es 60 % neutro, 30 % color principal y 10 % acento."
+  },
+  {
+   "t": "h2",
+   "x": "Colores que suelen restar"
+  },
+  {
+   "t": "li",
+   "x": "El degradado morado-azul de plantilla: es tan común que hace que tu página se vea genérica al instante."
+  },
+  {
+   "t": "li",
+   "x": "Rojo en todo: el rojo llama la atención, así que si todo es rojo, nada destaca y todo parece urgente."
+  },
+  {
+   "t": "li",
+   "x": "Neón sobre neón: cansa la vista y se lee mal."
+  },
+  {
+   "t": "li",
+   "x": "Gris clarito para el texto: se ve elegante en pantalla grande y se vuelve invisible en un celular al sol."
+  },
+  {
+   "t": "h2",
+   "x": "Cómo elegir los tuyos"
+  },
+  {
+   "t": "li",
+   "x": "01 Parte de lo que ya tienes: tu logo, tu local, tu producto. Los colores de tu página tienen que coincidir con lo que la gente ve cuando te visita."
+  },
+  {
+   "t": "li",
+   "x": "02 Escoge un color de acento solo para los botones importantes."
+  },
+  {
+   "t": "li",
+   "x": "03 Revisa el contraste de tus textos con una herramienta gratis como el Contrast Checker de WebAIM."
+  },
+  {
+   "t": "li",
+   "x": "04 Ve tu página en el celular, afuera, con sol. Si ahí se lee bien, se lee bien en todos lados."
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 Labrecque y Milne (2012), Exciting red and competent blue: the importance of color in marketing"
+  },
+  {
+   "t": "li",
+   "x": "2 W3C, WCAG 2.2: contraste mínimo"
+  },
+  {
+   "t": "li",
+   "x": "3 WebAIM, Contrast Checker"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "¿Por qué tu página web se ve barata? 8 señales y cómo arreglarlas."
+  },
+  {
+   "t": "p",
+   "x": "Una página puede tener buena información y aun así dar mala espina. Casi nunca es una sola cosa: son detalles pequeños que, juntos, dicen «esto se hizo a la carrera». Estas son las ocho señales que más veo, y qué hacer con cada una."
+  },
+  {
+   "t": "h3",
+   "x": "Tu página tiene 10 segundos. Lo que debe ver un cliente al entrar."
+  },
+  {
+   "t": "p",
+   "x": "Antes de leer una sola palabra, la gente ya decidió si tu página le da confianza. Y si en los primeros segundos no entiende qué haces, se va. Esto es lo que tiene que ver un cliente nada más entrar."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/tu-pagina-en-10-segundos": [
+  {
+   "t": "h1",
+   "x": "Tu página tiene 10 segundos. Lo que debe ver un cliente al entrar."
+  },
+  {
+   "t": "p",
+   "x": "Antes de leer una sola palabra, la gente ya decidió si tu página le da confianza. Y si en los primeros segundos no entiende qué haces, se va. Esto es lo que tiene que ver un cliente nada más entrar."
+  },
+  {
+   "t": "h2",
+   "x": "Lo que pasa en los primeros segundos"
+  },
+  {
+   "t": "li",
+   "x": "0.05 s LA IMPRESIÓN En 50 milisegundos la persona ya juzgó si la página se ve bien. Un estudio de Google encontró juicios así desde los 17 milisegundos."
+  },
+  {
+   "t": "li",
+   "x": "10 s LA DECISIÓN Los primeros 10 segundos son en los que es más probable que alguien se vaya. Ahí tiene que quedar claro qué ofreces."
+  },
+  {
+   "t": "li",
+   "x": "30 s + SE QUEDA Pasado ese momento, entre más tiempo lleva alguien en la página, menos probable es que se vaya."
+  },
+  {
+   "t": "p",
+   "x": "En pocas palabras: los primeros segundos deciden si alguien sigue leyendo. Por eso lo de hasta arriba de tu página importa más que todo lo demás."
+  },
+  {
+   "t": "h2",
+   "x": "Simple y familiar gana"
+  },
+  {
+   "t": "p",
+   "x": "El mismo estudio de Google encontró que la gente prefiere las páginas visualmente simples y que se ven como se espera que se vea ese tipo de página. Las páginas recargadas se ven menos atractivas, aunque sean familiares, y las que rompen con lo esperado también salen mal evaluadas."
+  },
+  {
+   "t": "p",
+   "x": "La lección: el menú arriba, el logo a la izquierda y el botón donde se espera. Sé original en tu identidad (tus colores, tus fotos, tus palabras), no en dónde va cada cosa."
+  },
+  {
+   "t": "h2",
+   "x": "Las 4 cosas que deben verse sin hacer scroll"
+  },
+  {
+   "t": "p",
+   "x": "Abre tu página en el celular. Sin mover nada, en esa primera pantalla deberían estar:"
+  },
+  {
+   "t": "li",
+   "x": "01 Qué haces, en una frase concreta. No «soluciones integrales», sino «aguachiles y ceviches para llevar» o «dentista para niños»."
+  },
+  {
+   "t": "li",
+   "x": "02 Dónde y para quién. Si atiendes en Culiacán, dilo. A la gente de aquí le da confianza ver que eres de aquí."
+  },
+  {
+   "t": "li",
+   "x": "03 Una prueba. Una foto real de tu trabajo, un precio «desde», tu horario de hoy: algo que no sea promesa."
+  },
+  {
+   "t": "li",
+   "x": "04 Un solo botón con la acción principal: pedir, agendar, cotizar. Que diga exactamente qué pasa al tocarlo."
+  },
+  {
+   "t": "p",
+   "x": "Molar, un negocio inventado: versión genérica contra versión diseñada."
+  },
+  {
+   "t": "h2",
+   "x": "Lo que estorba en esos segundos"
+  },
+  {
+   "t": "li",
+   "x": "Ventanas emergentes nada más entrar. Antes de saber qué vendes, ya te están pidiendo algo."
+  },
+  {
+   "t": "li",
+   "x": "Carruseles que cambian solos. Nadie espera a que gire para ver la foto que importa."
+  },
+  {
+   "t": "li",
+   "x": "Videos pesados de fondo. Se ven bien en la computadora de quien hizo la página y tardan una eternidad en un celular con datos."
+  },
+  {
+   "t": "li",
+   "x": "Menús con muchas opciones. Mientras más opciones, más tarda la gente en decidir a dónde ir."
+  },
+  {
+   "t": "h2",
+   "x": "Y si tarda en cargar, no hay primera impresión"
+  },
+  {
+   "t": "p",
+   "x": "Todo lo anterior supone que la página ya apareció. Google mide qué tan rápido se ve lo principal de una página (lo llama LCP) y considera buena una carga de 2.5 segundos o menos. Revisa la tuya gratis en PageSpeed Insights."
+  },
+  {
+   "t": "h2",
+   "x": "La prueba de los 5 segundos"
+  },
+  {
+   "t": "li",
+   "x": "01 Enséñale tu página en el celular a alguien que no la conozca, durante 5 segundos."
+  },
+  {
+   "t": "li",
+   "x": "02 Quítale el teléfono y pregúntale: ¿qué vende?, ¿dónde está?, ¿qué harías para comprarle?"
+  },
+  {
+   "t": "li",
+   "x": "03 Lo que no recuerde es lo que tu página no está diciendo con claridad."
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 Lindgaard et al. (2006), Behaviour & Information Technology, reseñado en Nature"
+  },
+  {
+   "t": "li",
+   "x": "2 Google Research (2012), Users love simple and familiar designs"
+  },
+  {
+   "t": "li",
+   "x": "3 Nielsen Norman Group, How Long Do Users Stay on Web Pages? (sobre Liu, White y Dumais, 2010)"
+  },
+  {
+   "t": "li",
+   "x": "4 Google, web.dev: Largest Contentful Paint (LCP)"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "¿Por qué tu página web se ve barata? 8 señales y cómo arreglarlas."
+  },
+  {
+   "t": "p",
+   "x": "Una página puede tener buena información y aun así dar mala espina. Casi nunca es una sola cosa: son detalles pequeños que, juntos, dicen «esto se hizo a la carrera». Estas son las ocho señales que más veo, y qué hacer con cada una."
+  },
+  {
+   "t": "h3",
+   "x": "Qué colores dan confianza en una página web."
+  },
+  {
+   "t": "p",
+   "x": "Si buscas «el color de la confianza» vas a leer mil veces «azul». No está mal, pero se queda corto: la confianza depende más de cómo usas el color que del color que eliges."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/pagina-web-para-restaurante": [
+  {
+   "t": "h1",
+   "x": "Cómo debe ser la página de un restaurante."
+  },
+  {
+   "t": "p",
+   "x": "Quien entra a la página de un restaurante casi siempre viene por lo mismo: ver qué hay, cuánto cuesta, si está abierto y cómo pedir. Si eso tarda en encontrarse, se va a pedir a otro lado."
+  },
+  {
+   "t": "h2",
+   "x": "Lo que tu cliente busca, en este orden"
+  },
+  {
+   "t": "li",
+   "x": "01 Qué vendes y si se le antoja: tu platillo estrella, con una foto real."
+  },
+  {
+   "t": "li",
+   "x": "02 Si estás abierto ahorita: el horario de hoy, no una tabla escondida al final."
+  },
+  {
+   "t": "li",
+   "x": "03 Cuánto cuesta: la carta con precios."
+  },
+  {
+   "t": "li",
+   "x": "04 Cómo pedir o llegar: un botón para pedir y tu ubicación."
+  },
+  {
+   "t": "p",
+   "x": "Todo eso debería resolverse en la primera pantalla del celular, o a un movimiento de dedo. Lo demás (la historia del negocio, la galería, las redes) puede ir después."
+  },
+  {
+   "t": "h2",
+   "x": "La carta, en la página y no en PDF"
+  },
+  {
+   "t": "p",
+   "x": "Subir la carta en PDF es lo más rápido para el negocio y lo más incómodo para el cliente: hay que descargarla, hacer zoom y moverse de un lado a otro con el dedo. Nielsen Norman Group, una firma de investigación en experiencia de usuario, recomienda no usar PDF para contenido que se lee en pantalla: la gente se pierde, tarda en cargar y no se puede recorrer como una página."
+  },
+  {
+   "t": "p",
+   "x": "Mejor escribe la carta en la página: por secciones, con nombre, una línea de descripción y precio. Así se lee bien en el celular, la actualizas en un minuto y Google también puede leerla."
+  },
+  {
+   "t": "p",
+   "x": "Marejada, un negocio inventado: versión genérica contra versión diseñada."
+  },
+  {
+   "t": "h2",
+   "x": "Fotos: pocas, reales y de cerca"
+  },
+  {
+   "t": "p",
+   "x": "La investigación de Nielsen Norman Group con seguimiento ocular encontró que la gente ignora las fotos de relleno y sí mira las que le dan información real, como el producto que va a comprar. En un restaurante, eso es tu comida."
+  },
+  {
+   "t": "li",
+   "x": "Toma las fotos con luz de día, cerca de una ventana y sin flash."
+  },
+  {
+   "t": "li",
+   "x": "De cerca y de frente o un poco desde arriba: que se vea la textura."
+  },
+  {
+   "t": "li",
+   "x": "Siempre del platillo real, no de banco de imágenes. Si el cliente pide lo de la foto, tiene que llegarle eso."
+  },
+  {
+   "t": "h2",
+   "x": "Un botón grande para pedir"
+  },
+  {
+   "t": "p",
+   "x": "Pedir por WhatsApp, llamar o pedir en una app: elige la acción principal y hazla un botón grande, visible siempre en celular. Las guías de diseño para pantallas táctiles recomiendan que cualquier botón mida al menos un centímetro por lado, para que el dedo le atine sin esfuerzo."
+  },
+  {
+   "t": "h2",
+   "x": "Lista rápida para revisar la tuya"
+  },
+  {
+   "t": "li",
+   "x": "¿Se ve el horario de hoy sin buscarlo?"
+  },
+  {
+   "t": "li",
+   "x": "¿La carta se lee en el celular sin hacer zoom?"
+  },
+  {
+   "t": "li",
+   "x": "¿Los precios están actualizados?"
+  },
+  {
+   "t": "li",
+   "x": "¿Hay un solo botón claro para pedir?"
+  },
+  {
+   "t": "li",
+   "x": "¿Las fotos son de tu comida?"
+  },
+  {
+   "t": "li",
+   "x": "¿Tu dirección abre el mapa al tocarla?"
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 Nielsen Norman Group, Avoid PDF for On-Screen Reading (2020)"
+  },
+  {
+   "t": "li",
+   "x": "2 Nielsen Norman Group, Photos as Web Content (2010)"
+  },
+  {
+   "t": "li",
+   "x": "3 Nielsen Norman Group, Touch Targets on Touchscreens (2019)"
+  },
+  {
+   "t": "li",
+   "x": "4 INEGI, ENDUTIH 2024"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "El botón de WhatsApp. Dónde va y qué debe decir."
+  },
+  {
+   "t": "p",
+   "x": "Para muchos negocios, la página existe para una sola cosa: que la gente te escriba. Y aun así, el botón de WhatsApp suele estar escondido, ser diminuto o llevar a un número equivocado."
+  },
+  {
+   "t": "h3",
+   "x": "Fotos para tu página, con tu celular. Sin fotógrafo y sin fotos de banco."
+  },
+  {
+   "t": "p",
+   "x": "No necesitas un fotógrafo para tener buenas fotos en tu página. Necesitas fotos reales de tu negocio, bien iluminadas y pensadas para dónde van a ir. Con el celular que ya tienes alcanza."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/boton-de-whatsapp-en-tu-pagina": [
+  {
+   "t": "h1",
+   "x": "El botón de WhatsApp. Dónde va y qué debe decir."
+  },
+  {
+   "t": "p",
+   "x": "Para muchos negocios, la página existe para una sola cosa: que la gente te escriba. Y aun así, el botón de WhatsApp suele estar escondido, ser diminuto o llevar a un número equivocado."
+  },
+  {
+   "t": "h2",
+   "x": "Por qué importa tanto"
+  },
+  {
+   "t": "p",
+   "x": "Si tu cliente ya está en tu página y le dan ganas de preguntar, cada paso extra (copiar el número, abrir WhatsApp, agregarlo como contacto) es una oportunidad de que se le olvide. Un buen botón lo lleva directo a la conversación."
+  },
+  {
+   "t": "h2",
+   "x": "Dónde ponerlo"
+  },
+  {
+   "t": "li",
+   "x": "Arriba, en la primera pantalla, como acción principal."
+  },
+  {
+   "t": "li",
+   "x": "Al final de cada sección importante (servicios, precios, preguntas): justo donde se le resolvió la duda."
+  },
+  {
+   "t": "li",
+   "x": "En celular, un botón fijo abajo ayuda, siempre que no tape texto ni otros botones."
+  },
+  {
+   "t": "p",
+   "x": "Una sola acción principal por página. Si todo es botón, nada destaca."
+  },
+  {
+   "t": "h2",
+   "x": "Qué tamaño y qué debe decir"
+  },
+  {
+   "t": "p",
+   "x": "En celular, que mida al menos un centímetro de alto: es el mínimo que recomiendan las guías de diseño para pantallas táctiles. Y que el texto diga qué pasa al tocarlo. «Contáctanos» es vago; «Pide por WhatsApp», «Cotiza por WhatsApp» o «Agenda tu cita por WhatsApp» dicen exactamente qué va a pasar."
+  },
+  {
+   "t": "h2",
+   "x": "El mensaje ya escrito"
+  },
+  {
+   "t": "p",
+   "x": "WhatsApp permite que el link abra la conversación con un mensaje listo para enviar. El formato oficial es wa.me/ seguido de tu número completo con lada de país, sin espacios, guiones ni el signo +, y después ?text= con el mensaje. Por ejemplo: wa.me/5266700000000?text=Hola, quiero hacer un pedido."
+  },
+  {
+   "t": "p",
+   "x": "Escribe ese mensaje pensando en ti: que te diga de dónde viene el cliente y qué quiere. «Hola, vi su página y quiero cotizar» te ahorra la primera pregunta."
+  },
+  {
+   "t": "h2",
+   "x": "Revísalo hoy"
+  },
+  {
+   "t": "li",
+   "x": "01 Abre tu página en tu celular y toca el botón de WhatsApp."
+  },
+  {
+   "t": "li",
+   "x": "02 Confirma que abre el chat con tu número, no con otro. Pasa más de lo que crees: plantillas que traen el número de quien hizo la página, o un número viejo."
+  },
+  {
+   "t": "li",
+   "x": "03 Revisa que el mensaje escrito tenga sentido y no diga el nombre de la plantilla."
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 INEGI, ENDUTIH 2024: usos de internet"
+  },
+  {
+   "t": "li",
+   "x": "2 Nielsen Norman Group, Touch Targets on Touchscreens (2019)"
+  },
+  {
+   "t": "li",
+   "x": "3 WhatsApp, How to use click to chat"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "Cómo debe ser la página de un restaurante."
+  },
+  {
+   "t": "p",
+   "x": "Quien entra a la página de un restaurante casi siempre viene por lo mismo: ver qué hay, cuánto cuesta, si está abierto y cómo pedir. Si eso tarda en encontrarse, se va a pedir a otro lado."
+  },
+  {
+   "t": "h3",
+   "x": "Tu página tiene 10 segundos. Lo que debe ver un cliente al entrar."
+  },
+  {
+   "t": "p",
+   "x": "Antes de leer una sola palabra, la gente ya decidió si tu página le da confianza. Y si en los primeros segundos no entiende qué haces, se va. Esto es lo que tiene que ver un cliente nada más entrar."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/fotos-para-tu-pagina-web": [
+  {
+   "t": "h1",
+   "x": "Fotos para tu página, con tu celular. Sin fotógrafo y sin fotos de banco."
+  },
+  {
+   "t": "p",
+   "x": "No necesitas un fotógrafo para tener buenas fotos en tu página. Necesitas fotos reales de tu negocio, bien iluminadas y pensadas para dónde van a ir. Con el celular que ya tienes alcanza."
+  },
+  {
+   "t": "h2",
+   "x": "Por qué fotos reales y no de banco"
+  },
+  {
+   "t": "p",
+   "x": "En estudios de seguimiento ocular de Nielsen Norman Group, la gente pasó por alto las fotos decorativas puestas «para adornar», y en cambio se detuvo en fotos con información real: las personas del equipo y los productos que iba a comprar."
+  },
+  {
+   "t": "p",
+   "x": "Una foto real de tu local, tu producto o tu equipo dice «esto existe y somos nosotros». Una de banco dice «no teníamos fotos»."
+  },
+  {
+   "t": "h2",
+   "x": "Cómo tomarlas"
+  },
+  {
+   "t": "li",
+   "x": "Luz de día. Cerca de una ventana o afuera en sombra. Evita el flash y la luz amarilla de foco."
+  },
+  {
+   "t": "li",
+   "x": "Limpia el lente del celular. Parece obvio, pero es la causa más común de fotos borrosas."
+  },
+  {
+   "t": "li",
+   "x": "Fondo sencillo. Quita lo que no tiene que salir: cajas, cables, bolsas."
+  },
+  {
+   "t": "li",
+   "x": "Toma horizontal y vertical. La página usa horizontales en computadora y verticales en celular."
+  },
+  {
+   "t": "li",
+   "x": "Toma de más. De 20 fotos, vas a usar 3."
+  },
+  {
+   "t": "li",
+   "x": "Mismo estilo en todas: misma luz y mismo tipo de fondo. Así se ven como de una sola marca."
+  },
+  {
+   "t": "h2",
+   "x": "Qué fotos necesita tu página"
+  },
+  {
+   "t": "li",
+   "x": "01 Una principal: tu producto estrella o tu local por fuera, para la primera pantalla."
+  },
+  {
+   "t": "li",
+   "x": "02 Tu producto o servicio en acción: el platillo servido, el corte terminado, el trabajo entregado."
+  },
+  {
+   "t": "li",
+   "x": "03 Tu equipo o tú: la gente quiere saber con quién va a tratar."
+  },
+  {
+   "t": "li",
+   "x": "04 Tu fachada: para que te reconozcan al llegar."
+  },
+  {
+   "t": "h2",
+   "x": "Antes de subirlas: que no pesen"
+  },
+  {
+   "t": "p",
+   "x": "Una foto directa del celular puede pesar varios megas, y eso hace que tu página tarde en abrir. Pídele a quien haga tu página que las suba en formatos modernos como WebP o AVIF: según la documentación de Google, cargan más rápido y gastan menos datos que los JPG y PNG de siempre, con la misma calidad."
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 Nielsen Norman Group, Photos as Web Content (2010)"
+  },
+  {
+   "t": "li",
+   "x": "2 Google, Lighthouse: Serve images in modern formats"
+  },
+  {
+   "t": "li",
+   "x": "3 Google, web.dev: Largest Contentful Paint (LCP)"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "Cómo debe ser la página de un restaurante."
+  },
+  {
+   "t": "p",
+   "x": "Quien entra a la página de un restaurante casi siempre viene por lo mismo: ver qué hay, cuánto cuesta, si está abierto y cómo pedir. Si eso tarda en encontrarse, se va a pedir a otro lado."
+  },
+  {
+   "t": "h3",
+   "x": "¿Por qué tu página web se ve barata? 8 señales y cómo arreglarlas."
+  },
+  {
+   "t": "p",
+   "x": "Una página puede tener buena información y aun así dar mala espina. Casi nunca es una sola cosa: son detalles pequeños que, juntos, dicen «esto se hizo a la carrera». Estas son las ocho señales que más veo, y qué hacer con cada una."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/donde-poner-tu-logo": [
+  {
+   "t": "h1",
+   "x": "Dónde poner tu logo en tu página web."
+  },
+  {
+   "t": "p",
+   "x": "Parece un detalle, pero el lugar de tu logo cambia qué tanto te recuerdan y qué tan fácil es moverse por tu página. Y la respuesta es menos creativa de lo que crees: arriba a la izquierda."
+  },
+  {
+   "t": "h2",
+   "x": "Arriba a la izquierda, y no por costumbre"
+  },
+  {
+   "t": "p",
+   "x": "El mismo estudio encontró que mover el logo de ese lugar, por ejemplo al centro, hace que la gente se mueva peor por la página. Es donde todos esperan encontrarlo, y la gente prefiere las páginas que se ven como espera."
+  },
+  {
+   "t": "h2",
+   "x": "Que lleve al inicio"
+  },
+  {
+   "t": "p",
+   "x": "Tocar el logo para volver al inicio es una de esas costumbres que todo mundo tiene. Si tu logo no hace nada al tocarlo, la gente se siente atrapada."
+  },
+  {
+   "t": "h2",
+   "x": "Tamaño: que se lea, no que grite"
+  },
+  {
+   "t": "li",
+   "x": "En celular, que se lea el nombre sin hacer zoom. Si tu logo es muy horizontal o tiene letras finas, ten una versión corta o solo el símbolo."
+  },
+  {
+   "t": "li",
+   "x": "Más grande no es mejor: un logo enorme le roba espacio a lo que vendes."
+  },
+  {
+   "t": "li",
+   "x": "En el pie de página puede volver a aparecer, más discreto."
+  },
+  {
+   "t": "h2",
+   "x": "Que se vea nítido"
+  },
+  {
+   "t": "p",
+   "x": "Un logo pixeleado es de las señales más rápidas de que algo está descuidado. Pídele a quien hizo tu logo el archivo en vector (SVG, AI o PDF). En formato SVG se ve nítido en cualquier pantalla y casi no pesa."
+  },
+  {
+   "t": "p",
+   "x": "Si solo tienes tu logo en una foto o en un JPG chiquito, vale la pena redibujarlo antes de rediseñar la página."
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 Nielsen Norman Group, Logo Placement Affects Web Navigation and Brand Recall (2017)"
+  },
+  {
+   "t": "li",
+   "x": "2 Google Research (2012), Users love simple and familiar designs"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "¿Por qué tu página web se ve barata? 8 señales y cómo arreglarlas."
+  },
+  {
+   "t": "p",
+   "x": "Una página puede tener buena información y aun así dar mala espina. Casi nunca es una sola cosa: son detalles pequeños que, juntos, dicen «esto se hizo a la carrera». Estas son las ocho señales que más veo, y qué hacer con cada una."
+  },
+  {
+   "t": "h3",
+   "x": "Letras que se lean y tengan carácter."
+  },
+  {
+   "t": "p",
+   "x": "La tipografía es la voz de tu página. Antes de que alguien lea lo que dices, ya escuchó cómo lo dices. Estas son las reglas que uso para elegirla."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
+ "/notas/tipografia-para-tu-pagina-web": [
+  {
+   "t": "h1",
+   "x": "Letras que se lean y tengan carácter."
+  },
+  {
+   "t": "p",
+   "x": "La tipografía es la voz de tu página. Antes de que alguien lea lo que dices, ya escuchó cómo lo dices. Estas son las reglas que uso para elegirla."
+  },
+  {
+   "t": "h2",
+   "x": "Dos tipos de letra, no más"
+  },
+  {
+   "t": "p",
+   "x": "Una para los títulos, con carácter, que diga algo de tu negocio. Otra para el texto, muy fácil de leer. Si agregas una tercera, casi siempre se ve desordenado."
+  },
+  {
+   "t": "li",
+   "x": "Una taquería puede tener títulos gruesos y con personalidad."
+  },
+  {
+   "t": "li",
+   "x": "Un despacho o un consultorio, algo más sobrio y limpio."
+  },
+  {
+   "t": "li",
+   "x": "Un negocio de diseño o de moda puede jugar con una letra con serifa elegante."
+  },
+  {
+   "t": "h2",
+   "x": "Tamaño: si se lee en celular, se lee en todos lados"
+  },
+  {
+   "t": "p",
+   "x": "La mayoría de tus clientes te va a leer en el teléfono, a veces caminando o al sol. Google marcaba como difícil de leer en celular el texto de menos de 12 píxeles. Para el texto principal ve bastante más arriba de eso, y deja los tamaños chicos solo para etiquetas y notas."
+  },
+  {
+   "t": "h2",
+   "x": "Renglones ni muy largos ni muy cortos"
+  },
+  {
+   "t": "p",
+   "x": "En computadora, un párrafo de lado a lado de la pantalla es difícil de leer. Limita el ancho del texto aunque la pantalla sea grande."
+  },
+  {
+   "t": "h2",
+   "x": "Contraste y espacio"
+  },
+  {
+   "t": "p",
+   "x": "Texto oscuro sobre fondo claro (o al revés) con buena diferencia: las pautas de accesibilidad piden un contraste de al menos 4.5 a 1 para texto normal. Y deja aire entre renglones: el texto apretado se ve barato y se lee peor."
+  },
+  {
+   "t": "h2",
+   "x": "FUENTES"
+  },
+  {
+   "t": "li",
+   "x": "1 Baymard Institute, Readability: The Optimal Line Length (2022)"
+  },
+  {
+   "t": "li",
+   "x": "2 W3C, WCAG 2.2: contraste mínimo"
+  },
+  {
+   "t": "li",
+   "x": "3 Google, Lighthouse: Document doesn't use legible font sizes"
+  },
+  {
+   "t": "p",
+   "x": "Soy Mario Bencomo, diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+  },
+  {
+   "t": "h2",
+   "x": "Otras notas"
+  },
+  {
+   "t": "h3",
+   "x": "Qué colores dan confianza en una página web."
+  },
+  {
+   "t": "p",
+   "x": "Si buscas «el color de la confianza» vas a leer mil veces «azul». No está mal, pero se queda corto: la confianza depende más de cómo usas el color que del color que eliges."
+  },
+  {
+   "t": "h3",
+   "x": "Dónde poner tu logo en tu página web."
+  },
+  {
+   "t": "p",
+   "x": "Parece un detalle, pero el lugar de tu logo cambia qué tanto te recuerdan y qué tan fácil es moverse por tu página. Y la respuesta es menos creativa de lo que crees: arriba a la izquierda."
+  },
+  {
+   "t": "h2",
+   "x": "¿Listo para construir algo increíble?"
+  },
+  {
+   "t": "p",
+   "x": "Cuéntame tu proyecto y te respondo con una propuesta clara y un plan de trabajo."
+  },
+  {
+   "t": "li",
+   "x": "WhatsApp +52 667 496 2484"
+  },
+  {
+   "t": "li",
+   "x": "LinkedIn Mario Bencomo"
+  },
+  {
+   "t": "li",
+   "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "li",
+   "x": "Instagram @mario_bencomo06"
+  }
+ ],
  "/sobre-mi": [
   {
    "t": "h1",
