@@ -30,5 +30,18 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Vercel Web Analytics + Speed Insights: no cookies, only on the real domain (not on localhost or previews) -->
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+      if (/(^|\.)mariobencomodev\.com$/.test(location.hostname)) {
+        ["/_vercel/insights/script.js", "/_vercel/speed-insights/script.js"].forEach(function (src) {
+          var s = document.createElement("script");
+          s.src = src;
+          s.defer = true;
+          document.body.appendChild(s);
+        });
+      }
+    </script>
   </body>
 </html>

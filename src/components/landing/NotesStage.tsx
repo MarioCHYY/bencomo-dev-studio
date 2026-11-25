@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { NotesHandle } from "./NotesScene";
 
 /** The blog's 3D: the notes as a ring of cards. With `focus`, that note's card turns to the front. */
-export default function NotesStage({ focus = null, label, className = "" }: { focus?: number | null; label: string; className?: string }) {
+export default function NotesStage({ focus = null, es = true, label, className = "" }: { focus?: number | null; es?: boolean; label: string; className?: string }) {
   const host = useRef<HTMLDivElement>(null);
   const handle = useRef<NotesHandle | null>(null);
   const focusRef = useRef(focus);
@@ -32,7 +32,7 @@ export default function NotesStage({ focus = null, label, className = "" }: { fo
     import("./NotesScene")
       .then(({ createNotes }) => {
         if (cancelled) return;
-        handle.current = createNotes(el, { reducedMotion, focus: focusRef.current });
+        handle.current = createNotes(el, { reducedMotion, focus: focusRef.current, es });
       })
       .catch(() => setFailed(true));
     return () => {
@@ -40,7 +40,7 @@ export default function NotesStage({ focus = null, label, className = "" }: { fo
       handle.current?.dispose();
       handle.current = null;
     };
-  }, []);
+  }, [es]);
 
   return (
     <div className={`relative ${className}`}>

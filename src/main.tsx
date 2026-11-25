@@ -3,6 +3,9 @@ import App from "./App.tsx";
 import ErrorBoundary from "./components/ErrorBoundary";
 import "@fontsource-variable/plus-jakarta-sans";
 import "./index.css";
+import { trackContactClicks } from "./lib/trackClicks";
+
+trackContactClicks();
 
 createRoot(document.getElementById("root")!).render(
   <ErrorBoundary>

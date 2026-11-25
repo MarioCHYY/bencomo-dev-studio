@@ -22,6 +22,7 @@ const Navbar = () => {
     { label: t(translations.nav.about), href: "/sobre-mi" },
     { label: t(translations.nav.projects), href: "/portafolio" },
     { label: t(translations.nav.services), href: "/servicios" },
+    { label: t(translations.nav.notes), href: "/notas" },
     { label: t(translations.nav.contact), href: "/contacto" },
   ];
 

@@ -4891,6 +4891,78 @@
   {
    "t": "li",
    "x": "GitHub @MarioCHYY"
+  },
+  {
+   "t": "h2",
+   "x": "Después de que me escribes."
+  },
+  {
+   "t": "h3",
+   "x": "Me escribes"
+  },
+  {
+   "t": "p",
+   "x": "Por WhatsApp, por correo o con el formulario de arriba. Cuéntame de tu negocio y qué quieres lograr; no necesitas saber de diseño ni de programación."
+  },
+  {
+   "t": "h3",
+   "x": "Te pregunto lo necesario"
+  },
+  {
+   "t": "p",
+   "x": "Para entender tu proyecto: a quién le vendes, qué te está frenando hoy y qué tienes ya (logo, fotos, una página actual)."
+  },
+  {
+   "t": "h3",
+   "x": "Recibes una propuesta por escrito"
+  },
+  {
+   "t": "p",
+   "x": "Con el alcance, el precio y el plan de trabajo. Si te convence, empezamos; si no, no pasa nada."
+  },
+  {
+   "t": "h2",
+   "x": "Lo que suelen preguntarme."
+  },
+  {
+   "t": "h3",
+   "x": "¿Qué necesito para empezar?"
+  },
+  {
+   "t": "p",
+   "x": "Solo contarme de tu negocio y qué quieres lograr. Si tienes logo, fotos o una página actual, mándamelos; si no, lo vemos juntos."
+  },
+  {
+   "t": "h3",
+   "x": "¿Cuánto cuesta?"
+  },
+  {
+   "t": "p",
+   "x": "Depende del alcance y de lo que necesites que haga. Después de entender tu proyecto te mando una propuesta por escrito con el precio y todo lo que incluye."
+  },
+  {
+   "t": "h3",
+   "x": "¿Tú haces el diseño y también lo programas?"
+  },
+  {
+   "t": "p",
+   "x": "Sí. Diseño la experiencia, la programo y, si hace falta, también la marca. Hablas con la misma persona de principio a fin."
+  },
+  {
+   "t": "h3",
+   "x": "Ya tengo una página, ¿la puedes mejorar?"
+  },
+  {
+   "t": "p",
+   "x": "Sí. Empiezo revisando lo que tienes: diseño, estructura, velocidad, cómo se ve en celular y qué tanto la entiende Google. Con eso te digo qué conviene mantener y qué cambiar."
+  },
+  {
+   "t": "h3",
+   "x": "¿Por dónde es mejor escribirte?"
+  },
+  {
+   "t": "p",
+   "x": "Por donde te sea más cómodo: WhatsApp, correo o el formulario de esta página. Todos los mensajes los leo yo."
   }
  ],
  "/privacidad": [
@@ -4920,11 +4992,19 @@
   },
   {
    "t": "h2",
+   "x": "Estadísticas de visitas"
+  },
+  {
+   "t": "p",
+   "x": "Para saber qué páginas se visitan y qué tan rápido cargan, este sitio usa Vercel Web Analytics y Vercel Speed Insights. No usan cookies de terceros ni guardan quién eres: registran de forma anónima la página visitada, de qué sitio llegaste, tu país, tu tipo de dispositivo, tu navegador y el tiempo de carga, solo para estadísticas generales. Para contar visitas usan un código temporal que se borra a las 24 horas. También cuentan, sin datos tuyos, cuántas veces se toca un botón de WhatsApp o de correo."
+  },
+  {
+   "t": "h2",
    "x": "Preferencias en tu navegador"
   },
   {
    "t": "p",
-   "x": "Este sitio no usa cookies de rastreo ni herramientas de analítica. Solo guarda en tu navegador el idioma y el tema (claro u oscuro) que elijas; puedes borrarlos cuando quieras. Las animaciones y modelos 3D corren en tu propio dispositivo y no envían información. Algunos íconos se cargan desde jsDelivr, un servicio público de archivos."
+   "x": "Este sitio no usa cookies de rastreo. Solo guarda en tu navegador el idioma y el tema (claro u oscuro) que elijas; puedes borrarlos cuando quieras. Las animaciones y modelos 3D corren en tu propio dispositivo y no envían información. Algunos íconos se cargan desde jsDelivr, un servicio público de archivos."
   },
   {
    "t": "h2",

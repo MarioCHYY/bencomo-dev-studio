@@ -30,7 +30,25 @@ const N = 8;
 const CW = 512; // card texture size
 const CH = 640;
 const AURORA = ["#8FB0FF", "#B7A8FF", "#FF9AB0", "#FFC48A"];
-const KICKERS = ["Credibilidad", "Color", "Primera impresión", "Restaurantes", "Contacto", "Fotografía", "Marca", "Tipografía"];
+const TEXT = {
+  es: {
+    kickers: ["Credibilidad", "Color", "Primera impresión", "Restaurantes", "Contacto", "Fotografía", "Marca", "Tipografía"],
+    welcome: "Bienvenidos a…",
+    dish: ["Aguachile", "que pica."],
+    chat: "Hola, quiero cotizar",
+    button: "Cotiza por WhatsApp",
+    brand: "tu marca",
+  },
+  en: {
+    kickers: ["Credibility", "Color", "First impression", "Restaurants", "Contact", "Photography", "Brand", "Typography"],
+    welcome: "Welcome to…",
+    dish: ["Aguachile", "with a kick."],
+    chat: "Hi, I'd like a quote",
+    button: "Quote on WhatsApp",
+    brand: "your brand",
+  },
+};
+type Copy = (typeof TEXT)["es"];
 
 type Pal = { card: string; ink: string; soft: string; line: string };
 const palette = (dark: boolean): Pal =>
@@ -52,6 +70,16 @@ function aurora(c: CanvasRenderingContext2D, x0: number, x1: number) {
   const g = c.createLinearGradient(x0, 0, x1, 0);
   AURORA.forEach((col, i) => g.addColorStop(i / 3, col));
   return g;
+}
+
+/** sets the font at `size`, shrinking it until `text` fits in `max` pixels (English runs longer) */
+function fit(c: CanvasRenderingContext2D, text: string, max: number, size: number, font: (px: number) => string) {
+  let px = size;
+  c.font = font(px);
+  while (px > 12 && c.measureText(text).width > max) {
+    px -= 1;
+    c.font = font(px);
+  }
 }
 
 const SANS = '"Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif';
@@ -79,7 +107,7 @@ function drawBack(p: Pal): HTMLCanvasElement {
 }
 
 /** one card: the frame, the drawing of its idea, and its label */
-function drawCard(i: number, p: Pal): HTMLCanvasElement {
+function drawCard(i: number, p: Pal, T: Copy): HTMLCanvasElement {
   const cv = document.createElement("canvas");
   cv.width = CW;
   cv.height = CH;
@@ -103,7 +131,7 @@ function drawCard(i: number, p: Pal): HTMLCanvasElement {
   c.fillStyle = p.soft;
   c.font = `600 26px ${SANS}`;
   c.textBaseline = "alphabetic";
-  c.fillText(KICKERS[i].toUpperCase().split("").join(String.fromCharCode(8202)), 44, 76);
+  c.fillText(T.kickers[i].toUpperCase().split("").join(String.fromCharCode(8202)), 44, 76);
   c.textAlign = "right";
   c.fillStyle = p.ink;
   c.font = `500 26px ui-monospace, "JetBrains Mono", monospace`;
@@ -117,16 +145,16 @@ function drawCard(i: number, p: Pal): HTMLCanvasElement {
   switch (i) {
     case 0: {
       // "Bienvenidos a…", struck out
-      c.font = `700 50px ${SANS}`;
+      fit(c, T.welcome, CW - 140, 50, (px) => `700 ${px}px ${SANS}`);
       c.textAlign = "center";
       c.fillStyle = p.soft;
-      c.fillText("Bienvenidos a…", cx, cy - 40);
+      c.fillText(T.welcome, cx, cy - 40);
       c.fillStyle = aurora(c, 70, CW - 70);
       c.fillRect(70, cy - 57, CW - 140, 7);
       c.fillStyle = p.ink;
       c.font = `italic 400 64px ${SERIF}`;
-      c.fillText("Aguachile", cx, cy + 66);
-      c.fillText("que pica.", cx, cy + 128);
+      c.fillText(T.dish[0], cx, cy + 66);
+      c.fillText(T.dish[1], cx, cy + 128);
       break;
     }
     case 1: {
@@ -184,9 +212,9 @@ function drawCard(i: number, p: Pal): HTMLCanvasElement {
       rr(c, 150, cy - 130, 300, 96, 32);
       c.fill();
       c.fillStyle = p.ink;
-      c.font = `500 28px ${SANS}`;
+      fit(c, T.chat, 250, 28, (px) => `500 ${px}px ${SANS}`);
       c.textAlign = "left";
-      c.fillText("Hola, quiero cotizar", 178, cy - 72);
+      c.fillText(T.chat, 178, cy - 72);
       c.fillStyle = p.ink;
       rr(c, 64, cy + 10, CW - 128, 104, 52);
       c.fill();
@@ -195,8 +223,8 @@ function drawCard(i: number, p: Pal): HTMLCanvasElement {
       c.arc(128, cy + 62, 13, 0, Math.PI * 2);
       c.fill();
       c.fillStyle = p.card;
-      c.font = `700 34px ${SANS}`;
-      c.fillText("Cotiza por WhatsApp", 160, cy + 74);
+      fit(c, T.button, CW - 64 - 160 - 36, 34, (px) => `700 ${px}px ${SANS}`);
+      c.fillText(T.button, 160, cy + 74);
       break;
     }
     case 5: {
@@ -243,9 +271,9 @@ function drawCard(i: number, p: Pal): HTMLCanvasElement {
       rr(c, 88, cy - 124, 28, 28, 8);
       c.fill();
       c.fillStyle = p.ink;
-      c.font = `700 24px ${SANS}`;
+      fit(c, T.brand, 104, 24, (px) => `700 ${px}px ${SANS}`);
       c.textAlign = "left";
-      c.fillText("tu marca", 126, cy - 101);
+      c.fillText(T.brand, 126, cy - 101);
       c.fillStyle = p.line;
       [0.8, 0.6, 0.7].forEach((w, k) => {
         rr(c, 84, cy - 30 + k * 44, (CW - 168) * w, 18, 9);
@@ -265,8 +293,9 @@ function drawCard(i: number, p: Pal): HTMLCanvasElement {
   return cv;
 }
 
-export function createNotes(host: HTMLElement, opts: { reducedMotion: boolean; focus: number | null }): NotesHandle {
+export function createNotes(host: HTMLElement, opts: { reducedMotion: boolean; focus: number | null; es: boolean }): NotesHandle {
   const { reducedMotion } = opts;
+  const T = opts.es ? TEXT.es : TEXT.en;
   const pix = Math.min(window.devicePixelRatio || 1, 2);
   const renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
   renderer.setPixelRatio(pix);
@@ -295,7 +324,7 @@ export function createNotes(host: HTMLElement, opts: { reducedMotion: boolean; f
   backTex.colorSpace = SRGBColorSpace;
   const backMats: MeshBasicMaterial[] = [];
   const cards = Array.from({ length: N }, (_, i) => {
-    const tex = new CanvasTexture(drawCard(i, palette(isDark())));
+    const tex = new CanvasTexture(drawCard(i, palette(isDark()), T));
     tex.colorSpace = SRGBColorSpace;
     tex.minFilter = LinearFilter;
     tex.anisotropy = 4;
@@ -319,7 +348,7 @@ export function createNotes(host: HTMLElement, opts: { reducedMotion: boolean; f
   const repaint = () => {
     const p = palette(isDark());
     cards.forEach(({ tex }, i) => {
-      tex.image = drawCard(i, p);
+      tex.image = drawCard(i, p, T);
       tex.needsUpdate = true;
     });
     backTex.image = drawBack(p);

@@ -9,6 +9,7 @@ export const translations = {
     projects: { en: "My Work", es: "Mi Trabajo" },
     skills: { en: "Skills", es: "Habilidades" },
     services: { en: "Services", es: "Servicios" },
+    notes: { en: "Notes", es: "Notas" },
     contact: { en: "Contact", es: "Contacto" },
     cta: { en: "Let's Work Together", es: "Trabajemos Juntos" },
   },

@@ -16,6 +16,7 @@ import {
 } from "@/components/landing/LandingUI";
 import Compare from "@/components/landing/Compare";
 import { NOTES, note, titleText, type Block, type Note } from "@/content/notes";
+import { inLang } from "@/content/notes-en";
 import NotesStage from "@/components/landing/NotesStage";
 import NoteTitle from "@/components/landing/NoteTitle";
 import NoteCard from "@/components/landing/NoteCard";
@@ -46,7 +47,7 @@ const COMPARE_NAMES: Record<string, string> = {
   fierro: "Fierro",
 };
 
-function Body({ b }: { b: Block }) {
+function Body({ b, es }: { b: Block; es: boolean }) {
   if ("p" in b)
     return (
       <p className="text-white/75 text-[17px] md:text-lg leading-[1.75]">
@@ -104,7 +105,7 @@ function Body({ b }: { b: Block }) {
             href={`#fuente-${b.fact.src + 1}`}
             className="text-white/45 hover:text-white text-sm whitespace-nowrap underline decoration-white/20 underline-offset-4"
           >
-            Fuente {b.fact.src + 1}
+            {es ? "Fuente" : "Source"} {b.fact.src + 1}
           </a>
         </figcaption>
       </figure>
@@ -177,10 +178,11 @@ function Body({ b }: { b: Block }) {
   if ("compare" in b)
     return (
       <div className="my-2 flex flex-col gap-3">
-        <Compare id={b.compare} name={COMPARE_NAMES[b.compare]} es />
+        <Compare id={b.compare} name={COMPARE_NAMES[b.compare]} es={es} />
         <p className="text-[13px] text-white/45">
-          {COMPARE_NAMES[b.compare]}, un negocio inventado: versión genérica
-          contra versión diseñada.
+          {es
+            ? `${COMPARE_NAMES[b.compare]}, un negocio inventado: versión genérica contra versión diseñada.`
+            : `${COMPARE_NAMES[b.compare]}, a made-up business: generic version versus designed version.`}
         </p>
       </div>
     );
@@ -191,9 +193,10 @@ function Body({ b }: { b: Block }) {
 const NoteDetail = () => {
   useSmoothScroll();
   const { slug } = useParams();
-  const n = note(slug);
   const { lang } = useLang();
   const es = lang === "es";
+  const found = note(slug);
+  const n = found && inLang(found, es);
   useEffect(() => {
     scrollToTop();
   }, [slug]);
@@ -205,7 +208,7 @@ const NoteDetail = () => {
       </Suspense>
     );
 
-  const related = n.related.map((s) => note(s)).filter(Boolean) as Note[];
+  const related = (n.related.map((s) => note(s)).filter(Boolean) as Note[]).map((r) => inLang(r, es));
 
   return (
     <main className="min-h-screen">
@@ -270,11 +273,6 @@ const NoteDetail = () => {
                     {es ? `${n.read} min de lectura` : `${n.read} min read`}
                   </span>
                 </div>
-                {!es && (
-                  <p className="text-[13px] text-white/50">
-                    This note is only available in Spanish.
-                  </p>
-                )}
               </motion.div>
             </div>
             {/* the blog's 3D, turned so this note's card is in front (wide screens only: on a phone, straight to reading) */}
@@ -285,6 +283,7 @@ const NoteDetail = () => {
               transition={{ duration: 1.1, ease, delay: 0.2 }}
             >
               <NotesStage
+                es={es}
                 focus={NOTES.findIndex((x) => x.slug === n.slug)}
                 label={titleText(n)}
                 className="w-full aspect-[4/5] -my-6"
@@ -296,13 +295,13 @@ const NoteDetail = () => {
         <div className="relative z-20 border-t border-white/[0.08]">
           <div
             className="max-w-7xl mx-auto px-6 md:px-8 py-14 md:py-20 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] gap-12 lg:gap-20"
-            lang="es-MX"
+            lang={es ? "es-MX" : "en"}
           >
             <nav
-              aria-label="En esta nota"
+              aria-label={es ? "En esta nota" : "In this note"}
               className="hidden lg:flex flex-col gap-4 lg:sticky lg:top-32 lg:self-start"
             >
-              <Kicker label="En esta nota" />
+              <Kicker label={es ? "En esta nota" : "In this note"} />
               <ol className="flex flex-col gap-2.5 border-l border-white/[0.09]">
                 {n.sections.map((s) => (
                   <li key={s.h}>
@@ -331,14 +330,14 @@ const NoteDetail = () => {
                     {s.h}
                   </h2>
                   {s.body.map((b, i) => (
-                    <Body key={i} b={b} />
+                    <Body key={i} b={b} es={es} />
                   ))}
                 </section>
               ))}
 
               <section className="flex flex-col gap-5 pt-10 border-t border-white/[0.09]">
                 <h2 className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/55">
-                  Fuentes
+                  {es ? "Fuentes" : "Sources"}
                 </h2>
                 <ol className="flex flex-col gap-3">
                   {n.sources.map((s, i) => (
@@ -374,26 +373,28 @@ const NoteDetail = () => {
                 />
                 <div className="flex flex-col gap-3">
                   <p className="text-white/75 text-base leading-relaxed">
-                    Soy{" "}
+                    {es ? "Soy" : "I'm"}{" "}
                     <Link
                       to="/sobre-mi"
                       className="text-white underline decoration-[#B7A8FF] underline-offset-4"
                     >
                       Mario Bencomo
                     </Link>
-                    , diseñador UI/UX y desarrollador web en Culiacán. Diseño y
-                    programo páginas para negocios que quieren verse como lo que
-                    son.
+                    {es
+                      ? ", diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
+                      : ", a UI/UX designer and web developer in Culiacán, Mexico. I design and build websites for businesses that want to look like what they are."}
                   </p>
                   <a
                     href={whatsapp(
-                      `Hola Mario, leí tu nota "${titleText(n)}" y quiero que revises mi página.`,
+                      es
+                        ? `Hola Mario, leí tu nota "${titleText(n)}" y quiero que revises mi página.`
+                        : `Hi Mario, I read your note "${titleText(n)}" and I'd like you to review my website.`,
                     )}
                     target="_blank"
                     rel="noreferrer"
                     className="group self-start inline-flex items-center gap-2 rounded-full bg-brand text-black px-5 py-3 text-sm font-semibold hover:bg-brand/90 transition-colors"
                   >
-                    Que revise mi página
+                    {es ? "Que revise mi página" : "Review my website"}
                     <ArrowUpRight
                       size={16}
                       className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

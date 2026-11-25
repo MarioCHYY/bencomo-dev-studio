@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { AURORA } from "@/components/landing/LandingUI";
 import type { Note } from "@/content/notes";
+import { inLang } from "@/content/notes-en";
 import NoteTitle from "./NoteTitle";
 
 /** a design note in a list: kicker, title with the serif ending, the lead */
 export default function NoteCard({
-  n,
+  n: original,
   es,
   big,
 }: {
@@ -14,6 +15,7 @@ export default function NoteCard({
   es: boolean;
   big?: boolean;
 }) {
+  const n = inLang(original, es);
   return (
     <Link
       to={`/notas/${n.slug}`}

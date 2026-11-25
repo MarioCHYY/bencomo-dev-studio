@@ -1,7 +1,7 @@
 /**
  * "Notas de diseño": short, practical articles for business owners, about design only.
  * Every number in here comes from the source listed under the article; nothing is estimated.
- * The articles are written in Spanish (that's who searches for them); the English switch shows a note.
+ * Written in Spanish (that's who searches for them); the English version lives in notes-en.ts.
  */
 
 export type Block =

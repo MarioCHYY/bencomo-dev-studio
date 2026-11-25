@@ -71,7 +71,7 @@ const Notes = () => {
             >
               {es
                 ? "Lo que hace que una página dé confianza y que la gente te escriba, explicado para quien tiene un negocio. Cada dato viene con su fuente."
-                : "What makes a website trustworthy and gets people to message you, explained for business owners. Every figure comes with its source. The notes are written in Spanish."}
+                : "What makes a website trustworthy and gets people to message you, explained for business owners. Every figure comes with its source."}
             </motion.p>
           </div>
           {/* the blog's own 3D: every note, as a card in a slowly turning ring */}
@@ -81,6 +81,7 @@ const Notes = () => {
             transition={{ duration: 1.1, ease, delay: 0.2 }}
           >
             <NotesStage
+              es={es}
               label={
                 es
                   ? "Las notas de diseño, como tarjetas que giran en un anillo"

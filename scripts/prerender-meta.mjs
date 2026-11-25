@@ -91,6 +91,56 @@ const business = {
   },
 };
 
+// ---- speed: each page preloads its own code and the fonts its first screen uses, so the browser
+// fetches them in parallel with the main bundle instead of one after the other
+const manifestPath = path.join(dist, ".vite", "manifest.json");
+const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : {};
+const PAGE_SRC = [
+  ["/notas/", "src/pages/NoteDetail.tsx"],
+  ["/servicios/", "src/pages/ServiceDetail.tsx"],
+  ["/portafolio/corte", "src/pages/CaseCorte.tsx"],
+  ["/portafolio/tachado", "src/pages/CaseTachado.tsx"],
+  ["/portafolio", "src/pages/Portfolio.tsx"],
+  ["/servicios", "src/pages/Services.tsx"],
+  ["/notas", "src/pages/Notes.tsx"],
+  ["/diseno-web-culiacan", "src/pages/WebDesignCuliacan.tsx"],
+  ["/ejemplos-paginas-web", "src/pages/Ejemplos.tsx"],
+  ["/herramientas/tarjeta-qr", "src/pages/QrCardTool.tsx"],
+  ["/sobre-mi", "src/pages/About.tsx"],
+  ["/contacto", "src/pages/Contact.tsx"],
+  ["/privacidad", "src/pages/Privacy.tsx"],
+];
+const entryKey = Object.keys(manifest).find((k) => manifest[k].isEntry);
+const inEntry = new Set();
+(function walk(k) {
+  const m = manifest[k];
+  if (!m || inEntry.has(m.file)) return;
+  inEntry.add(m.file);
+  (m.imports || []).forEach(walk);
+})(entryKey);
+const fontFile = (needle) => {
+  const f = fs.readdirSync(path.join(dist, "assets")).find((n) => n.includes(needle) && n.endsWith(".woff2"));
+  return f ? `/assets/${f}` : null;
+};
+const SANS_FONT = fontFile("plus-jakarta-sans-latin-wght-normal");
+function preloadsFor(route) {
+  const src = route === "/" ? "src/pages/Index.tsx" : PAGE_SRC.find(([r]) => (r.endsWith("/") ? route.startsWith(r) : route === r))?.[1];
+  const files = [];
+  const seen = new Set();
+  (function walk(k) {
+    const m = manifest[k];
+    if (!m || seen.has(k)) return;
+    seen.add(k);
+    if (!inEntry.has(m.file)) files.push(m.file);
+    (m.imports || []).forEach(walk);
+  })(src);
+  let out = files.map((f) => `    <link rel="modulepreload" crossorigin href="/${f}" />
+`).join("");
+  if (SANS_FONT) out += `    <link rel="preload" as="font" type="font/woff2" crossorigin href="${SANS_FONT}" />\n`;
+  out += `    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/instrument-serif-latin-400-italic.woff2" />\n`;
+  return out;
+}
+
 // the sources listed under each note, read straight from src/content/notes.ts
 const notesSrc = fs.readFileSync(new URL("../src/content/notes.ts", import.meta.url), "utf8");
 const noteSources = (route) => {
@@ -202,7 +252,7 @@ function graphFor(route) {
       g.push(business, { "@type": "WebPage", ...page, about: { "@id": BIZ_ID }, breadcrumb: crumbs(route) });
       break;
     case "/contacto":
-      g.push(business, { "@type": "ContactPage", ...page, about: { "@id": BIZ_ID }, breadcrumb: crumbs(route) });
+      g.push(business, { "@type": "ContactPage", ...page, about: { "@id": BIZ_ID }, breadcrumb: crumbs(route) }, ...faqPage(route, faqFrom(route)));
       break;
     case "/herramientas/tarjeta-qr":
       g.push(
@@ -331,6 +381,7 @@ const NAV = [
   ["/sobre-mi", "Sobre mí"],
   ["/portafolio", "Mi trabajo"],
   ["/servicios", "Servicios"],
+  ["/notas", "Notas"],
   ["/contacto", "Contacto"],
 ];
 
@@ -360,7 +411,6 @@ function textFor(route) {
     ["/portafolio/tachado", "Tachado, caso de estudio"],
     ["/diseno-web-culiacan", "Diseño de páginas web en Culiacán"],
     ["/ejemplos-paginas-web", "Ejemplos de páginas web: antes y después"],
-    ["/notas", "Notas de diseño"],
     ["/herramientas/tarjeta-qr", "Diseña la tarjeta QR de tu negocio"],
   ]
     .map(([href, name]) => `<a href="${href}">${esc(name)}</a>`)
@@ -403,7 +453,7 @@ for (const [route, p] of Object.entries(pages)) {
   html = html.replace(/<link rel="canonical"[^>]*>/i, "");
   html = html.replace(
     "</head>",
-    `    <link rel="canonical" href="${url}" />\n    <script type="application/ld+json">${graphFor(route)}</script>\n    ${PRERENDER_CSS}\n  </head>`,
+    `${preloadsFor(route)}    <link rel="canonical" href="${url}" />\n    <script type="application/ld+json">${graphFor(route)}</script>\n    ${PRERENDER_CSS}\n  </head>`,
   );
   html = html.replace(/<div id="root">\s*<\/div>/, `<div id="root">${textFor(route)}</div>`);
   const out = route === "/" ? path.join(dist, "index.html") : path.join(dist, route, "index.html");
@@ -411,6 +461,9 @@ for (const [route, p] of Object.entries(pages)) {
   fs.writeFileSync(out, html);
   console.log("seo:", route, `(${(snapshots[route] || []).length} bloques de texto)`);
 }
+
+// done with the build manifest: it isn't something to publish
+fs.rmSync(path.join(dist, ".vite"), { recursive: true, force: true });
 
 // 404: the app shell (React shows its "not found" page), marked so it's never indexed
 {

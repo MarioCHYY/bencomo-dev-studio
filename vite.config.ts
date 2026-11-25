@@ -13,6 +13,8 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    // the prerender reads it to preload each page's own code (then deletes it)
+    manifest: true,
     rollupOptions: {
       output: {
         manualChunks: {
