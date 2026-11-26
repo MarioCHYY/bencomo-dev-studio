@@ -54,7 +54,7 @@ const ServicesSection = () => {
           {/* ---------- copy */}
           <div className="min-w-0 order-2 lg:order-1 flex flex-col gap-6">
             <SectionHeading
-              index="04"
+              index="05"
               size="md"
               label={t(s.title)}
               title={t({ en: "What I can build", es: "Lo que puedo construir" })}

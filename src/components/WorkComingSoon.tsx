@@ -85,7 +85,9 @@ const ReelHero = ({ es }: { es: boolean }) => {
           {es ? "Nuevo caso: Tachado" : "New case: Tachado"}
         </span>
         <h1 className="font-heading font-semibold text-white text-[2.6rem] sm:text-6xl lg:text-7xl leading-[0.98] -tracking-[0.05em]" style={{ textWrap: "balance" } as Record<string, string>}>
-          {es ? "Proyectos," : "Projects,"} <span className="text-white/45">{es ? "con su proceso." : "with their process."}</span>
+          {es ? "Proyectos," : "Projects,"} <span className="text-white/45">{es ? "con su" : "with their"}</span>
+          <span className="[word-spacing:0.08em]"> </span>
+          <span className="font-serif-display font-normal italic -tracking-[0.01em] text-[1.1em]">{es ? "proceso." : "process."}</span>
         </h1>
         <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-md">
           {es
@@ -171,7 +173,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           </>
         ) : (
         <SectionHeading
-          index="03"
+          index="04"
           label={es ? "Mi trabajo" : "My work"}
           title={es ? "Casos de estudio," : "Case studies,"}
           muted={es ? "con su proceso." : "with their process."}

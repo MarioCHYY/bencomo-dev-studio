@@ -331,6 +331,15 @@ html.reveal-off [data-reveal] video { scale: 1; }
   font-display: swap;
   src: url("/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
 }
+/*
+ * How the titles speak (the rule every page follows):
+ * - Grey words: in every title, for the quieter half of the sentence.
+ * - The serif italic: one word per main title, and only on pages that tell something
+ *   (home statement, about, cases, portfolio, notes, examples, the Culiacán page).
+ *   Reference pages people come to look things up (services, the QR tool, contact, privacy) stay without it, to read fast.
+ * - The aurora brushstroke under a word: once per page at most, only on the page's main promise
+ *   (home: "marca." in the statement; Culiacán: "Culiacán."; examples: "diseñada.").
+ */
 .font-serif-display { font-family: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif; }
 .font-code { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
 .statement-caret {

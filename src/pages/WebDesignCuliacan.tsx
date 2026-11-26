@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { scrollToTop } from "@/lib/scrollTop";
 import { MoreLink } from "@/components/ui/more-link";
 import GlobeCuliacan from "@/components/landing/GlobeCuliacan";
+import CompareShowcase from "@/components/landing/CompareShowcase";
 import LocalJourney from "@/components/landing/LocalJourney";
 import { Starfield } from "@/components/ui/starfield";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
@@ -113,19 +114,39 @@ const WebDesignCuliacan = () => {
         </div>
       </section>
 
-      <Section n="02" label={es ? "Qué hago" : "What I do"} title={es ? "Lo que puedo hacer por tu negocio." : "What I can do for your business."}>
+      {/* ---------------------------------------------------------------- generic vs designed, live */}
+      <section className="relative z-20 py-16 md:py-24 border-t border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 flex flex-col gap-10 md:gap-14">
+          <div className="flex flex-col gap-6 max-w-3xl">
+            <Kicker n="02" label={es ? "Antes y después" : "Before and after"} />
+            <h2 className="font-heading font-semibold text-white text-3xl md:text-5xl lg:text-6xl -tracking-[0.045em] leading-[1.02]" style={{ textWrap: "balance" } as Record<string, string>}>
+              <span className="text-white/35">{es ? "Página genérica contra" : "A generic page versus"}</span> {es ? "página" : "a"}
+              <span className="[word-spacing:0.08em]"> </span>
+              <span className="font-serif-display font-normal italic -tracking-[0.01em] text-[1.1em]">{es ? "diseñada." : "designed one."}</span>
+            </h2>
+            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-xl">
+              {es
+                ? "Así se ve la diferencia entre una página hecha en automático y una pensada para que te escriban. Arrastra la línea."
+                : "This is the difference between an auto-made page and one designed to get people to message you. Drag the line."}
+            </p>
+          </div>
+          <CompareShowcase es={es} />
+        </div>
+      </section>
+
+      <Section n="03" label={es ? "Qué hago" : "What I do"} title={es ? "Lo que puedo hacer por tu negocio." : "What I can do for your business."}>
         <Cards items={LOCAL.kinds.map((k) => ({ title: L(k.title), text: L(k.text), to: `/servicios/${k.id}` }))} />
       </Section>
 
-      <Section n="03" label={es ? "Qué incluye" : "What's included"} title={es ? "Toda página que hago lleva esto." : "Every site I make includes this."}>
+      <Section n="04" label={es ? "Qué incluye" : "What's included"} title={es ? "Toda página que hago lleva esto." : "Every site I make includes this."}>
         <CheckList items={LOCAL.includes.map(L)} />
       </Section>
 
-      <Section n="04" label={es ? "Por qué conmigo" : "Why me"} title={es ? "Diseño, código y marca. Hechos por la misma persona." : "Design, code and brand. Made by the same person."}>
+      <Section n="05" label={es ? "Por qué conmigo" : "Why me"} title={es ? "Diseño, código y marca. Hechos por la misma persona." : "Design, code and brand. Made by the same person."}>
         <Cards items={LOCAL.why.map((w) => ({ title: L(w.title), text: L(w.text) }))} />
       </Section>
 
-      <Section n="05" label={es ? "Cómo trabajo" : "How I work"} title={es ? "Un proceso claro, sin sorpresas." : "A clear process, no surprises."}>
+      <Section n="06" label={es ? "Cómo trabajo" : "How I work"} title={es ? "Un proceso claro, sin sorpresas." : "A clear process, no surprises."}>
         <Steps es={es} />
       </Section>
 
@@ -133,7 +154,7 @@ const WebDesignCuliacan = () => {
         <ScreensWall />
       </Suspense>
 
-      <Section n="06" label={es ? "Preguntas" : "Questions"} title={es ? "Lo que suelen preguntarme." : "What people usually ask."}>
+      <Section n="07" label={es ? "Preguntas" : "Questions"} title={es ? "Lo que suelen preguntarme." : "What people usually ask."}>
         <Faqs items={LOCAL.faqs.map((f) => ({ q: L(f.q), a: L(f.a) }))} />
       </Section>
 

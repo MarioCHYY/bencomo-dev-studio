@@ -16,7 +16,8 @@ const channels = [
 ];
 
 /** Closing section: one big line, one clear action, and every way to reach me. */
-const CTASection = () => {
+/** `index`: its number in the page's sequence of sections (the home has one more section than the rest) */
+const CTASection = ({ index = "06" }: { index?: string }) => {
   const { t, lang } = useLang();
   const es = lang === "es";
   const c = translations.ctaSection;
@@ -49,7 +50,7 @@ const CTASection = () => {
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-8">
-        <SectionHeading index="06" label={es ? "Contacto" : "Contact"} />
+        <SectionHeading index={index} label={es ? "Contacto" : "Contact"} />
 
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

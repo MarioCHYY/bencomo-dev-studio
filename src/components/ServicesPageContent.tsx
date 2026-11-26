@@ -234,6 +234,11 @@ const ServicesPageContent = () => {
                         {es ? "Ver todo sobre este servicio" : "Everything about this service"}
                         <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </Link>
+                      {["sitios-web", "rediseno-web", "ui-ux"].includes(it.id) && (
+                        <Link to="/ejemplos-paginas-web" className="w-fit text-sm font-semibold text-white/55 hover:text-white transition-colors">
+                          {es ? "Ver ejemplos antes y después" : "See before-and-after examples"}
+                        </Link>
+                      )}
                       <Link to="/contacto" className="w-fit text-sm font-semibold text-white/55 hover:text-white transition-colors">
                         {es ? "Cotizar este servicio" : "Get a quote for this"}
                       </Link>

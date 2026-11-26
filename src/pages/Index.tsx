@@ -11,6 +11,7 @@ const ProjectsSection = lazy(() => import("@/components/WorkComingSoon"));
 const ServicesSection = lazy(() => import("@/components/ServicesSection"));
 const ScreensWall = lazy(() => import("@/components/ScreensWall"));
 const Statement = lazy(() => import("@/components/Statement"));
+const CompareSection = lazy(() => import("@/components/CompareSection"));
 const FaqSection = lazy(() => import("@/components/FaqSection"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -30,11 +31,13 @@ const Index = () => {
         <AboutSection />
         <ProcessSection />
         <Statement />
+        {/* the statement promises it; the comparison proves it */}
+        <CompareSection />
         <ProjectsSection />
         <ServicesSection />
         <ScreensWall />
         <FaqSection />
-        <CTASection />
+        <CTASection index="07" />
         <Footer />
       </Suspense>
     </main>

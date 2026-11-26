@@ -141,7 +141,7 @@ const ProjectsSection = () => {
   const header = (
     <motion.div style={pinned ? { y: headY } : undefined}>
       <SectionHeading
-        index="03"
+        index="04"
         label={t(p.label)}
         title={t(p.title)}
         muted={t({ en: "Recent projects.", es: "Proyectos recientes." })}

@@ -90,6 +90,22 @@
   },
   {
    "t": "h2",
+   "x": "Página genérica contra página diseñada."
+  },
+  {
+   "t": "p",
+   "x": "El mismo negocio, dos páginas. De un lado, la que sale de cualquier plantilla o de pedirle a una IA «hazme una página». Del otro, la que yo diseñaría. Arrastra la línea."
+  },
+  {
+   "t": "p",
+   "x": "Marejada. La carta con precios y el botón para pedir, en lugar de «Bienvenidos a…» y emojis."
+  },
+  {
+   "t": "p",
+   "x": "Negocios inventados para el ejemplo."
+  },
+  {
+   "t": "h2",
    "x": "Casos de estudio, con su proceso."
   },
   {
@@ -269,6 +285,22 @@
   {
    "t": "p",
    "x": "Ejemplo ilustrativo con un negocio inventado."
+  },
+  {
+   "t": "h2",
+   "x": "Página genérica contra página diseñada."
+  },
+  {
+   "t": "p",
+   "x": "Así se ve la diferencia entre una página hecha en automático y una pensada para que te escriban. Arrastra la línea."
+  },
+  {
+   "t": "p",
+   "x": "Marejada. La carta con precios y el botón para pedir, en lugar de «Bienvenidos a…» y emojis."
+  },
+  {
+   "t": "p",
+   "x": "Negocios inventados para el ejemplo."
   },
   {
    "t": "h2",

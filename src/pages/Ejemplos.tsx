@@ -364,7 +364,7 @@ const Ejemplos = () => {
             <span className="text-white/35">
               {es ? "Página genérica contra" : "A generic page versus"}
             </span>{" "}
-            {es ? "página" : "a page"}{" "}
+            {es ? "página" : "a page"}<span className="[word-spacing:0.08em]"> </span>
             {/* the one word in the serif, underlined by the aurora stroke that draws itself (same as the Culiacán page) */}
             <span className="relative inline-block whitespace-nowrap">
               <span className="font-serif-display font-normal italic text-[1.12em] -tracking-[0.01em] pr-[0.05em]">
