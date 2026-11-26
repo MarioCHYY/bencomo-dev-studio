@@ -4,8 +4,10 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import "@fontsource-variable/plus-jakarta-sans";
 import "./index.css";
 import { trackContactClicks } from "./lib/trackClicks";
+import { listenForStaleChunks } from "./lib/chunkReload";
 
 trackContactClicks();
+listenForStaleChunks();
 
 createRoot(document.getElementById("root")!).render(
   <ErrorBoundary>
