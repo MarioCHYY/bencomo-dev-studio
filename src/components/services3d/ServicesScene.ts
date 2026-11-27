@@ -35,6 +35,7 @@ import {
 } from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
+import { warmUp } from "./warmUp";
 
 /**
  * One small 3D render per service. The scene shows one model at a time and
@@ -1063,6 +1064,7 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
   }
   const onVis = () => !document.hidden && kick();
   document.addEventListener("visibilitychange", onVis);
+  await warmUp(renderer, scene, camera, models.map((m) => m.root));
   kick();
 
   return {

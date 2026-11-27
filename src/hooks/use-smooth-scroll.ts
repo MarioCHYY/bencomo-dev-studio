@@ -11,9 +11,10 @@ export function useSmoothScroll() {
     const touch = window.matchMedia("(pointer: coarse)").matches;
     if (reduce || touch) return;
 
+    // lerp 0.1 is Lenis' own default: below it the page trails the wheel and feels heavy
     const lenis = new Lenis({
-      lerp: 0.085,
-      wheelMultiplier: 0.95,
+      lerp: 0.1,
+      wheelMultiplier: 1,
       smoothWheel: true,
       anchors: true,
     });

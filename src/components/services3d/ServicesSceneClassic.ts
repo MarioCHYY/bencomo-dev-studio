@@ -35,6 +35,7 @@ import {
 } from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
+import { warmUp } from "./warmUp";
 
 /**
  * Classic (ambient) version, used by the home page section: each model just floats and loops gently.
@@ -666,6 +667,7 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
   }
   const onVis = () => !document.hidden && kick();
   document.addEventListener("visibilitychange", onVis);
+  await warmUp(renderer, scene, camera, models.map((m) => m.root));
   kick();
 
   return {
