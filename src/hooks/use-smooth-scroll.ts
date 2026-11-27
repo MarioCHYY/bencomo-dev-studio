@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 
 /**
- * Buttery smooth scrolling (Lenis) for the pages that use it.
- * Skipped for reduced motion and on touch devices, where native scrolling feels better.
+ * Smooth animated jumps (Lenis) for the pages that use it; scrolling itself stays native.
+ * Skipped for reduced motion and on touch devices.
  */
 export function useSmoothScroll() {
   useEffect(() => {
@@ -11,11 +11,12 @@ export function useSmoothScroll() {
     const touch = window.matchMedia("(pointer: coarse)").matches;
     if (reduce || touch) return;
 
-    // lerp 0.1 is Lenis' own default: below it the page trails the wheel and feels heavy
+    // The wheel and the trackpad scroll natively: the browser moves the page on its own thread,
+    // right away and with the system's own inertia. Smoothing the wheel in JavaScript made the
+    // page keep gliding for over a second after you stopped, which felt heavy. Lenis stays only
+    // for the animated jumps (anchors, the services index, back to top).
     const lenis = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 1,
-      smoothWheel: true,
+      smoothWheel: false,
       anchors: true,
     });
     // let page code (e.g. the services list) drive smooth jumps
