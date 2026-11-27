@@ -7,7 +7,7 @@
   },
   "/diseno-ui-ux-culiacan": {
     "title": "Diseño UI/UX y desarrollo de apps en Culiacán · Mario Bencomo",
-    "description": "Diseño UI/UX y desarrollo de apps para fundadores, startups y equipos en Culiacán: prototipos para validar tu idea, MVP, rediseño de producto y sistema de diseño.",
+    "description": "Diseño UI/UX y desarrollo de apps para fundadores y startups en Culiacán: prototipos para validar tu idea, MVP, rediseño de producto y sistema de diseño.",
     "image": "/og/diseno-ui-ux-culiacan.jpg",
     "name": "Diseño UI/UX en Culiacán"
   },
@@ -38,14 +38,14 @@
     "date": "2026-11-26"
   },
   "/notas/onboarding-de-tu-app": {
-    "title": "Onboarding de una app: cómo diseñar los primeros minutos · Mario Bencomo",
+    "title": "Cómo diseñar el onboarding de tu app · Mario Bencomo",
     "description": "La app promedio pierde el 77 % de sus usuarios activos en 3 días. Cómo diseñar el onboarding para llegar rápido al primer momento de valor.",
     "image": "/og/nota-onboarding.jpg",
     "name": "Los primeros minutos de tu app",
     "date": "2026-11-26"
   },
   "/notas/por-que-tu-app-se-ve-amateur": {
-    "title": "¿Por qué tu app se ve amateur? 6 detalles de interfaz · Mario Bencomo",
+    "title": "¿Por qué tu app se ve amateur? 6 detalles · Mario Bencomo",
     "description": "Contraste, tamaño de botones, espacios, estados de carga y error, botones distintos y textos de relleno: los detalles que delatan una app hecha con prisa.",
     "image": "/og/nota-amateur.jpg",
     "name": "¿Por qué tu app se ve amateur?",
@@ -91,12 +91,12 @@
   },
   "/servicios": {
     "title": "Servicios de diseño UI/UX y desarrollo de apps · Mario Bencomo",
-    "description": "Sitios web de producto, diseño UI/UX, prototipos, apps web y MVP, paneles internos, rediseño de producto, integraciones e IA. Para fundadores, startups y equipos.",
+    "description": "Sitios web de producto, diseño UI/UX, prototipos, apps web y MVP, paneles internos, rediseño, integraciones e IA. Para fundadores, startups y equipos.",
     "image": "/og/servicios.jpg",
     "name": "Servicios"
   },
   "/servicios/sitios-web": {
-    "title": "Diseño de sitios web para startups y productos digitales · Mario Bencomo",
+    "title": "Diseño de sitios web para startups y apps · Mario Bencomo",
     "description": "Sitios web para apps y startups: explican en segundos qué resuelves, muestran el producto en acción y llevan a registrarse, descargarlo o agendar una demo.",
     "image": "/og/servicio-sitios-web.jpg",
     "name": "Sitios web de producto"
@@ -120,14 +120,14 @@
     "name": "Apps web y MVP"
   },
   "/servicios/herramientas-internas": {
-    "title": "Paneles de administración y herramientas internas para tu app · Mario Bencomo",
+    "title": "Paneles de administración para tu app · Mario Bencomo",
     "description": "El back office de tu producto: panel de administración, soporte, roles y permisos, y métricas en un solo lugar, construido sobre tu base de datos o tu API.",
     "image": "/og/servicio-herramientas-internas.jpg",
     "name": "Paneles y herramientas internas"
   },
   "/servicios/rediseno-web": {
     "title": "Rediseño de producto y apps · Mario Bencomo",
-    "description": "Rediseño de apps y plataformas que crecieron a parches: diagnóstico de usabilidad, nuevos flujos, sistema de diseño y lanzamiento por etapas sin perder usuarios.",
+    "description": "Rediseño de apps que crecieron a parches: diagnóstico de usabilidad, nuevos flujos, sistema de diseño y lanzamiento por etapas sin perder usuarios.",
     "image": "/og/servicio-rediseno-web.jpg",
     "name": "Rediseño de producto"
   },
