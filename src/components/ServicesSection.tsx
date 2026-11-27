@@ -7,6 +7,7 @@ import { translations } from "@/i18n/translations";
 import { useServicesScene } from "@/components/services3d/useServicesScene";
 import { Starfield } from "@/components/ui/starfield";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { OutlineNumber } from "@/components/ui/outline-number";
 
 type Lenisish = { scrollTo: (y: number, o?: { duration?: number }) => void };
 
@@ -119,12 +120,7 @@ const ServicesSection = () => {
           {/* ---------- 3D view */}
           <div className="relative order-1 lg:order-2 h-[38svh] sm:h-[44svh] lg:h-[72svh] min-w-0">
             <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.16),transparent_65%)] blur-2xl" />
-            <span
-              aria-hidden="true"
-              className="absolute right-0 top-0 font-heading font-bold text-[9rem] lg:text-[14rem] -tracking-[0.06em] leading-none text-transparent [-webkit-text-stroke:1px_rgb(var(--c-fg)/0.08)] select-none tabular-nums"
-            >
-              {num(active)}
-            </span>
+            <OutlineNumber value={num(active)} alpha={0.08} className="absolute right-0 top-0 font-heading font-bold text-[9rem] lg:text-[14rem] -tracking-[0.01em] leading-none" />
             <div ref={viewRef} className="absolute inset-0" role="img" aria-label={t(item.title) as string} />
             {noGL && (
               <div className="absolute inset-0 flex items-center justify-center text-white/40 font-mono text-xs tracking-[0.2em] uppercase">

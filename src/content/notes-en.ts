@@ -12,526 +12,379 @@ export type NoteText = {
   sources: string[]; // the labels, in the same order as the Spanish note's sources
 };
 
-const SRC = {
-  lindgaard: "Lindgaard et al. (2006), Behaviour & Information Technology, reported in Nature",
-  stanford: "Stanford and Consumer WebWatch (2002), How Do People Evaluate a Web Site's Credibility?",
-  webaim: "WebAIM, The WebAIM Million (2025)",
-  inegi: "INEGI (Mexico's national statistics institute), ENDUTIH 2024",
-  inegiUses: "INEGI, ENDUTIH 2024: what people use the internet for",
-  labrecque: "Labrecque and Milne (2012), Exciting red and competent blue: the importance of color in marketing",
-  wcag: "W3C, WCAG 2.2: minimum contrast",
-  checker: "WebAIM, Contrast Checker",
-  google: "Google Research (2012), Users love simple and familiar designs",
-  nngStay: "Nielsen Norman Group, How Long Do Users Stay on Web Pages? (on Liu, White and Dumais, 2010)",
-  lcp: "Google, web.dev: Largest Contentful Paint (LCP)",
-  pdf: "Nielsen Norman Group, Avoid PDF for On-Screen Reading (2020)",
-  photos: "Nielsen Norman Group, Photos as Web Content (2010)",
-  touch: "Nielsen Norman Group, Touch Targets on Touchscreens (2019)",
-  wa: "WhatsApp, How to use click to chat",
-  formats: "Google, Lighthouse: Serve images in modern formats",
-  logo: "Nielsen Norman Group, Logo Placement Affects Web Navigation and Brand Recall (2017)",
-  baymard: "Baymard Institute, Readability: The Optimal Line Length (2022)",
-  fontSize: "Google, Lighthouse: Document doesn't use legible font sizes",
-};
-
 export const NOTES_EN: Record<string, NoteText> = {
-  "por-que-tu-pagina-se-ve-barata": {
-    title: [["w", "Why does your website"], ["i", "look cheap?"], ["G", "8 signs and how to fix them."]],
-    kicker: "Web design · Credibility",
-    lead: "A website can have good information and still feel off. It's almost never one thing: it's small details that, together, say “this was done in a rush”. These are the eight signs I see most, and what to do about each one.",
+  "valida-tu-idea-de-app": {
+    title: [["w", "Validate your app idea"], ["i", "before you build it."], ["G", "What to test, with whom and how."]],
+    kicker: "Product · Validation",
+    lead:
+      "Coding is the most expensive way to find out nobody wanted what you made. Before writing a line of code you can find out whether the problem exists, whether people care and whether your solution makes sense to them. Here's how I'd do it.",
     sections: [
       {
-        h: "First: yes, people judge by looks",
+        h: "The biggest risk isn't technical",
         body: [
-          { p: "It may sound shallow, but that's how it works. Before reading, people have already formed an idea of your website, and that first idea weighs on whether they believe you." },
-          { fact: { n: "50 ms", text: "is how long it takes someone to form a first impression of how a page looks. And that quick impression matches the one they have after looking at it calmly.", src: 0 } },
-          { fact: { n: "46.1 %", text: "of people's comments when judging whether a site was credible had to do with its design: the look, the layout, the type and the colors.", src: 1 } },
-          { p: "The good news is that almost everything that makes a website look cheap can be fixed without changing your business: it's a matter of design." },
+          { p: "Almost any idea can be built. The hard question is a different one: whether anyone will use it. When a startup shuts down, the most common reason isn't that the code failed." },
+          { fact: { n: "42 %", text: "of 101 startups that shut down said the reason was that there was no market for what they built. It was the most cited reason in the analysis.", src: 0 } },
+          { p: "Validating isn't asking your friends what they think of your idea. It's looking for evidence that the problem exists and that your solution makes sense, before paying to build it." },
         ],
       },
       {
-        h: "1. The headline says “Welcome to…”",
+        h: "The problem first, the app second",
         body: [
-          { p: "The headline at the top is the most valuable spot on your page, and “Welcome to Example Seafood” wastes it: it doesn't say what you sell, or why you and not the place across the street. Replace it with a line only your business could say." },
-          { tip: "Test: if you swap the name and the headline fits any other business just as well, it's a template." },
-          { compare: "marejada" },
+          { p: "Write in one sentence who you solve what for, and how they solve it today. If the answer is “they don't”, be wary: sometimes it means it doesn't hurt that much." },
+          {
+            ul: [
+              "Who has the problem? A specific person, not “everyone”.",
+              "How do they solve it today? A spreadsheet, a chat, a competitor, nothing.",
+              "What does not solving it cost them? Time, money, mistakes, embarrassment.",
+            ],
+          },
+          { tip: "If people already solve the problem with something improvised, that's a good sign: the problem exists, and your app competes with that workaround, not with nothing." },
         ],
       },
       {
-        h: "2. Emojis and decorations everywhere",
+        h: "A prototype to see if it makes sense",
         body: [
-          { p: "An emoji in a WhatsApp message is fine. In headlines, buttons and every card, it looks improvised. On top of that, every phone and computer draws them differently, so you don't control how they look. If you want warmth on your page, get it from good photos, color and words." },
+          { p: "With the problem clear, the next step is a prototype: clickable screens that feel like the app but have no logic behind them. It takes days, not months, and you can throw it away painlessly." },
+          { p: "You don't need hundreds of people to test it. A few well-run sessions surface almost all of the big problems." },
+          { fact: { n: "≈ 85 %", text: "of an interface's usability problems show up when testing it with 5 people, when each problem affects about a third of users.", src: 1 } },
+          { tip: "I'd rather run three short rounds of five people, fixing things in between, than one long round: each fix uncovers what was hiding behind it." },
         ],
       },
       {
-        h: "3. Too many typefaces, or the usual one",
-        body: [
-          { p: "Three or four different typefaces make everything look messy. Two are enough: one with character for headlines and a very readable one for text. And if you use the same one every template ships with, your page will look like a thousand others." },
-        ],
-      },
-      {
-        h: "4. Text you can barely read",
-        body: [
-          { p: "Light grey on white, white letters over a busy photo, tiny text on a phone. It's one of the most common mistakes on the web and one of the most tiring." },
-          { fact: { n: "79.1 %", text: "of the world's most visited home pages had low-contrast text in 2025.", src: 2 } },
-          { tip: "Quick rule: if you have to squint or lean into the screen, it needs more contrast." },
-        ],
-      },
-      {
-        h: "5. Stock photos that aren't your business",
-        body: [
-          { p: "The smiling man in a hard hat, the office team high-fiving. People recognize those photos and, when they see them, believe you a little less. A real photo of your place, your product or your team, even taken with a phone, says more. Take it in daylight, straight on and without heavy filters." },
-        ],
-      },
-      {
-        h: "6. Spacing without a rule",
-        body: [
-          { p: "A cramped section, then one with a huge gap, buttons of different sizes, things that almost line up. Nobody notices it consciously, but it feels messy. Use the same margins and gaps across the whole page and align everything to the same edges." },
-        ],
-      },
-      {
-        h: "7. It looks bad on a phone",
-        body: [
-          { fact: { n: "97.2 %", text: "of people who use the internet in Mexico go online from a smartphone.", src: 3 } },
-          { p: "So the phone version isn't the secondary one: it's the main one. Open your website on your own phone and check for cut-off text, buttons your finger keeps missing, menus that cover everything or photos that take forever to show up." },
-        ],
-      },
-      {
-        h: "8. Signs of neglect",
-        body: [
-          { p: "“© 2019” in the footer, links that go nowhere, a pixelated logo, “Coming soon” sections or a WhatsApp number that's no longer yours. Each one tells visitors that nobody looks after the website, and maybe not the business either." },
-        ],
-      },
-      {
-        h: "How to tell if yours is in trouble",
+        h: "How to run a test session",
         body: [
           {
             ol: [
-              "Show your website to someone who doesn't know it, for just 5 seconds.",
-              "Take it away and ask them what you sell, to whom, and what they'd have to do to buy from you.",
-              "If they can't answer all three, the problem isn't them: it's the website.",
+              "Give a task, not a tour: “log a $350 expense you paid with your mom's card”.",
+              "Ask them to think out loud, and don't help, even when they get stuck.",
+              "Note where they hesitate, where they go wrong and what they expected to see.",
+              "At the end, ask how they solve it today and what would have to happen for them to switch.",
             ],
           },
-          { link: { to: "/ejemplos-paginas-web", label: "See examples: generic page versus designed" } },
-        ],
-      },
-    ],
-    sources: [SRC.lindgaard, SRC.stanford, SRC.webaim, SRC.inegi],
-  },
-
-  "colores-que-dan-confianza": {
-    title: [["w", "Which colors build"], ["i", "trust"], ["g", "on a website."]],
-    kicker: "Web design · Color",
-    lead: "Search for “the color of trust” and you'll read “blue” a thousand times. It's not wrong, but it falls short: trust depends more on how you use color than on which color you pick.",
-    sections: [
-      {
-        h: "What the research does say",
-        body: [
-          { p: "Color shapes the personality people attribute to a brand. In a study published in the Journal of the Academy of Marketing Science, researchers found that red is associated with excitement and blue with competence (hence the study's title: “exciting red and competent blue”). They also found that hue isn't the only thing that matters: how saturated, light or dark a color is changes the impression." },
-          { p: "That's why so many banks and insurers are blue: they want to look serious and capable. But that doesn't mean blue works for everyone." },
+          { p: "What people say matters less than what they do. If five people get stuck on the same button, the button is the problem, not them." },
         ],
       },
       {
-        h: "The color has to fit what you sell",
-        body: [
-          { p: "A taco stand painted bank blue looks cold. A dental office in red and black looks aggressive. The right color is the one that makes your business feel the way it does in person. These are the three examples I made for made-up businesses:" },
-          {
-            swatches: [
-              { name: "Seafood", colors: ["#0C2B3A", "#FF5A3C", "#F3EADB", "#C9E356"], note: "The sea and the chili: deep blue, chili red and sand. Mouth-watering and fresh." },
-              { name: "Dentist", colors: ["#0F3D33", "#D7F0E3", "#FFB59A", "#FBFAF6"], note: "Mint green and peach: clean without looking like a hospital, calm without being cold." },
-              { name: "Gym", colors: ["#0D0D0E", "#D8FF3C", "#F4F4F0", "#18181A"], note: "Black and acid green: energy and strength. Here, no soft colors." },
-            ],
-          },
-          { link: { to: "/ejemplos-paginas-web", label: "See the three full pages" } },
-        ],
-      },
-      {
-        h: "What really builds trust",
-        body: [
-          {
-            ol: [
-              "Consistency. The same colors on your website, your logo, your Instagram and your storefront. When everything matches, the business looks established.",
-              "Contrast. Text that reads without effort. The web accessibility guidelines ask for a contrast ratio of at least 4.5 to 1 for normal text and 3 to 1 for large text.",
-              "One color for action. The main button always the same color, and nothing else on the page competing with it. That way people know where to tap without thinking.",
-              "Few colors. One main color, one accent and neutrals (whites, blacks, greys or creams). A widely used rule of thumb is 60% neutral, 30% main color and 10% accent.",
-            ],
-          },
-          { fact: { n: "4.5 : 1", text: "is the minimum contrast the accessibility guidelines (WCAG) ask for normal text. For large text, 3 : 1.", src: 1 } },
-        ],
-      },
-      {
-        h: "Colors that usually hurt",
+        h: "What counts as validation",
         body: [
           {
             ul: [
-              "The template purple-blue gradient: it's so common it makes your page look generic instantly.",
-              "Red everywhere: red grabs attention, so if everything is red, nothing stands out and everything feels urgent.",
-              "Neon on neon: tiring to look at and hard to read.",
-              "Light grey for text: looks elegant on a big screen and disappears on a phone in the sun.",
+              "People who finish the task without help.",
+              "People who ask when it's coming out or ask you for access.",
+              "People willing to give you something: their email, their time, a payment up front.",
             ],
           },
-        ],
-      },
-      {
-        h: "How to choose yours",
-        body: [
-          {
-            ol: [
-              "Start from what you already have: your logo, your place, your product. Your website's colors should match what people see when they visit you.",
-              "Pick an accent color just for the important buttons.",
-              "Check the contrast of your text with a free tool like WebAIM's Contrast Checker.",
-              "Look at your website on a phone, outside, in the sun. If it reads well there, it reads well everywhere.",
-            ],
-          },
+          { p: "Compliments don't count: “what a great idea” is kind and tells you nothing. And if after testing nobody wants more, you learned something cheaply. That's validating too." },
+          { link: { to: "/servicios/prototipos-funcionales", label: "How I make prototypes to validate ideas" } },
         ],
       },
     ],
-    sources: [SRC.labrecque, SRC.wcag, SRC.checker],
+    sources: [
+      "CB Insights (2014), analysis of 101 startups that shut down, published in Fortune",
+      "Jeff Sauro (2010), MeasuringU: Why you only need to test with five users (explained)",
+    ],
   },
-
-  "tu-pagina-en-10-segundos": {
-    title: [["w", "Your website has"], ["i", "10 seconds."], ["G", "What a customer should see on arrival."]],
-    kicker: "Web design · First impression",
-    lead: "Before reading a single word, people have already decided whether your website feels trustworthy. And if in the first seconds they don't understand what you do, they leave. This is what a customer should see the moment they arrive.",
+  "prototipo-o-mvp": {
+    title: [["w", "Prototype, MVP or product:"], ["i", "what comes first."], ["G", "Three stages that often get mixed up."]],
+    kicker: "Product · Strategy",
+    lead:
+      "They get used as if they were the same thing, and they aren't. A prototype, an MVP and a product answer different questions, cost different amounts and are made with different tools. Mixing them up is the most common way to overspend too early.",
     sections: [
       {
-        h: "What happens in the first seconds",
+        h: "Each stage answers one question",
         body: [
           {
             timeline: [
-              { t: "0.05 s", label: "The impression", text: "In 50 milliseconds a person has already judged whether the page looks good. A Google study found judgments like that from 17 milliseconds." },
-              { t: "10 s", label: "The decision", text: "The first 10 seconds are when someone is most likely to leave. That's when what you offer has to be clear." },
-              { t: "30 s +", label: "They stay", text: "Past that point, the longer someone has been on the page, the less likely they are to leave." },
+              { t: "Prototype", label: "Does it make sense?", text: "Clickable screens with no logic behind them. Good for testing the flow with users or showing the idea to an investor." },
+              { t: "MVP", label: "Do people really use it?", text: "The first version that works, with the minimum to solve the main problem and measure whether people come back." },
+              { t: "Product", label: "How does it grow?", text: "What you build once you know what works: more cases, more users, more polish." },
             ],
           },
-          { p: "In short: the first seconds decide whether someone keeps reading. That's why the top of your page matters more than everything else." },
         ],
       },
       {
-        h: "Simple and familiar wins",
+        h: "What an MVP is, and isn't",
         body: [
-          { p: "The same Google study found that people prefer pages that are visually simple and look the way that kind of page is expected to look. Busy pages look less attractive, even when they're familiar, and the ones that break expectations also score poorly." },
-          { p: "The lesson: menu at the top, logo on the left and the button where people expect it. Be original in your identity (your colors, your photos, your words), not in where things go." },
+          { p: "The term was popularised by Eric Ries, and his definition isn't about a small or cheap app: it's about learning." },
+          { fact: { n: "MVP", text: "is, according to Ries, the version of a new product that lets a team learn the most about its customers with the least effort.", src: 0 } },
+          { p: "An MVP isn't version 1.0 with features cut out. If it won't teach you something you don't know today, it's neither minimal nor viable: it's just small." },
         ],
       },
       {
-        h: "The 4 things that must show without scrolling",
-        body: [
-          { p: "Open your website on a phone. Without moving anything, that first screen should have:" },
-          {
-            ol: [
-              "What you do, in one concrete sentence. Not “comprehensive solutions”, but “aguachiles and ceviches to go” or “dentist for kids”.",
-              "Where and for whom. If you serve Culiacán, say so. Locals trust seeing that you're local.",
-              "Some proof. A real photo of your work, a starting price, today's hours: something that isn't a promise.",
-              "A single button with the main action: order, book, get a quote. It should say exactly what happens when tapped.",
-            ],
-          },
-          { compare: "molar" },
-        ],
-      },
-      {
-        h: "What gets in the way in those seconds",
+        h: "When a prototype is enough",
         body: [
           {
             ul: [
-              "Pop-ups on arrival. Before they know what you sell, you're already asking them for something.",
-              "Auto-rotating carousels. Nobody waits for it to turn to see the photo that matters.",
-              "Heavy background videos. They look great on the designer's computer and take forever on a phone on mobile data.",
-              "Menus with lots of options. The more options, the longer people take to decide where to go.",
+              "You don't know yet whether the main flow makes sense.",
+              "You need to show the idea to find partners or investment.",
+              "You want to compare two ways of solving the same thing.",
             ],
           },
+          { tip: "A good prototype isn't thrown away: its design and structure are the base of the MVP." },
         ],
       },
       {
-        h: "And if it's slow to load, there's no first impression",
-        body: [
-          { p: "Everything above assumes the page has already appeared. Google measures how fast the main content of a page shows up (it calls it LCP) and considers 2.5 seconds or less a good load. Check yours for free in PageSpeed Insights." },
-          { fact: { n: "2.5 s", text: "or less is what Google considers a good speed for the main content of your page to appear.", src: 3 } },
-        ],
-      },
-      {
-        h: "The 5-second test",
+        h: "When it's time for the MVP",
         body: [
           {
-            ol: [
-              "Show your website on a phone to someone who doesn't know it, for 5 seconds.",
-              "Take the phone back and ask: what do they sell? where are they? what would you do to buy from them?",
-              "Whatever they don't remember is what your page isn't saying clearly.",
+            ul: [
+              "Prototype testing went well and people ask when they can use it.",
+              "What you need to know only shows with real use: whether they come back, pay or invite others.",
+              "You're clear on the minimum: one main task done really well, not ten done halfway.",
             ],
           },
-          { link: { to: "/servicios/rediseno-web", label: "If your website fails the test, here's how I redesign it" } },
+          { p: "In corte, for example, the screen that justifies the app is one: how much each person owes before the card's due date. Everything else is built around it." },
+        ],
+      },
+      {
+        h: "The most expensive mistake",
+        body: [
+          { p: "Skipping the prototype and building the whole product at once, with every feature you thought of. When someone finally tries it, every change already costs code, not a while in Figma." },
+          { link: { to: "/servicios/aplicaciones-web", label: "How I design and build an MVP" } },
         ],
       },
     ],
-    sources: [SRC.lindgaard, SRC.google, SRC.nngStay, SRC.lcp],
+    sources: ["Lean Startup Co., What is an MVP? (Eric Ries's definition)"],
   },
-
-  "pagina-web-para-restaurante": {
-    title: [["w", "What a restaurant's"], ["i", "website"], ["g", "should look like."]],
-    kicker: "Web design · Restaurants",
-    lead: "Whoever opens a restaurant's website almost always comes for the same thing: see what's on offer, what it costs, whether it's open and how to order. If that takes long to find, they order somewhere else.",
+  "onboarding-de-tu-app": {
+    title: [["w", "The first minutes in your app"], ["i", "decide everything."], ["G", "How to design onboarding."]],
+    kicker: "UX · Onboarding",
+    lead:
+      "Many people who install an app drop it very soon, usually before understanding what it was for. Onboarding is the stretch between “I opened it” and “it helped me”, and it deserves the same care as any other screen.",
     sections: [
       {
-        h: "What your customer looks for, in this order",
+        h: "They leave very fast",
         body: [
-          {
-            ol: [
-              "What you sell and whether it looks good: your signature dish, with a real photo.",
-              "Whether you're open right now: today's hours, not a table hidden at the bottom.",
-              "What it costs: the menu with prices.",
-              "How to order or get there: an order button and your location.",
-            ],
-          },
-          { p: "All of that should be solved on the first phone screen, or one swipe away. The rest (the story of the business, the gallery, the social links) can come later." },
-          { fact: { n: "97.2 %", text: "of people who use the internet in Mexico go online from a smartphone. Your menu will almost always be read on a small screen.", src: 3 } },
+          { fact: { n: "77 %", text: "of its daily active users is what the average Android app loses in the 3 days after install, according to Quettra data published by Andrew Chen.", src: 0 } },
+          { fact: { n: "90 %", text: "are gone by day 30.", src: 0 } },
+          { p: "Those numbers aren't a sentence, they're a priority: if someone doesn't find value in their first session, they rarely come back to look for it." },
         ],
       },
       {
-        h: "The menu, on the page and not as a PDF",
+        h: "The goal: reach the first “oh, got it” fast",
         body: [
-          { p: "Uploading the menu as a PDF is the fastest option for the business and the most annoying one for the customer: you have to download it, zoom in and pan around with your finger. Nielsen Norman Group, a user experience research firm, recommends against using PDF for content read on screen: people get lost, it's slow to load and it can't be browsed like a page." },
-          { p: "Write the menu on the page instead: by sections, with name, a one-line description and price. That way it reads well on a phone, you update it in a minute and Google can read it too." },
-          { compare: "marejada" },
-        ],
-      },
-      {
-        h: "Photos: few, real and close-up",
-        body: [
-          { p: "Nielsen Norman Group's eye-tracking research found that people ignore filler photos and do look at the ones that give them real information, like the product they're about to buy. In a restaurant, that's your food." },
+          { p: "Every app has a moment when people understand what it's for: the first expense split, the first alert that saves them money. Design onboarding to get there in as few steps as possible." },
           {
             ul: [
-              "Shoot in daylight, near a window and without flash.",
-              "Close-up, straight on or slightly from above: let the texture show.",
-              "Always the real dish, never stock images. If customers order what's in the photo, that's what should arrive.",
+              "Ask only for what you need for that first moment. The rest can wait.",
+              "If your product allows it, let people see the app before asking them to sign up.",
+              "Use sample data so screens don't look empty the first time.",
             ],
           },
+          { compare: "alcancia" },
         ],
       },
       {
-        h: "A big button to order",
+        h: "Tutorials: less than you think",
         body: [
-          { p: "Order on WhatsApp, call or order through an app: choose the main action and make it a big button, always visible on phones. Touchscreen design guidelines recommend that any button be at least one centimeter on each side, so a finger hits it without effort." },
-          { fact: { n: "1 cm", text: "per side is the recommended minimum size for a button on a touchscreen.", src: 2 } },
-          { link: { to: "/notas/boton-de-whatsapp-en-tu-pagina", label: "How to get the WhatsApp button right" } },
+          { p: "Welcome screens that explain the app before using it tend to get skipped or forgotten within minutes. Teaching in the moment works better: a hint next to the button when it's needed, not five cards up front." },
+          { tip: "If your app needs a long tutorial to make sense, the problem is usually the interface, not the tutorial." },
         ],
       },
       {
-        h: "Quick checklist for yours",
+        h: "Empty screens teach too",
         body: [
-          {
-            ul: [
-              "Can you see today's hours without looking for them?",
-              "Does the menu read on a phone without zooming?",
-              "Are the prices up to date?",
-              "Is there one clear button to order?",
-              "Are the photos of your food?",
-              "Does your address open the map when tapped?",
-            ],
-          },
-          { link: { to: "/ejemplos-paginas-web", label: "See a seafood restaurant example, before and after" } },
-        ],
-      },
-    ],
-    sources: [SRC.pdf, SRC.photos, SRC.touch, SRC.inegi],
-  },
-
-  "boton-de-whatsapp-en-tu-pagina": {
-    title: [["w", "The"], ["i", "WhatsApp"], ["w", "button."], ["G", "Where it goes and what it should say."]],
-    kicker: "Web design · Contact",
-    lead: "For many businesses, the website exists for one thing only: getting people to message you. And still, the WhatsApp button is often hidden, tiny or pointing to the wrong number.",
-    sections: [
-      {
-        h: "Why it matters so much",
-        body: [
-          { fact: { n: "93 %", text: "of people who use the internet in Mexico use it to communicate. Messaging is the most natural thing for your customers.", src: 0 } },
-          { p: "If your customer is already on your website and feels like asking, every extra step (copying the number, opening WhatsApp, saving the contact) is a chance for them to forget. A good button takes them straight to the conversation." },
+          { p: "The first time someone opens a section, there's nothing there. That screen can say what goes there and offer the button to create the first item, instead of a “No data”." },
+          { ul: ["What they'll see here once there's information.", "The button to take the first step.", "An example, if it helps." ] },
         ],
       },
       {
-        h: "Where to put it",
-        body: [
-          {
-            ul: [
-              "At the top, on the first screen, as the main action.",
-              "At the end of every important section (services, prices, questions): right where their question got answered.",
-              "On phones, a button fixed at the bottom helps, as long as it doesn't cover text or other buttons.",
-            ],
-          },
-          { tip: "One main action per page. If everything is a button, nothing stands out." },
-        ],
-      },
-      {
-        h: "What size and what it should say",
-        body: [
-          { p: "On phones, at least one centimeter tall: the minimum touchscreen design guidelines recommend. And the text should say what happens when tapped. “Contact us” is vague; “Order on WhatsApp”, “Get a quote on WhatsApp” or “Book on WhatsApp” say exactly what will happen." },
-          { fact: { n: "1 cm", text: "tall is the recommended minimum for a button to be tapped comfortably with a finger.", src: 1 } },
-        ],
-      },
-      {
-        h: "The message, already written",
-        body: [
-          { p: "WhatsApp lets the link open the conversation with a message ready to send. The official format is wa.me/ followed by your full number with country code, with no spaces, dashes or plus sign, then ?text= and the message. For example: wa.me/5266700000000?text=Hi, I'd like to place an order." },
-          { p: "Write that message with yourself in mind: it should tell you where the customer comes from and what they want. “Hi, I saw your website and I'd like a quote” saves you the first question." },
-          { fact: { n: "wa.me", text: "is WhatsApp's official link format to open a chat with a number, with or without a written message.", src: 2 } },
-        ],
-      },
-      {
-        h: "Check it today",
+        h: "Measure where they stop",
         body: [
           {
             ol: [
-              "Open your website on your phone and tap the WhatsApp button.",
-              "Make sure it opens the chat with your number, not someone else's. It happens more than you'd think: templates that carry the number of whoever built the site, or an old number.",
-              "Check that the prefilled message makes sense and doesn't mention the template's name.",
+              "Define your app's first moment of value.",
+              "Measure how many people who sign up reach it.",
+              "See at which step the rest stop, and start improving there.",
             ],
           },
-          { link: { to: "/herramientas/tarjeta-qr", label: "Make your WhatsApp QR card for free" } },
+          { link: { to: "/servicios/ui-ux", label: "How I design a product's experience" } },
         ],
       },
     ],
-    sources: [SRC.inegiUses, SRC.touch, SRC.wa],
+    sources: ["Andrew Chen (2015), New data shows losing 80% of mobile users is normal (Quettra data)"],
   },
-
-  "fotos-para-tu-pagina-web": {
-    title: [["w", "Photos for your website,"], ["i", "with your phone."], ["G", "No photographer, no stock photos."]],
-    kicker: "Web design · Photography",
-    lead: "You don't need a photographer to have good photos on your website. You need real photos of your business, well lit and planned for where they'll go. The phone you already have is enough.",
+  "por-que-tu-app-se-ve-amateur": {
+    title: [["w", "Why does your app"], ["i", "look amateur?"], ["G", "The interface details that give it away."]],
+    kicker: "UI · Details",
+    lead:
+      "It's hardly ever one thing. An app looks amateur because of a sum of details that together say “this was rushed”: text you can't read, tiny buttons, random spacing, screens that don't say what's going on. All of them can be fixed.",
     sections: [
       {
-        h: "Why real photos and not stock",
+        h: "1. Text you can barely read",
         body: [
-          { p: "In Nielsen Norman Group's eye-tracking studies, people skipped decorative photos added “to dress things up”, and instead stopped at photos with real information: the people on the team and the products they were about to buy." },
-          { fact: { n: "10 %", text: "more time was spent by one user looking at a company's real team photos than reading their bios, even though the bios took up 316% more space.", src: 0 } },
-          { p: "A real photo of your place, your product or your team says “this exists and it's us”. A stock one says “we didn't have photos”." },
+          { p: "Light grey on white looks elegant on the designer's monitor and vanishes on a phone in full sun. There's a measure for this." },
+          { fact: { n: "4.5 : 1", text: "is the minimum contrast the WCAG accessibility guidelines ask for normal text. For icons, field borders and other components, the minimum is 3 : 1.", src: 0 } },
         ],
       },
       {
-        h: "How to take them",
+        h: "2. Buttons that are too small",
+        body: [
+          { p: "A finger isn't a cursor. If people have to aim carefully, they make mistakes and get frustrated." },
+          { fact: { n: "44 × 44", text: "pixels is the minimum touch target size at WCAG's strictest level. Apple asks for the same measure, in points, for iOS apps.", src: 0 } },
+          { tip: "The tappable area can be bigger than what you see: a 24 px icon can have a 44 px zone around it." },
+        ],
+      },
+      {
+        h: "3. Random spacing",
+        body: [
+          { p: "When every margin is different, the screen looks messy even if nobody can say why. Pick a scale, say multiples of 4 or 8, and use it for everything: gaps, margins and sizes." },
+        ],
+      },
+      {
+        h: "4. Screens that don't say what's happening",
+        body: [
+          { p: "An app feels solid when it always responds. If you tap a button and nothing visible happens, you assume it failed and tap again." },
+          { fact: { n: "0.1 s", text: "is how long a response can take and still feel instant. Up to 1 second people keep their train of thought; past 10, their attention goes elsewhere.", src: 1 } },
+          { ul: ["Loading: a spinner or the screen's skeleton.", "Empty: what goes here and how to start.", "Error: what happened and what to do, in plain words."] },
+        ],
+      },
+      {
+        h: "5. A different button on every screen",
+        body: [
+          { p: "One primary button, one secondary and, at most, a text one. When every screen invents its own, the app feels assembled from parts of different places. A design system solves that." },
+          { compare: "orbita" },
+        ],
+      },
+      {
+        h: "6. Filler words",
+        body: [
+          { p: "“Error 500”, “Submit” in an app that's otherwise in Spanish, or a “Lorem ipsum” that slipped into production. Words are interface too: label every button with the verb of what it does." },
+          { tip: "“Save expense” says more than “OK”." },
+          { link: { to: "/servicios/ui-ux", label: "How I design interfaces" } },
+        ],
+      },
+    ],
+    sources: [
+      "W3C, WCAG 2.2: minimum contrast, non-text contrast and target size",
+      "Nielsen Norman Group, Response Times: The 3 Important Limits",
+      "Apple, Human Interface Guidelines: Accessibility",
+    ],
+  },
+  "sistema-de-diseno": {
+    title: [["w", "Does your product need"], ["i", "a design system?"], ["G", "When yes, and when not yet."]],
+    kicker: "Design · Systems",
+    lead:
+      "A design system is the agreement on how your product looks and behaves: colours, type, components and the rules for using them. It isn't only for big companies, but it isn't the first thing you need either.",
+    sections: [
+      {
+        h: "What it is, concretely",
         body: [
           {
             ul: [
-              "Daylight. Near a window or outside in the shade. Avoid flash and the yellow light of a bulb.",
-              "Clean your phone's lens. It sounds obvious, but it's the most common cause of blurry photos.",
-              "Simple background. Remove what shouldn't be there: boxes, cables, bags.",
-              "Shoot both horizontal and vertical. The website uses horizontal on computers and vertical on phones.",
-              "Take more than you need. Out of 20 photos, you'll use 3.",
-              "The same style in all of them: same light and same kind of background. That way they look like one brand.",
+              "Tokens: the base values, like colours, font sizes, spacing and corners.",
+              "Components: buttons, fields, cards and alerts, with all their states.",
+              "Rules: when to use each one, and when not to.",
+            ],
+          },
+          { p: "It lives in Figma for whoever designs and in code for whoever builds. When both versions match, what's designed is what gets built." },
+        ],
+      },
+      {
+        h: "Why it saves time",
+        body: [
+          { fact: { n: "34 %", text: "faster is how quickly participants in a Figma experiment completed a design task with a design system, compared with doing it without one.", src: 0 } },
+          { p: "The saving isn't only in design: every component solved once is a decision nobody makes again, or builds differently." },
+        ],
+      },
+      {
+        h: "Signs you already need one",
+        body: [
+          {
+            ul: [
+              "There are three shades of “primary” blue and nobody knows which is right.",
+              "The same button looks different on every screen.",
+              "More than one person designs or builds the interface.",
+              "Every new feature is slow because it's designed from scratch.",
             ],
           },
         ],
       },
       {
-        h: "Which photos your website needs",
+        h: "When not yet",
+        body: [
+          { p: "If you're validating an idea with a prototype, a full system is getting ahead of yourself. A few basic decisions are enough: a short palette, two typefaces and a handful of components. The system grows with the product." },
+          { tip: "Start with what repeats most: buttons, form fields and text. That already covers most screens." },
+        ],
+      },
+      {
+        h: "How to start without slowing the product down",
         body: [
           {
             ol: [
-              "A main one: your star product or your place from outside, for the first screen.",
-              "Your product or service in action: the dish served, the haircut finished, the job delivered.",
-              "Your team or you: people want to know who they'll deal with.",
-              "Your storefront: so they recognize you when they arrive.",
+              "Take inventory: screenshot the screens and group what repeats.",
+              "Unify: pick one version of each thing and name it.",
+              "Document the states: default, hover, pressed, disabled and error.",
+              "Move it to code and use it in the next thing you build, not in a big-bang redesign.",
             ],
           },
-        ],
-      },
-      {
-        h: "Before uploading: keep them light",
-        body: [
-          { p: "A photo straight from a phone can weigh several megabytes, and that makes your website slow to open. Ask whoever builds your site to upload them in modern formats like WebP or AVIF: according to Google's documentation, they load faster and use less data than the usual JPG and PNG, at the same quality." },
-          { fact: { n: "2.5 s", text: "or less is what Google considers a good speed for the main content of your page to appear. Heavy photos are among the first things that slow it down.", src: 2 } },
+          { link: { to: "/servicios/ui-ux", label: "How I put design systems together" } },
         ],
       },
     ],
-    sources: [SRC.photos, SRC.formats, SRC.lcp],
+    sources: ["Figma, Measuring the value of design systems"],
   },
-
-  "donde-poner-tu-logo": {
-    title: [["w", "Where to put"], ["i", "your logo"], ["g", "on your website."]],
-    kicker: "Web design · Brand",
-    lead: "It seems like a detail, but where your logo sits changes how well people remember you and how easy it is to move around your website. And the answer is less creative than you'd think: top left.",
+  "redisenar-sin-perder-usuarios": {
+    title: [["w", "Redesign your app"], ["i", "without losing users."], ["G", "How to change what people already know."]],
+    kicker: "Product · Redesign",
+    lead:
+      "A redesign can be better in every way and still get complaints in its first week. It isn't always because it's wrong: changing what people already know how to use costs them something, and that cost gets designed just like the screens.",
     sections: [
       {
-        h: "Top left, and not out of habit",
+        h: "The first reaction is almost always negative",
         body: [
-          { fact: { n: "89 %", text: "more likely: that's how much better people remember a logo placed at the top left than one placed on the right, according to a Nielsen Norman Group study.", src: 0 } },
-          { p: "The same study found that moving the logo from that spot, for example to the center, makes people navigate the page worse. It's where everyone expects to find it, and people prefer pages that look the way they expect." },
+          { p: "At Google they gave it a name: change aversion. Aaron Sedley describes it as the short-term negative reaction to changes in a product. It doesn't say whether the change is good or bad; it says people lost something they had mastered." },
+          { p: "The key is telling apart complaints out of habit, which fade within days, from those pointing at a real problem, which stay." },
         ],
       },
       {
-        h: "It should lead home",
+        h: "Respect what they've already learned",
         body: [
-          { p: "Tapping the logo to go back to the home page is one of those habits everyone has. If your logo does nothing when tapped, people feel stuck." },
+          { p: "What your users already know how to do in your app is an asset. Change what gets in the way and leave what works where it is, even if it looks less modern to you." },
+          { tip: "Before moving something, ask whether the benefit is worth every person having to look for it again." },
         ],
       },
       {
-        h: "Size: readable, not shouting",
+        h: "Give notice, explain and let them go back",
         body: [
+          { p: "Sedley's recommendations for launching big changes boil down to surprising nobody:" },
           {
             ul: [
-              "On phones, the name should read without zooming. If your logo is very wide or has thin letters, have a short version or just the symbol.",
-              "Bigger isn't better: a huge logo steals space from what you sell.",
-              "It can appear again in the footer, more discreetly.",
+              "Announce the change ahead of time, not on the day.",
+              "Explain what changes and how it helps the person, not your team.",
+              "If possible, let people try the new version and switch back for a while.",
+              "Offer help with the transition and a channel for feedback.",
+              "Tell them what you adjusted because of what they said.",
             ],
           },
         ],
       },
       {
-        h: "It should look sharp",
+        h: "Ship it in parts",
         body: [
-          { p: "A pixelated logo is one of the quickest signs that something is neglected. Ask whoever made your logo for the vector file (SVG, AI or PDF). As SVG it looks sharp on any screen and weighs almost nothing." },
-          { tip: "If you only have your logo in a photo or a tiny JPG, it's worth redrawing it before redesigning the website." },
-          { link: { to: "/notas/por-que-tu-pagina-se-ve-barata", label: "Other signs that make a website look cheap" } },
-        ],
-      },
-    ],
-    sources: [SRC.logo, SRC.google],
-  },
-
-  "tipografia-para-tu-pagina-web": {
-    title: [["w", "Type that reads"], ["g", "and has"], ["i", "character."]],
-    kicker: "Web design · Typography",
-    lead: "Typography is your website's voice. Before someone reads what you say, they've already heard how you say it. These are the rules I use to choose it.",
-    sections: [
-      {
-        h: "Two typefaces, no more",
-        body: [
-          { p: "One for headlines, with character, that says something about your business. Another for text, very easy to read. Add a third and it almost always looks messy." },
+          { p: "A redesign doesn't have to go out all at once on a Monday. You can start with one section or one group of users and measure before going on. If something gets worse, you see it early and with few people." },
           {
-            ul: [
-              "A taco stand can have bold headlines with personality.",
-              "A law firm or a clinic, something more sober and clean.",
-              "A design or fashion business can play with an elegant serif.",
+            ol: [
+              "Pick one metric per flow: tasks completed, time or drop-offs.",
+              "Measure it before the change so you have something to compare against.",
+              "Release to a small group and compare.",
+              "Adjust and expand.",
             ],
           },
         ],
       },
       {
-        h: "Size: if it reads on a phone, it reads everywhere",
+        h: "Redesigning isn't starting over",
         body: [
-          { p: "Most of your customers will read you on their phone, sometimes walking or in the sun. Google flagged text under 12 pixels as hard to read on phones. For the main text go well above that, and keep small sizes only for labels and notes." },
-          { fact: { n: "12 px", text: "is the size Google's audit tool used as the minimum for text to read well on a phone.", src: 2 } },
-        ],
-      },
-      {
-        h: "Lines neither too long nor too short",
-        body: [
-          { fact: { n: "50–75", text: "characters per line is the length Baymard Institute recommends for comfortable reading. Longer is tiring and makes it hard to find the next line.", src: 0 } },
-          { p: "On a computer, a paragraph running across the whole screen is hard to read. Limit the width of the text even when the screen is big." },
-        ],
-      },
-      {
-        h: "Contrast and space",
-        body: [
-          { p: "Dark text on a light background (or the other way around) with a clear difference: the accessibility guidelines ask for a contrast of at least 4.5 to 1 for normal text. And leave air between lines: cramped text looks cheap and reads worse." },
-          { fact: { n: "4.5 : 1", text: "is the minimum contrast for normal text according to the web accessibility guidelines (WCAG).", src: 1 } },
-          { link: { to: "/notas/colores-que-dan-confianza", label: "Which colors build trust on a website" } },
+          { p: "Often what feels old isn't the product, it's that it grew through patches. A design system and tidy flows can renew the app without throwing away what already works." },
+          { link: { to: "/servicios/rediseno-web", label: "How I do a product redesign" } },
         ],
       },
     ],
-    sources: [SRC.baymard, SRC.wcag, SRC.fontSize],
+    sources: ["Aaron Sedley, Change aversion: why users hate what you launched (and what to do about it), GV Library"],
   },
 };
 
-/** the note in the language being read: Spanish as written, English from NOTES_EN */
 export function inLang(n: Note, es: boolean): Note {
   if (es) return n;
   const en = NOTES_EN[n.slug];

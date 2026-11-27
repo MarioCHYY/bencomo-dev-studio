@@ -1,6 +1,17 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useTheme } from "@/components/ThemeContext";
 import type { ServicesSceneHandle } from "@/components/services3d/ServicesScene";
+import { translations } from "@/i18n/translations";
+
+/**
+ * The scenes hold one model per service in this fixed order. The services list can change
+ * (order, services added or removed), so each service finds its model by id, not by position.
+ */
+const MODEL_ORDER = ["sitios-web", "ui-ux", "aplicaciones-web", "herramientas-internas", "rediseno-web", "prototipos-funcionales", "automatizacion", "inteligencia-artificial"];
+const modelFor = (i: number) => {
+  const m = MODEL_ORDER.indexOf(translations.services.items[i]?.id ?? "");
+  return m < 0 ? 0 : m;
+};
 
 /**
  * Mounts the services 3D scene into `viewRef` and keeps it on the `active` model.
@@ -14,7 +25,7 @@ export function useServicesScene(viewRef: RefObject<HTMLElement>, active: number
   const [noGL, setNoGL] = useState(false);
 
   useEffect(() => {
-    sceneRef.current?.setActive(active);
+    sceneRef.current?.setActive(modelFor(active));
   }, [active]);
 
   useEffect(() => {
@@ -40,7 +51,7 @@ export function useServicesScene(viewRef: RefObject<HTMLElement>, active: number
       .then((h) => {
         if (cancelled) return h.dispose();
         sceneRef.current = h;
-        h.setActive(activeRef.current);
+        h.setActive(modelFor(activeRef.current));
       })
       .catch(() => !cancelled && setNoGL(true));
     return () => {

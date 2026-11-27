@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { useRef } from "react";
+import { usePauseOffscreen } from "@/lib/usePauseOffscreen";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
@@ -18,6 +19,9 @@ const AboutSection = () => {
   const a = translations.about;
 
   const photoRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  // the turning aurora glow around the photo stops while the section is off screen
+  usePauseOffscreen(sectionRef);
   const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start end", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
@@ -26,7 +30,7 @@ const AboutSection = () => {
     : "I don't just write code. I design products that feel alive, from the first sketch to the last pixel.";
 
   return (
-    <section id="about" className="relative py-28 md:py-40">
+    <section id="about" ref={sectionRef} className="relative py-28 md:py-40">
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-8">
         <SectionHeading
           index="01"
@@ -52,7 +56,7 @@ const AboutSection = () => {
                 alt="Mario Bencomo"
                 style={{ y: imgY, objectPosition: "58% 38%" }}
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover scale-[1.14]"
+                className="absolute inset-0 w-full h-full object-cover scale-[1.14] will-change-transform"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
               <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 backdrop-blur-md px-3 py-1.5 text-[11px] font-medium text-white/85">

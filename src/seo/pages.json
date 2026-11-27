@@ -1,15 +1,15 @@
 {
   "/": {
-    "title": "Mario Bencomo · Diseño UI/UX y desarrollo web en Culiacán",
-    "description": "Diseñador UI/UX y desarrollador web en Culiacán, Sinaloa. Diseño interfaces, sitios y apps que se sienten vivos, y también los programo, con marca incluida.",
+    "title": "Mario Bencomo · Diseño UI/UX y desarrollo de apps",
+    "description": "Diseño y desarrollo de apps y productos digitales para fundadores, startups y equipos: UI/UX, prototipos, MVP, rediseño de producto y sistemas de diseño.",
     "image": "/og/home.jpg",
     "name": "Inicio"
   },
-  "/diseno-web-culiacan": {
-    "title": "Diseño de páginas web en Culiacán · Mario Bencomo",
-    "description": "Diseño y desarrollo de páginas web para negocios de Culiacán: con tu marca, rápidas, adaptadas a celular, listas para Google y con WhatsApp a un clic.",
-    "image": "/og/diseno-web-culiacan.jpg",
-    "name": "Diseño web en Culiacán"
+  "/diseno-ui-ux-culiacan": {
+    "title": "Diseño UI/UX y desarrollo de apps en Culiacán · Mario Bencomo",
+    "description": "Diseño UI/UX y desarrollo de apps para fundadores, startups y equipos en Culiacán: prototipos para validar tu idea, MVP, rediseño de producto y sistema de diseño.",
+    "image": "/og/diseno-ui-ux-culiacan.jpg",
+    "name": "Diseño UI/UX en Culiacán"
   },
   "/ejemplos-paginas-web": {
     "title": "Ejemplos de páginas web: genérica vs. diseñada · Mario Bencomo",
@@ -18,75 +18,61 @@
     "name": "Ejemplos de páginas web"
   },
   "/notas": {
-    "title": "Notas de diseño web para negocios · Mario Bencomo",
-    "description": "Guías cortas y sin tecnicismos sobre diseño web para dueños de negocio: credibilidad, color y primera impresión, con datos y sus fuentes.",
+    "title": "Notas de diseño de producto · Mario Bencomo",
+    "description": "Guías cortas para fundadores y equipos de producto: validar una idea, prototipo o MVP, onboarding, sistemas de diseño y rediseño, con datos y sus fuentes.",
     "image": "/og/notas.jpg",
     "name": "Notas de diseño"
   },
-  "/notas/por-que-tu-pagina-se-ve-barata": {
-    "title": "¿Por qué tu página web se ve barata? 8 señales · Mario Bencomo",
-    "description": "Las 8 señales que hacen que una página web se vea barata o poco confiable, y cómo arreglar cada una. Con datos sobre primera impresión y credibilidad.",
-    "image": "/og/nota-se-ve-barata.jpg",
-    "name": "¿Por qué tu página web se ve barata?",
-    "date": "2026-11-25"
+  "/notas/valida-tu-idea-de-app": {
+    "title": "Cómo validar tu idea de app antes de programarla · Mario Bencomo",
+    "description": "Qué probar antes de escribir código: el problema, el prototipo y las sesiones con 5 personas. Qué cuenta como validación y qué no, con datos y fuentes.",
+    "image": "/og/nota-validar.jpg",
+    "name": "Valida tu idea de app antes de programarla",
+    "date": "2026-11-26"
   },
-  "/notas/colores-que-dan-confianza": {
-    "title": "Qué colores dan confianza en una página web · Mario Bencomo",
-    "description": "No hay un color mágico: la confianza depende de cómo usas el color. Qué dice la investigación, qué colores restan y cómo elegir los de tu negocio.",
-    "image": "/og/nota-colores.jpg",
-    "name": "Qué colores dan confianza en una página web",
-    "date": "2026-11-25"
+  "/notas/prototipo-o-mvp": {
+    "title": "Prototipo, MVP o producto: qué hacer primero · Mario Bencomo",
+    "description": "La diferencia entre prototipo, MVP y producto, qué pregunta contesta cada uno y cuándo pasar al siguiente, según la definición de Eric Ries.",
+    "image": "/og/nota-mvp.jpg",
+    "name": "Prototipo, MVP o producto",
+    "date": "2026-11-26"
   },
-  "/notas/tu-pagina-en-10-segundos": {
-    "title": "Primera impresión: tu página tiene 10 segundos · Mario Bencomo",
-    "description": "En 50 milisegundos la gente juzga tu página y en 10 segundos decide si se queda. Qué debe ver un cliente al entrar y qué estorba, con datos y fuentes.",
-    "image": "/og/nota-10-segundos.jpg",
-    "name": "Tu página tiene 10 segundos",
-    "date": "2026-11-25"
+  "/notas/onboarding-de-tu-app": {
+    "title": "Onboarding de una app: cómo diseñar los primeros minutos · Mario Bencomo",
+    "description": "La app promedio pierde el 77 % de sus usuarios activos en 3 días. Cómo diseñar el onboarding para llegar rápido al primer momento de valor.",
+    "image": "/og/nota-onboarding.jpg",
+    "name": "Los primeros minutos de tu app",
+    "date": "2026-11-26"
   },
-  "/notas/pagina-web-para-restaurante": {
-    "title": "Página web para restaurante: qué debe tener · Mario Bencomo",
-    "description": "Carta sin PDF, horario de hoy, fotos reales y un botón para pedir: lo que busca quien entra a la página de un restaurante, y cómo diseñarlo bien.",
-    "image": "/og/nota-restaurante.jpg",
-    "name": "Cómo debe ser la página de un restaurante",
-    "date": "2026-11-25"
+  "/notas/por-que-tu-app-se-ve-amateur": {
+    "title": "¿Por qué tu app se ve amateur? 6 detalles de interfaz · Mario Bencomo",
+    "description": "Contraste, tamaño de botones, espacios, estados de carga y error, botones distintos y textos de relleno: los detalles que delatan una app hecha con prisa.",
+    "image": "/og/nota-amateur.jpg",
+    "name": "¿Por qué tu app se ve amateur?",
+    "date": "2026-11-26"
   },
-  "/notas/boton-de-whatsapp-en-tu-pagina": {
-    "title": "Botón de WhatsApp en tu página web · Mario Bencomo",
-    "description": "Dónde poner el botón de WhatsApp en tu página, qué tamaño debe tener, qué debe decir y cómo crear el link con el mensaje ya escrito.",
-    "image": "/og/nota-whatsapp.jpg",
-    "name": "El botón de WhatsApp: dónde va y qué debe decir",
-    "date": "2026-11-25"
+  "/notas/sistema-de-diseno": {
+    "title": "Sistema de diseño: cuándo lo necesita tu producto · Mario Bencomo",
+    "description": "Qué es un sistema de diseño, por qué ahorra tiempo, las señales de que ya lo necesitas y cómo empezar sin frenar el producto.",
+    "image": "/og/nota-sistema.jpg",
+    "name": "¿Tu producto necesita un sistema de diseño?",
+    "date": "2026-11-26"
   },
-  "/notas/fotos-para-tu-pagina-web": {
-    "title": "Fotos para tu página web, con tu celular · Mario Bencomo",
-    "description": "Cómo tomar con tu celular las fotos de tu negocio para tu página web: luz, fondo, qué fotos necesitas y por qué las reales funcionan mejor que las de banco.",
-    "image": "/og/nota-fotos.jpg",
-    "name": "Fotos para tu página web, tomadas con tu celular",
-    "date": "2026-11-25"
-  },
-  "/notas/donde-poner-tu-logo": {
-    "title": "Dónde poner el logo en tu página web · Mario Bencomo",
-    "description": "Arriba a la izquierda, y no por costumbre: lo que dice la investigación sobre la posición, el tamaño y la nitidez del logo en una página web.",
-    "image": "/og/nota-logo.jpg",
-    "name": "Dónde poner tu logo en tu página web",
-    "date": "2026-11-25"
-  },
-  "/notas/tipografia-para-tu-pagina-web": {
-    "title": "Tipografía para tu página web · Mario Bencomo",
-    "description": "Cómo elegir las letras de tu página web: cuántas usar, qué tamaño, qué largo de renglón y cuánto contraste, según las guías de legibilidad.",
-    "image": "/og/nota-tipografia.jpg",
-    "name": "Letras para tu página web",
-    "date": "2026-11-25"
+  "/notas/redisenar-sin-perder-usuarios": {
+    "title": "Cómo rediseñar una app sin perder usuarios · Mario Bencomo",
+    "description": "La aversión al cambio, cómo avisar y explicar un rediseño y por qué conviene lanzarlo por partes, con las recomendaciones de Google.",
+    "image": "/og/nota-redisenar.jpg",
+    "name": "Rediseña tu app sin perder usuarios",
+    "date": "2026-11-26"
   },
   "/sobre-mi": {
-    "title": "Sobre mí · Mario Bencomo, desarrollador web en Culiacán",
-    "description": "Soy Mario Bencomo, diseñador UI/UX y desarrollador full stack en Culiacán, Sinaloa. Cómo trabajo, mi trayectoria y con qué construyo.",
+    "title": "Sobre mí · Mario Bencomo, diseñador UI/UX y desarrollador de apps",
+    "description": "Soy Mario Bencomo, diseñador UI/UX y desarrollador full stack. Diseño y construyo apps y productos digitales. Cómo trabajo, mi trayectoria y con qué construyo.",
     "image": "/og/sobre-mi.jpg",
     "name": "Sobre mí"
   },
   "/portafolio": {
-    "title": "Portafolio de diseño y desarrollo web · Mario Bencomo",
+    "title": "Portafolio de diseño UI/UX y apps · Mario Bencomo",
     "description": "Casos de estudio con su proceso: corte, una app para repartir los gastos de una tarjeta de crédito, y Tachado, un bot que revisa ofertas de Amazon México.",
     "image": "/og/portafolio.jpg",
     "name": "Mi trabajo"
@@ -104,68 +90,62 @@
     "name": "Tachado"
   },
   "/servicios": {
-    "title": "Servicios de diseño y desarrollo web en Culiacán · Mario Bencomo",
-    "description": "Diseño UI/UX, sitios web, aplicaciones, sistemas para negocios, rediseño, prototipos, automatización e IA. Todo a la medida, desde Culiacán.",
+    "title": "Servicios de diseño UI/UX y desarrollo de apps · Mario Bencomo",
+    "description": "Sitios web de producto, diseño UI/UX, prototipos, apps web y MVP, paneles internos, rediseño de producto, integraciones e IA. Para fundadores, startups y equipos.",
     "image": "/og/servicios.jpg",
     "name": "Servicios"
   },
   "/servicios/sitios-web": {
-    "title": "Diseño de sitios web con identidad en Culiacán · Mario Bencomo",
-    "description": "Sitios web a la medida para negocios y profesionistas: diseñados con tu marca, rápidos, adaptados a celular y listos para que te encuentren en Google.",
+    "title": "Diseño de sitios web para startups y productos digitales · Mario Bencomo",
+    "description": "Sitios web para apps y startups: explican en segundos qué resuelves, muestran el producto en acción y llevan a registrarse, descargarlo o agendar una demo.",
     "image": "/og/servicio-sitios-web.jpg",
-    "name": "Sitios web con identidad"
+    "name": "Sitios web de producto"
   },
   "/servicios/ui-ux": {
-    "title": "Diseño UI/UX en Culiacán · Mario Bencomo",
-    "description": "Diseño UI/UX para apps, plataformas y sistemas: investigación, flujos, prototipos navegables y sistema de diseño, hecho por alguien que también programa.",
+    "title": "Diseño UI/UX de apps y productos digitales · Mario Bencomo",
+    "description": "Diseño UI/UX para apps y plataformas: investigación, flujos, prototipos navegables y sistema de diseño, hecho por alguien que también programa.",
     "image": "/og/servicio-ui-ux.jpg",
-    "name": "Diseño UI/UX"
-  },
-  "/servicios/aplicaciones-web": {
-    "title": "Desarrollo de aplicaciones web a la medida · Mario Bencomo",
-    "description": "Aplicaciones web completas, con frontend, backend y base de datos, hechas a la medida de tu negocio. Desde paneles internos hasta plataformas para tus clientes.",
-    "image": "/og/servicio-aplicaciones-web.jpg",
-    "name": "Aplicaciones web"
-  },
-  "/servicios/sistemas-negocios": {
-    "title": "Sistemas para negocios a la medida · Mario Bencomo, Culiacán",
-    "description": "Sistemas de cotizaciones, inventario, cobros o seguimiento de clientes hechos alrededor de tu operación. Menos trabajo manual y menos errores.",
-    "image": "/og/servicio-sistemas-negocios.jpg",
-    "name": "Sistemas para negocios"
-  },
-  "/servicios/rediseno-web": {
-    "title": "Rediseño de páginas web en Culiacán · Mario Bencomo",
-    "description": "¿Tu página se ve vieja, carga lento o nadie la encuentra? Diagnóstico, nueva estructura, diseño moderno, más velocidad y SEO básico.",
-    "image": "/og/servicio-rediseno-web.jpg",
-    "name": "Rediseño web"
+    "name": "Diseño UI/UX de producto"
   },
   "/servicios/prototipos-funcionales": {
-    "title": "Prototipos funcionales para validar tu idea · Mario Bencomo",
-    "description": "Demos navegables que se sienten como el producto real, para probar tu idea con clientes o inversionistas antes de invertir en el desarrollo completo.",
+    "title": "Prototipos para validar tu idea de app · Mario Bencomo",
+    "description": "Prototipos navegables que se sienten como el producto real, para probar tu idea con usuarios o inversionistas antes de invertir en el desarrollo.",
     "image": "/og/servicio-prototipos-funcionales.jpg",
-    "name": "Prototipos funcionales"
+    "name": "Prototipos para validar"
+  },
+  "/servicios/aplicaciones-web": {
+    "title": "Desarrollo de apps web y MVP · Mario Bencomo",
+    "description": "Diseño y programo tu app web completa, empezando por un MVP con lo esencial para lanzar: frontend, backend, base de datos, cuentas y pagos.",
+    "image": "/og/servicio-aplicaciones-web.jpg",
+    "name": "Apps web y MVP"
+  },
+  "/servicios/herramientas-internas": {
+    "title": "Paneles de administración y herramientas internas para tu app · Mario Bencomo",
+    "description": "El back office de tu producto: panel de administración, soporte, roles y permisos, y métricas en un solo lugar, construido sobre tu base de datos o tu API.",
+    "image": "/og/servicio-herramientas-internas.jpg",
+    "name": "Paneles y herramientas internas"
+  },
+  "/servicios/rediseno-web": {
+    "title": "Rediseño de producto y apps · Mario Bencomo",
+    "description": "Rediseño de apps y plataformas que crecieron a parches: diagnóstico de usabilidad, nuevos flujos, sistema de diseño y lanzamiento por etapas sin perder usuarios.",
+    "image": "/og/servicio-rediseno-web.jpg",
+    "name": "Rediseño de producto"
   },
   "/servicios/automatizacion": {
-    "title": "Automatización de tareas para negocios · Mario Bencomo",
-    "description": "Automatizo reportes, revisión de información y conexiones entre los programas que ya usas, para que las tareas repetitivas se hagan solas y sin errores.",
+    "title": "Integraciones y flujos automáticos para tu app · Mario Bencomo",
+    "description": "Integraciones por API y webhooks, correos y avisos que se envían solos, pagos conectados y tareas programadas dentro de tu producto digital.",
     "image": "/og/servicio-automatizacion.jpg",
-    "name": "Automatización de tareas"
+    "name": "Integraciones y flujos"
   },
   "/servicios/inteligencia-artificial": {
-    "title": "Inteligencia artificial para tu negocio · Mario Bencomo",
-    "description": "Asistentes que responden a tus clientes con la información de tu negocio, resúmenes de documentos largos y contenido automático, con un enfoque práctico.",
+    "title": "Funciones con IA dentro de tu app · Mario Bencomo",
+    "description": "Integro IA en apps y plataformas y diseño su experiencia: búsquedas que entienden, resúmenes y datos ordenados, con pruebas para que no invente.",
     "image": "/og/servicio-inteligencia-artificial.jpg",
-    "name": "Inteligencia artificial"
-  },
-  "/herramientas/tarjeta-qr": {
-    "title": "Tarjeta QR de WhatsApp para tu negocio, gratis · Mario Bencomo",
-    "description": "Diseña gratis la tarjeta con el código QR de WhatsApp de tu negocio: 3 estilos, para mostrador o historias de Instagram. Sin registro y sin guardar tu número.",
-    "image": "/og/tarjeta-qr.jpg",
-    "name": "Tarjeta QR de WhatsApp"
+    "name": "IA en tu producto"
   },
   "/contacto": {
-    "title": "Contacto · Mario Bencomo, diseño y desarrollo web",
-    "description": "Cuéntame de tu proyecto, ya sea un sitio web, una app o un sistema, y te respondo con una propuesta clara y un plan de trabajo.",
+    "title": "Contacto · Mario Bencomo, diseño UI/UX y desarrollo de apps",
+    "description": "Cuéntame de tu producto, ya sea una idea, un prototipo, un MVP o un rediseño, y te respondo con una propuesta clara y un plan de trabajo.",
     "image": "/og/contacto.jpg",
     "name": "Contacto"
   },

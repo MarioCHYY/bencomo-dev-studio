@@ -224,14 +224,14 @@ export function Faqs({ items }: { items: { q: string; a: string }[] }) {
 export function Steps({ es }: { es: boolean }) {
   const steps = es
     ? [
-        ["Entender tu negocio", "Antes de diseñar nada, entiendo cómo funciona tu negocio, a quién le hablas y qué te está frenando hoy."],
+        ["Entender el problema", "Antes de diseñar nada, entiendo a quién le resuelves qué, cómo lo hace hoy y en qué paso se atora."],
         ["Diseñar y construir", "Diseño la experiencia y la programo a la medida, mostrándote avances reales en cada etapa para que opines a tiempo."],
-        ["Lanzar y crecer", "Publico, mido y ajusto. Tu producto queda listo para crecer junto con tu negocio, no solo para el día del lanzamiento."],
+        ["Lanzar y aprender", "Publico, mido y ajusto. Tu producto queda listo para crecer con lo que te digan tus usuarios, no solo para el día del lanzamiento."],
       ]
     : [
-        ["Understand your business", "Before designing anything, I understand how your business works, who you talk to and what's holding you back today."],
+        ["Understand the problem", "Before designing anything, I learn who you solve what for, how they do it today and at which step they get stuck."],
         ["Design and build", "I design the experience and build it to measure, showing you real progress at every stage so you can weigh in on time."],
-        ["Launch and grow", "I publish, measure and adjust. Your product is ready to grow with your business, not just for launch day."],
+        ["Launch and learn", "I ship, measure and adjust. Your product is ready to grow with what your users tell you, not just for launch day."],
       ];
   return (
     <ol className="border-t border-white/[0.09]">
@@ -251,7 +251,7 @@ export function Steps({ es }: { es: boolean }) {
 const CASES: Record<CaseRef, { to: string; img: string; name: string; line: [string, string]; tags: [string, string] }> = {
   corte: {
     to: "/portafolio/corte",
-    img: "/work/corte/opengraph-image.png",
+    img: "/work/corte/opengraph-image.webp",
     name: "corte",
     line: [
       "App para repartir los gastos de la casa y controlar la tarjeta de crédito que todos usan: fecha de corte, fecha límite y meses sin intereses.",
@@ -306,14 +306,14 @@ export function serviceLinks(ids: string[], es: boolean) {
     .map((i) => ({ title: es ? i!.title.es : i!.title.en, text: es ? i!.subtitle.es : i!.subtitle.en, to: `/servicios/${i!.id}` }));
 }
 
-/** real screens from live projects: phones side by side, wide screens in a browser frame */
+/** real screens from live projects: phones side by side (four make a journey, two per row on phones), wide screens in a browser frame */
 export function Shots({ shots, es }: { shots: import("@/content/servicePages").Shot[]; es: boolean }) {
   const phones = shots.filter((s) => s.kind === "phone");
   const wides = shots.filter((s) => s.kind === "wide");
   return (
     <div className="flex flex-col gap-10">
       {phones.length > 0 && (
-        <div className="grid grid-cols-3 gap-3 md:gap-5">
+        <div className={`grid gap-3 md:gap-5 ${phones.length === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-3"}`}>
           {phones.map((s, i) => (
             <motion.figure
               key={s.src}
@@ -321,7 +321,7 @@ export function Shots({ shots, es }: { shots: import("@/content/servicePages").S
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.8, ease, delay: i * 0.1 }}
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-3 min-w-0"
             >
               <div className="rounded-[18px] md:rounded-[26px] border border-white/15 bg-[#0b0c0e] p-1 md:p-1.5 shadow-[0_30px_70px_-30px_rgba(11,11,13,0.55)]">
                 <img src={s.src} alt={es ? s.caption.es : s.caption.en} loading="lazy" className="block w-full rounded-[14px] md:rounded-[21px]" />
@@ -363,5 +363,92 @@ export function StepList({ steps }: { steps: { title: string; text: string }[] }
         </li>
       ))}
     </ol>
+  );
+}
+
+/** what someone is dealing with today, and what changes: one row each, problem on the left */
+export function ProblemList({ items, es }: { items: { problem: string; fix: string }[]; es: boolean }) {
+  return (
+    <div className="border-t border-white/[0.09]">
+      <div className="hidden md:grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 py-3 font-mono text-[11px] tracking-[0.2em] uppercase text-white/40">
+        <span>{es ? "Hoy" : "Today"}</span>
+        <span>{es ? "Lo que cambia" : "What changes"}</span>
+      </div>
+      <ul>
+        {items.map((it) => (
+          <li key={it.problem} className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-2 md:gap-10 py-6 border-t border-white/[0.09]">
+            <p className="text-white/50 text-base md:text-lg leading-relaxed">{it.problem}</p>
+            <p className="flex gap-3 text-white text-base md:text-lg leading-relaxed">
+              <ArrowUpRight size={18} className="mt-1 shrink-0 rotate-45 text-white/40" aria-hidden="true" />
+              <span>{it.fix}</span>
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** concrete things a service can be: a compact, scannable grid */
+export function CanGrid({ items }: { items: { title: string; text: string }[] }) {
+  return (
+    <ul className="grid sm:grid-cols-2 border-t border-white/[0.09]">
+      {items.map((c, i) => (
+        <li key={c.title} className={`py-6 border-b border-white/[0.09] sm:pr-8 ${i % 2 === 1 ? "sm:pl-8 sm:border-l" : ""}`}>
+          <h3 className="font-heading font-semibold text-white text-lg md:text-xl -tracking-[0.02em]">{c.title}</h3>
+          <p className="mt-2 text-white/60 text-[15px] leading-relaxed">{c.text}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** a real flow, step by step, joined by a line */
+export function Flow({ steps }: { steps: { title: string; text: string }[] }) {
+  return (
+    <ol className="relative grid gap-0">
+      {steps.map((s, i) => (
+        <li key={s.title} className="relative grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 pb-7 last:pb-0">
+          {i < steps.length - 1 && <span aria-hidden="true" className="absolute left-[1.375rem] top-11 bottom-0 w-px bg-white/15" />}
+          <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.03] font-mono text-xs text-white tabular-nums">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <div className="pt-2">
+            <h3 className="font-heading font-semibold text-white text-lg md:text-xl -tracking-[0.02em]">{s.title}</h3>
+            <p className="mt-1.5 text-white/60 text-[15px] md:text-base leading-relaxed max-w-xl">{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/** two short lists side by side: what helps to have before starting, and what's left out */
+export function BeforeStart({ need, out, es }: { need: string[]; out: string[]; es: boolean }) {
+  return (
+    <div className="grid md:grid-cols-2 gap-12 md:gap-10">
+      <div className="min-w-0">
+        <h3 className="font-mono text-[11px] tracking-[0.2em] uppercase text-white/50 pb-3">{es ? "Lo que me ayuda tener" : "What helps to have"}</h3>
+        <ol className="border-t border-white/[0.09]">
+          {need.map((t, i) => (
+            <li key={t} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-2 py-4 border-b border-white/[0.09]">
+              <span className="font-mono text-xs text-white pt-1 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+              <p className="text-white/80 text-base leading-relaxed">{t}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div className="min-w-0">
+        <h3 className="font-mono text-[11px] tracking-[0.2em] uppercase text-white/50 pb-3">{es ? "Lo que queda fuera" : "What's left out"}</h3>
+        <ul className="border-t border-white/[0.09]">
+          {out.map((t) => (
+            <li key={t} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-2 py-4 border-b border-white/[0.09]">
+              <span aria-hidden="true" className="mt-[0.7rem] h-px w-3 bg-white/40" />
+              <p className="text-white/60 text-base leading-relaxed">{t}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }

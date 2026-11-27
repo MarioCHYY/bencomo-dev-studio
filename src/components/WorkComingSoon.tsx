@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Starfield } from "@/components/ui/starfield";
 import { BrandMark } from "@/components/brand/Logo";
 import AuroraLamp from "@/components/fx/AuroraLamp";
+import { usePauseOffscreen } from "@/lib/usePauseOffscreen";
 import FeaturedProject from "@/components/work/FeaturedProject";
 import TachadoCard from "@/components/work/TachadoCard";
 
@@ -63,7 +64,7 @@ const ReelHero = ({ es }: { es: boolean }) => {
         ref={ref}
         className="absolute inset-0 h-full w-full object-cover object-[66%_50%]"
         src="/video/bencomo-reel.mp4?v=2#t=2.2"
-        poster="/video/bencomo-reel.jpg?v=2"
+        poster="/video/bencomo-reel.webp"
         muted
         loop
         playsInline
@@ -123,6 +124,8 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
   const { lang } = useLang();
   // the mark on each card slips open like the one in the navbar: on hover, or (touch screens) while the card is in view
   const [openCards, setOpenCards] = useState<Set<number>>(() => new Set());
+  const soonRef = useRef<HTMLDivElement>(null);
+  usePauseOffscreen(soonRef);
   const touch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
   const setCard = (i: number, on: boolean) =>
     setOpenCards((prev) => {
@@ -136,14 +139,14 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
 
   const cards = es
     ? [
-        { n: "03", kind: "Sitio web", hint: "Identidad y conversión" },
-        { n: "04", kind: "Sistema para negocio", hint: "Procesos y datos" },
-        { n: "05", kind: "Rediseño", hint: "De lo que hay a lo que debería ser" },
+        { n: "03", kind: "Prototipo", hint: "Validar una idea antes de programarla" },
+        { n: "04", kind: "MVP", hint: "De la idea a los primeros usuarios" },
+        { n: "05", kind: "Rediseño de producto", hint: "De lo que hay a lo que debería ser" },
       ]
     : [
-        { n: "03", kind: "Website", hint: "Identity and conversion" },
-        { n: "04", kind: "Business system", hint: "Processes and data" },
-        { n: "05", kind: "Redesign", hint: "From what is to what it should be" },
+        { n: "03", kind: "Prototype", hint: "Validating an idea before building it" },
+        { n: "04", kind: "MVP", hint: "From idea to first users" },
+        { n: "05", kind: "Product redesign", hint: "From what is to what it should be" },
       ];
 
   return (
@@ -202,7 +205,7 @@ const WorkComingSoon = ({ page = false }: { page?: boolean }) => {
           </div>
         )}
 
-        {page && <div className="mt-8 grid md:grid-cols-3 gap-5">
+        {page && <div ref={soonRef} className="mt-8 grid md:grid-cols-3 gap-5">
           {cards.map((c, i) => (
             <motion.article
               key={c.n}

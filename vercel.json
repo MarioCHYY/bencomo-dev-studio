@@ -3,19 +3,89 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "mariobencomodev.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "mariobencomodev.com"
+        }
+      ],
       "destination": "https://www.mariobencomodev.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/herramientas/tarjeta-qr",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/boton-de-whatsapp-en-tu-pagina",
+      "destination": "/notas/por-que-tu-app-se-ve-amateur",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/por-que-tu-pagina-se-ve-barata",
+      "destination": "/notas/por-que-tu-app-se-ve-amateur",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/colores-que-dan-confianza",
+      "destination": "/notas/por-que-tu-app-se-ve-amateur",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/tu-pagina-en-10-segundos",
+      "destination": "/notas/onboarding-de-tu-app",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/tipografia-para-tu-pagina-web",
+      "destination": "/notas/sistema-de-diseno",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/donde-poner-tu-logo",
+      "destination": "/notas",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/pagina-web-para-restaurante",
+      "destination": "/notas",
+      "statusCode": 301
+    },
+    {
+      "source": "/notas/fotos-para-tu-pagina-web",
+      "destination": "/notas",
+      "statusCode": 301
+    },
+    {
+      "source": "/diseno-web-culiacan",
+      "destination": "/diseno-ui-ux-culiacan",
+      "statusCode": 301
+    },
+    {
+      "source": "/servicios/sistemas-negocios",
+      "destination": "/servicios/herramientas-internas",
+      "statusCode": 301
     }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
     }
   ]
 }

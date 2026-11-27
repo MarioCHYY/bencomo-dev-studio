@@ -45,7 +45,7 @@ const Notes = () => {
                 ]}
               />
               <Kicker
-                label={es ? "Para dueños de negocio" : "For business owners"}
+                label={es ? "Para fundadores y equipos de producto" : "For founders and product teams"}
               />
             </motion.div>
             <motion.h1
@@ -70,8 +70,8 @@ const Notes = () => {
               className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl"
             >
               {es
-                ? "Lo que hace que una página dé confianza y que la gente te escriba, explicado para quien tiene un negocio. Cada dato viene con su fuente."
-                : "What makes a website trustworthy and gets people to message you, explained for business owners. Every figure comes with its source."}
+                ? "Cómo validar una idea, diseñar los primeros minutos de una app y hacer que tu producto se vea y se sienta sólido, explicado para quien está construyendo uno. Cada dato viene con su fuente."
+                : "How to validate an idea, design an app's first minutes and make your product look and feel solid, explained for people building one. Every figure comes with its source."}
             </motion.p>
           </div>
           {/* the blog's own 3D: every note, as a card in a slowly turning ring */}

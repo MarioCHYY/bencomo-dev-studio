@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import { useServicesScene } from "@/components/services3d/useServicesScene";
+import { OutlineNumber } from "@/components/ui/outline-number";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const AURORA = "linear-gradient(90deg,#8FB0FF,#B7A8FF,#FF9AB0,#FFC48A)";
@@ -143,12 +144,7 @@ const ServicesPageContent = () => {
                 className="absolute inset-0 opacity-70"
                 style={{ background: "radial-gradient(60% 55% at 50% 52%, rgba(143,176,255,0.20), rgba(183,168,255,0.10) 45%, transparent 75%)" }}
               />
-              <span
-                aria-hidden="true"
-                className="absolute right-4 lg:right-8 top-2 lg:top-6 font-heading font-bold text-[6rem] lg:text-[11rem] -tracking-[0.06em] leading-none text-transparent [-webkit-text-stroke:1px_rgb(var(--c-fg)/0.09)] select-none tabular-nums"
-              >
-                {num(active)}
-              </span>
+              <OutlineNumber value={num(active)} className="absolute right-4 lg:right-8 top-2 lg:top-6 font-heading font-bold text-[6rem] lg:text-[11rem] -tracking-[0.01em] leading-none" />
               <div ref={viewRef} className="absolute inset-0" role="img" aria-label={t(item.title) as string} />
               {noGL && (
                 <div className="absolute inset-0 flex items-center justify-center text-white/40 font-mono text-xs tracking-[0.2em] uppercase">{t(item.title)}</div>

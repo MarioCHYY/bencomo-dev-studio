@@ -3,6 +3,7 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform,
 import { useLang } from "@/i18n/LanguageContext";
 import { MoreLink } from "@/components/ui/more-link";
 import { useChased } from "@/lib/chase";
+import { usePauseOffscreen } from "@/lib/usePauseOffscreen";
 
 /**
  * Keynote-style pause, as a scene that stays on screen while you scroll. Each word has its own voice:
@@ -61,6 +62,8 @@ export default function Statement() {
   const { scrollYProgress: raw } = useScroll({ target: ref, offset: ["start start", "end end"] });
   // the scene follows the scroll, but never faster than ~2.2 s end to end, so a quick flick still shows it
   const p = useChased(raw, { upMs: 2200, downMs: 1100, tau: 80 });
+  // the flowing aurora and the blinking caret stop while the scene is off screen
+  usePauseOffscreen(ref);
 
   const scale = useTransform(p, [0, 0.35], [1.12, 1], { ease: easeOut });
   const swash = useTransform(p, [0.36, 0.5], [0, 1]);

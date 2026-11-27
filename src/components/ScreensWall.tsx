@@ -22,11 +22,11 @@ const PHONES: Tile[] = [
 ];
 const WIDE: Tile[] = [
   { src: "/work/tachado/panel.webp", alt: ["Página de Tachado", "Tachado website"], to: "/portafolio/tachado", tag: "Tachado" },
-  { src: "/work/corte/corte-intro.jpg", alt: ["Intro de la marca corte", "corte brand intro"], to: "/portafolio/corte", tag: "corte" },
+  { src: "/work/corte/corte-intro.webp", alt: ["Intro de la marca corte", "corte brand intro"], to: "/portafolio/corte", tag: "corte" },
   { src: "/work/tachado/ofertas.webp", alt: ["Ofertas en Tachado", "Deals on Tachado"], to: "/portafolio/tachado", tag: "Tachado" },
-  { src: "/work/corte/opengraph-image.png", alt: ["Portada del sitio de corte", "corte site cover"], to: "/portafolio/corte", tag: "corte" },
+  { src: "/work/corte/opengraph-image.webp", alt: ["Portada del sitio de corte", "corte site cover"], to: "/portafolio/corte", tag: "corte" },
   { src: "/work/tachado/grafica.webp", alt: ["Historial de precios en Tachado", "Price history on Tachado"], to: "/portafolio/tachado", tag: "Tachado" },
-  { src: "/work/corte/recorrido.jpg", alt: ["Recorrido por la app corte", "corte app walkthrough"], to: "/portafolio/corte", tag: "corte" },
+  { src: "/work/corte/recorrido.webp", alt: ["Recorrido por la app corte", "corte app walkthrough"], to: "/portafolio/corte", tag: "corte" },
 ];
 
 function TileLink({ t, es, wide }: { t: Tile; es: boolean; wide?: boolean }) {

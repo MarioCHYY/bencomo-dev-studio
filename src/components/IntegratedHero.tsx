@@ -73,7 +73,7 @@ export default function IntegratedHero() {
       {/* soft light behind the sculpture */}
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[52%] -translate-x-1/2 -translate-y-1/2 w-[min(90vw,900px)] aspect-square rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.10),rgba(183,168,255,0.05)_40%,transparent_68%)]" />
 
-      <motion.div style={{ y: copyY, opacity: copyO }} className="relative z-20 max-w-6xl mx-auto px-6 md:px-8 pt-28 md:pt-32 pb-14 flex flex-col items-center text-center">
+      <motion.div style={{ y: copyY, opacity: copyO }} className="will-change-transform relative z-20 max-w-6xl mx-auto px-6 md:px-8 pt-28 md:pt-32 pb-14 flex flex-col items-center text-center">
         <motion.span
           variants={up}
           initial="hidden"
@@ -98,7 +98,7 @@ export default function IntegratedHero() {
             className="flex items-center justify-center gap-3 mb-5 font-sans text-[11px] md:text-xs font-semibold tracking-[0.22em] uppercase leading-none text-white/55"
           >
             <span aria-hidden="true" className="h-px w-8 bg-[linear-gradient(90deg,transparent,#8FB0FF)]" />
-            {es ? "Diseño UI/UX y desarrollo web en Culiacán" : "UI/UX design & web development in Culiacán, Mexico"}
+            {es ? "Diseño UI/UX y desarrollo de apps" : "UI/UX design & app development"}
             <span aria-hidden="true" className="h-px w-8 bg-[linear-gradient(90deg,#FFC48A,transparent)]" />
           </motion.span>{" "}
           <motion.span variants={up} initial="hidden" animate={show} custom={0.3} className="block">

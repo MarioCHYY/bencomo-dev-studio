@@ -1,6 +1,4 @@
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { ThemeProvider } from "@/components/ThemeContext";
@@ -24,8 +22,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const CaseCorte = lazy(() => import("./pages/CaseCorte"));
 const CaseTachado = lazy(() => import("./pages/CaseTachado"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
-const WebDesignCuliacan = lazy(() => import("./pages/WebDesignCuliacan"));
-const QrCardTool = lazy(() => import("./pages/QrCardTool"));
+const UiUxCuliacan = lazy(() => import("./pages/UiUxCuliacan"));
 const Ejemplos = lazy(() => import("./pages/Ejemplos"));
 const Notes = lazy(() => import("./pages/Notes"));
 const NoteDetail = lazy(() => import("./pages/NoteDetail"));
@@ -41,38 +38,34 @@ const PageLoader = () => (
 const App = () => (
   <ThemeProvider>
     <LanguageProvider>
-      <TooltipProvider>
-        <CinematicBackground />
-        <Toaster />
-        <Sonner />
-        <SkyLight />
-        <RevealObserver />
-        <IntroCut />
-        <BrowserRouter>
-          <PageTransition />
-          <PageMeta />
-          <BlueprintMode />
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/servicios" element={<Services />} />
-              <Route path="/servicios/:id" element={<ServiceDetail />} />
-              <Route path="/diseno-web-culiacan" element={<WebDesignCuliacan />} />
-              <Route path="/herramientas/tarjeta-qr" element={<QrCardTool />} />
-              <Route path="/ejemplos-paginas-web" element={<Ejemplos />} />
-              <Route path="/notas" element={<Notes />} />
-              <Route path="/notas/:slug" element={<NoteDetail />} />
-              <Route path="/portafolio" element={<Portfolio />} />
-              <Route path="/portafolio/corte" element={<CaseCorte />} />
-              <Route path="/portafolio/tachado" element={<CaseTachado />} />
-              <Route path="/sobre-mi" element={<About />} />
-              <Route path="/contacto" element={<Contact />} />
-              <Route path="/privacidad" element={<Privacy />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
+      <CinematicBackground />
+      <Toaster />
+      <SkyLight />
+      <RevealObserver />
+      <IntroCut />
+      <BrowserRouter>
+        <PageTransition />
+        <PageMeta />
+        <BlueprintMode />
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/servicios" element={<Services />} />
+            <Route path="/servicios/:id" element={<ServiceDetail />} />
+            <Route path="/diseno-ui-ux-culiacan" element={<UiUxCuliacan />} />
+            <Route path="/ejemplos-paginas-web" element={<Ejemplos />} />
+            <Route path="/notas" element={<Notes />} />
+            <Route path="/notas/:slug" element={<NoteDetail />} />
+            <Route path="/portafolio" element={<Portfolio />} />
+            <Route path="/portafolio/corte" element={<CaseCorte />} />
+            <Route path="/portafolio/tachado" element={<CaseTachado />} />
+            <Route path="/sobre-mi" element={<About />} />
+            <Route path="/contacto" element={<Contact />} />
+            <Route path="/privacidad" element={<Privacy />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
     </LanguageProvider>
   </ThemeProvider>
 );

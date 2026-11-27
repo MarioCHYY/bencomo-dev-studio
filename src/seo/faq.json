@@ -9,12 +9,12 @@
    "a": "Principalmente React, TypeScript, Node.js y Python, con Tailwind para la interfaz. Elijo la herramienta según lo que necesita tu proyecto, no al revés."
   },
   {
-   "q": "¿Puedes trabajar sobre un sitio o sistema que ya tengo?",
+   "q": "¿Puedes trabajar sobre una app que ya tengo?",
    "a": "Sí. Reviso lo que tienes, te digo qué conviene mejorar y qué conviene rehacer, y trabajamos desde ahí."
   },
   {
    "q": "¿Cómo es el proceso de trabajo?",
-   "a": "Empezamos con una llamada para entender tu negocio, definimos alcance y prioridades, y te muestro avances conforme construimos para que opines en cada etapa."
+   "a": "Empezamos con una llamada para entender tu producto y a quién le sirve, definimos alcance y prioridades, y te muestro avances conforme construimos para que opines en cada etapa."
   },
   {
    "q": "¿Qué pasa después del lanzamiento?",
@@ -35,12 +35,12 @@
    "a": "Mainly React, TypeScript, Node.js and Python, with Tailwind for the interface. I pick the tool your project needs, not the other way around."
   },
   {
-   "q": "Can you work on a site or system I already have?",
+   "q": "Can you work on an app I already have?",
    "a": "Yes. I review what you have, tell you what's worth improving and what's worth rebuilding, and we take it from there."
   },
   {
    "q": "What does working together look like?",
-   "a": "We start with a call to understand your business, agree on scope and priorities, and I show you progress as we build so you can weigh in at every stage."
+   "a": "We start with a call to understand your product and who it's for, agree on scope and priorities, and I show you progress as we build so you can weigh in at every stage."
   },
   {
    "q": "What happens after launch?",

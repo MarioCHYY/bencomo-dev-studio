@@ -10,15 +10,15 @@ const STEPS = [
   {
     t: { es: "Me escribes", en: "You write to me" },
     d: {
-      es: "Por WhatsApp, por correo o con el formulario de arriba. Cuéntame de tu negocio y qué quieres lograr; no necesitas saber de diseño ni de programación.",
-      en: "On WhatsApp, by email or with the form above. Tell me about your business and what you want to achieve; you don't need to know about design or code.",
+      es: "Por WhatsApp, por correo o con el formulario de arriba. Cuéntame de tu producto o de tu idea y qué quieres lograr; no necesitas saber de diseño ni de programación.",
+      en: "On WhatsApp, by email or with the form above. Tell me about your product or your idea and what you want to achieve; you don't need to know about design or code.",
     },
   },
   {
     t: { es: "Te pregunto lo necesario", en: "I ask what I need" },
     d: {
-      es: "Para entender tu proyecto: a quién le vendes, qué te está frenando hoy y qué tienes ya (logo, fotos, una página actual).",
-      en: "To understand your project: who you sell to, what's holding you back today and what you already have (logo, photos, a current site).",
+      es: "Para entender tu proyecto: a quién le resuelves qué, en qué etapa estás y qué tienes ya (una idea, un prototipo, diseños o una versión que ya funciona).",
+      en: "To understand your project: who you solve what for, what stage you're at and what you already have (an idea, a prototype, designs or a working version).",
     },
   },
   {
@@ -34,8 +34,8 @@ const FAQS = [
   {
     q: { es: "¿Qué necesito para empezar?", en: "What do I need to get started?" },
     a: {
-      es: "Solo contarme de tu negocio y qué quieres lograr. Si tienes logo, fotos o una página actual, mándamelos; si no, lo vemos juntos.",
-      en: "Just tell me about your business and what you want to achieve. If you have a logo, photos or a current site, send them; if not, we figure it out together.",
+      es: "Solo contarme tu idea o tu producto y qué quieres lograr. Si tienes bocetos, un prototipo o una versión actual, mándamelos; si no, lo vemos juntos.",
+      en: "Just tell me your idea or your product and what you want to achieve. If you have sketches, a prototype or a current version, send them; if not, we figure it out together.",
     },
   },
   {
@@ -53,10 +53,10 @@ const FAQS = [
     },
   },
   {
-    q: { es: "Ya tengo una página, ¿la puedes mejorar?", en: "I already have a website, can you improve it?" },
+    q: { es: "Ya tengo una app, ¿la puedes rediseñar?", en: "I already have an app, can you redesign it?" },
     a: {
-      es: "Sí. Empiezo revisando lo que tienes: diseño, estructura, velocidad, cómo se ve en celular y qué tanto la entiende Google. Con eso te digo qué conviene mantener y qué cambiar.",
-      en: "Yes. I start by reviewing what you have: design, structure, speed, how it looks on phones and how well Google understands it. Then I tell you what's worth keeping and what to change.",
+      es: "Sí. Empiezo recorriendo los flujos principales y viendo dónde se atora la gente. Con eso te digo qué conviene mantener, qué cambiar y cómo lanzarlo sin perder a tus usuarios.",
+      en: "Yes. I start by walking through the main flows and seeing where people get stuck. Then I tell you what's worth keeping, what to change and how to ship it without losing your users.",
     },
   },
   {

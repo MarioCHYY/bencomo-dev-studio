@@ -28,13 +28,15 @@ function Aurora({ id }: { id: string }) {
   );
 }
 
-const half = (x: number, y: number, driven = false): CSSProperties => ({
+// glide = false: no transition at all, for values that already move smoothly frame by frame (the
+// scroll); a transition there restarted on every frame and kept the navbar repainting
+const half = (x: number, y: number, driven = false, glide = true): CSSProperties => ({
   transform: `translate(${x}px, ${y}px)`,
-  transition: driven ? "transform 160ms linear" : "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)",
+  transition: !glide ? "none" : driven ? "transform 160ms linear" : "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)",
 });
 
 /** The halves + aurora core, drawn in unit space. `open` slips them further. */
-function MarkShapes({ id, fill, open, core = true }: { id: string; fill: string; open?: boolean | number; core?: boolean }) {
+function MarkShapes({ id, fill, open, core = true, glide = true }: { id: string; fill: string; open?: boolean | number; core?: boolean; glide?: boolean }) {
   // boolean: eased CSS transition; number (0..1): driven directly, e.g. by scroll
   const v = typeof open === "number" ? Math.max(0, Math.min(1, open)) : open ? 1 : 0;
   const x = REST[0] + (OPEN[0] - REST[0]) * v;
@@ -43,8 +45,8 @@ function MarkShapes({ id, fill, open, core = true }: { id: string; fill: string;
   return (
     <>
       {core && <circle r="0.9" fill={`url(#${id})`} />}
-      <path d={TOP} style={{ ...half(x, y, driven), fill }} />
-      <path d={BOTTOM} style={{ ...half(-x, -y, driven), fill }} />
+      <path d={TOP} style={{ ...half(x, y, driven, glide), fill }} />
+      <path d={BOTTOM} style={{ ...half(-x, -y, driven, glide), fill }} />
     </>
   );
 }
@@ -61,7 +63,7 @@ export function BrandMark({ size = 32, tone = "auto", open, className = "", titl
 }
 
 /** Mark + wordmark lockup. Height drives the size; hover slips the cut open. */
-export function BrandLogo({ height = 28, tone = "auto", open, className = "", title = "Bencomo" }: { height?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string }) {
+export function BrandLogo({ height = 28, tone = "auto", open, className = "", title = "Bencomo", glide = true }: { height?: number; tone?: Tone; open?: boolean | number; className?: string; title?: string; glide?: boolean }) {
   const id = `bc-${useId().replace(/:/g, "")}`;
   const vb = [0, -848.6, 5420.7, 940.2];
   return (
@@ -69,7 +71,7 @@ export function BrandLogo({ height = 28, tone = "auto", open, className = "", ti
       <title>{title}</title>
       <defs><Aurora id={id} /></defs>
       <g transform="translate(388.34 -378.50) scale(408.780)">
-        <MarkShapes id={id} fill={ink(tone)} open={open} />
+        <MarkShapes id={id} fill={ink(tone)} open={open} glide={glide} />
       </g>
       <path transform="translate(1016.18 0)" d={WORD} style={{ fill: ink(tone) }} />
     </svg>

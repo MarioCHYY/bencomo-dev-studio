@@ -10,13 +10,17 @@ const GRAIN =
  * - default: fills its positioned parent (cards, dark bands). Only lights up while that surface is dark.
  * - `fixed`: covers the whole page behind the content, only on the dark theme.
  * On touch screens the light drifts on its own, slowly.
+ * The light is three gradient discs that move as one layer (transform + opacity only), so following
+ * the cursor never repaints anything: the browser just slides an already-drawn layer.
  */
 export default function AuroraLamp({ fixed = false, strength = 1 }: { fixed?: boolean; strength?: number }) {
   const ref = useRef<HTMLDivElement>(null);
+  const lightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    const light = lightRef.current;
+    if (!el || !light) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     let dark = true;
@@ -31,6 +35,21 @@ export default function AuroraLamp({ fixed = false, strength = 1 }: { fixed?: bo
     readTheme();
     const mo = new MutationObserver(readTheme);
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+    // the surface's size, read only when it changes (never per frame); the small discs sit
+    // a set share of it away from the big one, exactly as the old percentage offsets did
+    let W = el.clientWidth, H = el.clientHeight;
+    const measure = () => {
+      W = el.clientWidth;
+      H = el.clientHeight;
+      light.style.setProperty("--ox2", `${(W * 0.06).toFixed(1)}px`);
+      light.style.setProperty("--oy2", `${(H * 0.08).toFixed(1)}px`);
+      light.style.setProperty("--ox3", `${(-W * 0.05).toFixed(1)}px`);
+      light.style.setProperty("--oy3", `${(H * 0.1).toFixed(1)}px`);
+      kick();
+    };
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
 
     let tx = 0.7, ty = 0.3, x = 0.7, y = 0.3, on = fine ? 0 : 0.6, ton = fine ? 0 : 0.6;
     let raf = 0;
@@ -52,9 +71,8 @@ export default function AuroraLamp({ fixed = false, strength = 1 }: { fixed?: bo
       x += (tx - x) * 0.09;
       y += (ty - y) * 0.09;
       on += (ton - on) * 0.08;
-      el.style.setProperty("--lx", `${(x * 100).toFixed(2)}%`);
-      el.style.setProperty("--ly", `${(y * 100).toFixed(2)}%`);
-      el.style.setProperty("--lo", (on * strength).toFixed(3));
+      light.style.transform = `translate3d(${(x * W).toFixed(1)}px, ${(y * H).toFixed(1)}px, 0)`;
+      light.style.opacity = (on * strength).toFixed(3);
       const moving = Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(ton - on) > 0.001;
       if (moving || (!fine && !reduce)) raf = requestAnimationFrame(frame);
     };
@@ -82,32 +100,36 @@ export default function AuroraLamp({ fixed = false, strength = 1 }: { fixed?: bo
       document.documentElement.addEventListener("pointerleave", onLeave);
     }
     kick();
+    measure();
     return () => {
       mo.disconnect();
       io.disconnect();
+      ro.disconnect();
       cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onMove);
       document.documentElement.removeEventListener("pointerleave", onLeave);
     };
   }, [fixed, strength]);
 
+  const disc = (r: number, ox: string, oy: string, bg: string) => (
+    <div
+      className="absolute rounded-full"
+      style={{ left: `calc(${ox} - ${r}px)`, top: `calc(${oy} - ${r}px)`, width: r * 2, height: r * 2, background: bg }}
+    />
+  );
+
   return (
     <div
       ref={ref}
       aria-hidden="true"
       className={`pointer-events-none ${fixed ? "fixed inset-0 z-[-1]" : "absolute inset-0 z-[1] rounded-[inherit]"} overflow-hidden`}
-      style={{ ["--lx" as string]: "70%", ["--ly" as string]: "30%", ["--lo" as string]: 0 }}
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          opacity: "var(--lo)",
-          background:
-            "radial-gradient(520px circle at var(--lx) var(--ly), rgba(183,168,255,0.16), rgba(143,176,255,0.08) 38%, transparent 70%)," +
-            "radial-gradient(300px circle at calc(var(--lx) + 6%) calc(var(--ly) + 8%), rgba(255,154,176,0.12), transparent 70%)," +
-            "radial-gradient(240px circle at calc(var(--lx) - 5%) calc(var(--ly) + 10%), rgba(255,196,138,0.08), transparent 70%)",
-        }}
-      />
+      {/* the light: its centre sits at the layer's origin and the layer is moved under the cursor */}
+      <div ref={lightRef} className="absolute left-0 top-0 w-0 h-0" style={{ opacity: 0, transform: "translate3d(70%, 30%, 0)", willChange: "transform, opacity" }}>
+        {disc(240, "var(--ox3, 0px)", "var(--oy3, 0px)", "radial-gradient(240px circle at center, rgba(255,196,138,0.08), transparent 70%)")}
+        {disc(300, "var(--ox2, 0px)", "var(--oy2, 0px)", "radial-gradient(300px circle at center, rgba(255,154,176,0.12), transparent 70%)")}
+        {disc(520, "0px", "0px", "radial-gradient(520px circle at center, rgba(183,168,255,0.16), rgba(143,176,255,0.08) 38%, transparent 70%)")}
+      </div>
       <div
         className="absolute inset-0"
         style={{ opacity: 0.06, backgroundImage: GRAIN, backgroundSize: "160px 160px" }}

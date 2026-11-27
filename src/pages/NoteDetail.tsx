@@ -14,6 +14,7 @@ import {
   Kicker,
   whatsapp,
 } from "@/components/landing/LandingUI";
+import { appExample } from "@/content/appExamples";
 import Compare from "@/components/landing/Compare";
 import { NOTES, note, titleText, type Block, type Note } from "@/content/notes";
 import { inLang } from "@/content/notes-en";
@@ -175,17 +176,25 @@ function Body({ b, es }: { b: Block; es: boolean }) {
         ))}
       </ol>
     );
-  if ("compare" in b)
+  if ("compare" in b) {
+    // a made-up business page, or one of the made-up apps (Alcancía, Órbita, Cancha)
+    const app = appExample(b.compare);
+    const name = app?.name ?? COMPARE_NAMES[b.compare];
     return (
       <div className="my-2 flex flex-col gap-3">
-        <Compare id={b.compare} name={COMPARE_NAMES[b.compare]} es={es} />
+        <Compare id={b.compare} name={name} es={es} app={!!app} />
         <p className="text-[13px] text-white/45">
-          {es
-            ? `${COMPARE_NAMES[b.compare]}, un negocio inventado: versión genérica contra versión diseñada.`
-            : `${COMPARE_NAMES[b.compare]}, a made-up business: generic version versus designed version.`}
+          {app
+            ? es
+              ? `${name}, una app inventada: versión genérica contra versión diseñada.`
+              : `${name}, a made-up app: generic version versus designed version.`
+            : es
+              ? `${name}, un negocio inventado: versión genérica contra versión diseñada.`
+              : `${name}, a made-up business: generic version versus designed version.`}
         </p>
       </div>
     );
+  }
   if ("link" in b) return <MoreLink to={b.link.to}>{b.link.label}</MoreLink>;
   return null;
 }
@@ -381,20 +390,20 @@ const NoteDetail = () => {
                       Mario Bencomo
                     </Link>
                     {es
-                      ? ", diseñador UI/UX y desarrollador web en Culiacán. Diseño y programo páginas para negocios que quieren verse como lo que son."
-                      : ", a UI/UX designer and web developer in Culiacán, Mexico. I design and build websites for businesses that want to look like what they are."}
+                      ? ", diseñador UI/UX y desarrollador de apps. Diseño y programo productos digitales para fundadores, startups y equipos que quieren lanzar o rediseñar el suyo."
+                      : ", a UI/UX designer and app developer. I design and build digital products for founders, startups and teams who want to launch or redesign theirs."}
                   </p>
                   <a
                     href={whatsapp(
                       es
-                        ? `Hola Mario, leí tu nota "${titleText(n)}" y quiero que revises mi página.`
-                        : `Hi Mario, I read your note "${titleText(n)}" and I'd like you to review my website.`,
+                        ? `Hola Mario, leí tu nota "${titleText(n)}" y quiero platicarte de mi producto.`
+                        : `Hi Mario, I read your note "${titleText(n)}" and I'd like to tell you about my product.`,
                     )}
                     target="_blank"
                     rel="noreferrer"
                     className="group self-start inline-flex items-center gap-2 rounded-full bg-brand text-black px-5 py-3 text-sm font-semibold hover:bg-brand/90 transition-colors"
                   >
-                    {es ? "Que revise mi página" : "Review my website"}
+                    {es ? "Platícame tu producto" : "Tell me about your product"}
                     <ArrowUpRight
                       size={16}
                       className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

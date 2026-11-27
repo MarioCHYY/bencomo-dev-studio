@@ -42,12 +42,12 @@ const person = {
   name: "Mario Bencomo",
   url: `${SITE}/sobre-mi`,
   image: `${SITE}/about/mario-frente.webp`,
-  jobTitle: "Diseñador UI/UX y desarrollador web",
-  description: "Diseñador UI/UX y desarrollador full stack en Culiacán, Sinaloa. Diseña y construye interfaces, sitios, apps y sistemas a la medida, con marca incluida.",
+  jobTitle: "Diseñador UI/UX y desarrollador de apps",
+  description: "Diseñador UI/UX y desarrollador full stack. Diseña y construye apps y productos digitales para fundadores, startups y equipos: prototipos, MVP, rediseño de producto y sistemas de diseño.",
   address: PLACE,
   sameAs: SAME_AS,
   knowsLanguage: ["es", "en"],
-  knowsAbout: ["Diseño UI/UX", "Diseño de interfaces", "Prototipos", "Sistemas de diseño", "Figma", "Desarrollo web", "Diseño web", "Identidad de marca", "React", "TypeScript", "Next.js", "Node.js", "Python", "PostgreSQL", "Tailwind CSS"],
+  knowsAbout: ["Diseño UI/UX", "Diseño de producto", "Diseño de interfaces", "Prototipos", "MVP", "Sistemas de diseño", "Figma", "Desarrollo de aplicaciones web", "React", "TypeScript", "Next.js", "Node.js", "Python", "PostgreSQL", "Tailwind CSS"],
 };
 
 const website = { "@type": "WebSite", "@id": SITE_ID, url: `${SITE}/`, name: "Mario Bencomo", inLanguage: "es-MX", publisher: { "@id": PERSON_ID } };
@@ -67,7 +67,7 @@ const services = [];
 const business = {
   "@type": "ProfessionalService",
   "@id": BIZ_ID,
-  name: "Mario Bencomo · Diseño y desarrollo web",
+  name: "Mario Bencomo · Diseño UI/UX y desarrollo de apps",
   url: `${SITE}/`,
   image: `${SITE}/og/home.jpg`,
   logo: `${SITE}/icon-512.png`,
@@ -83,7 +83,7 @@ const business = {
   sameAs: SAME_AS,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Servicios de diseño y desarrollo web",
+    name: "Servicios de diseño UI/UX y desarrollo de apps",
     itemListElement: services.map((s) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: s.name, description: s.description, provider: { "@id": BIZ_ID }, areaServed: "MX" },
@@ -103,9 +103,8 @@ const PAGE_SRC = [
   ["/portafolio", "src/pages/Portfolio.tsx"],
   ["/servicios", "src/pages/Services.tsx"],
   ["/notas", "src/pages/Notes.tsx"],
-  ["/diseno-web-culiacan", "src/pages/WebDesignCuliacan.tsx"],
+  ["/diseno-ui-ux-culiacan", "src/pages/UiUxCuliacan.tsx"],
   ["/ejemplos-paginas-web", "src/pages/Ejemplos.tsx"],
-  ["/herramientas/tarjeta-qr", "src/pages/QrCardTool.tsx"],
   ["/sobre-mi", "src/pages/About.tsx"],
   ["/contacto", "src/pages/Contact.tsx"],
   ["/privacidad", "src/pages/Privacy.tsx"],
@@ -254,34 +253,15 @@ function graphFor(route) {
     case "/contacto":
       g.push(business, { "@type": "ContactPage", ...page, about: { "@id": BIZ_ID }, breadcrumb: crumbs(route) }, ...faqPage(route, faqFrom(route)));
       break;
-    case "/herramientas/tarjeta-qr":
-      g.push(
-        { "@type": "WebPage", ...page, mainEntity: { "@id": `${abs(route)}#herramienta` }, breadcrumb: crumbs(route) },
-        {
-          "@type": "WebApplication",
-          "@id": `${abs(route)}#herramienta`,
-          name: "Diseñador de tarjeta QR de WhatsApp",
-          url: abs(route),
-          description: p.description,
-          applicationCategory: "DesignApplication",
-          operatingSystem: "Cualquiera (en el navegador)",
-          inLanguage: "es-MX",
-          isAccessibleForFree: true,
-          offers: { "@type": "Offer", price: "0", priceCurrency: "MXN" },
-          creator: { "@id": PERSON_ID },
-        },
-        ...faqPage(route, faqFrom(route)),
-      );
-      break;
-    case "/diseno-web-culiacan":
+    case "/diseno-ui-ux-culiacan":
       g.push(
         business,
         { "@type": "WebPage", ...page, about: { "@id": `${abs(route)}#servicio` }, breadcrumb: crumbs(route) },
         {
           "@type": "Service",
           "@id": `${abs(route)}#servicio`,
-          name: "Diseño de páginas web en Culiacán",
-          serviceType: "Diseño y desarrollo web",
+          name: "Diseño UI/UX y desarrollo de apps en Culiacán",
+          serviceType: "Diseño UI/UX y desarrollo de aplicaciones",
           description: p.description,
           provider: { "@id": BIZ_ID },
           areaServed: AREA,
@@ -409,9 +389,8 @@ function textFor(route) {
   const cases = [
     ["/portafolio/corte", "corte, caso de estudio"],
     ["/portafolio/tachado", "Tachado, caso de estudio"],
-    ["/diseno-web-culiacan", "Diseño de páginas web en Culiacán"],
+    ["/diseno-ui-ux-culiacan", "Diseño UI/UX y desarrollo de apps en Culiacán"],
     ["/ejemplos-paginas-web", "Ejemplos de páginas web: antes y después"],
-    ["/herramientas/tarjeta-qr", "Diseña la tarjeta QR de tu negocio"],
   ]
     .map(([href, name]) => `<a href="${href}">${esc(name)}</a>`)
     .join(" · ");
@@ -419,7 +398,7 @@ function textFor(route) {
     `<div class="seo-prerender" data-prerender>` +
     `<header><a href="/">Mario Bencomo</a><nav>${nav}</nav></header>` +
     `<main>${body}</main>` +
-    `<footer><p>Mario Bencomo · Diseño y desarrollo web en Culiacán, Sinaloa, México.</p><p>${cases}</p><p><a href="/privacidad">Aviso de privacidad</a></p></footer>` +
+    `<footer><p>Mario Bencomo · Diseño UI/UX y desarrollo de apps y productos digitales.</p><p>${cases}</p><p><a href="/privacidad">Aviso de privacidad</a></p></footer>` +
     `</div>`
   );
 }
@@ -478,7 +457,7 @@ fs.rmSync(path.join(dist, ".vite"), { recursive: true, force: true });
 {
   const urls = Object.entries(pages)
     .map(([route, p]) => {
-      const priority = route === "/" ? "1.0" : route === "/diseno-web-culiacan" || route === "/ejemplos-paginas-web" || route.startsWith("/herramientas") || route.startsWith("/portafolio") || route.startsWith("/servicios") ? "0.9" : route === "/privacidad" ? "0.2" : "0.7";
+      const priority = route === "/" ? "1.0" : route === "/diseno-ui-ux-culiacan" || route === "/ejemplos-paginas-web" || route.startsWith("/portafolio") || route.startsWith("/servicios") ? "0.9" : route === "/privacidad" ? "0.2" : "0.7";
       return `  <url>\n    <loc>${abs(route)}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n    <image:image><image:loc>${SITE + p.image}</image:loc></image:image>\n  </url>`;
     })
     .join("\n");

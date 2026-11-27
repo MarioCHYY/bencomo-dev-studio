@@ -96,7 +96,7 @@ function BrandFilmTile({ className, delay }: { className?: string; delay?: numbe
         ref={ref}
         className="absolute inset-0 h-full w-full object-cover"
         src="/video/bencomo-logo-loop.mp4"
-        poster="/video/bencomo-logo-loop.jpg"
+        poster="/video/bencomo-logo-loop.webp"
         muted
         loop
         playsInline
@@ -321,8 +321,8 @@ const AboutPageContent = () => {
             >
               <p className="text-white/65 text-lg leading-relaxed max-w-md">
                 {es
-                  ? "Soy desarrollador full stack y estudio Ingeniería en Sistemas en Culiacán. Diseño y construyo sitios y aplicaciones que no solo funcionan: se entienden, se ven bien y tienen una identidad clara."
-                  : "I'm a full stack developer studying Computer Systems Engineering in Culiacán. I design and build websites and apps that don't just work: they're clear, look good and have a strong identity."}
+                  ? "Soy desarrollador full stack y estudio Ingeniería en Sistemas en Culiacán. Diseño y construyo apps y productos digitales que no solo funcionan: se entienden, se ven bien y tienen una identidad clara."
+                  : "I'm a full stack developer studying Computer Systems Engineering in Culiacán. I design and build apps and digital products that don't just work: they're clear, look good and have a strong identity."}
               </p>
               <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 text-xs text-white/70">
                 <MapPin size={13} /> Culiacán, Sinaloa · <LocalTime bare />

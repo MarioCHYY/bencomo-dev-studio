@@ -10,14 +10,14 @@ const ProcessSection = () => {
 
   const steps = es
     ? [
-        { title: "Entender tu negocio", text: "Antes de diseñar nada, entiendo cómo funciona tu negocio, a quién le hablas y qué te está frenando hoy.", tag: "Descubrimiento" },
+        { title: "Entender el problema", text: "Antes de diseñar nada, entiendo a quién le resuelves qué, cómo lo hace hoy y en qué paso se atora.", tag: "Descubrimiento" },
         { title: "Diseñar y construir", text: "Diseño la experiencia y la programo a la medida, mostrándote avances reales en cada etapa para que opines a tiempo.", tag: "Diseño + Código" },
-        { title: "Lanzar y crecer", text: "Publico, mido y ajusto. Tu producto queda listo para crecer junto con tu negocio, no solo para el día del lanzamiento.", tag: "Lanzamiento" },
+        { title: "Lanzar y aprender", text: "Publico, mido y ajusto. Tu producto queda listo para crecer con lo que te digan tus usuarios, no solo para el día del lanzamiento.", tag: "Lanzamiento" },
       ]
     : [
-        { title: "Understand your business", text: "Before designing anything, I learn how your business works, who you talk to and what is holding you back today.", tag: "Discovery" },
+        { title: "Understand the problem", text: "Before designing anything, I learn who you solve what for, how they do it today and at which step they get stuck.", tag: "Discovery" },
         { title: "Design and build", text: "I design the experience and build it from scratch, showing you real progress at every stage so you can weigh in on time.", tag: "Design + Code" },
-        { title: "Launch and grow", text: "I ship, measure and adjust. Your product is ready to grow with your business, not just for launch day.", tag: "Launch" },
+        { title: "Launch and learn", text: "I ship, measure and adjust. Your product is ready to grow with what your users tell you, not just for launch day.", tag: "Launch" },
       ];
 
   return (

@@ -141,59 +141,13 @@
   h1, h2, h3, h4, h5, h6 { color: rgb(var(--c-fg)); }
 }
 
-@layer utilities {
-  .section-padding {
-    @apply py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-16;
-  }
-  
-  .glass-nav {
-    background: rgba(242, 240, 234, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
-  }
-  
-  .dark .glass-nav {
-    background: rgba(5, 5, 5, 0.85);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .cold-light-glow {
-    text-shadow: 0 0 10px rgba(200, 220, 255, 0.3), 
-                 0 0 20px rgba(200, 220, 255, 0.1);
-  }
-
-  .glass-panel {
-    background: rgba(0, 0, 0, 0.02);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-  }
-  
-  .dark .glass-panel {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .glass-panel:hover {
-    border-color: rgba(59, 130, 246, 0.4); /* Tailwind blue-500 ish matching primary */
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
-  }
-}
-
 /* ---- Smooth scroll (Lenis) ---- */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 
-/* ---- Section separator light sweep ---- */
-@keyframes sep-sweep {
-  0% { left: -12rem; }
-  60%, 100% { left: 100%; }
-}
+/* ---- reduced motion: animations end immediately ---- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
@@ -243,7 +197,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ---- Theme helpers ---- */
-.bg-paper-solid { background-color: rgb(var(--c-paper)); }
 body { transition: background-color .35s ease; }
 
 
@@ -253,6 +206,14 @@ body { transition: background-color .35s ease; }
   to { opacity: 1; transform: scale(1); }
 }
 .intro-mark { animation: intro-mark-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+
+/* ---- looping decorations pause while their section is off screen (usePauseOffscreen) ---- */
+[data-offscreen],
+[data-offscreen]::before,
+[data-offscreen]::after,
+[data-offscreen] *,
+[data-offscreen] *::before,
+[data-offscreen] *::after { animation-play-state: paused !important; }
 
 /* ---- off-screen sections skip layout and paint until you get near them ---- */
 .cv-auto { content-visibility: auto; contain-intrinsic-size: auto 900px; }
@@ -312,6 +273,8 @@ html.reveal-off [data-reveal] video { scale: 1; }
   background-clip: text;
   color: transparent;
   animation: statement-flow 9s linear infinite;
+  /* its own layer: the flowing gradient repaints only these words, not the page around them */
+  will-change: transform;
 }
 @keyframes statement-flow { from { background-position: 0% 50%; } to { background-position: -220% 50%; } }
 @media (prefers-reduced-motion: reduce) { .statement-flow { animation: none; } }
@@ -336,7 +299,7 @@ html.reveal-off [data-reveal] video { scale: 1; }
  * - Grey words: in every title, for the quieter half of the sentence.
  * - The serif italic: one word per main title, and only on pages that tell something
  *   (home statement, about, cases, portfolio, notes, examples, the Culiacán page).
- *   Reference pages people come to look things up (services, the QR tool, contact, privacy) stay without it, to read fast.
+ *   Reference pages people come to look things up (services, contact, privacy) stay without it, to read fast.
  * - The aurora brushstroke under a word: once per page at most, only on the page's main promise
  *   (home: "marca." in the statement; Culiacán: "Culiacán."; examples: "diseñada.").
  */

@@ -52,7 +52,7 @@ function BrandIntro({ es }: { es: boolean }) {
         ref={ref}
         className="block w-full aspect-video"
         src="/work/corte/corte-intro.mp4"
-        poster="/work/corte/corte-intro.jpg"
+        poster="/work/corte/corte-intro.webp"
         muted
         playsInline
         preload="metadata"
@@ -264,7 +264,7 @@ const CaseCorte = () => {
 
       <Chapter id="recorrido" n="04" kicker={es ? "Recorrido" : "Walkthrough"} title={es ? "Cómo funciona, en video." : "How it works, on video."}>
         <div data-reveal className="theme-dark relative overflow-hidden rounded-[20px] md:rounded-[28px] border border-white/10" style={{ backgroundColor: CORTE.ink }}>
-          <video className="block w-full aspect-video" src="/work/corte/recorrido.mp4" poster="/work/corte/recorrido.jpg" controls playsInline preload="none" />
+          <video className="block w-full aspect-video" src="/work/corte/recorrido.mp4" poster="/work/corte/recorrido.webp" controls playsInline preload="none" />
         </div>
         <p className="text-white/45 text-sm">{es ? "Recorrido completo por la app · 3 min, con audio." : "Full tour of the app · 3 min, with audio."}</p>
       </Chapter>

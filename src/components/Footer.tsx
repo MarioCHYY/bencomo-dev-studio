@@ -47,10 +47,9 @@ const Footer = () => {
     { label: t(n.projects), to: "/portafolio" },
     { label: t(n.services), to: "/servicios" },
     { label: t(n.contact), to: "/contacto" },
-    { label: t({ en: "Web design in Culiacán", es: "Diseño web en Culiacán" }), to: "/diseno-web-culiacan" },
+    { label: t({ en: "UI/UX design in Culiacán", es: "Diseño UI/UX en Culiacán" }), to: "/diseno-ui-ux-culiacan" },
     { label: t({ en: "Before and after examples", es: "Ejemplos: antes y después" }), to: "/ejemplos-paginas-web" },
     { label: t({ en: "Design notes", es: "Notas de diseño" }), to: "/notas" },
-    { label: t({ en: "Design your QR card (free)", es: "Diseña tu tarjeta QR gratis" }), to: "/herramientas/tarjeta-qr" },
     { label: t({ en: "Privacy", es: "Privacidad" }), to: "/privacidad" },
   ];
 
@@ -76,7 +75,7 @@ const Footer = () => {
           <nav className="flex flex-col gap-3 text-sm" aria-label={t({ en: "Services", es: "Servicios" }) as string}>
             <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/35">{t({ en: "Services", es: "Servicios" })}</span>
             {/* UI/UX first: it's the focus */}
-            {[...translations.services.items].sort((a, b) => (a.id === "ui-ux" ? -1 : b.id === "ui-ux" ? 1 : 0)).map((it) => (
+            {translations.services.items.map((it) => (
               <Link key={it.id} to={`/servicios/${it.id}`} className="text-white/50 hover:text-white transition-colors w-fit">
                 {t(it.title) as string}
               </Link>

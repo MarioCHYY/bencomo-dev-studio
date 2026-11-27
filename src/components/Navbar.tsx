@@ -7,14 +7,60 @@ import { translations } from "@/i18n/translations";
 import { Link, useLocation } from "react-router-dom";
 import { BrandLogo } from "@/components/brand/Logo";
 
+/**
+ * The logo is the scroll bar: its cut opens as you go down the page, fully open at the end.
+ * It keeps its own state, so scrolling only re-renders the logo and not the whole menu.
+ */
+const ScrollLogo = ({ hover, pathname }: { hover: boolean; pathname: string }) => {
+  const [progress, setProgress] = useState(0);
+  // the cut glides only around a hover change; while the scroll drives it, it follows frame by frame
+  const [glide, setGlide] = useState(false);
+  useEffect(() => {
+    setGlide(true);
+    const t = window.setTimeout(() => setGlide(false), 400);
+    return () => window.clearTimeout(t);
+  }, [hover]);
+  useEffect(() => {
+    let raf = 0;
+    // the page's scrollable height, read only on resize and every 1.5 s (sections load lazily):
+    // reading it on every scroll frame made the browser redo the layout of the whole page
+    let max = 0;
+    const readMax = () => {
+      max = document.documentElement.scrollHeight - window.innerHeight;
+    };
+    const measure = () => {
+      raf = 0;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      setProgress(Math.round(p * 200) / 200);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    const onLayout = () => {
+      readMax();
+      onScroll();
+    };
+    readMax();
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onLayout);
+    const iv = window.setInterval(onLayout, 1500);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearInterval(iv);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onLayout);
+    };
+  }, [pathname]);
+  return <BrandLogo height={26} open={hover ? 1 : progress} glide={glide} title="Bencomo" />;
+};
+
 const Navbar = () => {
   const { lang, setLang, t } = useLang();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [logoHover, setLogoHover] = useState(false);
-  // the logo is the scroll bar: its cut opens as you go down the page, fully open at the end
-  const [progress, setProgress] = useState(0);
   const { theme, auto, toggleTheme } = useTheme();
 
   const links = [
@@ -31,27 +77,19 @@ const Navbar = () => {
     const measure = () => {
       raf = 0;
       setScrolled(window.scrollY > 30);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-      setProgress(Math.round(p * 200) / 200);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(measure);
     };
     measure();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    // pages load their sections lazily, so the page height changes after the first measure
-    const iv = window.setInterval(onScroll, 1500);
     return () => {
       cancelAnimationFrame(raf);
-      window.clearInterval(iv);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
     };
   }, [pathname]);
 
-  const ThemeToggle = ({ className = "" }: { className?: string }) => (
+  const themeToggle = (className = "") => (
     <button
       type="button"
       onClick={toggleTheme}
@@ -67,7 +105,7 @@ const Navbar = () => {
     </button>
   );
 
-  const LangPill = ({ className = "" }: { className?: string }) => (
+  const langPill = (className = "") => (
     <div className={`flex items-center rounded-full border border-white/15 p-0.5 text-[11px] font-semibold ${className}`}>
       {(["es", "en"] as const).map((l) => (
         <button
@@ -101,7 +139,7 @@ const Navbar = () => {
           onFocus={() => setLogoHover(true)}
           onBlur={() => setLogoHover(false)}
         >
-          <BrandLogo height={26} open={logoHover ? 1 : progress} title="Bencomo" />
+          <ScrollLogo hover={logoHover} pathname={pathname} />
         </Link>
 
         {/* Desktop links, centred */}
@@ -122,8 +160,8 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center justify-end gap-3">
-          <ThemeToggle />
-          <LangPill />
+          {themeToggle()}
+          {langPill()}
           <Link
             to="/contacto"
             className="text-[13px] font-semibold px-4 py-2 rounded-full bg-white text-black hover:bg-white/85 transition-colors"
@@ -159,8 +197,8 @@ const Navbar = () => {
               ))}
               <div className="flex items-center justify-between pt-5 mt-3 border-t border-white/10">
                 <div className="flex items-center gap-2">
-                  <ThemeToggle />
-                  <LangPill />
+                  {themeToggle()}
+                  {langPill()}
                 </div>
                 <Link
                   to="/contacto"

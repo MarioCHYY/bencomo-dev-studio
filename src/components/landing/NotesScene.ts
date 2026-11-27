@@ -15,8 +15,9 @@ import {
 
 /**
  * The blog's own 3D: the design notes as a ring of cards floating in space, each one drawn with
- * the idea of its note (a struck-out "Bienvenidos", the swatches, the 10 seconds, the menu, the
- * WhatsApp button, the viewfinder, the logo in its corner, the "Aa").
+ * the idea of its note (five testers and the one who gets it, prototype → MVP → product, the steps
+ * to the first "got it", the small grey button next to the right one, the system's swatches and
+ * parts, the old screen behind the new one).
  * On /notas the ring turns slowly; on a note, it turns to bring that note's card to the front.
  * Leans toward the cursor, follows the theme, and only renders while on screen.
  */
@@ -26,26 +27,26 @@ export interface NotesHandle {
   dispose: () => void;
 }
 
-const N = 8;
+const N = 6;
 const CW = 512; // card texture size
 const CH = 640;
 const AURORA = ["#8FB0FF", "#B7A8FF", "#FF9AB0", "#FFC48A"];
 const TEXT = {
   es: {
-    kickers: ["Credibilidad", "Color", "Primera impresión", "Restaurantes", "Contacto", "Fotografía", "Marca", "Tipografía"],
-    welcome: "Bienvenidos a…",
-    dish: ["Aguachile", "que pica."],
-    chat: "Hola, quiero cotizar",
-    button: "Cotiza por WhatsApp",
-    brand: "tu marca",
+    kickers: ["Validación", "MVP", "Onboarding", "Interfaz", "Sistemas", "Rediseño"],
+    people: "5 personas",
+    stages: ["Prototipo", "MVP", "Producto"],
+    aha: "ah, ya.",
+    small: "aceptar",
+    big: "Guardar gasto",
   },
   en: {
-    kickers: ["Credibility", "Color", "First impression", "Restaurants", "Contact", "Photography", "Brand", "Typography"],
-    welcome: "Welcome to…",
-    dish: ["Aguachile", "with a kick."],
-    chat: "Hi, I'd like a quote",
-    button: "Quote on WhatsApp",
-    brand: "your brand",
+    kickers: ["Validation", "MVP", "Onboarding", "Interface", "Systems", "Redesign"],
+    people: "5 people",
+    stages: ["Prototype", "MVP", "Product"],
+    aha: "got it.",
+    small: "ok",
+    big: "Save expense",
   },
 };
 type Copy = (typeof TEXT)["es"];
@@ -144,149 +145,159 @@ function drawCard(i: number, p: Pal, T: Copy): HTMLCanvasElement {
   c.strokeStyle = p.ink;
   switch (i) {
     case 0: {
-      // "Bienvenidos a…", struck out
-      fit(c, T.welcome, CW - 140, 50, (px) => `700 ${px}px ${SANS}`);
-      c.textAlign = "center";
-      c.fillStyle = p.soft;
-      c.fillText(T.welcome, cx, cy - 40);
-      c.fillStyle = aurora(c, 70, CW - 70);
-      c.fillRect(70, cy - 57, CW - 140, 7);
+      // five testers; the one who gets it, in aurora with a check
+      const r = 34, gap = 86, x0 = cx - gap * 2;
+      for (let k = 0; k < 5; k++) {
+        const x = x0 + k * gap;
+        const hit = k === 3;
+        c.fillStyle = hit ? aurora(c, x - r, x + r) : p.line;
+        c.beginPath();
+        c.arc(x, cy - 70, r, 0, Math.PI * 2);
+        c.fill();
+        c.beginPath();
+        c.arc(x, cy + 18, r * 1.35, Math.PI, 0);
+        c.fill();
+      }
+      c.strokeStyle = p.card;
+      c.lineWidth = 7;
+      c.lineCap = "round";
+      c.lineJoin = "round";
+      c.beginPath();
+      c.moveTo(x0 + 3 * gap - 14, cy - 70);
+      c.lineTo(x0 + 3 * gap - 3, cy - 58);
+      c.lineTo(x0 + 3 * gap + 16, cy - 84);
+      c.stroke();
       c.fillStyle = p.ink;
-      c.font = `italic 400 64px ${SERIF}`;
-      c.fillText(T.dish[0], cx, cy + 66);
-      c.fillText(T.dish[1], cx, cy + 128);
+      c.textAlign = "center";
+      fit(c, T.people, CW - 120, 70, (px) => `italic 400 ${px}px ${SERIF}`);
+      c.fillText(T.people, cx, cy + 150);
       break;
     }
     case 1: {
-      const cols = ["#0C2B3A", "#FF5A3C", "#F3EADB", "#C9E356"];
-      cols.forEach((col, k) => {
-        c.fillStyle = col;
-        rr(c, 70 + k * 96, cy - 120, 84, 240, 22);
-        c.fill();
-      });
+      // three phones, from a dashed sketch to a solid product
+      const w = 104, h = 196, gap = 34, x0 = cx - (w * 3 + gap * 2) / 2, y = cy - 140;
+      for (let k = 0; k < 3; k++) {
+        const x = x0 + k * (w + gap);
+        c.lineWidth = 4;
+        c.setLineDash(k === 0 ? [10, 9] : []);
+        c.strokeStyle = k === 2 ? p.ink : p.soft;
+        rr(c, x, y, w, h, 20);
+        c.stroke();
+        c.setLineDash([]);
+        if (k === 1) {
+          c.fillStyle = p.line;
+          [0.7, 0.5, 0.6].forEach((ww, j) => {
+            rr(c, x + 16, y + 34 + j * 30, (w - 32) * ww, 14, 7);
+            c.fill();
+          });
+        }
+        if (k === 2) {
+          c.fillStyle = p.ink;
+          rr(c, x, y, w, h, 20);
+          c.fill();
+          c.fillStyle = aurora(c, x + 14, x + w - 14);
+          rr(c, x + 14, y + h - 46, w - 28, 26, 13);
+          c.fill();
+        }
+        c.fillStyle = k === 2 ? p.ink : p.soft;
+        c.textAlign = "center";
+        fit(c, T.stages[k], w + gap - 6, 24, (px) => `600 ${px}px ${SANS}`);
+        c.fillText(T.stages[k], x + w / 2, y + h + 46);
+      }
       break;
     }
     case 2: {
-      c.lineWidth = 6;
+      // three steps to the first "got it"
+      const xs = [cx - 150, cx, cx + 150], y = cy - 40;
       c.strokeStyle = p.line;
+      c.lineWidth = 6;
       c.beginPath();
-      c.arc(cx, cy, 150, 0, Math.PI * 2);
+      c.moveTo(xs[0], y);
+      c.lineTo(xs[2], y);
       c.stroke();
-      c.strokeStyle = aurora(c, cx - 150, cx + 150);
-      c.lineCap = "round";
-      c.beginPath();
-      c.arc(cx, cy, 150, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * 0.3);
-      c.stroke();
+      xs.forEach((x, k) => {
+        c.fillStyle = k === 2 ? aurora(c, x - 34, x + 34) : p.ink;
+        c.beginPath();
+        c.arc(x, y, k === 2 ? 34 : 18, 0, Math.PI * 2);
+        c.fill();
+      });
       c.fillStyle = p.ink;
-      c.font = `italic 400 150px ${SERIF}`;
       c.textAlign = "center";
-      c.fillText("10 s", cx, cy + 48);
+      fit(c, T.aha, CW - 120, 92, (px) => `italic 400 ${px}px ${SERIF}`);
+      c.fillText(T.aha, cx, cy + 110);
       break;
     }
     case 3: {
-      const rows: [string, string][] = [
-        ["Aguachile", "$180"],
-        ["Ceviche", "$160"],
-        ["Tostada", "$95"],
-        ["Coctel", "$170"],
-      ];
-      rows.forEach(([a, b], k) => {
-        const y = cy - 105 + k * 72;
-        c.fillStyle = p.ink;
-        c.font = `500 34px ${SANS}`;
-        c.textAlign = "left";
-        c.fillText(a, 64, y);
-        const from = 64 + c.measureText(a).width + 18;
-        c.textAlign = "right";
-        c.font = `italic 400 42px ${SERIF}`;
-        c.fillText(b, CW - 64, y);
-        const to = CW - 64 - c.measureText(b).width - 18;
-        // dotted leader, like a printed menu
-        c.fillStyle = p.soft;
-        for (let x = from; x < to; x += 14) c.fillRect(x, y - 9, 5, 3);
-      });
+      // the tiny low-contrast button, and the right one
+      c.textAlign = "center";
+      c.strokeStyle = p.line;
+      c.lineWidth = 2;
+      rr(c, cx - 50, cy - 130, 100, 34, 8);
+      c.stroke();
+      c.fillStyle = p.line;
+      c.font = `500 18px ${SANS}`;
+      c.fillText(T.small, cx, cy - 107);
+      c.fillStyle = p.ink;
+      rr(c, 64, cy - 10, CW - 128, 104, 52);
+      c.fill();
+      c.fillStyle = p.card;
+      fit(c, T.big, CW - 200, 36, (px) => `700 ${px}px ${SANS}`);
+      c.fillText(T.big, cx, cy + 54);
+      c.fillStyle = aurora(c, 64, CW - 64);
+      c.fillRect(110, cy + 130, CW - 220, 5);
       break;
     }
     case 4: {
+      // the system: swatches, a button, a switch and a field
+      AURORA.forEach((col, k) => {
+        c.fillStyle = col;
+        c.beginPath();
+        c.arc(cx - 135 + k * 90, cy - 120, 32, 0, Math.PI * 2);
+        c.fill();
+      });
+      c.fillStyle = p.ink;
+      rr(c, 70, cy - 46, 190, 64, 32);
+      c.fill();
       c.fillStyle = p.line;
-      rr(c, 150, cy - 130, 300, 96, 32);
+      rr(c, 300, cy - 40, 104, 52, 26);
       c.fill();
-      c.fillStyle = p.ink;
-      fit(c, T.chat, 250, 28, (px) => `500 ${px}px ${SANS}`);
-      c.textAlign = "left";
-      c.fillText(T.chat, 178, cy - 72);
-      c.fillStyle = p.ink;
-      rr(c, 64, cy + 10, CW - 128, 104, 52);
-      c.fill();
-      c.fillStyle = aurora(c, 120, 150);
+      c.fillStyle = aurora(c, 352, 400);
       c.beginPath();
-      c.arc(128, cy + 62, 13, 0, Math.PI * 2);
+      c.arc(378, cy - 14, 20, 0, Math.PI * 2);
       c.fill();
-      c.fillStyle = p.card;
-      fit(c, T.button, CW - 64 - 160 - 36, 34, (px) => `700 ${px}px ${SANS}`);
-      c.fillText(T.button, 160, cy + 74);
+      c.strokeStyle = p.soft;
+      c.lineWidth = 3;
+      rr(c, 70, cy + 54, CW - 140, 64, 16);
+      c.stroke();
+      c.fillStyle = p.line;
+      rr(c, 94, cy + 78, 160, 16, 8);
+      c.fill();
       break;
     }
     case 5: {
-      c.lineWidth = 6;
-      c.lineCap = "round";
-      const x0 = 90, y0 = cy - 140, x1 = CW - 90, y1 = cy + 140, L = 54;
-      [
-        [x0, y0 + L, x0, y0, x0 + L, y0],
-        [x1 - L, y0, x1, y0, x1, y0 + L],
-        [x0, y1 - L, x0, y1, x0 + L, y1],
-        [x1 - L, y1, x1, y1, x1, y1 - L],
-      ].forEach(([a, b, cc, d, e, f]) => {
-        c.beginPath();
-        c.moveTo(a, b);
-        c.lineTo(cc, d);
-        c.lineTo(e, f);
-        c.stroke();
-      });
-      const g = c.createRadialGradient(cx, cy, 0, cx, cy, 90);
-      g.addColorStop(0, "#FFC48A");
-      g.addColorStop(0.65, "#FF9AB0");
-      g.addColorStop(1, "rgba(255,154,176,0)");
-      c.fillStyle = g;
-      c.beginPath();
-      c.arc(cx, cy, 90, 0, Math.PI * 2);
-      c.fill();
-      break;
-    }
-    case 6: {
-      c.strokeStyle = p.line;
+      // the old screen, dashed, behind the new one
+      c.strokeStyle = p.soft;
       c.lineWidth = 3;
-      rr(c, 56, cy - 150, CW - 112, 300, 26);
+      c.setLineDash([10, 9]);
+      rr(c, 70, cy - 150, 250, 300, 24);
       c.stroke();
-      c.beginPath();
-      c.moveTo(56, cy - 70);
-      c.lineTo(CW - 56, cy - 70);
-      c.stroke();
-      // the logo, top-left, ringed in aurora
-      c.strokeStyle = aurora(c, 76, 250);
-      c.lineWidth = 4;
-      rr(c, 74, cy - 136, 168, 52, 14);
-      c.stroke();
-      c.fillStyle = aurora(c, 90, 120);
-      rr(c, 88, cy - 124, 28, 28, 8);
-      c.fill();
+      c.setLineDash([]);
       c.fillStyle = p.ink;
-      fit(c, T.brand, 104, 24, (px) => `700 ${px}px ${SANS}`);
-      c.textAlign = "left";
-      c.fillText(T.brand, 126, cy - 101);
-      c.fillStyle = p.line;
-      [0.8, 0.6, 0.7].forEach((w, k) => {
-        rr(c, 84, cy - 30 + k * 44, (CW - 168) * w, 18, 9);
+      rr(c, 190, cy - 110, 250, 300, 24);
+      c.fill();
+      c.fillStyle = aurora(c, 214, 416);
+      rr(c, 214, cy - 84, 202, 8, 4);
+      c.fill();
+      c.fillStyle = p.card;
+      [0.8, 0.55, 0.7].forEach((w, k) => {
+        rr(c, 214, cy - 44 + k * 40, 202 * w, 16, 8);
+        c.globalAlpha = 0.35;
         c.fill();
+        c.globalAlpha = 1;
       });
-      break;
-    }
-    case 7: {
-      c.textAlign = "center";
-      c.font = `italic 400 190px ${SERIF}`;
-      c.fillText("Aa", cx, cy + 10);
-      c.font = `600 110px ${SANS}`;
-      c.fillText("Aa", cx, cy + 140);
+      c.fillStyle = p.card;
+      rr(c, 214, cy + 124, 202, 44, 22);
+      c.fill();
       break;
     }
   }

@@ -4,7 +4,9 @@ import { ChevronsLeftRight } from "lucide-react";
 import { AURORA } from "@/components/landing/LandingUI";
 
 /** drag (or use the arrow keys) to move the line between the generic page and the designed one */
-export default function Compare({ id, name, es }: { id: string; name: string; es: boolean }) {
+export default function Compare({ id, name, es, app = false }: { id: string; name: string; es: boolean; app?: boolean }) {
+  // what is being compared, for the image descriptions: a business page or an app screen
+  const what = es ? (app ? "la app" : "la página") : app ? "app" : "page";
   const [pos, setPos] = useState(50);
   const ref = useRef<HTMLDivElement>(null);
   const seen = useInView(ref, { once: true, amount: 0.6 });
@@ -73,8 +75,8 @@ export default function Compare({ id, name, es }: { id: string; name: string; es
           src={`/ejemplos/${id}-despues-desk.webp`}
           alt={
             es
-              ? `Versión diseñada de la página de ${name}`
-              : `Designed version of the ${name} page`
+              ? `Versión diseñada de ${what} de ${name}`
+              : `Designed version of the ${name} ${what}`
           }
           width={1440}
           height={900}
@@ -87,8 +89,8 @@ export default function Compare({ id, name, es }: { id: string; name: string; es
           src={`/ejemplos/${id}-antes-desk.webp`}
           alt={
             es
-              ? `Versión genérica de la página de ${name}`
-              : `Generic version of the ${name} page`
+              ? `Versión genérica de ${what} de ${name}`
+              : `Generic version of the ${name} ${what}`
           }
           width={1440}
           height={900}
