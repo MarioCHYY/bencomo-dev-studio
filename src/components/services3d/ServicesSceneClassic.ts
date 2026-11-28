@@ -23,7 +23,6 @@ import {
   PerspectiveCamera,
   Plane,
   PlaneGeometry,
-  PMREMGenerator,
   PointLight,
   Scene,
   Shape,
@@ -33,7 +32,7 @@ import {
   Vector3,
   WebGLRenderer,
 } from "three";
-import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { lightEnvironment } from "./lightEnvironment";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import { warmUp } from "./warmUp";
 
@@ -319,7 +318,7 @@ function redesign(): Model {
   const cutNew = new Plane(new Vector3(-1, 0, 0), 0);
   const cutOld = new Plane(new Vector3(1, 0, 0), 0);
   // DoubleSide so the cut face shows the inside of the shell instead of a hole
-  const solid = new MeshStandardMaterial({ color: CLAY[3], roughness: 0.25, metalness: 0.5, flatShading: true, clippingPlanes: [cutNew], transparent: true, side: DoubleSide });
+  const solid = new MeshStandardMaterial({ color: CLAY[3], roughness: 0.25, metalness: 0.5, flatShading: true, clippingPlanes: [cutNew], transparent: true, side: DoubleSide, forceSinglePass: true });
   const wire = new MeshBasicMaterial({ color: LINE, wireframe: true, transparent: true, opacity: 0.35 * LINE_K, clippingPlanes: [cutOld] });
   mats.push(solid, wire);
   root.add(new Mesh(geo, solid), new Mesh(geo, wire));
@@ -560,9 +559,8 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
   container.appendChild(canvas);
 
   const scene = new Scene();
-  const pmrem = new PMREMGenerator(renderer);
-  const env = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environment = env;
+  const env = lightEnvironment(renderer);
+  scene.environment = env.texture;
 
   const camera = new PerspectiveCamera(32, 1, 0.1, 50);
   camera.position.set(0, 0.1, 6.2);
@@ -690,7 +688,6 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
         else a.material?.dispose();
       });
       env.dispose();
-      pmrem.dispose();
       renderer.dispose();
       canvas.remove();
     },
