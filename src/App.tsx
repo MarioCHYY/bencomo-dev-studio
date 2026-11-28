@@ -2,7 +2,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { ThemeProvider } from "@/components/ThemeContext";
-import CinematicBackground from "@/components/CinematicBackground";
 import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
 import PageTransition from "@/components/fx/PageTransition";
@@ -38,7 +37,6 @@ const PageLoader = () => (
 const App = () => (
   <ThemeProvider>
     <LanguageProvider>
-      <CinematicBackground />
       <Toaster />
       <SkyLight />
       <RevealObserver />

@@ -35,6 +35,7 @@ import {
 import { lightEnvironment } from "./lightEnvironment";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import { warmUp } from "./warmUp";
+import { noGpu, SOFT_FRAME } from "@/lib/gpu";
 
 /**
  * One small 3D render per service. The scene shows one model at a time and
@@ -1034,6 +1035,8 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
     if (!visible || document.hidden) return;
     raf = requestAnimationFrame(frame);
     const t = clock.getElapsedTime();
+    // drawing without a graphics card: same movement, fewer frames
+    if (noGpu && t - last < SOFT_FRAME) return;
     const dt = Math.min(0.1, t - last);
     last = t;
     models.forEach((m, i) => {

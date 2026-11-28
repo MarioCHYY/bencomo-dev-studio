@@ -6,6 +6,7 @@ import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
 import type { MorphSceneHandle } from "@/components/hero/MorphScene";
 import { isIntroOpen, onIntroOpen } from "@/lib/intro";
+import { noGpu } from "@/lib/gpu";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const up: Variants = {
@@ -51,7 +52,8 @@ export default function IntegratedHero() {
     let handle: MorphSceneHandle | null = null;
     let cancelled = false;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const lowPower = window.matchMedia("(max-width: 767px)").matches;
+    // phones and browsers drawing without a graphics card get the lighter sculpture (fewer dots)
+    const lowPower = noGpu || window.matchMedia("(max-width: 767px)").matches;
     import("@/components/hero/MorphScene")
       .then(({ createMorphScene }) =>
         createMorphScene(el, { reducedMotion, lowPower, onShape: setShape, getScroll: () => progress.current }),

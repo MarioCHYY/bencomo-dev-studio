@@ -11,6 +11,7 @@ import {
   Vector2,
   WebGLRenderer,
 } from "three";
+import { noGpu, SOFT_FRAME } from "@/lib/gpu";
 
 /**
  * Hero sculpture: one cloud of dots that keeps changing shape.
@@ -395,6 +396,8 @@ export async function createMorphScene(
     if (!visible || document.hidden) return;
     raf = requestAnimationFrame(frame);
     const t = clock.getElapsedTime();
+    // drawing without a graphics card: same movement, fewer frames
+    if (noGpu && t - lastT < SOFT_FRAME) return;
     uniforms.uTime.value = reducedMotion ? 0 : t;
     if (reducedMotion) {
       uniforms.uFrom.value = 0;

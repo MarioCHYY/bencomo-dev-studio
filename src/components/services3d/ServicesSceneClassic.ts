@@ -35,6 +35,7 @@ import {
 import { lightEnvironment } from "./lightEnvironment";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import { warmUp } from "./warmUp";
+import { noGpu, SOFT_FRAME } from "@/lib/gpu";
 
 /**
  * Classic (ambient) version, used by the home page section: each model just floats and loops gently.
@@ -637,6 +638,8 @@ export async function createServicesScene(container: HTMLElement, opts: { reduce
     if (!visible || document.hidden) return;
     raf = requestAnimationFrame(frame);
     const t = clock.getElapsedTime();
+    // drawing without a graphics card: same movement, fewer frames
+    if (noGpu && t - last < SOFT_FRAME) return;
     const dt = Math.min(0.1, t - last);
     last = t;
     models.forEach((m, i) => {

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { noGpu } from "@/lib/gpu";
 
 /** Aurora tints used for the dots on the light theme (a touch deeper than the logo so they read on white). */
 const AURORA = ["104,136,235", "142,116,238", "232,104,146", "232,150,84"];
@@ -18,7 +19,7 @@ export function Starfield({ count = 120, contained = false, className = "" }: { 
     const ctx = cv?.getContext("2d");
     if (!cv || !ctx) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dpr = noGpu ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
     let w = 0, h = 0, raf = 0;
     let light = false;
     const stars = Array.from({ length: count }, (_, i) => ({
@@ -57,7 +58,8 @@ export function Starfield({ count = 120, contained = false, className = "" }: { 
       raf = 0;
       if (document.hidden || !onScreen) return;
       // the dots drift slowly: drawing every other frame looks the same and costs half
-      if (!reduce && time - lastDraw < 30) {
+      // (without a graphics card, about 15 times a second: they still drift, just in smaller steps)
+      if (!reduce && time - lastDraw < (noGpu ? 64 : 30)) {
         raf = requestAnimationFrame(draw);
         return;
       }
